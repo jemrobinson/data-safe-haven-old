@@ -1,0 +1,129 @@
+R Test Script 1: basic RStudio functionality
+
+Initial state:
+OS running, R/RStudio installed
+
+
+Item 1: opening RStudio
+
+Execute RStudio.exe of complete installation (via desktop link or directly)
+
+Outcome: RStudio should open. If not previously run, three windows (console, environment tab, files tab) should be shown.
+
+[if not: click View->Panes->Show all tabs, check outcome again]
+
+
+Item 2: check RStudio GUI
+
+Click "File menu item"
+In sequence, click "Environment", "History", and "Connections", "Environment" tabs in top right window
+In sequence, click "Files", "Plots", "Packages", "Help", "Viewer" tabs in bottom right window
+
+Outcome: File menu should open, tab content should change as expected, no errors/warnings (red output) should appear on console
+
+
+Item 3: console, workspace, and error prompts
+
+Ensure "Environment" tab is open in top right window (should be so after item 2)
+
+(a) *manually* type the following commands into the console, each line followed by enter:
+<commands start>
+a <- 2*3
+b <- 7*a
+b
+<commands end>
+
+(b) click on "broom" symbol in "environment" tab
+
+(c) *manually* type the following commands into the console:
+<command starts>
+a
+<command ends>
+
+Outcome:
+(a)
+after executing line "a <- 2*3", row in "environment" with entries "a", "6" should appear; new console prompt ">" appears on console
+after executing line "b <- 7*a", row in "environment" with entries "b", "42" should appear; new console prompt ">" appears on console
+after executing line "b", new console prompt, and print output "[1] 42" should appear on console
+(b) after clicking broom, "environment tab" empties
+(c) error (red text) should appearon console: "Error: object 'a' not found"; new console prompt ">" appears
+
+
+Item 4: script execution
+
+(a) Click "File" menu -> "New File" -> "R Script"
+Outcome: opens an empty script window with a tab called "untitled"
+
+(b) *manually* type the following text into the script window (line break with enter):
+<text starts>
+a <- 2*3
+b <- 7*a
+b
+<text ends>
+Outcome: the text should be shown in the script window
+
+(c) click on first line "a <- 2*3", execute all three lines by pressing Ctrl-Enter, thrice
+
+Outcome:
+after executing line "a <- 2*3", row in "environment" with entries "a", "6" should appear; new console prompt ">" appears on console
+after executing line "b <- 7*a", row in "environment" with entries "b", "42" should appear; new console prompt ">" appears on console
+after executing line "b", new console prompt, and print output "[1] 42" should appear on console
+
+
+Item 5: loading and use of on-board packages
+
+*manually* type the following commands into the console, each line followed by enter:
+<commands start>
+library(survival)
+summary(heart)
+<commands end>
+
+Outcome:
+after executing line "library(survival)", new console prompt ">" appears on console
+after executing line "summary(heart)", the following appears on console
+
+<prompt start>
+     start             stop            event            age                year             surgery       transplant       id        
+ Min.   :  0.00   Min.   :   1.0   Min.   :0.000   Min.   :-39.2142   Min.   :-0.04928   Min.   :0.0000   0:103      Min.   :  1.00  
+ 1st Qu.:  0.00   1st Qu.:  17.0   1st Qu.:0.000   1st Qu.: -6.6468   1st Qu.: 1.66051   1st Qu.:0.0000   1: 69      1st Qu.: 28.00  
+ Median :  0.00   Median :  45.5   Median :0.000   Median : -0.1136   Median : 3.75086   Median :0.0000              Median : 53.50  
+ Mean   : 15.51   Mean   : 201.3   Mean   :0.436   Mean   : -2.4840   Mean   : 3.45329   Mean   :0.1686              Mean   : 53.06  
+ 3rd Qu.: 18.25   3rd Qu.: 181.5   3rd Qu.:1.000   3rd Qu.:  4.0459   3rd Qu.: 5.03491   3rd Qu.:0.0000              3rd Qu.: 78.25  
+ Max.   :310.00   Max.   :1800.0   Max.   :1.000   Max.   : 16.4079   Max.   : 6.47228   Max.   :1.0000              Max.   :103.00  
+>
+<prompt end>
+
+
+Item 6: example and plotting functionality
+
+Ensure in the bottom right panel the "plots" tab is selected (click if not).
+
+(a) *manually* type the following command into the console, followed by Enter, twice:
+<commands start>
+example(plot)
+<commands end>
+
+Outcome: 
+after first Enter, command entered changes to
+example("plot")
+on the console
+after second Enter, text output appear on console, and a plot of a sinusoid in the plot window
+
+(b) press Enter four times
+
+Outcome: 
+after each pressing of Enter, a new plot appears in the plot window, and further text output in the console window
+
+
+Item 7: R help and embedded html
+
+(a) *manually* type the following command into the console, followed by Enter:
+<commands start>
+?help
+<commands end>
+
+Outcome: bottom right window switches to "help" tab, html page titled "Generic X-Y Plotting" opens
+
+(b) in bottom right window help tab page, click the hyperlink "par" in the first paragraph
+
+Outcome: in the same window, html page titled "Set or QUery Graphical Parameters" opens
