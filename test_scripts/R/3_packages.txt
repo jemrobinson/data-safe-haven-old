@@ -1,0 +1,130 @@
+R Test Script 3: package loading and installation
+
+Initial state:
+  OS running 
+  RStudio running, clean workspace/history, standard window set-up
+   no packages installed (clean new installation)
+   R has write credentials to localpackage installation directory [packagedir]
+  
+  
+Item 1: package installation, management, loading, unloading
+
+(a) *manually* type the following command into the console, followed by Enter:
+<commands start>
+install.packages("data.table")
+<commands end>
+
+Outcome: 
+In the console, the following is printed:
+<print start>
+Installing package into [packagedir]
+(as 'lib' is unspecified)
+trying URL [packageURL]
+Content type 'application/zip' length 1815605 bytes (1.7 MB)
+downloaded 1.7 MB
+
+package 'data.table' successfully unpacked and MD5 sums checked
+<print end>
+and new prompt ">" appears
+
+(b) *manually* type the following command into the console, followed by Enter:
+<commands start>
+data.table::frank(mtcars)
+<commands end>
+
+Outcome:
+In the console, the following is printed:
+<print start>
+[1] 19 20 24 22 15 14  4 26 25 16 13 11 12  7  2  1  5 31 29 32 23  9  8  3 17 28 27 30 10 18  6 21
+<print end>
+and new prompt ">" appears
+
+(c) *manually* type the following command into the console, each line followed by Enter:
+<commands start>
+library(data.table)
+frank(mtcars)
+<commands end>
+
+Outcome:
+In the console, the following is printed:
+<print start>
+[1] 19 20 24 22 15 14  4 26 25 16 13 11 12  7  2  1  5 31 29 32 23  9  8  3 17 28 27 30 10 18  6 21
+<print end>
+and new prompt ">" appears
+
+
+(d) navigate in bottom right window to "packages" tab (click on)
+the window should show a "user library" checkbox list and, below, a "system library" checkbox list
+"user library" list should contain a single entry "data.table", with checkbox checked
+uncheck the "data.table" checkbox
+
+Outcome:
+checkbox lists are correctly shown as described
+after unchecking "data.table" checkbox, the command
+<command start>
+detach("package:data.table", unload=TRUE)
+<command ends>
+appears on the console and is executed without error message
+
+
+(e) *manually* type the following command into the console, followed by Enter:
+<commands start>
+remove.packages("data.table")
+<commands end>
+re-start R/Rstudio.
+Then, *manually* type the following command into the console, followed by Enter:
+<commands start>
+data.table::frank(mtcars)
+<commands end>
+
+Outcome: 
+In the console, the following is printed (after the last command):
+<print start>
+> remove.packages("data.table", lib=[packagedir])
+> data.table::frank(mtcars)
+Error in loadNamespace(name) : there is no package called 'data.table'
+<print end>
+
+
+Item 2: installing package with nested dependencies
+
+(a) *manually* type the following command into the console, followed by Enter:
+<commands start>
+install.packages("mlr")
+<commands end>
+
+Outcome: long "installing package" primpt following by "also installing dependencies",
+concludes with long list of
+"package [packagename] successfully unpacked and MD5 sums checked"
+without warnings
+
+(b) *manually* type the following command into the console, followed by Enter:
+<commands start>
+BBmisc::explode("4 2")
+<commands end>
+
+Outcome: the following output is shown on the console:
+<print start>
+[1] "4" "2"
+>
+<print end>
+
+
+Item 3: bioconductor package manager
+
+(a) *manually* type the following command into the console, each line followed by Enter:
+<commands start>
+install.packages("BiocManager")
+BiocManager::install("GenomicFeatures")
+<commands end>
+
+Outcome: 
+
+
+(b) 
+
+
+
+Item 4: packages with compiled dependencies
+
+(a)
