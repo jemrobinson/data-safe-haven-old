@@ -4,7 +4,8 @@ Initial state:
   OS running 
   RStudio running, clean workspace/history, standard window set-up
     (if some windows are not shown, RStudio state can be ensured with Ctrl + Alt + Shift + 0)
-  filepath [filepath] accessible from RStudio with write/read credentials and empty
+  input filepath [infilepath] contains mtcars.csv
+  output filepath [outfilepath] accessible from RStudio with write/read credentials and empty
   
   
 Item 1: getting and setting working directory
@@ -19,7 +20,7 @@ In the console, "[1]" followed by a string representation of the use root direct
 
 (b) *manually* type the following command into the console, followed by Enter:
 <commands start>
-setwd("[filepath]")
+setwd("[outfilepath]")
 <commands end>
 (where filepath is replaced by string representation of file path to test, use slash "/" only, not backslash "\")
 
@@ -41,7 +42,14 @@ Outcome: a file named "test.csv" is created in [filepath]
 read.csv(file.path(getwd(),"test.csv"))
 <commands end>
 
-Outcome: the following output is shown on the console:
+Outcome: see below, same as for (c)
+
+(c) *manually* type the following command into the console, followed by Enter:
+<commands start>
+read.csv(file.path([infilepath],"mtcars.csv"))
+<commands end>
+
+Outcome for (b) and (c): the following output is shown on the console:
 
                      X  mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 1            Mazda RX4 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
@@ -93,12 +101,12 @@ Outcome: the text should be shown in the script window
 
 (c) Click "File" menu -> "Save As...", file/path selection window opens
 In file/path selection window:
-Navigate to [filepath], enter filename "testscript.R" in the "File Name" text field, click "Save"
+Navigate to [outfilepath], enter filename "testscript.R" in the "File Name" text field, click "Save"
 Click "File" menu -> "Save As..."
-Navigate to [filepath], enter filename "testscript2.R" in the "File Name" text field, click "Save"
+Navigate to [outfilepath], enter filename "testscript2.R" in the "File Name" text field, click "Save"
 
 Outcome:
-two files are created in [filepath], named "testscript.R" and "testscript2.R"
+two files are created in [outfilepath], named "testscript.R" and "testscript2.R"
 The script window has a *single* tab open, called testscript2.R
 
 (d) Click "File" menu -> "Open File..."
@@ -128,10 +136,10 @@ New window with title "Save plot as image" opens
 
 (c) in "Save plot as image" window, click "directory" buttom (top left), file/path selection window opens
 In file/path selection window
-Navigate to [filepath], click "Open"
+Navigate to [outfilepath], click "Open"
 
 Outcome:
-new file is created in [filepath], named "Rplot.png"
+new file is created in [outfilepath], named "Rplot.png"
 
 (d) open "Rplot.png" in filepath with external image viewer
 
