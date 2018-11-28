@@ -1,0 +1,130 @@
+Jupyter Test Script 1: basic Jupyter functionality
+
+Initial state:
+OS running, python distribution, Jupyter installed & paths set
+working path [jupyterpath] should have read/write credentials
+
+
+Item 1: opening Jupyter notebook
+
+Depending on installation. Either:
+(i) click on Jupyter notebook symbol
+(ii) execute line "jupyter notebook" on command line
+
+Outcome: Browser window with Jupyter notebook opens, entitled "Home".
+If not previously run, window will show three tabs, "files", "running", "clusters".
+The "Files" tab is activated, the contents of the path [jupyterpath] are shown.
+
+
+Item 2: check Jupyter overview GUI
+
+In sequence, click "Running", "Clusters", "Files" tabs 
+
+Outcome: tab changes to "Running tab.
+In "Running" tab, there are two drop-down items "Terminals" and "Notebooks", containing the single item "there are no terminals/notebooks running".
+Tab changes to "Clusters" tab, which is empty.
+Tab changes to "Files" tab, content is identical with the initial "Files" tab content (see item 1).
+
+
+Item 3: creating a new Jupyter notebook
+
+(a) In files tab, click "New" (top right) 
+
+Outcome: drop-down menu appears, contains "Python 2" and "Python 3" items
+
+(b) In files tab, click "New" (top right), select "Python 3" in drop-down menu
+
+Outcome: A new browser window, entitled "Untitled" opens.
+The first browser window, "Home", does not close or otherwise disappear.
+The browser window "Home" shows an in-window menu bar "File", "Edit", "View", etc.
+Below it is an empty box preceded by "In [ ]:"
+
+(c) in "Home" browser window, click "Running" tab.
+
+Outcome: 
+tab changes to "Running", in which Notebooks" drop-down should list "Untitled.ipynb"
+
+(d) In "Untitled" browser window, click "File" -> "Rename...", enter "testing1" and confirm
+
+Outcome:
+Browser window name changes from "Untitled" to "testing1"
+File name of "Untitled.ipynb" in [jupyterpath] changes to "testing1.ipynb"
+In "Home" browser window "Running" tab, "Notebooks" drop-down now lists "testing1.ipynb" instead of "untitled.ipynb"
+
+
+Item 4: notebook cells and outputs
+
+(a) *manually* type the following commands into the first input cell (box next to "In [ ]:") in the "testing" browser window.
+I.e., click on the box, enter the following, ending each line with Enter:
+<commands start>
+a = 2*3
+b = 7*a
+<commands end>
+Click on the "Run" button (below file menu).
+
+Outcome: new input cell appears below the first cell. Caption of first cell changes to "In [1]:".
+
+(b) *manually* type the following commands into the second input cell (box next to "In [ ]:") in the "testing" browser window.
+I.e., click on the box, enter the following:
+<commands start>
+b
+<commands end>
+Click on the "Run" button (below file menu).
+
+Outcome:
+An output line "Out [2]: 42" appears, below the second input cell.
+Caption of second cell changes to "In [2]:".
+
+(c) *manually* type the following commands into the third input cell (box next to "In [ ]:") in the "testing" browser window.
+I.e., click on the box, enter the following:
+<commands start>
+c
+<commands end>
+Click on the "Run" button (below file menu).
+
+Outcome: 
+the following error printout appears:
+<output start>
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-3-[some numbers]> in <module>()
+----> 1 c
+
+NameError: name 'c' is not defined
+<output end>
+Caption of third cell changes to "In [3]:".
+
+
+Item 5: on-board package loading and plotting
+
+(a) *manually* type the following commands into the fourth input cell (box next to "In [ ]:") in the "testing" browser window.
+I.e., click on the box, enter the following:
+<commands start>
+from math import pi
+pi
+<commands end>
+Click on the "Run" button (below file menu).
+
+Outcome:
+An output line "Out [4]: 3.141592653589793" appears, below the fourth input cell.
+Caption of fourth cell changes to "In [4]:".
+
+(b) *manually* type the following commands into the fifth input cell (box next to "In [ ]:") in the "testing" browser window.
+I.e., click on the box, enter the following:
+<commands start>
+from matplotlib import pyplot
+pyplot.pie([pi, 42])
+<commands end>
+Click on the "Run" button (below file menu).
+
+Outcome:
+An output box "Out [5]:"" appears, below the fifth input cell.
+It contains the following printout:
+<output start>
+([<matplotlib.patches.Wedge at 0x[some numbers]>,
+  <matplotlib.patches.Wedge at 0x[some numbers]>],
+ [Text[some numbers],[some numbers],''), Text([some numbers],[some numbers],'')])
+<output end>
+and a silly pie chart.
+
+Caption of fifth cell changes to "In [5]:".
