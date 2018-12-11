@@ -29,6 +29,7 @@ ADMIN_PASSWORD_SECRET_NAME="vm-admin-password"
 # Retrieve admin password from keyvault
 ADMIN_PASSWORD=$(az keyvault secret show --vault-name $MANAGEMENT_VAULT_NAME --name $ADMIN_PASSWORD_SECRET_NAME --query "value" | xargs)
 
+CLOUDINITYAML="cloud-init-new-lanl-conpute-vm.yaml"
 
 # Ensure we are using the right subscritpion
 az account set --subscription "$SUBSCRIPTION"
@@ -60,8 +61,9 @@ az vm create \
     --location "$LOCATION" \
     --subnet "${SUBNET_ID}" \
     --nsg "${NSG_ID}"  \
-    --admin-username $USERNAME \
-    --admin-password $ADMIN_PASSWORD
+    --admin-username '$USERNAME" \
+    --admin-password "$ADMIN_PASSWORD" \
+    --custom-data "$CLOUDINITYAML"
 
 # Display public IP
 PUBLICIP=$(az vm list-ip-addresses --resource-group "$COMPUTE_RG" --name "$VM_NAME" --query "[0].virtualMachine.network.publicIpAddresses[0].ipAddress" | xargs echo)
