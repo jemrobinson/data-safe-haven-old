@@ -150,6 +150,249 @@ write_files:
           r["CRAN"] <- "http://CRAN_MIRROR_IP"
           options(repos = r)
       })
+  - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/keyboards.xml"
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="keyboards" version="1.0">
+        <property name="Default" type="empty">
+          <property name="Numlock" type="bool" value="false"/>
+        </property>
+      </channel>
+  - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/thunar.xml"
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="thunar" version="1.0">
+        <property name="last-view" type="string" value="ThunarIconView"/>
+        <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_NORMAL"/>
+      </channel>
+  - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-appfinder.xml"
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfce4-appfinder" version="1.0">
+        <property name="last" type="empty">
+          <property name="window-height" type="int" value="400"/>
+          <property name="window-width" type="int" value="400"/>
+          <property name="pane-position" type="int" value="180"/>
+        </property>
+      </channel>
+ - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml"
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfce4-desktop" version="1.0">
+        <property name="backdrop" type="empty">
+          <property name="screen0" type="empty">
+            <property name="monitor0" type="empty">
+              <property name="workspace0" type="empty">
+                <property name="color-style" type="int" value="0"/>
+                <property name="image-style" type="int" value="5"/>
+                <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-teal.jpg"/>
+              </property>
+              <property name="workspace1" type="empty">
+                <property name="color-style" type="int" value="0"/>
+                <property name="image-style" type="int" value="5"/>
+                <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-teal.jpg"/>
+              </property>
+              <property name="workspace2" type="empty">
+                <property name="color-style" type="int" value="0"/>
+                <property name="image-style" type="int" value="5"/>
+                <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-teal.jpg"/>
+              </property>
+              <property name="workspace3" type="empty">
+                <property name="color-style" type="int" value="0"/>
+                <property name="image-style" type="int" value="5"/>
+                <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-teal.jpg"/>
+              </property>
+            </property>
+          </property>
+        </property>
+      </channel>
+ - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfce4-keyboard-shortcuts" version="1.0">
+        <property name="commands" type="empty">
+          <property name="default" type="empty">
+            <property name="&lt;Alt&gt;F1" type="empty"/>
+            <property name="&lt;Alt&gt;F2" type="empty">
+              <property name="startup-notify" type="empty"/>
+            </property>
+            <property name="&lt;Alt&gt;F3" type="empty">
+              <property name="startup-notify" type="empty"/>
+            </property>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;l" type="empty"/>
+            <property name="XF86Display" type="empty"/>
+            <property name="&lt;Super&gt;p" type="empty"/>
+            <property name="&lt;Primary&gt;Escape" type="empty"/>
+            <property name="XF86WWW" type="empty"/>
+            <property name="XF86Mail" type="empty"/>
+          </property>
+          <property name="custom" type="empty">
+            <property name="&lt;Alt&gt;F3" type="string" value="xfce4-appfinder">
+              <property name="startup-notify" type="bool" value="true"/>
+            </property>
+            <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-applicationsmenu"/>
+            <property name="&lt;Alt&gt;F2" type="string" value="xfce4-appfinder --collapsed">
+              <property name="startup-notify" type="bool" value="true"/>
+            </property>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="string" value="xflock4"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;l" type="string" value="xflock4"/>
+            <property name="XF86Mail" type="string" value="exo-open --launch MailReader"/>
+            <property name="XF86Display" type="string" value="xfce4-display-settings --minimal"/>
+            <property name="XF86WWW" type="string" value="exo-open --launch WebBrowser"/>
+            <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
+            <property name="&lt;Primary&gt;Escape" type="string" value="xfdesktop --menu"/>
+            <property name="override" type="bool" value="true"/>
+          </property>
+        </property>
+        <property name="xfwm4" type="empty">
+          <property name="default" type="empty">
+            <property name="&lt;Alt&gt;Insert" type="empty"/>
+            <property name="Escape" type="empty"/>
+            <property name="Left" type="empty"/>
+            <property name="Right" type="empty"/>
+            <property name="Up" type="empty"/>
+            <property name="Down" type="empty"/>
+            <property name="&lt;Alt&gt;Tab" type="empty"/>
+            <property name="&lt;Alt&gt;&lt;Shift&gt;Tab" type="empty"/>
+            <property name="&lt;Alt&gt;Delete" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Down" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Left" type="empty"/>
+            <property name="&lt;Shift&gt;&lt;Alt&gt;Page_Down" type="empty"/>
+            <property name="&lt;Alt&gt;F4" type="empty"/>
+            <property name="&lt;Alt&gt;F6" type="empty"/>
+            <property name="&lt;Alt&gt;F7" type="empty"/>
+            <property name="&lt;Alt&gt;F8" type="empty"/>
+            <property name="&lt;Alt&gt;F9" type="empty"/>
+            <property name="&lt;Alt&gt;F10" type="empty"/>
+            <property name="&lt;Alt&gt;F11" type="empty"/>
+            <property name="&lt;Alt&gt;F12" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Left" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;End" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Home" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Right" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Up" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_1" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_2" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_3" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_4" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_5" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_6" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_7" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_8" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_9" type="empty"/>
+            <property name="&lt;Alt&gt;space" type="empty"/>
+            <property name="&lt;Shift&gt;&lt;Alt&gt;Page_Up" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Right" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;d" type="empty"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Up" type="empty"/>
+            <property name="&lt;Super&gt;Tab" type="empty"/>
+            <property name="&lt;Primary&gt;F1" type="empty"/>
+            <property name="&lt;Primary&gt;F2" type="empty"/>
+            <property name="&lt;Primary&gt;F3" type="empty"/>
+            <property name="&lt;Primary&gt;F4" type="empty"/>
+            <property name="&lt;Primary&gt;F5" type="empty"/>
+            <property name="&lt;Primary&gt;F6" type="empty"/>
+            <property name="&lt;Primary&gt;F7" type="empty"/>
+            <property name="&lt;Primary&gt;F8" type="empty"/>
+            <property name="&lt;Primary&gt;F9" type="empty"/>
+            <property name="&lt;Primary&gt;F10" type="empty"/>
+            <property name="&lt;Primary&gt;F11" type="empty"/>
+            <property name="&lt;Primary&gt;F12" type="empty"/>
+          </property>
+          <property name="custom" type="empty">
+            <property name="Up" type="string" value="up_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_9" type="string" value="move_window_workspace_9_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_8" type="string" value="move_window_workspace_8_key"/>
+            <property name="Left" type="string" value="left_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_6" type="string" value="move_window_workspace_6_key"/>
+            <property name="&lt;Alt&gt;Insert" type="string" value="add_workspace_key"/>
+            <property name="&lt;Alt&gt;Tab" type="string" value="cycle_windows_key"/>
+            <property name="&lt;Alt&gt;&lt;Shift&gt;Tab" type="string" value="cycle_reverse_windows_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_7" type="string" value="move_window_workspace_7_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Right" type="string" value="right_workspace_key"/>
+            <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Right" type="string" value="move_window_right_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;d" type="string" value="show_desktop_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Up" type="string" value="up_workspace_key"/>
+            <property name="&lt;Primary&gt;F7" type="string" value="workspace_7_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Home" type="string" value="move_window_prev_workspace_key"/>
+            <property name="&lt;Alt&gt;F4" type="string" value="close_window_key"/>
+            <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Left" type="string" value="move_window_left_key"/>
+            <property name="&lt;Alt&gt;F6" type="string" value="stick_window_key"/>
+            <property name="&lt;Alt&gt;F10" type="string" value="maximize_window_key"/>
+            <property name="&lt;Alt&gt;F12" type="string" value="above_key"/>
+            <property name="&lt;Alt&gt;F9" type="string" value="hide_window_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Down" type="string" value="down_workspace_key"/>
+            <property name="&lt;Alt&gt;F8" type="string" value="resize_window_key"/>
+            <property name="&lt;Super&gt;Tab" type="string" value="switch_window_key"/>
+            <property name="Escape" type="string" value="cancel_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;End" type="string" value="move_window_next_workspace_key"/>
+            <property name="&lt;Primary&gt;F10" type="string" value="workspace_10_key"/>
+            <property name="&lt;Primary&gt;F11" type="string" value="workspace_11_key"/>
+            <property name="&lt;Alt&gt;F11" type="string" value="fullscreen_key"/>
+            <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Up" type="string" value="move_window_up_key"/>
+            <property name="Right" type="string" value="right_key"/>
+            <property name="Down" type="string" value="down_key"/>
+            <property name="&lt;Alt&gt;F7" type="string" value="move_window_key"/>
+            <property name="&lt;Shift&gt;&lt;Alt&gt;Page_Down" type="string" value="lower_window_key"/>
+            <property name="&lt;Primary&gt;F12" type="string" value="workspace_12_key"/>
+            <property name="&lt;Primary&gt;F1" type="string" value="workspace_1_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;Left" type="string" value="left_workspace_key"/>
+            <property name="&lt;Primary&gt;F2" type="string" value="workspace_2_key"/>
+            <property name="&lt;Primary&gt;F4" type="string" value="workspace_4_key"/>
+            <property name="&lt;Primary&gt;F5" type="string" value="workspace_5_key"/>
+            <property name="&lt;Primary&gt;F6" type="string" value="workspace_6_key"/>
+            <property name="&lt;Alt&gt;space" type="string" value="popup_menu_key"/>
+            <property name="&lt;Primary&gt;F8" type="string" value="workspace_8_key"/>
+            <property name="&lt;Primary&gt;F9" type="string" value="workspace_9_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_1" type="string" value="move_window_workspace_1_key"/>
+            <property name="&lt;Alt&gt;Delete" type="string" value="del_workspace_key"/>
+            <property name="&lt;Shift&gt;&lt;Alt&gt;Page_Up" type="string" value="raise_window_key"/>
+            <property name="&lt;Primary&gt;F3" type="string" value="workspace_3_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_2" type="string" value="move_window_workspace_2_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_3" type="string" value="move_window_workspace_3_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_4" type="string" value="move_window_workspace_4_key"/>
+            <property name="&lt;Primary&gt;&lt;Alt&gt;KP_5" type="string" value="move_window_workspace_5_key"/>
+            <property name="override" type="bool" value="true"/>
+          </property>
+        </property>
+        <property name="providers" type="array">
+          <value type="string" value="commands"/>
+          <value type="string" value="xfwm4"/>
+        </property>
+      </channel>
+
+
+
+      - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml"
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfce4-session" version="1.0">
+        <property name="general" type="empty">
+          <property name="FailsafeSessionName" type="empty"/>
+          <property name="SessionName" type="string" value="Default"/>
+          <property name="SaveOnExit" type="bool" value="true"/>
+        </property>
+        <property name="sessions" type="empty">
+          <property name="Failsafe" type="empty">
+            <property name="IsFailsafe" type="empty"/>
+            <property name="Count" type="empty"/>
+            <property name="Client0_Command" type="empty"/>
+            <property name="Client0_PerScreen" type="empty"/>
+            <property name="Client1_Command" type="empty"/>
+            <property name="Client1_PerScreen" type="empty"/>
+            <property name="Client2_Command" type="empty"/>
+            <property name="Client2_PerScreen" type="empty"/>
+            <property name="Client3_Command" type="empty"/>
+            <property name="Client3_PerScreen" type="empty"/>
+            <property name="Client4_Command" type="empty"/>
+            <property name="Client4_PerScreen" type="empty"/>
+          </property>
+        </property>
+        <property name="splash" type="empty">
+          <property name="Engine" type="empty"/>
+        </property>
+      </channel>
   - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml"
     content: |
       <?xml version="1.0" encoding="UTF-8"?>
@@ -206,22 +449,17 @@ write_files:
           <property name="plugin-8" type="string" value="separator"/>
           <property name="plugin-9" type="string" value="launcher">
             <property name="items" type="array">
-              <value type="string" value="15602672011.desktop"/>
+              <value type="string" value="15573939451.desktop"/>
             </property>
           </property>
           <property name="plugin-10" type="string" value="launcher">
             <property name="items" type="array">
-              <value type="string" value="15602672012.desktop"/>
-            </property>
-          </property>
-          <property name="plugin-11" type="string" value="launcher">
-            <property name="items" type="array">
-              <value type="string" value="15602672013.desktop"/>
+              <value type="string" value="15573939452.desktop"/>
             </property>
           </property>
           <property name="plugin-12" type="string" value="launcher">
             <property name="items" type="array">
-              <value type="string" value="15602672014.desktop"/>
+              <value type="string" value="15573939454.desktop"/>
             </property>
           </property>
           <property name="plugin-13" type="string" value="separator"/>
@@ -252,6 +490,123 @@ write_files:
           </property>
         </property>
       </channel>
+  - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml"
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfce4-session" version="1.0">
+        <property name="general" type="empty">
+          <property name="FailsafeSessionName" type="empty"/>
+          <property name="SessionName" type="string" value="Default"/>
+          <property name="SaveOnExit" type="bool" value="true"/>
+        </property>
+        <property name="sessions" type="empty">
+          <property name="Failsafe" type="empty">
+            <property name="IsFailsafe" type="empty"/>
+            <property name="Count" type="empty"/>
+            <property name="Client0_Command" type="empty"/>
+            <property name="Client0_PerScreen" type="empty"/>
+            <property name="Client1_Command" type="empty"/>
+            <property name="Client1_PerScreen" type="empty"/>
+            <property name="Client2_Command" type="empty"/>
+            <property name="Client2_PerScreen" type="empty"/>
+            <property name="Client3_Command" type="empty"/>
+            <property name="Client3_PerScreen" type="empty"/>
+            <property name="Client4_Command" type="empty"/>
+            <property name="Client4_PerScreen" type="empty"/>
+          </property>
+        </property>
+        <property name="splash" type="empty">
+          <property name="Engine" type="empty"/>
+        </property>
+      </channel>
+  - path: "/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml"
+    content: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <channel name="xfwm4" version="1.0">
+        <property name="general" type="empty">
+          <property name="activate_action" type="string" value="bring"/>
+          <property name="borderless_maximize" type="bool" value="true"/>
+          <property name="box_move" type="bool" value="false"/>
+          <property name="box_resize" type="bool" value="false"/>
+          <property name="button_layout" type="string" value="O|SHMC"/>
+          <property name="button_offset" type="int" value="0"/>
+          <property name="button_spacing" type="int" value="0"/>
+          <property name="click_to_focus" type="bool" value="true"/>
+          <property name="cycle_apps_only" type="bool" value="false"/>
+          <property name="cycle_draw_frame" type="bool" value="true"/>
+          <property name="cycle_hidden" type="bool" value="true"/>
+          <property name="cycle_minimum" type="bool" value="true"/>
+          <property name="cycle_preview" type="bool" value="true"/>
+          <property name="cycle_tabwin_mode" type="int" value="0"/>
+          <property name="cycle_workspaces" type="bool" value="false"/>
+          <property name="double_click_action" type="string" value="maximize"/>
+          <property name="double_click_distance" type="int" value="5"/>
+          <property name="double_click_time" type="int" value="250"/>
+          <property name="easy_click" type="string" value="Alt"/>
+          <property name="focus_delay" type="int" value="250"/>
+          <property name="focus_hint" type="bool" value="true"/>
+          <property name="focus_new" type="bool" value="true"/>
+          <property name="frame_opacity" type="int" value="100"/>
+          <property name="full_width_title" type="bool" value="true"/>
+          <property name="horiz_scroll_opacity" type="bool" value="false"/>
+          <property name="inactive_opacity" type="int" value="100"/>
+          <property name="maximized_offset" type="int" value="0"/>
+          <property name="mousewheel_rollup" type="bool" value="true"/>
+          <property name="move_opacity" type="int" value="100"/>
+          <property name="placement_mode" type="string" value="center"/>
+          <property name="placement_ratio" type="int" value="20"/>
+          <property name="popup_opacity" type="int" value="100"/>
+          <property name="prevent_focus_stealing" type="bool" value="false"/>
+          <property name="raise_delay" type="int" value="250"/>
+          <property name="raise_on_click" type="bool" value="true"/>
+          <property name="raise_on_focus" type="bool" value="false"/>
+          <property name="raise_with_any_button" type="bool" value="true"/>
+          <property name="repeat_urgent_blink" type="bool" value="false"/>
+          <property name="resize_opacity" type="int" value="100"/>
+          <property name="scroll_workspaces" type="bool" value="true"/>
+          <property name="shadow_delta_height" type="int" value="0"/>
+          <property name="shadow_delta_width" type="int" value="0"/>
+          <property name="shadow_delta_x" type="int" value="0"/>
+          <property name="shadow_delta_y" type="int" value="-3"/>
+          <property name="shadow_opacity" type="int" value="50"/>
+          <property name="show_app_icon" type="bool" value="false"/>
+          <property name="show_dock_shadow" type="bool" value="true"/>
+          <property name="show_frame_shadow" type="bool" value="true"/>
+          <property name="show_popup_shadow" type="bool" value="false"/>
+          <property name="snap_resist" type="bool" value="false"/>
+          <property name="snap_to_border" type="bool" value="true"/>
+          <property name="snap_to_windows" type="bool" value="false"/>
+          <property name="snap_width" type="int" value="10"/>
+          <property name="sync_to_vblank" type="bool" value="false"/>
+          <property name="theme" type="string" value="Default"/>
+          <property name="tile_on_move" type="bool" value="true"/>
+          <property name="title_alignment" type="string" value="center"/>
+          <property name="title_font" type="string" value="Sans Bold 9"/>
+          <property name="title_horizontal_offset" type="int" value="0"/>
+          <property name="titleless_maximize" type="bool" value="false"/>
+          <property name="title_shadow_active" type="string" value="false"/>
+          <property name="title_shadow_inactive" type="string" value="false"/>
+          <property name="title_vertical_offset_active" type="int" value="0"/>
+          <property name="title_vertical_offset_inactive" type="int" value="0"/>
+          <property name="toggle_workspaces" type="bool" value="false"/>
+          <property name="unredirect_overlays" type="bool" value="true"/>
+          <property name="urgent_blink" type="bool" value="false"/>
+          <property name="use_compositing" type="bool" value="true"/>
+          <property name="workspace_count" type="int" value="4"/>
+          <property name="wrap_cycle" type="bool" value="true"/>
+          <property name="wrap_layout" type="bool" value="true"/>
+          <property name="wrap_resistance" type="int" value="10"/>
+          <property name="wrap_windows" type="bool" value="true"/>
+          <property name="wrap_workspaces" type="bool" value="false"/>
+          <property name="zoom_desktop" type="bool" value="true"/>
+          <property name="workspace_names" type="array">
+            <value type="string" value="Workspace 1"/>
+            <value type="string" value="Workspace 2"/>
+            <value type="string" value="Workspace 3"/>
+            <value type="string" value="Workspace 4"/>
+          </property>
+        </property>
+      </channel>
   # - path: "/etc/xdg/xfce4/panel/launcher-16/15602591101.desktop"
   #   content: |
   #     [Desktop Entry]
@@ -269,14 +624,14 @@ write_files:
 
 
 runcmd:
-  # Setup panel icons
-  - mkdir -p /etc/xdg/xfce4/panel/launcher-10/; cp /usr/share/applications/exo-file-manager.desktop /etc/xdg/xfce4/panel/launcher-10/15573939452.desktop
-  - mkdir -p /etc/xdg/xfce4/panel/launcher-12/; cp /usr/share/applications/xfce4-appfinder.desktop /etc/xdg/xfce4/panel/launcher-12/15573939454.desktop
-  - mkdir -p /etc/xdg/xfce4/panel/launcher-16/; cp /usr/share/applications/atom.desktop /etc/xdg/xfce4/panel/launcher-16/15602591101.desktop
-  - mkdir -p /etc/xdg/xfce4/panel/launcher-17/; cp /usr/share/applications/code.desktop /etc/xdg/xfce4/panel/launcher-17/15602591342.desktop
-  - mkdir -p /etc/xdg/xfce4/panel/launcher-18/; cp /usr/share/applications/rstudio.desktop /etc/xdg/xfce4/panel/launcher-18/15602591513.desktop
-  - mkdir -p /etc/xdg/xfce4/panel/launcher-19/; cp /usr/share/applications/www.octave.org-octave.desktop /etc/xdg/xfce4/panel/launcher-19/15602591664.desktop
-  - mkdir -p /etc/xdg/xfce4/panel/launcher-20/; cp /usr/share/applications/firefox.desktop /etc/xdg/xfce4/panel/launcher-20/15602591915.desktop
+  # # Setup panel icons
+  # - mkdir -p /etc/xdg/xfce4/panel/launcher-10/; cp /usr/share/applications/exo-file-manager.desktop /etc/xdg/xfce4/panel/launcher-10/15573939452.desktop
+  # - mkdir -p /etc/xdg/xfce4/panel/launcher-12/; cp /usr/share/applications/xfce4-appfinder.desktop /etc/xdg/xfce4/panel/launcher-12/15573939454.desktop
+  # - mkdir -p /etc/xdg/xfce4/panel/launcher-16/; cp /usr/share/applications/atom.desktop /etc/xdg/xfce4/panel/launcher-16/15602591101.desktop
+  # - mkdir -p /etc/xdg/xfce4/panel/launcher-17/; cp /usr/share/applications/code.desktop /etc/xdg/xfce4/panel/launcher-17/15602591342.desktop
+  # - mkdir -p /etc/xdg/xfce4/panel/launcher-18/; cp /usr/share/applications/rstudio.desktop /etc/xdg/xfce4/panel/launcher-18/15602591513.desktop
+  # - mkdir -p /etc/xdg/xfce4/panel/launcher-19/; cp /usr/share/applications/www.octave.org-octave.desktop /etc/xdg/xfce4/panel/launcher-19/15602591664.desktop
+  # - mkdir -p /etc/xdg/xfce4/panel/launcher-20/; cp /usr/share/applications/firefox.desktop /etc/xdg/xfce4/panel/launcher-20/15602591915.desktop
   # Disable thinclients_drive folder created by xrdp
   - sed -i "s/allow_channels=true/allow_channels=false/" /etc/xrdp/xrdp.ini
   # ==========================================
