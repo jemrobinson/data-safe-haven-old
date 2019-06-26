@@ -43,7 +43,7 @@ print_usage_and_exit() {
     echo "usage: $0 [-h] -s subscription_source -t subscription_target -m management_vault_name -l ldap_secret_name -j ldap_user -p password_secret_name -d domain -a ad_dc_name -q ip_address -e mgmnt_subnet_ip_range -y yaml_cloud_init [-g nsg_name] [-i source_image] [-x source_image_version] [-n machine_name] [-r resource_group] [-u user_name] [-v vnet_name] [-w subnet_name] [-z vm_size] [-b ldap_base_dn] [-c ldap_bind_dn] [-f ldap_filter] [-k pypi_mirror_ip] [-o cran_mirror_ip]"
     echo "  -h                                    display help"
     echo "  -s subscription_source [required]     specify source subscription that images are taken from. (Test using 'Safe Haven Management Testing')"
-    echo "  -t subscription_target [required]     specify target subscription for deploying the VM image. (Test using 'Data Study Group Testing')"
+    echo "  -t subscription_target [required]     specify target subscription for deploying the VM image. (Test using 'DSG Template Testing')"
     echo "  -m management_vault_name [required]   specify name of KeyVault containing management secrets"
     echo "  -l ldap_secret_name [required]        specify name of KeyVault secret containing LDAP secret"
     echo "  -j ldap_user [required]               specify the LDAP user"
