@@ -5,7 +5,7 @@ import os
 import random
 import string
 import termcolor
-from azure.common.client_factory import get_client_from_cli_profile
+# from azure.common.client_factory import get_client_from_cli_profile
 from azure.common.credentials import get_azure_cli_credentials
 from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.resource.subscriptions import SubscriptionClient
@@ -30,20 +30,27 @@ args = parser.parse_args()
 def emphasised(text):
     return termcolor.colored(text, 'green')
 
-def build_backend():
-    # Get subscription
-    _, subscription_id, tenant_id = get_azure_cli_credentials(with_tenant=True)
-    subscription_client = get_client_from_cli_profile(SubscriptionClient)
-    subscription_name = subscription_client.subscriptions.get(subscription_id).display_name
-    logging.info("Working in subscription: {}".format(emphasised(subscription_name)))
+def build_backend(credentials, subscription_name):
+    # Switch to appropriate subscription
+    subscription_client = SubscriptionClient(credentials)
+    subscription = [s for s in subscription_client.subscriptions.list() if s.display_name == subscription_name][0]
+    logging.info("Working in subscription: {}".format(emphasised(subscription.display_name)))
+
+    # # Get subscription
+    # _, subscription_id, tenant_id = get_azure_cli_credentials(with_tenant=True)
+    # subscription_client = get_client_from_cli_profile(SubscriptionClient)
+    # subscription_name = subscription_client.subscriptions.get(subscription_id).display_name
+    # logging.info("Working in subscription: {}".format(emphasised(subscription_name)))
 
     # Create the backend resource group
     logging.info("Ensuring existence of resource group: {}".format(emphasised(args.resource_group)))
-    resource_mgmt_client = get_client_from_cli_profile(ResourceManagementClient)
+    # resource_mgmt_client = get_client_from_cli_profile(ResourceManagementClient)
+    resource_mgmt_client = ResourceManagementClient(credentials, subscription_id=subscription.subscription_id)
     resource_mgmt_client.resource_groups.create_or_update(args.resource_group, {"location": args.location})
 
     # Check whether there is already a storage account and generate one if not
-    storage_mgmt_client = get_client_from_cli_profile(StorageManagementClient)
+    # storage_mgmt_client = get_client_from_cli_profile(StorageManagementClient)
+    storage_mgmt_client = StorageManagementClient(credentials, subscription_id=subscription.subscription_id)
     storage_account_name = None
     for storage_account in storage_mgmt_client.storage_accounts.list_by_resource_group(args.resource_group):
         if "terraformstorage" in storage_account.name:
@@ -75,10 +82,10 @@ def build_backend():
         '  }',
         '}',
         'variable "subscription_id" {',
-        '    default = "{}"'.format(subscription_id),
+        '    default = "{}"'.format(subscription.subscription_id),
         '}',
         'variable "tenant_id" {',
-        '    default = "{}"'.format(tenant_id),
+        '    default = "{}"'.format(subscription.tenant_id),
         '}',
         'variable "infrastructure_location" {',
         '    default = "{}"'.format(args.location),
@@ -129,43 +136,45 @@ def generate_new_storage_account(storage_mgmt_client):
     return storage_account_name
 
 
-def authenticate_device_code():
+def authenticate_device_code(tenant):
     """
     Authenticate the end-user using device auth.
     """
     import adal
     from msrestazure.azure_active_directory import AADTokenCredentials
     authority_host_uri = 'https://login.microsoftonline.com'
-    tenant = "4395f4a7-e455-4f95-8a9f-1fbaef6384f9"
     authority_uri = authority_host_uri + '/' + tenant
     resource_uri = 'https://management.core.windows.net/'
-    client_id = '04b07795-8ddb-461a-bbee-02f9e1bf7b46'
+    client_id = '04b07795-8ddb-461a-bbee-02f9e1bf7b46'  # Microsoft ID
 
     context = adal.AuthenticationContext(authority_uri, api_version=None)
-    code = context.acquire_user_code(resource_uri, client_id)
-    print(code['message'])
-    mgmt_token = context.acquire_token_with_device_code(resource_uri, code, client_id)
+    code_prompt = context.acquire_user_code(resource_uri, client_id)
+    print(code_prompt['message'])
+    mgmt_token = context.acquire_token_with_device_code(resource_uri, code_prompt, client_id)
     credentials = AADTokenCredentials(mgmt_token, client_id)
     return credentials
 
 
 if __name__ == "__main__":
-    # build_backend()
-    print("hello")
-    # print(get_azure_cli_credentials(with_tenant=True))
+    # Get credentials using our tenant ID
+    credentials = authenticate_device_code(tenant="4395f4a7-e455-4f95-8a9f-1fbaef6384f9")
+    test_subscription_name = "DSG Template Testing"
 
-    credentials = authenticate_device_code()
+    # Build the Terraform backend
+    build_backend(credentials, test_subscription_name)
 
     # Create a Subscription Client
-    subscription_client = SubscriptionClient(credentials)
     # subscription = next(subscription_client.subscriptions.list())
 
-    # while True:
 
-    #     print().display_name)
 
-    for s in subscription_client.subscriptions.list():
-        print(s.display_name)
+    # for s in subscription_client.subscriptions.list():
+    #     print(s.display_name)
+    #     print(dir(s))
+
+
+
+    # subscription_name = subscription_client.subscriptions.get(subscription_id).display_name
 
     # subscription_name = subscription_client.subscriptions.get(subscription_id).display_name
     # logging.info("Working in subscription: {}".format(emphasised(subscription_name)))
