@@ -7,7 +7,7 @@ new_dsg_environment/azure-vms/tests/logistic.csv
 *.python-version
 
 # Terraform config
-*terraform/config.tf
+**/config.tf
 
 # All secrets folders, no matter how nested
 secrets/
