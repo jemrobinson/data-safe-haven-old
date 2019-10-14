@@ -1,12 +1,11 @@
 #! /usr/bin/env python
 import argparse
+import json
 import logging
 import os
 import random
 import string
 import termcolor
-# from azure.common.client_factory import get_client_from_cli_profile
-from azure.common.credentials import get_azure_cli_credentials
 from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.resource.subscriptions import SubscriptionClient
 from azure.mgmt.storage import StorageManagementClient
@@ -14,91 +13,77 @@ from azure.mgmt.storage.models import StorageAccountCreateParameters, Sku, SkuNa
 from azure.storage.blob import BlockBlobService
 
 
-# Set up logging
-logging.basicConfig(format=r"%(asctime)s %(levelname)8s: %(message)s", datefmt=r"%Y-%m-%d %H:%M:%S", level=logging.INFO)
-logging.getLogger("adal-python").setLevel(logging.WARNING)
-logging.getLogger("azure").setLevel(logging.WARNING)
-
-# Read command line arguments
-parser = argparse.ArgumentParser(description='Initialise the Azure infrastructure needed by Terraform')
-parser.add_argument("-g", "--resource-group", type=str, default="RG_TERRAFORM_BACKEND", help="Resource group where the Terraform backend will be stored")
-parser.add_argument("-l", "--location", type=str, default="uksouth", help="Azure datacentre where the Terraform backend will be stored")
-parser.add_argument("-s", "--storage-container-name", type=str, default="terraformbackend", help="Name of the storage container where the Terraform backend will be stored")
-parser.add_argument("-a", "--azure-group-id", type=str, default="347c68cb-261f-4a3e-ac3e-6af860b5fec9", help="ID of an Azure group which contains all project developers. Default is Turing's 'Safe Haven Test Admins' group.")
-args = parser.parse_args()
-
 def emphasised(text):
     return termcolor.colored(text, 'green')
 
-def build_backend(credentials, subscription_name):
+
+def get_subscription(credentials, subscription_name):
     # Switch to appropriate subscription
     subscription_client = SubscriptionClient(credentials)
     subscription = [s for s in subscription_client.subscriptions.list() if s.display_name == subscription_name][0]
-    logging.info("Working in subscription: {}".format(emphasised(subscription.display_name)))
+    logging.info("Working in subscription: %s", emphasised(subscription.display_name))
+    return subscription
 
-    # # Get subscription
-    # _, subscription_id, tenant_id = get_azure_cli_credentials(with_tenant=True)
-    # subscription_client = get_client_from_cli_profile(SubscriptionClient)
-    # subscription_name = subscription_client.subscriptions.get(subscription_id).display_name
-    # logging.info("Working in subscription: {}".format(emphasised(subscription_name)))
 
+def ensure_resource_group(credentials, subscription_id, resource_group, location):
     # Create the backend resource group
-    logging.info("Ensuring existence of resource group: {}".format(emphasised(args.resource_group)))
-    # resource_mgmt_client = get_client_from_cli_profile(ResourceManagementClient)
-    resource_mgmt_client = ResourceManagementClient(credentials, subscription_id=subscription.subscription_id)
-    resource_mgmt_client.resource_groups.create_or_update(args.resource_group, {"location": args.location})
+    logging.info("Ensuring existence of resource group: %s", emphasised(resource_group))
+    resource_mgmt_client = ResourceManagementClient(credentials, subscription_id=subscription_id)
+    resource_mgmt_client.resource_groups.create_or_update(resource_group, {"location": location})
 
+
+def get_storage_account(credentials, subscription_id, resource_group, location):
     # Check whether there is already a storage account and generate one if not
-    # storage_mgmt_client = get_client_from_cli_profile(StorageManagementClient)
-    storage_mgmt_client = StorageManagementClient(credentials, subscription_id=subscription.subscription_id)
+    storage_mgmt_client = StorageManagementClient(credentials, subscription_id=subscription_id)
     storage_account_name = None
-    for storage_account in storage_mgmt_client.storage_accounts.list_by_resource_group(args.resource_group):
+    for storage_account in storage_mgmt_client.storage_accounts.list_by_resource_group(resource_group):
         if "terraformstorage" in storage_account.name:
             storage_account_name = storage_account.name
             break
     if storage_account_name:
-        logging.info("Found existing storage account named: {}".format(emphasised(storage_account_name)))
+        logging.info("Found existing storage account named: %s", emphasised(storage_account_name))
     else:
-        storage_account_name = generate_new_storage_account(storage_mgmt_client)
+        storage_account_name = generate_new_storage_account(storage_mgmt_client, resource_group, location)
+    return storage_account_name
 
+
+def get_storage_account_key(credentials, subscription_id, resource_group, storage_account_name, storage_container_name):
     # Get the account key for this storage account
-    storage_key_list = storage_mgmt_client.storage_accounts.list_keys(args.resource_group, storage_account_name)
+    storage_mgmt_client = StorageManagementClient(credentials, subscription_id=subscription_id)
+    storage_key_list = storage_mgmt_client.storage_accounts.list_keys(resource_group, storage_account_name)
     storage_account_key = [k.value for k in storage_key_list.keys if k.key_name == "key1"][0]
 
-    # Create a container
-    logging.info("Ensuring existence of storage container: {}".format(emphasised(args.storage_container_name)))
+    # Ensure that the container exists
+    logging.info("Ensuring existence of storage container: {}".format(emphasised(storage_container_name)))
     block_blob_service = BlockBlobService(account_name=storage_account_name, account_key=storage_account_key)
-    if not block_blob_service.exists(args.storage_container_name):
-        block_blob_service.create_container(args.storage_container_name)
+    if not block_blob_service.exists(storage_container_name):
+        block_blob_service.create_container(storage_container_name)
+    return storage_account_key
 
+
+def write_terraform_config(**kwargs):
     # Write Terraform configuration
     config_file_lines = [
         'terraform {',
         '  backend "azurerm" {',
-        '    storage_account_name = "{}"'.format(storage_account_name),
-        '    container_name       = "{}"'.format(args.storage_container_name),
+        '    storage_account_name = "{}"'.format(kwargs["storage_account_name"]),
+        '    container_name       = "{}"'.format(kwargs["storage_container_name"]),
         '    key                  = "terraform.tfstate"',
-        '    access_key           = "{}"'.format(storage_account_key),
+        '    access_key           = "{}"'.format(kwargs["storage_account_key"]),
         '  }',
         '}',
         'variable "subscription_id" {',
-        '    default = "{}"'.format(subscription.subscription_id),
+        '    default = "{}"'.format(kwargs["subscription_id"]),
         '}',
         'variable "tenant_id" {',
-        '    default = "{}"'.format(subscription.tenant_id),
+        '    default = "{}"'.format(kwargs["tenant_id"]),
         '}',
         'variable "infrastructure_location" {',
-        '    default = "{}"'.format(args.location),
+        '    default = "{}"'.format(kwargs["location"]),
         '}',
         'variable "azure_group_id" {',
-        '    default = "{}"'.format(args.azure_group_id),
+        '    default = "{}"'.format(kwargs["azure_group_id"]),
         '}',
-        'variable "diagnostics_storage_uri" {',
-        '    default = "{}"'.format(args.azure_group_id),
-        '}',
-
-        # storage_uri = "${azurerm_storage_account.cleanair_storageaccount.primary_blob_endpoint}"
-
         ]
 
     # Write Terraform backend config
@@ -109,26 +94,24 @@ def build_backend(credentials, subscription_name):
             f_config.write(line + "\n")
 
 
-def get_valid_storage_account_name(storage_mgmt_client):
-    """Keep generating storage account names until a valid one is found."""
-    while True:
-        storage_account_name = "terraformstorage"
-        storage_account_name += "".join([random.choice(string.ascii_lowercase + string.digits) for n in range(24 - len(storage_account_name))])
-        if storage_mgmt_client.storage_accounts.check_name_availability(storage_account_name).name_available:
-            return storage_account_name
-
-
-def generate_new_storage_account(storage_mgmt_client):
+def generate_new_storage_account(storage_mgmt_client, resource_group, location):
     """Create a new storage account."""
+    def get_valid_storage_account_name(storage_mgmt_client):
+        """Keep generating storage account names until a valid one is found."""
+        while True:
+            storage_account_name = "terraformstorage"
+            storage_account_name += "".join([random.choice(string.ascii_lowercase + string.digits) for n in range(24 - len(storage_account_name))])
+            if storage_mgmt_client.storage_accounts.check_name_availability(storage_account_name).name_available:
+                return storage_account_name
     storage_account_name = get_valid_storage_account_name(storage_mgmt_client)
     logging.info("Creating new storage account: {}".format(emphasised(storage_account_name)))
     storage_async_operation = storage_mgmt_client.storage_accounts.create(
-        args.resource_group,
+        resource_group,
         storage_account_name,
         StorageAccountCreateParameters(
             sku=Sku(name=SkuName.standard_lrs),
             kind=Kind.storage,
-            location=args.location
+            location=location
         )
     )
     # Wait until storage_async_operation has finished before returning
@@ -155,37 +138,57 @@ def authenticate_device_code(tenant):
     return credentials
 
 
-if __name__ == "__main__":
-    # Get credentials using our tenant ID
+def main():
+    # Read command line arguments
+    parser = argparse.ArgumentParser(description='Initialise the Azure infrastructure needed by Terraform')
+    parser.add_argument("-g", "--resource-group", type=str, default="RG_TERRAFORM_BACKEND", help="Resource group where the Terraform backend will be stored")
+    parser.add_argument("-c", "--config", type=str, default="dsg_9_full_config.json", help="Name of the configuration file to use")
+    parser.add_argument("-a", "--azure-group-id", type=str, default="347c68cb-261f-4a3e-ac3e-6af860b5fec9", help="ID of an Azure group which contains all project developers. Default is Turing's 'Safe Haven Test Admins' group.")
+    args = parser.parse_args()
+
+    # Load configuration from file
+    filepath = os.path.join("..", "dsg_configs", "full", args.config)
+    with open(filepath, "r") as f_config:
+        config = json.load(f_config)
+
+    # Get credentials using our tenant ID
     credentials = authenticate_device_code(tenant="4395f4a7-e455-4f95-8a9f-1fbaef6384f9")
-    test_subscription_name = "DSG Template Testing"
+    subscription_name = config["dsg"]["subscriptionName"]
+    location = config["dsg"]["location"]
+    storage_container_name = "terraformbackend"
 
-    # Build the Terraform backend
-    build_backend(credentials, test_subscription_name)
+    # Switch to the correct subscription
+    subscription = get_subscription(credentials, subscription_name)
 
-    # Create a Subscription Client
-    # subscription = next(subscription_client.subscriptions.list())
+    # Ensure that the resource group exists
+    ensure_resource_group(credentials, subscription.subscription_id, args.resource_group, location)
+
+    # Get the name of the storage account, creating one if necessary
+    storage_account_name = get_storage_account(credentials, subscription.subscription_id,
+                                               args.resource_group, location)
+
+    # Get the name of the storage container,  creating one if necessary
+    storage_account_key = get_storage_account_key(credentials, subscription.subscription_id, args.resource_group,
+                                                  storage_account_name, storage_container_name)
+
+    # Write configuration to Terraform
+    kwargs = {
+        "azure_group_id": args.azure_group_id,
+        "location": location,
+        "storage_account_key": storage_account_key,
+        "storage_account_name": storage_account_name,
+        "storage_container_name": storage_container_name,
+        "subscription_id": subscription.subscription_id,
+        "tenant_id": subscription.tenant_id,
+    }
+    write_terraform_config(**kwargs)
 
 
+if __name__ == "__main__":
+    # Set up logging
+    logging.basicConfig(format=r"%(asctime)s %(levelname)8s: %(message)s", datefmt=r"%Y-%m-%d %H:%M:%S", level=logging.INFO)
+    logging.getLogger("adal-python").setLevel(logging.WARNING)
+    logging.getLogger("azure").setLevel(logging.WARNING)
 
-    # for s in subscription_client.subscriptions.list():
-    #     print(s.display_name)
-    #     print(dir(s))
-
-
-
-    # subscription_name = subscription_client.subscriptions.get(subscription_id).display_name
-
-    # subscription_name = subscription_client.subscriptions.get(subscription_id).display_name
-    # logging.info("Working in subscription: {}".format(emphasised(subscription_name)))
-
-
-    # l = [s for s in next(slist)]
-    # print(l)
-    # # l = []
-    # # while True:
-    # #     l.append(next(slist))
-    # #     print(l)
-
-    # subscription = next(subscription_client.subscriptions.list())
-    # subscription_id = subscription.subscription_id
+    # Run main
+    main()
