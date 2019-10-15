@@ -39,7 +39,7 @@ function Get-ShmFullConfig{
     $netbiosNameMaxLength = 15
     if($shmConfigBase.netbiosName.length -gt $netbiosNameMaxLength) {
         throw "Netbios name must be no more than 15 characters long. '$($shmConfigBase.netbiosName)' is $($shmConfigBase.netbiosName.length) characters long."
-    } 
+    }
     $shm.domain.netbiosName = $shmConfigBase.netbiosName
     $shm.domain.dn = "DC=" + ($shm.domain.fqdn.replace('.',',DC='))
     $shm.domain.serviceOuPath = "OU=Safe Haven Service Accounts," + $shm.domain.dn
@@ -171,7 +171,7 @@ function Add-DsgConfig {
     $netbiosNameMaxLength = 15
     if($dsgConfigBase.netbiosName.length -gt $netbiosNameMaxLength) {
         throw "Netbios name must be no more than 15 characters long. '$($dsgConfigBase.netbiosName)' is $($dsgConfigBase.netbiosName.length) characters long."
-    } 
+    }
     $config.dsg.domain.netbiosName = $dsgConfigBase.netBiosname
     $config.dsg.domain.dn = "DC=" + ($config.dsg.domain.fqdn.replace('.',',DC='))
     $config.dsg.domain.securityGroups = [ordered]@{
@@ -218,10 +218,11 @@ function Add-DsgConfig {
         artifacts = [ordered]@{}
     }
     $config.dsg.storage.artifacts.rg = "RG_DSG_ARTIFACTS"
-    $config.dsg.storage.artifacts.accountName = "dsg$($config.dsg.id)artifacts" 
-    
+    $config.dsg.storage.artifacts.accountName = "dsg$($config.dsg.id)artifacts"
+
     # --- Secrets ---
     $config.dsg.keyVault = [ordered]@{
+        rg = "RG_DSG_SECRETS"
         name = "dsg-management-" + $config.shm.id # TODO: Once all scripts driven by this config make separate KeyVault per DSG
     }
 
