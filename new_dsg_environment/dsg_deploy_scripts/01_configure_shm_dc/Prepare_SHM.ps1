@@ -63,9 +63,9 @@ $params = @{
 Write-Host "Adding DSG users and groups to SHM"
 $result = Invoke-AzVMRunCommand -ResourceGroupName $config.shm.dc.rg -Name $config.shm.dc.vmName `
     -CommandId 'RunPowerShellScript' -ScriptPath $scriptPath `
-    -Parameter $params   
+    -Parameter $params
 Write-Host $result.Value[0].Message
-Write-Host $result.Value[1].Message   
+Write-Host $result.Value[1].Message
 
 # === Add DSG DNS entries to SHM ====
 $scriptPath = Join-Path $helperScriptDir "remote_scripts" "Add_New_DSG_To_DNS_Remote.ps1"

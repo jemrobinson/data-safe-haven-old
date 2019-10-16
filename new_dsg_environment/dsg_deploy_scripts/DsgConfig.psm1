@@ -223,7 +223,8 @@ function Add-DsgConfig {
     # --- Secrets ---
     $config.dsg.keyVault = [ordered]@{
         rg = "RG_DSG_SECRETS"
-        name = "dsg-management-" + $config.shm.id # TODO: Once all scripts driven by this config make separate KeyVault per DSG
+        name = "dsg-" + $config.dsg.id + "-management"
+        # name = "dsg-management-" + $config.shm.id # TODO: Once all scripts driven by this config make separate KeyVault per DSG
     }
 
     # --- Domain controller ---
