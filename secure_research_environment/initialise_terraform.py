@@ -5,24 +5,12 @@ import logging
 import os
 import random
 import string
-import termcolor
 from azure.mgmt.resource import ResourceManagementClient
-from azure.mgmt.resource.subscriptions import SubscriptionClient
 from azure.mgmt.storage import StorageManagementClient
 from azure.mgmt.storage.models import StorageAccountCreateParameters, Sku, SkuName, Kind
 from azure.storage.blob import BlockBlobService
-
-
-def emphasised(text):
-    return termcolor.colored(text, 'green')
-
-
-def get_subscription(credentials, subscription_name):
-    # Switch to appropriate subscription
-    subscription_client = SubscriptionClient(credentials)
-    subscription = [s for s in subscription_client.subscriptions.list() if s.display_name == subscription_name][0]
-    logging.info("Working in subscription: %s", emphasised(subscription.display_name))
-    return subscription
+from safehaven.authentication import authenticate_device_code, get_subscription
+from safehaven.logutils import emphasised
 
 
 def ensure_resource_group(credentials, subscription_id, resource_group, location):
@@ -61,38 +49,71 @@ def get_storage_account_key(credentials, subscription_id, resource_group, storag
     return storage_account_key
 
 
-def write_terraform_config(**kwargs):
+def write_terraform_config(storage_account_name, storage_container_name, storage_account_key, subscription_id):
     # Write Terraform configuration
-    config_file_lines = [
+    terraform_lines = [
         'terraform {',
         '  backend "azurerm" {',
-        '    storage_account_name = "{}"'.format(kwargs["storage_account_name"]),
-        '    container_name       = "{}"'.format(kwargs["storage_container_name"]),
+        '    storage_account_name = "{}"'.format(storage_account_name),
+        '    container_name       = "{}"'.format(storage_container_name),
         '    key                  = "terraform.tfstate"',
-        '    access_key           = "{}"'.format(kwargs["storage_account_key"]),
+        '    access_key           = "{}"'.format(storage_account_key),
         '  }',
         '}',
-        'variable "subscription_id" {',
-        '    default = "{}"'.format(kwargs["subscription_id"]),
+        # Setup required providers
+        'provider "azurerm" {',
+        '  version         = "=1.35"',
+        '  subscription_id = "{}"'.format(subscription_id),
         '}',
-        'variable "tenant_id" {',
-        '    default = "{}"'.format(kwargs["tenant_id"]),
+        'provider "null" {',
+        '  version = "=2.1"',
         '}',
-        'variable "infrastructure_location" {',
-        '    default = "{}"'.format(kwargs["location"]),
-        '}',
-        'variable "azure_group_id" {',
-        '    default = "{}"'.format(kwargs["azure_group_id"]),
-        '}',
+        'provider "random" {',
+        '  version = "=2.2"',
+        '}'
         ]
 
     # Write Terraform backend config
-    filepath = os.path.join("terraform", "config.tf")
-    logging.info("Writing Terraform backend config to: {}".format(emphasised(filepath)))
+    filepath = os.path.join("terraform", "backend_config.tf")
+    logging.info("Writing Terraform backend config to: %s", emphasised(filepath))
     with open(filepath, "w") as f_config:
-        for line in config_file_lines:
+        for line in terraform_lines:
             f_config.write(line + "\n")
 
+def write_terraform_variables(config, tenant_id):
+    def walk(node, pre=None):
+        pre = pre[:] if pre else []
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if isinstance(value, dict):
+                    for dict_ in walk(value, pre + [key]):
+                        yield dict_
+                else:
+                    yield pre + [key, value]
+        else:
+            yield node
+
+    # Common variables
+    terraform_lines = [
+        'output "tenant_id" {',
+        '    value = "{}"'.format(tenant_id),
+        '}',
+    ]
+
+    # Generate Terraform lines from the config file by walking the JSON tree
+    for jsonpath in walk(config):
+        terraform_lines += [
+            'output "{}" {{'.format("_".join(jsonpath[:-1])),
+            '    value = "{}"'.format(jsonpath[-1]),
+            '}'
+        ]
+
+    # Write Terraform backend config
+    filepath = os.path.join("terraform", "configuration", "outputs.tf")
+    logging.info("Writing Terraform variables to: %s", emphasised(filepath))
+    with open(filepath, "w") as f_config:
+        for line in terraform_lines:
+            f_config.write(line + "\n")
 
 def generate_new_storage_account(storage_mgmt_client, resource_group, location):
     """Create a new storage account."""
@@ -119,25 +140,6 @@ def generate_new_storage_account(storage_mgmt_client, resource_group, location):
     return storage_account_name
 
 
-def authenticate_device_code(tenant):
-    """
-    Authenticate the end-user using device auth.
-    """
-    import adal
-    from msrestazure.azure_active_directory import AADTokenCredentials
-    authority_host_uri = 'https://login.microsoftonline.com'
-    authority_uri = authority_host_uri + '/' + tenant
-    resource_uri = 'https://management.core.windows.net/'
-    client_id = '04b07795-8ddb-461a-bbee-02f9e1bf7b46'  # Microsoft ID
-
-    context = adal.AuthenticationContext(authority_uri, api_version=None)
-    code_prompt = context.acquire_user_code(resource_uri, client_id)
-    print(code_prompt['message'])
-    mgmt_token = context.acquire_token_with_device_code(resource_uri, code_prompt, client_id)
-    credentials = AADTokenCredentials(mgmt_token, client_id)
-    return credentials
-
-
 def main():
     # Read command line arguments
     parser = argparse.ArgumentParser(description='Initialise the Azure infrastructure needed by Terraform')
@@ -147,7 +149,7 @@ def main():
     args = parser.parse_args()
 
     # Load configuration from file
-    filepath = os.path.join("..", "dsg_configs", "full", args.config)
+    filepath = os.path.join("..", "new_dsg_environment", "dsg_configs", "full", args.config)
     with open(filepath, "r") as f_config:
         config = json.load(f_config)
 
@@ -158,7 +160,7 @@ def main():
     storage_container_name = "terraformbackend"
 
     # Switch to the correct subscription
-    subscription = get_subscription(credentials, subscription_name)
+    subscription, _ = get_subscription(subscription_name, credentials)
 
     # Ensure that the resource group exists
     ensure_resource_group(credentials, subscription.subscription_id, args.resource_group, location)
@@ -172,16 +174,11 @@ def main():
                                                   storage_account_name, storage_container_name)
 
     # Write configuration to Terraform
-    kwargs = {
-        "azure_group_id": args.azure_group_id,
-        "location": location,
-        "storage_account_key": storage_account_key,
-        "storage_account_name": storage_account_name,
-        "storage_container_name": storage_container_name,
-        "subscription_id": subscription.subscription_id,
-        "tenant_id": subscription.tenant_id,
-    }
-    write_terraform_config(**kwargs)
+    write_terraform_config(storage_account_name, storage_container_name, storage_account_key,
+                           subscription.subscription_id)
+
+    # Convert config into Terraform variables
+    write_terraform_variables(config, subscription.tenant_id)
 
 
 if __name__ == "__main__":

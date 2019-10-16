@@ -1,3 +1,4 @@
-termcolor
 azure
 azure-cli-core
+azure-keyvault
+termcolor
