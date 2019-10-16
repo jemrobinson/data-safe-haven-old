@@ -16,8 +16,8 @@ $helperScriptDir = Join-Path $PSScriptRoot "helper_scripts" "Remove_DSG_Data_Fro
 # Temporarily switch to DSG subscription
 $prevContext = Get-AzContext
 $_ = Set-AzContext -SubscriptionId $config.dsg.subscriptionName;
-$dsgResourceGroups = @(Get-AzResourceGroup)
-$dsgResources = @(Get-AzResource)
+$dsgResourceGroups = @(Get-AzResourceGroup) | Where ResourceGroupName –ne "RG_TERRAFORM_BACKEND"
+$dsgResources = @(Get-AzResource) | Where ResourceName -notlike "terraformstorage*"
 if($dsgResources -or $dsgResourceGroups) {
   Write-Host "********************************************************************************"
   Write-Host "*** DSG $dsgId subscription '$($config.dsg.subscriptionName)' is not empty!! ***"
@@ -40,7 +40,7 @@ $_ = Set-AzContext -SubscriptionId $config.shm.subscriptionName;
 function Remove-DsgSecret($secretName){
   if(Get-AzKeyVaultSecret -VaultName $config.dsg.keyVault.name -Name $secretName) {
     Write-Host " - Deleting secret '$secretName'"
-    Remove-AzKeyVaultSecret -VaultName $config.dsg.keyVault.name -Name $secretName -Force 
+    Remove-AzKeyVaultSecret -VaultName $config.dsg.keyVault.name -Name $secretName -Force
   } else {
     Write-Host " - No secret '$secretName' exists"
   }
