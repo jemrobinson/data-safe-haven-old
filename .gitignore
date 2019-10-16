@@ -3,11 +3,16 @@
 .idea/
 new_dsg_environment/azure-vms/tests/logistic.csv
 
-# Pyenv files
+# Temporary python files
 *.python-version
+**/__pycache__
 
-# Terraform config
-**/config.tf
+# Scripted Terraform config
+**/backend_config.tf
+**/configuration/outputs.tf
+
+# Terraform local state
+**/.terraform
 
 # All secrets folders, no matter how nested
 secrets/
