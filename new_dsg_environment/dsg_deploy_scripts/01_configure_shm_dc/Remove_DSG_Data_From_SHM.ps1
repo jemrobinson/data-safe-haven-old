@@ -13,8 +13,14 @@ $config = Get-DsgConfig($dsgId);
 # Directory for local and remote helper scripts
 $helperScriptDir = Join-Path $PSScriptRoot "helper_scripts" "Remove_DSG_Data_From_SHM" -Resolve
 
-# Temporarily switch to DSG subscription
+# Ensure that we are connected to Azure
 $prevContext = Get-AzContext
+if(!$prevContext) {
+  Connect-AzAccount
+  $prevContext = Get-AzContext
+}
+
+# Temporarily switch to DSG subscription
 $_ = Set-AzContext -SubscriptionId $config.dsg.subscriptionName;
 $dsgResourceGroups = @(Get-AzResourceGroup) | Where ResourceGroupName –ne "RG_TERRAFORM_BACKEND"
 $dsgResources = @(Get-AzResource) | Where ResourceName -notlike "terraformstorage*"
@@ -38,9 +44,9 @@ if($dsgResources -or $dsgResourceGroups) {
 $_ = Set-AzContext -SubscriptionId $config.shm.subscriptionName;
 # === Remove all DSG secrets from SHM KeyVault ===
 function Remove-DsgSecret($secretName){
-  if(Get-AzKeyVaultSecret -VaultName $config.dsg.keyVault.name -Name $secretName) {
+  if(Get-AzKeyVaultSecret -VaultName $config.shm.keyVault.name -Name $secretName) {
     Write-Host " - Deleting secret '$secretName'"
-    Remove-AzKeyVaultSecret -VaultName $config.dsg.keyVault.name -Name $secretName -Force
+    Remove-AzKeyVaultSecret -VaultName $config.shm.keyVault.name -Name $secretName -Force
   } else {
     Write-Host " - No secret '$secretName' exists"
   }
