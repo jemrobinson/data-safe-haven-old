@@ -114,22 +114,22 @@
       },
       "subnets": {
         "identity": {
-          "name": "Subnet-Identity",
+          "name": "IdentitySubnet",
           "prefix": "10.250.64",
           "cidr": "10.250.64.0/24"
         },
         "rds": {
-          "name": "Subnet-RDS",
+          "name": "RDSSubnet",
           "prefix": "10.250.65",
           "cidr": "10.250.65.0/24"
         },
         "data": {
-          "name": "Subnet-Data",
+          "name": "DataSubnet",
           "prefix": "10.250.66",
           "cidr": "10.250.66.0/24"
         },
         "gateway": {
-          "name": "Subnet-Gateway",
+          "name": "GatewaySubnet",
           "prefix": "10.250.71",
           "cidr": "10.250.71.0/27"
         }

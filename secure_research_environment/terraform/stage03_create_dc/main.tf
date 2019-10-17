@@ -200,11 +200,13 @@ resource "azurerm_virtual_machine" "this" {
     create_option     = "Empty"
     managed_disk_type = "Standard_LRS"
     disk_size_gb      = "20"
+    lun               = "0"
   }
 }
 
 
 resource "azurerm_virtual_machine_extension" "CreateADForest" {
+  depends_on           = [azurerm_virtual_machine.this]
   name                 = "CreateADForest"
   location             = "${module.configuration.dsg_location}"
   resource_group_name  = "${azurerm_resource_group.dc.name}"

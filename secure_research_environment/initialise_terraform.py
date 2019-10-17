@@ -20,7 +20,7 @@ def ensure_resource_group(credentials, subscription_id, resource_group, location
     resource_mgmt_client.resource_groups.create_or_update(resource_group, {"location": location})
 
 
-def get_storage_account(credentials, subscription_id, resource_group, location):
+def get_storage_account(credentials, subscription_id, resource_group, location, prefix):
     # Check whether there is already a storage account and generate one if not
     storage_mgmt_client = StorageManagementClient(credentials, subscription_id=subscription_id)
     storage_account_name = None
@@ -31,7 +31,7 @@ def get_storage_account(credentials, subscription_id, resource_group, location):
     if storage_account_name:
         logging.info("Found existing storage account named: %s", emphasised(storage_account_name))
     else:
-        storage_account_name = generate_new_storage_account(storage_mgmt_client, resource_group, location)
+        storage_account_name = generate_new_storage_account(storage_mgmt_client, resource_group, location, prefix)
     return storage_account_name
 
 
@@ -124,17 +124,18 @@ def write_terraform_variables(config, tenant_id, management_subscription_id):
         for line in terraform_lines:
             f_config.write(line + "\n")
 
-def generate_new_storage_account(storage_mgmt_client, resource_group, location):
+def generate_new_storage_account(storage_mgmt_client, resource_group, location, prefix=""):
     """Create a new storage account."""
     def get_valid_storage_account_name(storage_mgmt_client):
         """Keep generating storage account names until a valid one is found."""
         while True:
-            storage_account_name = "terraformstorage"
-            storage_account_name += "".join([random.choice(string.ascii_lowercase + string.digits) for n in range(24 - len(storage_account_name))])
+            storage_account_name = prefix + "terraformstorage"
+            storage_account_name += "".join([random.choice(string.ascii_lowercase + string.digits)
+                                             for n in range(24 - len(storage_account_name))])
             if storage_mgmt_client.storage_accounts.check_name_availability(storage_account_name).name_available:
                 return storage_account_name
     storage_account_name = get_valid_storage_account_name(storage_mgmt_client)
-    logging.info("Creating new storage account: {}".format(emphasised(storage_account_name)))
+    logging.info("Creating new storage account: %s", emphasised(storage_account_name))
     storage_async_operation = storage_mgmt_client.storage_accounts.create(
         resource_group,
         storage_account_name,
@@ -177,7 +178,7 @@ def main():
 
     # Get the name of the storage account, creating one if necessary
     storage_account_name = get_storage_account(credentials, subscription.subscription_id,
-                                               args.resource_group, location)
+                                               args.resource_group, location, config["dsg"]["shortName"])
 
     # Get the name of the storage container,  creating one if necessary
     storage_account_key = get_storage_account_key(credentials, subscription.subscription_id, args.resource_group,

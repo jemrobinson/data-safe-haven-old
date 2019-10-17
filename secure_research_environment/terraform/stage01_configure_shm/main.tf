@@ -20,6 +20,7 @@ resource "null_resource" "Remove_DSG_Data_From_SHM" {
     #   interpreter = ["pwsh", "-Command"]
     # }
 }
+# NB. this would be better as part of the initial setup script
 
 # Key Vault Configuration
 # -----------------------
