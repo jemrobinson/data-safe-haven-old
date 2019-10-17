@@ -129,6 +129,7 @@
           "cidr": "10.250.66.0/24"
         },
         "gateway": {
+          "name": "Subnet-Gateway",
           "prefix": "10.250.71",
           "cidr": "10.250.71.0/27"
         }
