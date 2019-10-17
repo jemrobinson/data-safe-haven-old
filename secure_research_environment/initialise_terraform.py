@@ -104,11 +104,8 @@ def write_terraform_variables(config, tenant_id, management_subscription_id):
         'output "tenant_id" {',
         '    value = "{}"'.format(tenant_id),
         '}',
-        'data "azurerm_subscriptions" "shm_management" {',
-        '  display_name_contains = "{}"'.format(config["shm"]["subscriptionName"]),
-        '}',
         'output "shm_subscription_id" {',
-        '    value = "${data.azurerm_subscriptions.shm_management.subscriptions.0.subscription_id}"',
+        '    value = "{}"'.format(management_subscription_id),
         '}',
     ]
 

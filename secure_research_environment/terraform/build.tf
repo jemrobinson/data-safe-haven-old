@@ -2,6 +2,13 @@ module "stage01_configure_shm" {
   source = "./stage01_configure_shm"
 }
 
+module "stage02_create_vnet" {
+  source = "./stage02_create_vnet"
+  providers = {
+    azurerm = "azurerm",
+    azurerm.shm_management = "azurerm.shm_management"
+  }
+}
 # module "networks" {
 #   source         = "./networks"
 #   location       = "${var.infrastructure_location}"

@@ -11,8 +11,12 @@ resource "null_resource" "Remove_DSG_Data_From_SHM" {
     # triggers = {
     #     trigger = "${uuid()}"
     # }
+    # provisioner "local-exec" {
+    #   command = ".'${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/01_configure_shm_dc/Remove_DSG_Data_From_SHM.ps1' -dsgId '${module.configuration.dsg_id}'"
+    #   interpreter = ["pwsh", "-Command"]
+    # }
     provisioner "local-exec" {
-      command = ".'${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/01_configure_shm_dc/Remove_DSG_Data_From_SHM.ps1' -dsgId '${module.configuration.dsg_id}'"
+      command     = "Write-Host 'Dummy command'"
       interpreter = ["pwsh", "-Command"]
     }
 }
@@ -41,7 +45,7 @@ resource "azurerm_key_vault" "this" {
 
   access_policy {
     tenant_id = "${module.configuration.tenant_id}"
-    object_id = "${data.azurerm_client_config.current.object_id}"
+    object_id = "${data.azurerm_client_config.current.object_id}"  # TODO: change this to Safe Haven Test Admins
 
     secret_permissions = [
       "get", "list", "set", "delete"
