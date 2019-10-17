@@ -28,28 +28,28 @@ resource "azurerm_virtual_network" "this" {
 # Identity subnet
 resource "azurerm_subnet" "identity" {
   address_prefix       = "${module.configuration.dsg_network_subnets_identity_cidr}"
-  name                 = "IdentitySubnet"
+  name                 = "${module.configuration.dsg_network_subnets_identity_name}"
   resource_group_name  = "${azurerm_resource_group.this.name}"
   virtual_network_name = "${azurerm_virtual_network.this.name}"
 }
 # RDS subnet
 resource "azurerm_subnet" "rds" {
   address_prefix       = "${module.configuration.dsg_network_subnets_rds_cidr}"
-  name                 = "RDSSubnet"
+  name                 = "${module.configuration.dsg_network_subnets_rds_name}"
   resource_group_name  = "${azurerm_resource_group.this.name}"
   virtual_network_name = "${azurerm_virtual_network.this.name}"
 }
 # Data subnet
 resource "azurerm_subnet" "data" {
   address_prefix       = "${module.configuration.dsg_network_subnets_data_cidr}"
-  name                 = "DataSubnet"
+  name                 = "${module.configuration.dsg_network_subnets_data_name}"
   resource_group_name  = "${azurerm_resource_group.this.name}"
   virtual_network_name = "${azurerm_virtual_network.this.name}"
 }
 # Gateway subnet
 resource "azurerm_subnet" "gateway" {
   address_prefix       = "${module.configuration.dsg_network_subnets_gateway_cidr}"
-  name                 = "GatewaySubnet"
+  name                 = "${module.configuration.dsg_network_subnets_gateway_name}"
   resource_group_name  = "${azurerm_resource_group.this.name}"
   virtual_network_name = "${azurerm_virtual_network.this.name}"
 }
@@ -135,4 +135,8 @@ resource "azurerm_virtual_network_peering" "remote_to_this" {
   allow_forwarded_traffic      = false
   allow_gateway_transit        = false
   use_remote_gateways          = false
+}
+
+output "dsg_network_subnets_identity_id" {
+  value     = "${azurerm_subnet.identity.id}"
 }

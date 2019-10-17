@@ -9,10 +9,9 @@ module "stage02_create_vnet" {
     azurerm.shm_management = "azurerm.shm_management"
   }
 }
-# module "networks" {
-#   source         = "./networks"
-#   location       = "${var.infrastructure_location}"
-#   azure_group_id = "${var.azure_group_id}"
-#   resource_group = "${var.resource_group_networks_name}"
-#   tenant_id      = "${var.tenant_id}"
-# }
+
+module "stage03_create_dc" {
+  source = "./stage03_create_dc"
+  dsg_keyVault_dcAdminPassword = "${module.stage01_configure_shm.dsg_keyVault_dcAdminPassword}"
+  dsg_network_subnets_identity_id = "${module.stage02_create_vnet.dsg_network_subnets_identity_id}"
+}

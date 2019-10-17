@@ -11,14 +11,14 @@ resource "null_resource" "Remove_DSG_Data_From_SHM" {
     # triggers = {
     #     trigger = "${uuid()}"
     # }
-    # provisioner "local-exec" {
-    #   command = ".'${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/01_configure_shm_dc/Remove_DSG_Data_From_SHM.ps1' -dsgId '${module.configuration.dsg_id}'"
-    #   interpreter = ["pwsh", "-Command"]
-    # }
     provisioner "local-exec" {
-      command     = "Write-Host 'Dummy command'"
+      command = ".'${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/01_configure_shm_dc/Remove_DSG_Data_From_SHM.ps1' -dsgId '${module.configuration.dsg_id}'"
       interpreter = ["pwsh", "-Command"]
     }
+    # provisioner "local-exec" {
+    #   command     = "Write-Host 'Dummy command'"
+    #   interpreter = ["pwsh", "-Command"]
+    # }
 }
 
 # Key Vault Configuration
@@ -56,46 +56,46 @@ resource "azurerm_key_vault" "this" {
 # Passwords from random strings
 # -----------------------------
 # :: HackMD password
-resource "random_string" "hackmdPassword" {
+resource "random_password" "hackmdPassword" {
   keepers = {
     resource_group = "${azurerm_resource_group.this.name}"
   }
-  length  = 20
-  special = false
+  length    = 20
+  special   = false
 }
 resource "azurerm_key_vault_secret" "hackmdPassword" {
   name         = "${module.configuration.dsg_users_ldap_hackmd_passwordSecretName}"
-  value        = "${random_string.hackmdPassword.result}"
+  value        = "${random_password.hackmdPassword.result}"
   key_vault_id = "${azurerm_key_vault.this.id}"
 }
 # :: GitLab password
-resource "random_string" "gitlabPassword" {
+resource "random_password" "gitlabPassword" {
   keepers = {
     resource_group = "${azurerm_resource_group.this.name}"
   }
-  length  = 20
-  special = false
+  length    = 20
+  special   = false
 }
 resource "azurerm_key_vault_secret" "gitlabPassword" {
   name         = "${module.configuration.dsg_users_ldap_gitlab_passwordSecretName}"
-  value        = "${random_string.gitlabPassword.result}"
+  value        = "${random_password.gitlabPassword.result}"
   key_vault_id = "${azurerm_key_vault.this.id}"
 }
 # :: DSVM password
-resource "random_string" "dsvmPassword" {
+resource "random_password" "dsvmPassword" {
   keepers = {
     resource_group = "${azurerm_resource_group.this.name}"
   }
-  length  = 20
-  special = false
+  length    = 20
+  special   = false
 }
 resource "azurerm_key_vault_secret" "dsvmPassword" {
   name         = "${module.configuration.dsg_users_ldap_dsvm_passwordSecretName}"
-  value        = "${random_string.gitlabPassword.result}"
+  value        = "${random_password.gitlabPassword.result}"
   key_vault_id = "${azurerm_key_vault.this.id}"
 }
 # :: Test researcher password
-resource "random_string" "testResearcherPassword" {
+resource "random_password" "testResearcherPassword" {
   keepers = {
     resource_group = "${azurerm_resource_group.this.name}"
   }
@@ -104,11 +104,22 @@ resource "random_string" "testResearcherPassword" {
 }
 resource "azurerm_key_vault_secret" "testResearcherPassword" {
   name         = "${module.configuration.dsg_users_researchers_test_passwordSecretName}"
-  value        = "${random_string.testResearcherPassword.result}"
+  value        = "${random_password.testResearcherPassword.result}"
   key_vault_id = "${azurerm_key_vault.this.id}"
 }
-
-
+# :: DC admin password
+resource "random_password" "dcAdminPassword" {
+  keepers = {
+    resource_group = "${azurerm_resource_group.this.name}"
+  }
+  length    = 20
+  special   = false
+}
+resource "azurerm_key_vault_secret" "dcAdminPassword" {
+  name         = "${module.configuration.dsg_dc_admin_passwordSecretName}"
+  value        = "${random_password.dcAdminPassword.result}"
+  key_vault_id = "${azurerm_key_vault.this.id}"
+}
 
 # Prepare the Safe Haven Management area
 # --------------------------------------
@@ -127,6 +138,24 @@ resource "null_resource" "Prepare_SHM" {
       interpreter = ["pwsh", "-Command"]
     }
 }
+
+# # Allow other resources to access the key vault by ID
+# # ---------------------------------------------------
+# output "dsg_keyVault_id" {
+#   depends_on = [azurerm_key_vault_secret.hackmdPassword,
+#                 azurerm_key_vault_secret.gitlabPassword,
+#                 azurerm_key_vault_secret.dsvmPassword,
+#                 azurerm_key_vault_secret.testResearcherPassword,
+#                 azurerm_key_vault_secret.dcAdminPassword]
+#   value = "${azurerm_key_vault.this.id}"
+# }
+
+output "dsg_keyVault_dcAdminPassword" {
+  value     = "${azurerm_key_vault_secret.dcAdminPassword.value}"
+  sensitive = true
+}
+
+
 
 
 # # Create new DSG user service accounts
