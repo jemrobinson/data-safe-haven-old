@@ -5,6 +5,7 @@ import logging
 import os
 import random
 import string
+import subprocess
 from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.storage import StorageManagementClient
 from azure.mgmt.storage.models import StorageAccountCreateParameters, Sku, SkuName, Kind
@@ -154,13 +155,15 @@ def main():
     # Read command line arguments
     parser = argparse.ArgumentParser(description='Initialise the Azure infrastructure needed by Terraform')
     parser.add_argument("-g", "--resource-group", type=str, default="RG_TERRAFORM_BACKEND", help="Resource group where the Terraform backend will be stored")
-    parser.add_argument("-c", "--config", type=str, default="dsg_9_full_config.json", help="Name of the configuration file to use")
+    # parser.add_argument("-c", "--config", type=str, default="dsg_9_full_config.json", help="Name of the configuration file to use")
+    parser.add_argument("-s", "--sre-id", type=str, default="9", help="Identifier for which secure research environment to use")
     parser.add_argument("-a", "--azure-group-id", type=str, default="347c68cb-261f-4a3e-ac3e-6af860b5fec9", help="ID of an Azure group which contains all project developers. Default is Turing's 'Safe Haven Test Admins' group.")
     parser.add_argument("-t", "--tenant", type=str, default="4395f4a7-e455-4f95-8a9f-1fbaef6384f9", help="ID of the Azure tenant. Default is the Turing tenant.")
     args = parser.parse_args()
 
     # Load configuration from file
-    filepath = os.path.join("..", "new_dsg_environment", "dsg_configs", "full", args.config)
+    config_name = "dsg_{}_full_config.json".format(args.sre_id)
+    filepath = os.path.join("..", "new_dsg_environment", "dsg_configs", "full", config_name)
     with open(filepath, "r") as f_config:
         config = json.load(f_config)
 
@@ -190,6 +193,13 @@ def main():
 
     # Convert config into Terraform variables
     write_terraform_variables(config, subscription.tenant_id, management_subscription.subscription_id)
+
+    # Run the Powershell cleanup script
+    logging.info("Running Powershell cleanup script")
+    pwsh_script = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "new_dsg_environment", "dsg_deploy_scripts", "01_configure_shm_dc", "Remove_DSG_Data_From_SHM.ps1")
+    subprocess.run(["pwsh", pwsh_script, "-dsgId", args.sre_id])
+
+    #   command = ".'${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/01_configure_shm_dc/Remove_DSG_Data_From_SHM.ps1' -dsgId '${module.configuration.dsg_id}'"
 
 
 if __name__ == "__main__":

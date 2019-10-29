@@ -4,23 +4,23 @@ module "configuration" {
   source = "../configuration"
 }
 
-# Remove existing data from the Safe Haven Management area
-# --------------------------------------------------------
-# Trigger => run every time
-resource "null_resource" "Remove_DSG_Data_From_SHM" {
-    # triggers = {
-    #     trigger = "${uuid()}"
-    # }
-    provisioner "local-exec" {
-      command = ".'${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/01_configure_shm_dc/Remove_DSG_Data_From_SHM.ps1' -dsgId '${module.configuration.dsg_id}'"
-      interpreter = ["pwsh", "-Command"]
-    }
-    # provisioner "local-exec" {
-    #   command     = "Write-Host 'Dummy command'"
-    #   interpreter = ["pwsh", "-Command"]
-    # }
-}
-# NB. this would be better as part of the initial setup script
+# # Remove existing data from the Safe Haven Management area
+# # --------------------------------------------------------
+# # Trigger => run every time
+# resource "null_resource" "Remove_DSG_Data_From_SHM" {
+#     # triggers = {
+#     #     trigger = "${uuid()}"
+#     # }
+#     provisioner "local-exec" {
+#       command = ".'${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/01_configure_shm_dc/Remove_DSG_Data_From_SHM.ps1' -dsgId '${module.configuration.dsg_id}'"
+#       interpreter = ["pwsh", "-Command"]
+#     }
+#     # provisioner "local-exec" {
+#     #   command     = "Write-Host 'Dummy command'"
+#     #   interpreter = ["pwsh", "-Command"]
+#     # }
+# }
+# # NB. this would be better as part of the initial setup script
 
 # Key Vault Configuration
 # -----------------------
@@ -29,7 +29,7 @@ data "azurerm_client_config" "current" {}
 # Create the secrets resource group
 # ---------------------------------
 resource "azurerm_resource_group" "this" {
-  depends_on = [null_resource.Remove_DSG_Data_From_SHM]
+  # depends_on = [null_resource.Remove_DSG_Data_From_SHM]
   name       = "${module.configuration.dsg_keyVault_rg}"
   location   = "${module.configuration.dsg_location}"
 }
@@ -37,7 +37,7 @@ resource "azurerm_resource_group" "this" {
 # Create the keyvault where passwords are stored
 # ----------------------------------------------
 resource "azurerm_key_vault" "this" {
-  depends_on          = [null_resource.Remove_DSG_Data_From_SHM]
+  # depends_on          = [null_resource.Remove_DSG_Data_From_SHM]
   name                = "${module.configuration.dsg_keyVault_name}"
   location            = "${module.configuration.dsg_location}"
   resource_group_name = "${azurerm_resource_group.this.name}"
@@ -126,8 +126,7 @@ resource "azurerm_key_vault_secret" "dcAdminPassword" {
 # --------------------------------------
 # Trigger => run every time
 resource "null_resource" "Prepare_SHM" {
-    depends_on = [null_resource.Remove_DSG_Data_From_SHM,
-                  azurerm_key_vault_secret.hackmdPassword,
+    depends_on = [azurerm_key_vault_secret.hackmdPassword,
                   azurerm_key_vault_secret.gitlabPassword,
                   azurerm_key_vault_secret.dsvmPassword,
                   azurerm_key_vault_secret.testResearcherPassword]

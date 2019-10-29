@@ -23,7 +23,7 @@ if(!$prevContext) {
 # Temporarily switch to DSG subscription
 $_ = Set-AzContext -SubscriptionId $config.dsg.subscriptionName;
 $dsgResourceGroups = @(Get-AzResourceGroup) | Where ResourceGroupName –ne "RG_TERRAFORM_BACKEND"
-$dsgResources = @(Get-AzResource) | Where ResourceName -notlike "terraformstorage*"
+$dsgResources = @(Get-AzResource) | Where ResourceName -notlike "*terraformstorage*"
 if($dsgResources -or $dsgResourceGroups) {
   Write-Host "********************************************************************************"
   Write-Host "*** DSG $dsgId subscription '$($config.dsg.subscriptionName)' is not empty!! ***"
