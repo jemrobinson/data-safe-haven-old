@@ -30,7 +30,6 @@ resource "azurerm_storage_account" "this" {
 }
 resource "azurerm_storage_container" "this" {
   name                  = "dc-create-scripts"
-  # resource_group_name   = "${azurerm_resource_group.storage.name}"
   storage_account_name  = "${azurerm_storage_account.this.name}"
   container_access_type = "private"
 }
@@ -48,15 +47,6 @@ resource "azurerm_storage_blob" "this" {
   type                   = "Block"
   source                 = "${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/03_create_dc/artifacts/dc-create-scripts/${var.artifacts_zip}"
 }
-# resource "null_resource" "Upload_Artifacts" {
-#     depends_on = [azurerm_storage_container.this]
-#     provisioner "local-exec" {
-#       command = join(" ", [".'${path.module}/scripts/Upload_Artifacts.ps1'",
-#                            "-zipFilePath '${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/03_create_dc/artifacts/dc-create-scripts/dc-create.zip'",
-#                            "-containerName 'dc-create-scripts'"])
-#       interpreter = ["pwsh", "-Command"]
-#     }
-# }
 
 # Get SAS token
 # -------------
@@ -102,31 +92,6 @@ resource "azurerm_resource_group" "dc" {
   name     = "${module.configuration.dsg_dc_rg}"
   location = "${module.configuration.dsg_location}"
 }
-
-# # Deploy DC from template
-# # -----------------------
-# resource "azurerm_template_deployment" "this" {
-#   # depends_on   = [var.foo_id]
-#   name                = "dc_deployment"
-#   resource_group_name = "${azurerm_resource_group.dc.name}"
-#   template_body       = "${file("${path.module}/../../../new_dsg_environment/dsg_deploy_scripts/03_create_dc/dc-master-template.json")}"
-#   deployment_mode     = "Incremental"
-
-#   parameters = {
-#     "DC Name"                        = "${module.configuration.dsg_dc_vmName}"
-#     "VM Size"                        = "Standard_B2ms"
-#     "IP Address"                     = "${module.configuration.dsg_dc_ip}"
-#     "Administrator User"             = "${module.configuration.dsg_dc_admin_username}"
-#     "Administrator Password"         = "${var.dsg_keyVault_dcAdminPassword}"
-#     "Virtual Network Name"           = "${module.configuration.dsg_network_vnet_name}"
-#     "Virtual Network Resource Group" = "${module.configuration.dsg_network_vnet_rg}"
-#     "Virtual Network Subnet"         = "${module.configuration.dsg_network_subnets_identity_name}"
-#     "Artifacts Location"             = "https://${azurerm_storage_account.this.name}.blob.core.windows.net/${azurerm_storage_container.this.name}/${var.artifacts_zip}"
-#     "Artifacts Location SAS Token"   = "${data.azurerm_storage_account_sas.this.sas}"
-#     "Domain Name"                    = "${module.configuration.dsg_domain_fqdn}"
-#     "NetBIOS Name"                   = "${module.configuration.dsg_domain_netbiosName}"
-#   }
-# }
 
 # Create storage account for boot diagnostics
 # -------------------------------------------
@@ -205,35 +170,60 @@ resource "azurerm_virtual_machine" "this" {
 }
 
 
-resource "azurerm_virtual_machine_extension" "CreateADForest" {
-  depends_on           = [azurerm_virtual_machine.this]
-  name                 = "CreateADForest"
-  location             = "${module.configuration.dsg_location}"
-  resource_group_name  = "${azurerm_resource_group.dc.name}"
-  virtual_machine_name = "${module.configuration.dsg_dc_vmName}"
-  publisher            = "Microsoft.Powershell"
-  type                 = "DSC"
-  type_handler_version = "2.19"
-
-  settings = <<SETTINGS
-  {
-    "ModulesUrl": "https://${azurerm_storage_account.this.name}.blob.core.windows.net/${azurerm_storage_container.this.name}/${var.artifacts_zip}${data.azurerm_storage_account_sas.this.sas}",
-    "ConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-    "Properties": {
-      "DomainName": "${module.configuration.dsg_domain_fqdn}",
-      "DomainNetBIOSName": "${module.configuration.dsg_domain_netbiosName}",
-      "AdminCreds": {
-        "UserName": "${module.configuration.dsg_dc_admin_username}",
-        "Password": "PrivateSettingsRef:AdminPassword"
-      }
-    }
+# Create domain controller
+# ------------------------
+resource "null_resource" "Configure_AD_DC" {
+  provisioner "local-exec" {
+    command = join(" ", [".'${path.module}/local/Configure_AD_DC.ps1'",
+                    "-subscriptionName '${module.configuration.dsg_subscriptionName}'",
+                    "-dsgNetbiosName '${module.configuration.dsg_domain_netbiosName}'",
+                    "-dsgDn '${module.configuration.dsg_domain_dn}'",
+                    "-dsgServerAdminSgName '${module.configuration.dsg_domain_securityGroups_serverAdmins_name}'",
+                    "-dsgDcAdminUsername '${module.configuration.dsg_dc_admin_username}'",
+                    "-subnetIdentityCidr '${module.configuration.dsg_network_subnets_identity_cidr}'",
+                    "-subnetRdsCidr '${module.configuration.dsg_network_subnets_rds_cidr}'",
+                    "-subnetDataCidr '${module.configuration.dsg_network_subnets_data_cidr}'",
+                    "-shmFqdn '${module.configuration.shm_domain_fqdn}'",
+                    "-shmDcIp '${module.configuration.shm_dc_ip}'",
+                    "-storageAccountName '${azurerm_storage_account.this.name}'",
+                    "-storageContainerName '${azurerm_storage_container.this.name}'",
+                    "-sasToken '${data.azurerm_storage_account_sas.this.sas}'",
+                    "-pipeSeparatedBlobNames '${azurerm_storage_blob.this.name}'"])
+    interpreter = ["pwsh", "-Command"]
   }
-  SETTINGS
-  protected_settings = <<PROTECTED_SETTINGS
-  {
-    "Items": {
-      "AdminPassword": "${var.dsg_keyVault_dcAdminPassword}"
-    }
-  }
-  PROTECTED_SETTINGS
 }
+
+# resource "azurerm_virtual_machine_extension" "CreateADForest" {
+#   depends_on           = [azurerm_virtual_machine.this, azurerm_storage_blob.this]
+#   name                 = "CreateADForest"
+#   location             = "${module.configuration.dsg_location}"
+#   resource_group_name  = "${azurerm_resource_group.dc.name}"
+#   virtual_machine_name = "${module.configuration.dsg_dc_vmName}"
+#   publisher            = "Microsoft.Powershell"
+#   type                 = "DSC"
+#   type_handler_version = "2.77"
+
+#   settings = <<SETTINGS
+#   {
+#     "configuration": {
+#       "url": "https://${azurerm_storage_account.this.name}.blob.core.windows.net/${azurerm_storage_container.this.name}/${var.artifacts_zip}",
+#       "script": "CreateADPDC.ps1",
+#       "function": "CreateADPDC"
+#     },
+#     "configurationArguments": {
+#       "DomainName": "${module.configuration.dsg_domain_fqdn}",
+#       "DomainNetBIOSName": "${module.configuration.dsg_domain_netbiosName}",
+#     }
+#   }
+#   SETTINGS
+#   protected_settings = <<PROTECTED_SETTINGS
+#   {
+#     "configurationUrlSasToken": ${data.azurerm_storage_account_sas.this.sas},
+#     "configurationArguments": {
+#       "AdminCreds": {
+#         "UserName": "${module.configuration.dsg_dc_admin_username}",
+#         "Password": "${var.dsg_keyVault_dcAdminPassword}"
+#       }
+#     }
+#   PROTECTED_SETTINGS
+# }

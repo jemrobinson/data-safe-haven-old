@@ -47,7 +47,6 @@ resource "azurerm_key_vault" "this" {
   access_policy {
     tenant_id = "${module.configuration.tenant_id}"
     object_id = "${data.azurerm_client_config.current.object_id}"  # TODO: change this to Safe Haven Test Admins
-
     secret_permissions = [
       "get", "list", "set", "delete"
     ]
