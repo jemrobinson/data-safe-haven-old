@@ -172,7 +172,7 @@ Invoke-Expression -Command "$peeringScriptPath -dsgId $dsgId";
 
 # Update DSG mirror lookup
 # ------------------------
-Write-Host -ForegroundColor DarkCyan "Determining correct URLs for package mirrors..."
+Write-Host "Determining correct URLs for package mirrors..."
 if($config.dsg.mirrors.cran.ip) {
     $CRAN_MIRROR_URL = "http://$($config.dsg.mirrors.cran.ip)"
 } else {
@@ -188,9 +188,9 @@ if($config.dsg.mirrors.pypi.ip) {
 # 2. https://pypi.org       => pypi.org
 $PYPI_MIRROR_HOST = ""
 if ($PYPI_MIRROR_URL -match "https*:\/\/([^:]*)[:0-9]*") { $PYPI_MIRROR_HOST = $Matches[1] }
-Write-Host -ForegroundColor DarkGreen " [o] CRAN: '$CRAN_MIRROR_URL'"
-Write-Host -ForegroundColor DarkGreen " [o] PyPI server: '$PYPI_MIRROR_URL'"
-Write-Host -ForegroundColor DarkGreen " [o] PyPI host: '$PYPI_MIRROR_HOST'"
+Write-Host " [o] CRAN: '$CRAN_MIRROR_URL'"
+Write-Host " [o] PyPI server: '$PYPI_MIRROR_URL'"
+Write-Host " [o] PyPI host: '$PYPI_MIRROR_HOST'"
 
 # Set PyPI and CRAN locations on the compute VM
 # ---------------------------------------------
@@ -200,8 +200,8 @@ $scriptPath = Join-Path $PSScriptRoot "remote_scripts" "update_mirror_settings.s
 foreach ($vmName in $computeVMs) {
     Write-Host "Setting PyPI and CRAN locations on compute VM: $($vmName)"
     $params = @{
-      CRAN_MIRROR_URL = "`"$CRAN_MIRROR_URL`""
-      PYPI_MIRROR_URL = "`"$PYPI_MIRROR_URL`""
+      CRAN_MIRROR_IP = "`"$CRAN_MIRROR_URL`""
+      PYPI_MIRROR_IP = "`"$PYPI_MIRROR_URL`""
       PYPI_MIRROR_HOST = "`"$PYPI_MIRROR_HOST`""
     }
     $result = Invoke-AzVMRunCommand -ResourceGroupName $config.dsg.dsvm.rg -Name $vmName `
