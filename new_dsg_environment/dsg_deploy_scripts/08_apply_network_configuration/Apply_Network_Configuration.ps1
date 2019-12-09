@@ -27,7 +27,8 @@ $sh2NicName = $config.dsg.rds.sessionHost2.vmName + "_NIC1";
 $dataServerNicName = $config.dsg.dataserver.vmName + "_NIC1";
 
 # Set Azure Network Security Group (NSG) and Network Interface Cards (NICs) objects
-$nsgSessionHosts = Get-AzNetworkSecurityGroup -ResourceGroupName $config.dsg.rds.rg -Name $config.dsg.rds.nsg.sessionHosts.name;
+# $nsgSessionHosts = Get-AzNetworkSecurityGroup -ResourceGroupName $config.dsg.rds.rg -Name $config.dsg.rds.nsg.sessionHosts.name;
+$nsgSessionHosts = Get-AzNetworkSecurityGroup -ResourceGroupName $config.dsg.rds.rg | Where-Object { $_.Name -Like "NSG*SESSION*" }
 $sh1Nic = Get-AzNetworkInterface -ResourceGroupName $config.dsg.rds.rg -Name $sh1NicName;
 $sh2Nic = Get-AzNetworkInterface -ResourceGroupName $config.dsg.rds.rg -Name $sh2NicName;
 $dataServerNic = Get-AzNetworkInterface -ResourceGroupName $config.dsg.dataserver.rg -Name $dataServerNicName;
@@ -76,7 +77,8 @@ Write-Host ("   - Done: NICs associated with '" + $nsgLinux.Name + "' NSG")
 # ==================================================
 
 # Update RDS Gateway NSG inbound access rule
-$nsgGateway = Get-AzNetworkSecurityGroup -ResourceGroupName $config.dsg.rds.rg -Name $config.dsg.rds.nsg.gateway.name;
+# $nsgGateway = Get-AzNetworkSecurityGroup -ResourceGroupName $config.dsg.rds.rg -Name $config.dsg.rds.nsg.gateway.name;
+$nsgGateway = Get-AzNetworkSecurityGroup -ResourceGroupName $config.dsg.rds.rg | Where-Object { $_.Name -Like "NSG*SERVER*" }
 $httpsInRuleName = "HTTPS_In"
 $httpsInRuleBefore = Get-AzNetworkSecurityRuleConfig -Name $httpsInRuleName -NetworkSecurityGroup $nsgGateway;
 
@@ -117,7 +119,8 @@ Write-Host ("   - Done: '" + $httpsInRuleName + "' on '" + $nsgGateway.name + "'
 # =======================================================
 
 # Update RDS Gateway NSG inbound access rule
-$nsgLinux = Get-AzNetworkSecurityGroup -ResourceGroupName $config.dsg.linux.rg -Name $config.dsg.linux.nsg;
+# $nsgLinux = Get-AzNetworkSecurityGroup -ResourceGroupName $config.dsg.linux.rg -Name $config.dsg.linux.nsg;
+$nsgLinux = Get-AzNetworkSecurityGroup -Name $config.dsg.linux.nsg
 $internetOutRuleName = "Internet_Out"
 $internetOutRuleBefore = Get-AzNetworkSecurityRuleConfig -Name $internetOutRuleName -NetworkSecurityGroup $nsgLinux;
 
