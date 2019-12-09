@@ -34,18 +34,18 @@
       },
       "subnets": {
         "identity": {
-          "prefix": "10.0.0",
           "name": "IdentitySubnet",
+          "prefix": "10.0.0",
           "cidr": "10.0.0.0/24"
         },
         "web": {
-          "prefix": "10.0.1",
           "name": "WebSubnet",
+          "prefix": "10.0.1",
           "cidr": "10.0.1.0/24"
         },
         "gateway": {
-          "prefix": "10.0.7",
           "name": "GatewaySubnet",
+          "prefix": "10.0.7",
           "cidr": "10.0.7.0/24"
         }
       }
@@ -99,20 +99,21 @@
     "id": "100",
     "shortName": "dsg100",
     "location": "uksouth",
-    "tier": "2",
+    "tier": "3",
+    "adminSecurityGroupName": "Safe Haven Production Admins",
     "mirrors": {
       "rg": "RG_SHM_PKG_MIRRORS",
       "keyVault": {
         "name": "kv-shm-pkg-mirrors-turing1"
       },
       "vnet": {
-        "name": "VNET_SHM_PKG_MIRRORS_TIER2"
+        "name": "VNET_SHM_TURING1_PKG_MIRRORS_TIER3"
       },
       "cran": {
-        "ip": "10.20.2.21"
+        "ip": "10.20.3.21"
       },
       "pypi": {
-        "ip": "10.20.2.20"
+        "ip": "10.20.3.20"
       }
     },
     "domain": {
@@ -235,8 +236,9 @@
       "rg": "RG_DSG_RDS",
       "nsg": {
         "gateway": {
-          "name": "NSG_RDS_Server",
-          "allowedSources": "Internet"
+          "name": "NSG_RDS-DSG100_Server",
+          "allowedSources": "193.60.220.240",
+          "outboundInternet": null
         },
         "sessionHosts": {
           "name": "NSG_SessionHosts"
