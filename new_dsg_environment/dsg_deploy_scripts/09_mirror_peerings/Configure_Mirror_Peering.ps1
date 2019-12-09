@@ -16,6 +16,8 @@ $unpeeringScriptPath = (Join-Path $PSScriptRoot "internal" "Unpeer_Dsg_And_Mirro
 Write-Host ("Removing all existing mirror peerings")
 Invoke-Expression -Command "$unpeeringScriptPath -dsgId $dsgId";
 
+Start-Sleep -s 30
+
 # Temporarily switch to DSG subscription
 $prevContext = Get-AzContext;
 $_ = Set-AzContext -SubscriptionId $config.dsg.subscriptionName;
