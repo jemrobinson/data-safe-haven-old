@@ -238,7 +238,7 @@
         "gateway": {
           "name": "NSG_RDS-DSG100_Server",
           "allowedSources": "193.60.220.240",
-          "outboundInternet": null
+          "outboundInternet": "Deny"
         },
         "sessionHosts": {
           "name": "NSG_SessionHosts"

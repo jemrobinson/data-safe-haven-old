@@ -194,20 +194,23 @@ Write-Host -ForegroundColor DarkGreen " [o] PyPI host: '$PYPI_MIRROR_HOST'"
 
 # Set PyPI and CRAN locations on the compute VM
 # ---------------------------------------------
-Write-Host "Setting PyPI and CRAN locations on compute VM: $($vm.Name)"
 $_ = Set-AzContext -SubscriptionId $config.dsg.subscriptionName;
+$computeVMs = Get-AzVM -ResourceGroupName $config.dsg.dsvm.rg | % {$_.Name }
 $scriptPath = Join-Path $PSScriptRoot "remote_scripts" "update_mirror_settings.sh"
-$params = @{
-  CRAN_MIRROR_URL = "`"$CRAN_MIRROR_URL`""
-  PYPI_MIRROR_URL = "`"$PYPI_MIRROR_URL`""
-  PYPI_MIRROR_HOST = "`"$PYPI_MIRROR_HOST`""
-}
-$result = Invoke-AzVMRunCommand -ResourceGroupName $config.dsg.dsvm.rg -Name $vm.Name `
-                                -CommandId 'RunShellScript' -ScriptPath $scriptPath -Parameter $params
-$success = $?
-Write-Output $result.Value
-if ($success) {
-    Write-Host "Setting PyPI and CRAN locations on compute VM was successful"
+foreach ($vmName in ([array]$computeVMs + $webappVMs)) {
+    Write-Host "Setting PyPI and CRAN locations on compute VM: $($vmName)"
+    $params = @{
+      CRAN_MIRROR_URL = "`"$CRAN_MIRROR_URL`""
+      PYPI_MIRROR_URL = "`"$PYPI_MIRROR_URL`""
+      PYPI_MIRROR_HOST = "`"$PYPI_MIRROR_HOST`""
+    }
+    $result = Invoke-AzVMRunCommand -ResourceGroupName $config.dsg.dsvm.rg -Name $vmName `
+                                    -CommandId 'RunShellScript' -ScriptPath $scriptPath -Parameter $params
+    $success = $?
+    Write-Output $result.Value
+    if ($success) {
+        Write-Host "Setting PyPI and CRAN locations on compute VM was successful"
+    }
 }
 
 
