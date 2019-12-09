@@ -24,7 +24,7 @@ $mirrorVnets = Get-AzVirtualNetwork -Name "*" -ResourceGroupName $config.dsg.mir
 Write-Output ("Removing peering for DSG network from SHM Mirror networks")
 # Iterate over mirror VNets
 @($mirrorVnets) | ForEach-Object{
-  $mirrorPeerings = Get-AzVirtualNetworkPeering -Name "*" -VirtualNetwork $_.Name  -ResourceGroupName $config.dsg.mirrors.rg;
+  $mirrorPeerings = Get-AzVirtualNetworkPeering -Name "*" -VirtualNetwork $_.Name -ResourceGroupName $_.ResourceGroupName
   $mirrorVnet = $_
   # Iterate over peerings
   @($mirrorPeerings) | ForEach-Object{
@@ -33,7 +33,7 @@ Write-Output ("Removing peering for DSG network from SHM Mirror networks")
     If($mirrorPeering.RemoteVirtualNetwork.Id -eq $dsgVnet.Id) {
       Write-Output ("  - Removing peering " + $mirrorPeering.Name + " (" `
                     + $mirrorPeering.VirtualNetworkName + " <-> " + $dsgVnet.Name + ")")
-      $_ = Remove-AzVirtualNetworkPeering -Name $mirrorPeering.Name -VirtualNetworkName $mirrorVnet.Name -ResourceGroupName $config.dsg.mirrors.rg -Force;
+      $_ = Remove-AzVirtualNetworkPeering -Name $mirrorPeering.Name -VirtualNetworkName $mirrorVnet.Name -ResourceGroupName $mirrorVnet.ResourceGroupName -Force;
     }
   }
 }
