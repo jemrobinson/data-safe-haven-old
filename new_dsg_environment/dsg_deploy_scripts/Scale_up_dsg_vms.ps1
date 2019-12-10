@@ -37,11 +37,14 @@ if($resizeVM -eq "data") {
     $vm.HardwareProfile.VmSize = $vmSize
     Update-AzVM -VM $vm -ResourceGroupName $config.dsg.dataserver.rg -NoWait
 }
-if($resizeVM -eq "rdssh") {
+if($resizeVM -eq "rdssh1") {
     Write-Host "===Resizing RDS session hosts==="
     $vm = Get-AzVM -ResourceGroupName $config.dsg.rds.rg -Name $config.dsg.rds.sessionHost1.vmName
     $vm.HardwareProfile.VmSize = $vmSize
     Update-AzVM -VM $vm -ResourceGroupName $config.dsg.rds.rg -NoWait
+}
+if($resizeVM -eq "rdssh2") {
+    Write-Host "===Resizing RDS session hosts==="
     $vm = Get-AzVM -ResourceGroupName $config.dsg.rds.rg -Name $config.dsg.rds.sessionHost2.vmName
     $vm.HardwareProfile.VmSize = $vmSize
     Update-AzVM -VM $vm -ResourceGroupName $config.dsg.rds.rg -NoWait
