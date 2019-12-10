@@ -58,12 +58,9 @@ if ($resizeVM -eq "dc") {
     $vm.HardwareProfile.VmSize = $vmSize
     Update-AzVM -VM $vm -ResourceGroupName $config.dsg.dc.rg -NoWait
 }
-if ($resizeVM -eq "compute") {
+if ($resizeVM -match "^\d{3}$") {
     Write-Host "===Resizing Compute ==="
-    while ($ipLastOctet.GetType() -ne [int] ) {
-        $ipLastOctet = (Read-Host -prompt "Enter LastOctect of Compute or GPU VM: ")
-    }
-    $vm = Get-AzVM -ResourceGroupName RG_DSG_COMPUTE | Where-Object { ($_.Name -Split "-")[1] -eq $ipLastOctet }
+        $vm = Get-AzVM -ResourceGroupName RG_DSG_COMPUTE | Where-Object { ($_.Name -Split "-")[1] -eq $resizeVM }
     $vm.HardwareProfile.VmSize = $vmSize
     Update-AzVM -VM $vm -ResourceGroupName $config.dsg.dsvm.rg -NoWait
 }
