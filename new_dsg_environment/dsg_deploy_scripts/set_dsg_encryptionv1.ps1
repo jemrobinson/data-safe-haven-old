@@ -59,8 +59,8 @@ Write-Host "AzureActiveDirectory rule, Added!" -ForegroundColor Green
 
 ######################################
 
-
-$servers = ($config.dsg.dc.vmname, $config.dsg.rds.gateway.vmname, $config.dsg.rds.sessionHost1.vmname,$config.dsg.rds.sessionHost2.vmname,$config.dsg.dataserver.vmname)
+$computeservers = Get-AzVM -ResourceGroupName "RG_DSG_COMPUTE" #Fix me will break with multiple compute machines
+$servers = ($config.dsg.dc.vmname, $config.dsg.rds.gateway.vmname, $config.dsg.rds.sessionHost1.vmname,$config.dsg.rds.sessionHost2.vmname,$config.dsg.dataserver.vmname,$computeservers.name)
 
 #KeyVault Variables
 $kvname = $config.dsg.KeyVault.name
