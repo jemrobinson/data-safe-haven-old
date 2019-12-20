@@ -13,7 +13,7 @@ Import-Module $PSScriptRoot/DsgConfig.psm1 -Force
 $config = Get-DsgConfig($dsgId)
 
 # Temporarily switch to DSG subscription
-$prevContext = Get-AzContext;
+$prevContext = Get-AzContext
 $_ = Set-AzContext -SubscriptionId $config.dsg.subscriptionName;
 
 # Find and Update the storage type
@@ -24,3 +24,6 @@ foreach($disk in Get-AzDisk) {
     Update-AzDisk -DiskUpdate $diskUpdateConfig -ResourceGroupName $disk.ResourceGroupName `
     -DiskName $disk.Name
      }
+
+# Switch back to original subscription
+$_ = Set-AzContext -Context $prevContext;
