@@ -1,0 +1,13 @@
+{
+    "subscriptionName": "Turing SRE - 111 - TalkLife",
+    "adminSecurityGroupName": "Safe Haven Production Admins",
+    "dsgId": "111",
+    "shmId": "turing1",
+    "tier": "3",
+    "domain": "dsgroup111.co.uk",
+    "netbiosName": "DSGROUP111",
+    "ipPrefix": "10.228.8",
+    "rdsAllowedSources": "Internet",
+    "computeVmImageType": "Ubuntu",
+    "computeVmImageVersion": "0.1.2019082900"
+}
