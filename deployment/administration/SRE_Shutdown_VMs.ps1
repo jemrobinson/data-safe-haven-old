@@ -31,6 +31,9 @@ Add-LogMessage -Level Info "Stopping RDS gateway..."
 Stop-AzVM -ResourceGroupName $config.sre.rds.rg -Name $config.sre.rds.gateway.vmName -Force -NoWait
 Add-LogMessage -Level Info "Stopping AD DC..."
 Stop-AzVM -ResourceGroupName $config.sre.dc.rg -Name $config.sre.dc.vmName -Force -NoWait
+Add-LogMessage -Level Info "Stopping logging servers..."
+Stop-AzVM -ResourceGroupName $config.sre.logging.rg -Name $config.sre.logging.vmName -Force -NoWait
+
 
 
 # Switch back to original subscription

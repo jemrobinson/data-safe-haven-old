@@ -329,6 +329,7 @@ function Add-SreConfig {
             hackmdUserPassword = "$($config.sre.shortName)-hackmd-user-password"
             letsEncryptCertificate = "$($config.sre.shortName)-lets-encrypt-certificate"
             testResearcherPassword = "$($config.sre.shortName)-test-researcher-password"
+            loggingPgdbPassword = "$($config.sre.shortName)-logging-pgdb-password"
         }
     }
 
@@ -463,6 +464,18 @@ function Add-SreConfig {
     $config.sre.webapps.hackmd.hostname = $config.sre.webapps.hackmd.vmName
     $config.sre.webapps.hackmd.fqdn = "$($config.sre.webapps.hackmd.hostname).$($config.sre.domain.fqdn)"
     $config.sre.webapps.hackmd.ip = "$($config.sre.network.subnets.data.prefix).152"
+
+    # Logging server
+    $config.sre.logging = [ordered]@{
+        rg = "RG_SRE_LOGS"
+        nsg = "NSG_SRE_$($config.sre.id)_LOGS".ToUpper()
+        vmName = "LOGS-SRE-$($config.sre.id)".ToUpper()
+        vmSize = "Standard_D2s_v3"
+    }
+    $config.sre.logging.ip = "$($config.sre.network.subnets.data.prefix).155"
+    $config.sre.logging.pgusername = "loguser"
+    $config.sre.logging.pgdatabasename = "logging"
+    $config.sre.logging.pgport = "5432"
 
     # Compute VMs
     $config.sre.dsvm = [ordered]@{}

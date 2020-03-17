@@ -1,0 +1,71 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - docker-ce
+  - docker-compose
+  - software-properties-common
+
+apt:
+  # Preserves the existing /etc/apt/sources.list
+  preserve_sources_list: true
+
+  # Add repositories
+  sources:
+    gitlab.list:
+      source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+      keyid: 8D81803C0EBFCD88
+
+write_files:
+  - path: "/docker-compose-logging.yml"
+    content: |
+      version: '3'
+      services:
+        database:
+          # Don't upgrade PostgreSQL by simply changing the version number
+          # You need to migrate the Database to the new PostgreSQL version
+          image: postgres:12.2-alpine
+          #mem_limit: 256mb         # version 2 only
+          #memswap_limit: 512mb     # version 2 only
+          #read_only: true          # not supported in swarm mode please enable along with tmpfs
+          #tmpfs:
+          #  - /run/postgresql:size=512K
+          #  - /tmp:size=256K
+          environment:
+            - POSTGRES_USER=<logging-user>
+            - POSTGRES_PASSWORD=<logging-password>
+            - POSTGRES_DB=<logging-db>
+          volumes:
+            - database:/var/lib/postgresql/data
+          restart: always
+          ports:
+            - "<logging-port>:5432"
+
+      # Define named volumes so data stays in place
+      volumes:
+        # Volume for PostgreSQL/MySQL database
+        database:
+
+runcmd:
+  # Configure server
+  - echo "Configuring server"
+  - echo "Europe/London" > /etc/timezone
+  - dpkg-reconfigure -f noninteractive tzdata
+  # Checking Docker status
+  - echo "Current Docker status"
+  - systemctl status docker
+  - echo "Overwriting PostgreSQL configuration"
+  - cp /docker-compose-logging.yml /src/docker-logging/docker-compose.yml
+  - echo "Starting PostgreSQL"
+  - docker-compose -f /src/docker-logging/docker-compose.yml up -d
+
+# Shutdown so that we can tell when the job has finished by polling the VM state
+power_state:
+  mode: poweroff
+  message: "Shutting down as a signal that setup is finished"
+  timeout: 30
+  condition: True
