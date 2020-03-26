@@ -12,13 +12,13 @@
     "location": "uksouth",
     "adminSecurityGroupName": "Safe Haven Test Admins",
     "domain": {
-      "fqdn": "testc.dsgroupdev.co.uk",
+      "fqdn": "testc1.dsgroupdev.co.uk",
       "netbiosName": "SAFEHAVENTESTC",
-      "dn": "DC=testc,DC=dsgroupdev,DC=co,DC=uk",
-      "serviceServerOuPath": "OU=Safe Haven Service Servers,DC=testc,DC=dsgroupdev,DC=co,DC=uk",
-      "serviceOuPath": "OU=Safe Haven Service Accounts,DC=testc,DC=dsgroupdev,DC=co,DC=uk",
-      "userOuPath": "OU=Safe Haven Research Users,DC=testc,DC=dsgroupdev,DC=co,DC=uk",
-      "securityOuPath": "OU=Safe Haven Security Groups,DC=testc,DC=dsgroupdev,DC=co,DC=uk",
+      "dn": "DC=testc1,DC=dsgroupdev,DC=co,DC=uk",
+      "serviceServerOuPath": "OU=Safe Haven Service Servers,DC=testc1,DC=dsgroupdev,DC=co,DC=uk",
+      "serviceOuPath": "OU=Safe Haven Service Accounts,DC=testc1,DC=dsgroupdev,DC=co,DC=uk",
+      "userOuPath": "OU=Safe Haven Research Users,DC=testc1,DC=dsgroupdev,DC=co,DC=uk",
+      "securityOuPath": "OU=Safe Haven Security Groups,DC=testc1,DC=dsgroupdev,DC=co,DC=uk",
       "securityGroups": {
         "dsvmLdapUsers": {
           "name": "SG Safe Haven LDAP Users",
@@ -59,13 +59,13 @@
       "vmName": "DC1-SHM-TESTC",
       "vmSize": "Standard_F8s_v2",
       "hostname": "DC1-SHM-TESTC",
-      "fqdn": "DC1-SHM-TESTC.testc.dsgroupdev.co.uk",
+      "fqdn": "DC1-SHM-TESTC.testc1.dsgroupdev.co.uk",
       "ip": "10.0.0.250"
     },
     "dcb": {
       "vmName": "DC2-SHM-TESTC",
       "hostname": "DC2-SHM-TESTC",
-      "fqdn": "DC2-SHM-TESTC.testc.dsgroupdev.co.uk",
+      "fqdn": "DC2-SHM-TESTC.testc1.dsgroupdev.co.uk",
       "ip": "10.0.0.249"
     },
     "nps": {
@@ -135,9 +135,9 @@
     "tier": "2",
     "adminSecurityGroupName": "Safe Haven Test Admins",
     "domain": {
-      "fqdn": "sandbox.testc.dsgroupdev.co.uk",
+      "fqdn": "sandbox.testc1.dsgroupdev.co.uk",
       "netbiosName": "SANDBOX",
-      "dn": "DC=sandbox,DC=testc,DC=dsgroupdev,DC=co,DC=uk",
+      "dn": "DC=sandbox,DC=testc1,DC=dsgroupdev,DC=co,DC=uk",
       "securityGroups": {
         "serverAdmins": {
           "name": "SG SANDBOX Server Administrators",
@@ -252,7 +252,7 @@
           "outboundInternet": "Deny"
         },
         "hostname": "RDG-SRE-SANDBOX",
-        "fqdn": "RDG-SRE-SANDBOX.testc.dsgroupdev.co.uk",
+        "fqdn": "RDG-SRE-SANDBOX.testc1.dsgroupdev.co.uk",
         "ip": "10.151.1.250"
       },
       "sessionHost1": {
@@ -260,7 +260,7 @@
         "vmSize": "Standard_F8s_v2",
         "nsg": "NSG_SRE_SANDBOX_RDS_SESSION_HOSTS",
         "hostname": "APP-SRE-SANDBOX",
-        "fqdn": "APP-SRE-SANDBOX.testc.dsgroupdev.co.uk",
+        "fqdn": "APP-SRE-SANDBOX.testc1.dsgroupdev.co.uk",
         "ip": "10.151.1.249"
       },
       "sessionHost2": {
@@ -268,7 +268,7 @@
         "vmSize": "Standard_F8s_v2",
         "nsg": "NSG_SRE_SANDBOX_RDS_SESSION_HOSTS",
         "hostname": "DKP-SRE-SANDBOX",
-        "fqdn": "DKP-SRE-SANDBOX.testc.dsgroupdev.co.uk",
+        "fqdn": "DKP-SRE-SANDBOX.testc1.dsgroupdev.co.uk",
         "ip": "10.151.1.248"
       }
     },
@@ -278,7 +278,7 @@
       "vmName": "DAT-SRE-SANDBOX",
       "vmSize": "Standard_F8s_v2",
       "hostname": "DAT-SRE-SANDBOX",
-      "fqdn": "DAT-SRE-SANDBOX.testc.dsgroupdev.co.uk",
+      "fqdn": "DAT-SRE-SANDBOX.testc1.dsgroupdev.co.uk",
       "ip": "10.151.2.250",
       "egressDiskGb": 64,
       "ingressDiskGb": 512,
@@ -291,14 +291,14 @@
         "vmName": "GITLAB-SRE-SANDBOX",
         "vmSize": "Standard_F8s_v2",
         "hostname": "GITLAB-SRE-SANDBOX",
-        "fqdn": "GITLAB-SRE-SANDBOX.testc.dsgroupdev.co.uk",
+        "fqdn": "GITLAB-SRE-SANDBOX.testc1.dsgroupdev.co.uk",
         "ip": "10.151.2.151"
       },
       "hackmd": {
         "vmName": "HACKMD-SRE-SANDBOX",
         "vmSize": "Standard_F8s_v2",
         "hostname": "HACKMD-SRE-SANDBOX",
-        "fqdn": "HACKMD-SRE-SANDBOX.testc.dsgroupdev.co.uk",
+        "fqdn": "HACKMD-SRE-SANDBOX.testc1.dsgroupdev.co.uk",
         "ip": "10.151.2.152"
       }
     },

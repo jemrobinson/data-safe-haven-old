@@ -4,7 +4,7 @@
     "sreId": "sandbox",
     "shmId": "testc",
     "tier": "2",
-    "domain": "sandbox.testc.dsgroupdev.co.uk",
+    "domain": "sandbox.testc1.dsgroupdev.co.uk",
     "netbiosName": "SANDBOX",
     "ipPrefix": "10.151.0",
     "rdsAllowedSources": "Internet",
