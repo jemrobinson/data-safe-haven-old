@@ -275,7 +275,7 @@
       "rg": "RG_SRE_DATA",
       "nsg": "NSG_SRE_SANDBOX_DATA",
       "vmName": "DAT-SRE-SANDBOX",
-      "vmSize": "Standard_D2s_v3",
+      "vmSize": "Standard_F4s_v2",
       "hostname": "DAT-SRE-SANDBOX",
       "fqdn": "DAT-SRE-SANDBOX.sandbox.testa.dsgroupdev.co.uk",
       "ip": "10.150.2.250"
@@ -292,7 +292,7 @@
       },
       "hackmd": {
         "vmName": "HACKMD-SRE-SANDBOX",
-        "vmSize": "Standard_D2s_v3",
+        "vmSize": "Standard_F4s_v2",
         "hostname": "HACKMD-SRE-SANDBOX",
         "fqdn": "HACKMD-SRE-SANDBOX.sandbox.testa.dsgroupdev.co.uk",
         "ip": "10.150.2.152"

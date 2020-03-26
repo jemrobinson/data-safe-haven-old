@@ -274,7 +274,7 @@
       "rg": "RG_SRE_DATA",
       "nsg": "NSG_SRE_SANDBOX_DATA",
       "vmName": "DAT-SRE-SANDBOX",
-      "vmSize": "Standard_D2s_v3",
+      "vmSize": "Standard_F4s_v2",
       "hostname": "DAT-SRE-SANDBOX",
       "fqdn": "DAT-SRE-SANDBOX.testb.dsgroupdev.co.uk",
       "ip": "10.151.2.250"
@@ -284,14 +284,14 @@
       "nsg": "NSG_SRE_SANDBOX_WEBAPPS",
       "gitlab": {
         "vmName": "GITLAB-SRE-SANDBOX",
-        "vmSize": "Standard_DS3_v2",
+        "vmSize": "Standard_F4s_v2",
         "hostname": "GITLAB-SRE-SANDBOX",
         "fqdn": "GITLAB-SRE-SANDBOX.testb.dsgroupdev.co.uk",
         "ip": "10.151.2.151"
       },
       "hackmd": {
         "vmName": "HACKMD-SRE-SANDBOX",
-        "vmSize": "Standard_D2s_v3",
+        "vmSize": "Standard_F4s_v2",
         "hostname": "HACKMD-SRE-SANDBOX",
         "fqdn": "HACKMD-SRE-SANDBOX.testb.dsgroupdev.co.uk",
         "ip": "10.151.2.152"
