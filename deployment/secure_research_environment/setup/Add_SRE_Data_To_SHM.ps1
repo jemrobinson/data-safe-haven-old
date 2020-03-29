@@ -74,6 +74,7 @@ $params = @{
     testResearcherSamAccountName = "`"$($config.sre.users.researchers.test.samAccountName)`""
     testResearcherName = "`"$($config.sre.users.researchers.test.name)`""
     testResearcherPasswordEncrypted = $testResearcherPasswordEncrypted
+    country = "`"$($config.countryCode)`""
 }
 $result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.shm.dc.vmName -ResourceGroupName $config.shm.dc.rg -Parameter $params
 Write-Output $result.Value

@@ -27,7 +27,8 @@ param(
     [String]$dataMountPasswordEncrypted,
     [String]$testResearcherSamAccountName,
     [String]$testResearcherName,
-    [String]$testResearcherPasswordEncrypted
+    [String]$testResearcherPasswordEncrypted,
+    [String]$country
 )
 
 function New-SreGroup($name, $description, $path, $groupCategory, $groupScope) {
@@ -45,7 +46,7 @@ function New-SreGroup($name, $description, $path, $groupCategory, $groupScope) {
     }
 }
 
-function New-SreUser($samAccountName, $name, $path, $passwordSecureString) {
+function New-SreUser($samAccountName, $name, $path, $passwordSecureString, $country) {
     if(Get-ADUser -Filter "SamAccountName -eq '$samAccountName'"){
         Write-Output " [o] User '$samAccountName' already exists"
     } else {
@@ -59,7 +60,8 @@ function New-SreUser($samAccountName, $name, $path, $passwordSecureString) {
                             -Description "$name" `
                             -AccountPassword $passwordSecureString `
                             -Enabled $true `
-                            -PasswordNeverExpires $true)
+                            -PasswordNeverExpires $true `
+                            -Country "$country")
         if ($?) {
             Write-Output " [o] User '$name' ($samAccountName) created"
         } else {
@@ -80,11 +82,11 @@ $testResearcherPasswordSecureString = ConvertTo-SecureString -String $testResear
 New-SreGroup -name $researchUserSgName -description $researchUserSgDescription -Path $securityOuPath -GroupScope Global -GroupCategory Security
 
 # Create Service Accounts for SRE
-New-SreUser -samAccountName $hackmdSamAccountName -name $hackmdName -path $serviceOuPath -passwordSecureString $hackmdPasswordSecureString
-New-SreUser -samAccountName $gitlabSamAccountName -name $gitlabName -path $serviceOuPath -passwordSecureString $gitlabPasswordSecureString
-New-SreUser -samAccountName $dsvmSamAccountName -name $dsvmName -path $serviceOuPath -passwordSecureString $dsvmPasswordSecureString
-New-SreUser -samAccountName $dataMountSamAccountName -name $dataMountName -path $serviceOuPath -passwordSecureString $dataMountPasswordSecureString
-New-SreUser -samAccountName $testResearcherSamAccountName -name $testResearcherName -path $researchUserOuPath -passwordSecureString $testResearcherPasswordSecureString
+New-SreUser -samAccountName $hackmdSamAccountName -name $hackmdName -path $serviceOuPath -passwordSecureString $hackmdPasswordSecureString $country
+New-SreUser -samAccountName $gitlabSamAccountName -name $gitlabName -path $serviceOuPath -passwordSecureString $gitlabPasswordSecureString $country
+New-SreUser -samAccountName $dsvmSamAccountName -name $dsvmName -path $serviceOuPath -passwordSecureString $dsvmPasswordSecureString $country
+New-SreUser -samAccountName $dataMountSamAccountName -name $dataMountName -path $serviceOuPath -passwordSecureString $dataMountPasswordSecureString $country
+New-SreUser -samAccountName $testResearcherSamAccountName -name $testResearcherName -path $researchUserOuPath -passwordSecureString $testResearcherPasswordSecureString $country
 
 # Add Data Science LDAP users to SG Data Science LDAP Users security group
 Write-Output " [ ] Adding '$dsvmSamAccountName' user to group '$ldapUserSgName'"
