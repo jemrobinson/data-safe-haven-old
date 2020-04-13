@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "SubNetParameters": {
+            "type": "object"
+        }       
+    },
+    "variables": {        
+    	"nsgName": "[concat('NSG_', toUpper(parameters('SubNetParameters').vnetName), '_', toUpper(parameters('SubNetParameters').name))]",
+    	"nsgResourceId": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]",       
+        "subnetName": "[concat(parameters('SubNetParameters').vnetName, '/', parameters('SubNetParameters').name)]",
+        "subnetResourceId": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('SubNetParameters').vnetName), '/subnets/', parameters('SubNetParameters').name)]",
+        "addressPrefix": "[parameters('SubNetParameters').properties.addressPrefix]"        
+    },    
+    "resources": [
+        {
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[variables('nsgName')]",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "[parameters('SubNetParameters').networkSecurityGroup.apiVersion]",
+            "properties": {
+                "copy": [{
+                    "name": "securityRules",
+                    "count": "[length(parameters('SubNetParameters').networkSecurityGroup.securityRules)]",
+                    "input": {                      
+                        "name": "[parameters('SubNetParameters').networkSecurityGroup.securityRules[copyIndex('securityRules')].name]",
+                        "properties": "[parameters('SubNetParameters').networkSecurityGroup.securityRules[copyIndex('securityRules')].properties]"  
+                    }
+                }]
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[variables('subnetName')]",
+            "apiVersion": "[parameters('SubNetParameters').apiVersion]",
+            "location": "[resourceGroup().location]",           
+            "properties": {
+                "addressPrefix": "[variables('addressPrefix')]",
+                "networkSecurityGroup": {
+                    "id": "[variables('nsgResourceId')]"
+                }                
+            },
+            "dependsOn": [               
+                "[variables('nsgResourceId')]"                
+            ]            
+        }
+    ],
+    "outputs": {        
+        "nsgProvisioningState": {
+            "type": "string",
+            "value": "[reference(variables('nsgResourceId')).provisioningState]"
+        },
+        "subnetProvisioningState": {
+        	"type": "string",
+            "value": "[reference(variables('subnetResourceId')).provisioningState]"
+        },
+        "subnetResourceId": {
+        	"type": "string",
+        	"value": "[variables('subnetResourceId')]"
+        }
+    }
+}

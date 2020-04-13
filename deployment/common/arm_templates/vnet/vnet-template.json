@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "VNetParameters": {
+            "type": "object"
+        }       
+    },    
+    "resources": [   
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('VNetParameters').name]",
+            "apiVersion": "2019-11-01",
+            "location": "[resourceGroup().location]",           
+            "properties": {
+                "addressSpace": "[parameters('VNetParameters').properties.addressSpace]",                
+                "enableDdosProtection": "[parameters('VNetParameters').properties.enableDdosProtection]",
+                "enableVmProtection": "[parameters('VNetParameters').properties.enableVmProtection]"
+            }            
+        }
+    ]
+}
