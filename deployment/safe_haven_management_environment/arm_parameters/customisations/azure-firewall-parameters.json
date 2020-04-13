@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "FirewallParameters": {
+            "value": {
+                "vnetName": "<SHM-VNET-NAME>",                                               
+                "properties": {
+                    "subnet": {
+                        "apiVersion": "2019-04-01",
+                        "addressPrefix": "10.0.6.0/24"
+                    },
+                    "privateIpAddress": "10.0.6.4",
+                    "networkRuleCollections": [{
+                        "name": "TestNetworkRuleCollection",
+                        "properties": {
+                            "priority": 999,
+                            "action": {
+                                "type": "Allow"
+                            },
+                            "rules": [{
+                                    "name": "TestRule01",
+                                    "protocols": [
+                                        "TCP"
+                                    ],
+                                    "sourceAddresses": [
+                                        "10.0.0.0/24"
+                                    ],                                                                
+                                    "destinationAddresses": [
+                                        "13.87.0.0/18"
+                                    ],
+                                    "destinationFqdns": [],                                                                      
+                                    "destinationPorts": [
+                                        "443"
+                                    ]
+                            }]                            
+                        }
+                    }]                    
+                }
+            }
+        }
+    }
+}

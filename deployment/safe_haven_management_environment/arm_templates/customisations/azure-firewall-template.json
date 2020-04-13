@@ -1,0 +1,111 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "FirewallParameters": {
+            "type": "object"
+        }       
+    },
+    "variables": {
+        "publicIpAddressType": "Microsoft.Network/publicIPAddresses",
+        "publicIpAddressName": "[concat(parameters('FirewallParameters').vnetName, '_FW_PIP')]",
+        "publicIpResourceId": "[resourceId(variables('publicIpAddressType'), variables('publicIpAddressName'))]",
+        "firewallName": "[concat(parameters('FirewallParameters').vnetName, '_FW')]",
+        "firewallResourceId": "[resourceId('Microsoft.Network/azureFirewalls', variables('firewallName'))]",
+        "subnetName": "[concat(parameters('FirewallParameters').vnetName, '/AzureFirewallSubnet')]",
+        "subnetApiVersion": "[parameters('FirewallParameters').properties.subnet.apiVersion]",
+        "subnetResourceId": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('FirewallParameters').vnetName), '/subnets/AzureFirewallSubnet')]",
+        "privateIPAddress": "[parameters('FirewallParameters').properties.privateIPAddress]",
+        "networkRuleCollections": "[parameters('FirewallParameters').properties.networkRuleCollections]"
+    },    
+    "resources": [
+    	{
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[variables('subnetName')]",
+            "apiVersion": "[variables('subnetApiVersion')]",
+            "location": "[resourceGroup().location]",           
+            "properties": {
+                "addressPrefix": "[parameters('FirewallParameters').properties.subnet.addressPrefix]"
+            }        
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2019-11-01",
+            "name": "[variables('publicIpAddressName')]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard"
+            },
+            "properties": {                
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/azureFirewalls",
+            "apiVersion": "2019-11-01",
+            "name": "[variables('firewallName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "sku": {
+                    "name": "AZFW_VNet",
+                    "tier": "Standard"
+                },
+                "threatIntelMode": "Alert",
+                "additionalProperties": {},
+                "ipConfigurations": [
+                    {
+                        "name": "[variables('publicIpAddressName')]",
+                        "properties": {
+                            "privateIPAddress": "[variables('privateIPAddress')]",
+                            "publicIPAddress": {
+                                "id": "[variables('publicIpResourceId')]"
+                            },
+                            "subnet": {
+                                "id": "[variables('subnetResourceId')]"
+                            }
+                        }
+                    }
+                ],                
+                "applicationRuleCollections": [],
+                "natRuleCollections": [],
+                "copy": [{
+                    "name": "networkRuleCollections",
+                    "count": "[length(variables('networkRuleCollections'))]",
+                    "input": {                      
+                        "name": "[variables('networkRuleCollections')[copyIndex('networkRuleCollections')].name]",
+                        "properties": "[variables('networkRuleCollections')[copyIndex('networkRuleCollections')].properties]"                    
+                    }
+                }]
+            },
+            "dependsOn": [
+            	"[variables('subnetResourceId')]",
+                "[variables('publicIpResourceId')]"                
+            ]
+        }
+    ],
+    "outputs": {
+    	"subnetProvisioningState": {
+        	"type": "string",
+            "value": "[reference(variables('subnetResourceId')).provisioningState]"
+        },
+        "publicIpProvisioningState": {
+        	"type": "string",
+            "value": "[reference(variables('publicIpResourceId')).provisioningState]"
+        },
+        "firewallProvisioningState": {
+        	"type": "string",
+            "value": "[reference(variables('firewallResourceId')).provisioningState]"
+        },
+        "firewallResourceId": {
+            "type": "string",
+            "value": "[variables('firewallResourceId')]"
+        },
+        "firewallPrivateIpAddress": {
+            "type": "string",
+            "value": "[variables('privateIPAddress')]"
+        }
+    }
+}
