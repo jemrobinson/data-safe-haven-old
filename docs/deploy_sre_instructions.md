@@ -358,7 +358,7 @@ However, if you need to unpeer the mirror networks for some reason (e.g. while p
 
 
 ## 9. Run smoke tests on shared compute VM
-These tests should be run **after** the network lock down and peering the DSG and mirror VNets. They are automatically uploaded to the compute VM during the deployment step.
+These tests should be run **after** the network lock down and peering the SRE and mirror VNets. They are automatically uploaded to the compute VM during the deployment step.
 
 To run the smoke tests:
 - Connect to a **remote desktop** on the Main VM (e.g. `https://sandbox.dsgroupdev.co.uk/`) using the "Main VM (Desktop)" app
