@@ -7,13 +7,26 @@
         }       
     },
     "variables": {        
-    	"nsgName": "[concat('NSG_', toUpper(parameters('SubNetParameters').vnetName), '_', toUpper(parameters('SubNetParameters').name))]",
+    	"ipGroupName": "[concat('IPGRP_', toUpper(parameters('SubNetParameters').vnetName), '_', toUpper(parameters('SubNetParameters').name))]",
+        "ipGroupResourceId": "[resourceId('Microsoft.Network/ipGroups', variables('ipGroupName'))]",
+        "nsgName": "[concat('NSG_', toUpper(parameters('SubNetParameters').vnetName), '_', toUpper(parameters('SubNetParameters').name))]",
     	"nsgResourceId": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]",       
         "subnetName": "[concat(parameters('SubNetParameters').vnetName, '/', parameters('SubNetParameters').name)]",
         "subnetResourceId": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('SubNetParameters').vnetName), '/subnets/', parameters('SubNetParameters').name)]",
         "addressPrefix": "[parameters('SubNetParameters').properties.addressPrefix]"        
     },    
     "resources": [
+        {
+            "type": "Microsoft.Network/ipGroups",
+            "apiVersion": "[parameters('SubNetParameters').ipGroup.apiVersion]",
+            "name": "[variables('ipGroupName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "ipAddresses": [
+                    "[variables('addressPrefix')]"                    
+                ]
+            }
+        },
         {
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('nsgName')]",
@@ -41,12 +54,17 @@
                     "id": "[variables('nsgResourceId')]"
                 }                
             },
-            "dependsOn": [               
+            "dependsOn": [
+                "[variables('ipGroupResourceId')]",               
                 "[variables('nsgResourceId')]"                
             ]            
         }
     ],
-    "outputs": {        
+    "outputs": {
+        "ipGroupProvisioningState": {
+            "type": "string",
+            "value": "[reference(variables('ipGroupResourceId')).provisioningState]"
+        },        
         "nsgProvisioningState": {
             "type": "string",
             "value": "[reference(variables('nsgResourceId')).provisioningState]"

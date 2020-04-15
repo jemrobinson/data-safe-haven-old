@@ -4,12 +4,15 @@
     "parameters": {
         "SubNetParameters": {
             "value": {
-                "vnetName": "<SHM-VNET-NAME>",
+                "vnetName": "<SHM_VNET_NAME>",
                 "name": "IdentitySubnet",
                 "apiVersion": "2019-04-01",
                 "properties": {
-                    "addressPrefix": "10.0.0.0/24"                                    
-                },                
+                    "addressPrefix": "10.0.0.0/24"
+                },
+                "ipGroup": {
+                    "apiVersion": "2019-11-01"
+                },                  
                 "networkSecurityGroup": {
                     "apiVersion": "2019-11-01",
                     "securityRules": [{
