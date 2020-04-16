@@ -4,7 +4,7 @@
     "parameters": {
         "FirewallParameters": {
             "value": {
-                "vnetName": "<SHM_VNET_NAME>",                                                        
+                "vnetName": "<SHM-VNET-NAME>",                                               
                 "properties": {
                     "subnet": {
                         "apiVersion": "2019-04-01",
@@ -23,9 +23,9 @@
                                     "protocols": [
                                         "TCP"
                                     ],
-                                    "sourceIpGroups": [
-                                        "[resourceId('<RESOURCE-GROUP-NAME>', 'Microsoft.Network/ipGroups', '<IP-GROUP-NAME>')]"
-                                    ],                                                                                                                            
+                                    "sourceAddresses": [
+                                        "10.0.0.0/24"
+                                    ],                                                                
                                     "destinationAddresses": [
                                         "13.87.0.0/18"
                                     ],

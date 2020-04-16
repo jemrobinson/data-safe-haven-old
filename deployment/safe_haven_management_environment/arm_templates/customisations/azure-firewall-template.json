@@ -75,7 +75,7 @@
                     "name": "networkRuleCollections",
                     "count": "[length(variables('networkRuleCollections'))]",
                     "input": {                      
-                        "name": "[variables('networkRuleCollections')[copyIndex('networkRuleCollections')].name]",                       
+                        "name": "[variables('networkRuleCollections')[copyIndex('networkRuleCollections')].name]",
                         "properties": "[variables('networkRuleCollections')[copyIndex('networkRuleCollections')].properties]"                    
                     }
                 }]
