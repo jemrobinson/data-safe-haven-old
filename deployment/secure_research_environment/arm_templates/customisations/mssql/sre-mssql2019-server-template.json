@@ -101,9 +101,13 @@
     },
     "variables": {
         "nic": "[concat(parameters('Sql_Server_Name'), '-', 'NIC')]",        
-        "datadisk": "[concat(parameters('Sql_Server_Name'), '-DATA-DISK')]",      
-        "sqlDisksLUNs": [
+        "datadisk": "[concat(parameters('Sql_Server_Name'), '-DATA-DISK')]",
+        "logdisk": "[concat(parameters('Sql_Server_Name'), '-LOG-DISK')]",      
+        "sqlDataDisksLUNs": [
             "0"
+        ],
+        "sqlLogDisksLUNs": [
+            "1"
         ]
     },
     "resources": [
@@ -146,6 +150,17 @@
                                 "storageAccountType": "Premium_LRS"
                             },
                             "diskSizeGB": 2048
+                        },
+                        {
+                            "lun": 1,
+                            "name": "[variables('logdisk')]",
+                            "createOption": "Empty",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS"
+                            },
+                            "diskSizeGB": 512
                         }
                     ]
                 },
@@ -276,12 +291,12 @@
                     "DiskConfigurationType": "NEW",
                     "StorageWorkloadType": "GENERAL",
                     "SQLDataSettings": {
-                        "LUNs": "[variables('sqlDisksLUNs')]",
+                        "LUNs": "[variables('sqlDataDisksLUNs')]",
                         "DefaultFilePath": "F:\\data"
                     },
                     "SQLLogSettings": {
-                        "LUNs": "[variables('sqlDisksLUNs')]",
-                        "DefaultFilePath": "F:\\log"
+                        "LUNs": "[variables('sqlLogDisksLUNs')]",
+                        "DefaultFilePath": "G:\\log"
                     },
                     "SQLTempDbSettings": {
                         "DefaultFilePath": "D:\\tempDb"
