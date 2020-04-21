@@ -314,6 +314,7 @@ function Add-SreConfig {
             mssqldev = [ordered]@{}
             mssqletl = [ordered]@{}
             mssqldata = [ordered]@{}
+            sharedcompute = [ordered]@{}
             gateway = [ordered]@{}
         }
         nsg = [ordered]@{
@@ -321,6 +322,7 @@ function Add-SreConfig {
             mssqldev = [ordered]@{}
             mssqletl = [ordered]@{}
             mssqldata = [ordered]@{}
+            sharedcompute = [ordered]@{}
         }
     }
     $config.sre.network.vnet.rg = "RG_SRE_NETWORKING"
@@ -355,6 +357,11 @@ function Add-SreConfig {
     $config.sre.network.subnets.mssqldata.name = "MsSqlDataSubnet"
     $config.sre.network.subnets.mssqldata.prefix = $sreBasePrefix + "." + ([int]$sreThirdOctet + 5)
     $config.sre.network.subnets.mssqldata.cidr = $config.sre.network.subnets.mssqldata.prefix + ".0/24"
+
+    # Shared Compute infrastructure used by researchers
+    $config.sre.network.subnets.sharedcompute.name = "SharedComputeSubnet"
+    $config.sre.network.subnets.sharedcompute.prefix = $sreBasePrefix + "." + ([int]$sreThirdOctet + 6)
+    $config.sre.network.subnets.sharedcompute.cidr = $config.sre.network.subnets.sharedcompute.prefix + ".0/24"
 
     # --- Storage config --
     $storageRg = "RG_SRE_ARTIFACTS"
@@ -541,6 +548,7 @@ function Add-SreConfig {
     $config.sre.dsvm.vmSizeDefault = "Standard_E16s_v3"
     $config.sre.dsvm.vmImageType = $sreConfigBase.computeVmImageType
     $config.sre.dsvm.vmImageVersion = $sreConfigBase.computeVmImageVersion
+    $config.sre.dsvm.azureDataStudioVersion = $sreConfigBase.azureDataStudioVersion
 
     $config.sre.dsvm.osdisk = [ordered]@{
         type = "Standard_LRS"
