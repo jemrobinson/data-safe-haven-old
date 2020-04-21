@@ -24,7 +24,7 @@ $_ = Set-AzContext -SubscriptionId $config.sre.subscriptionName
 
 # Set common variables
 # --------------------
-$vmIpAddress = $config.sre.network.subnets.mssqldata.prefix + "." + $ipLastOctet
+$vmIpAddress = $config.sre.network.subnets.sharedcompute.prefix + "." + $ipLastOctet
 if (!$vmSize) { $vmSize = $config.sre.dsvm.vmSizeDefault }
 
 
@@ -185,8 +185,8 @@ try {
     $DATA_MOUNT_PASSWORD = $dataMountPassword
     $LDAP_USER = $config.sre.users.ldap.dsvm.samAccountName
     $LDAP_BASE_DN = $config.shm.domain.userOuPath
-    $LDAP_BIND_DN = "CN=" + $config.sre.users.ldap.dsvm.Name + "," + $config.shm.domain.serviceOuPath
-    $LDAP_FILTER = "(&(objectClass=user)(memberOf=CN=" + $config.sre.domain.securityGroups.researchUsers.Name + "," + $config.shm.domain.securityOuPath + "))"
+    $LDAP_BIND_DN = "CN=$($config.sre.users.ldap.dsvm.Name),$($config.shm.domain.serviceOuPath)"
+    $LDAP_FILTER = "(&(objectClass=user)(memberOf=CN=$($config.sre.domain.securityGroups.researchUsers.Name),$($config.shm.domain.securityOuPath)))"
     $CRAN_MIRROR_URL = $addresses.cran.url
     $PYPI_MIRROR_URL = $addresses.pypi.url
     $PYPI_MIRROR_HOST = $addresses.pypi.host
@@ -195,6 +195,8 @@ try {
 } catch [System.Management.Automation.ParseException] {
     Add-LogMessage -Level Fatal "Failed to construct cloud-init from template!"
 }
+
+Write-Host $cloudInitYaml
 
 
 # Deploy NIC and data disks
