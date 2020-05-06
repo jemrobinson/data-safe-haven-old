@@ -203,7 +203,8 @@
     "storage": {
       "artifacts": {
         "rg": "RG_SRE_ARTIFACTS",
-        "accountName": "sreartifactszvmwtqkigrld"
+          "accountName": "sreartifactszvmwtqkigrad",
+	  "gitlabAirlockContainerName": "gitlabairlock"
       },
       "bootdiagnostics": {
         "rg": "RG_SRE_ARTIFACTS",
