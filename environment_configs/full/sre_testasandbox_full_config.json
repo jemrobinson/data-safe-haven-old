@@ -203,8 +203,10 @@
     "storage": {
       "artifacts": {
         "rg": "RG_SRE_ARTIFACTS",
-          "accountName": "sreartifactszvmwtqkigrad",
-	  "gitlabAirlockContainerName": "gitlabairlock"
+        "accountName": "sreartifactszvmwtqkigrld",
+        "containers": {
+          "gitlabAirlockName": "gitlabairlock"
+        }
       },
       "bootdiagnostics": {
         "rg": "RG_SRE_ARTIFACTS",
@@ -265,7 +267,7 @@
       "researchers": {
         "test": {
           "name": "SANDBOX Test Researcher",
-          "samAccountName": "testresrchsandbox"
+          "samAccountName": "researchersandbox"
         }
       }
     },
