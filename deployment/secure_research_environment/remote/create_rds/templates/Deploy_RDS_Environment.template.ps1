@@ -75,6 +75,8 @@ New-RDRemoteApp -Alias "putty (2)" -DisplayName "DSVM Other (SSH)" -FilePath "C:
 New-RDRemoteApp -Alias WinSCP -DisplayName "File Transfer" -FilePath "C:\Program Files (x86)\WinSCP\WinSCP.exe" -ShowInWebAccess 1 -CollectionName "Remote Applications" -ConnectionBroker $rdsGatewayVmFqdn
 New-RDRemoteApp -Alias "chrome (1)" -DisplayName "GitLab" -FilePath "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -ShowInWebAccess 1 -CommandLineSetting Require -RequiredCommandLine "http://$dataSubnetIpPrefix.151" -CollectionName "Remote Applications" -ConnectionBroker $rdsGatewayVmFqdn
 New-RDRemoteApp -Alias "chrome (2)" -DisplayName "HackMD" -FilePath "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -ShowInWebAccess 1 -CommandLineSetting Require -RequiredCommandLine "http://$dataSubnetIpPrefix.152:3000" -CollectionName "Remote Applications" -ConnectionBroker $rdsGatewayVmFqdn
+New-RDRemoteApp -Alias "chrome (3)" -DisplayName "GitLab Review" -FilePath "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -ShowInWebAccess 1 -CommandLineSetting Require -RequiredCommandLine "http://$airlockSubnetIpPrefix.151" -CollectionName "Remote Applications" -ConnectionBroker $rdsGatewayVmFqdn
+
 
 
 # Update server configuration

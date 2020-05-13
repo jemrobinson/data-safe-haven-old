@@ -238,6 +238,7 @@ foreach ($containerName in ($containerNameGateway, $containerNameSessionHosts)) 
 Add-LogMessage -Level Info "Upload RDS deployment scripts to storage..."
 
 # Expand deploy script
+$airlockSubnetIpPrefix = $config.sre.network.subnets.airlock.prefix
 $deployScriptLocalFilePath = (New-TemporaryFile).FullName
 $template = Get-Content (Join-Path $PSScriptRoot ".." "remote" "create_rds" "templates" "Deploy_RDS_Environment.template.ps1") -Raw
 $ExecutionContext.InvokeCommand.ExpandString($template) | Out-File $deployScriptLocalFilePath
