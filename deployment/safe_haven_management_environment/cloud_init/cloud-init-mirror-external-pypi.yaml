@@ -114,6 +114,7 @@ write_files:
           /bandersnatch/bin/bandersnatch delete $packages_to_delete 2>&1 | tee /datadrive/mirrordaemon/pull_from_internet.log
           rm /tmp/whitelisted_packages 2> /dev/null
       fi
+      rm -f /datadrive/mirrordaemon/pypi/todo 2> /dev/null
       /bandersnatch/bin/bandersnatch mirror 2>&1 | tee /datadrive/mirrordaemon/pull_from_internet.log
       ELAPSED=$(date -u -d "0 $(date +%s) seconds - $START_TIME seconds" +"%H:%M:%S")
       echo "$(date +'%Y-%m-%d %H:%M:%S'): Finished pulling from the internet after $ELAPSED" | tee -a /datadrive/mirrordaemon/mirrorserver.log
