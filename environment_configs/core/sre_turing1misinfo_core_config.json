@@ -1,0 +1,13 @@
+{
+    "subscriptionName": "Turing1 SRE Misinfo",
+    "adminSecurityGroupName" : "Safe Haven Production Admins",
+    "sreId": "misinfo",
+    "shmId": "turing1",
+    "tier": "2",
+    "domain": "misinfo.turingsafehaven.ac.uk",
+    "netbiosName": "MISINFO",
+    "ipPrefix": "10.228.40",
+    "rdsAllowedSources": "default",
+    "computeVmImageType": "Ubuntu",
+    "computeVmImageVersion": "0.2.2020060100"
+}
