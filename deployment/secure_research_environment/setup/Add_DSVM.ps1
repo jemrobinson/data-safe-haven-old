@@ -419,14 +419,14 @@ $_ = Deploy-UbuntuVirtualMachine @params
 
 
 # Poll VM to see whether it has finished running
-Add-LogMessage -Level Info "Waiting for cloud-init provisioning to finish (this will take 5+ minutes)..."
+Add-LogMessage -Level Info "Waiting for cloud-init provisioning to finish (this will take 20+ minutes)..."
 $progress = 0
 $statuses = (Get-AzVM -Name $vmName -ResourceGroupName $config.sre.dsvm.rg -Status).Statuses.Code
 while (-Not ($statuses.Contains("ProvisioningState/succeeded") -and $statuses.Contains("PowerState/stopped"))) {
     $statuses = (Get-AzVM -Name $vmName -ResourceGroupName $config.sre.dsvm.rg -Status).Statuses.Code
     $progress = [math]::min(100, $progress + 1)
     Write-Progress -Activity "Deployment status" -Status "$($statuses[0]) $($statuses[1])" -PercentComplete $progress
-    Start-Sleep 10
+    Start-Sleep 20
 }
 
 
