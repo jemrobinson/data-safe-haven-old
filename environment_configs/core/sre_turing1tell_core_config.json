@@ -1,0 +1,13 @@
+{
+    "subscriptionName": "Turing1 SRE Tellfinder",
+    "adminSecurityGroupName" : "Safe Haven Production Admins",
+    "sreId": "tell",
+    "shmId": "turing1",
+    "tier": "2",
+    "domain": "telfinder.turingsafehaven.ac.uk",
+    "netbiosName": "TELL",
+    "ipPrefix": "10.228.48",
+    "rdsAllowedSources": "default",
+    "computeVmImageType": "Ubuntu",
+    "computeVmImageVersion": "0.2.2020060100"
+}
