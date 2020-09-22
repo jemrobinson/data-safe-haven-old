@@ -137,9 +137,9 @@
     "tier": "2",
     "adminSecurityGroupName": "Safe Haven Production Admins",
     "domain": {
-      "fqdn": "telfinder.turingsafehaven.ac.uk",
+      "fqdn": "tellfinder.turingsafehaven.ac.uk",
       "netbiosName": "TELL",
-      "dn": "DC=telfinder,DC=turingsafehaven,DC=ac,DC=uk",
+      "dn": "DC=tellfinder,DC=turingsafehaven,DC=ac,DC=uk",
       "securityGroups": {
         "dataAdministrators": {
           "name": "SG TELL Data Administrators",

@@ -4,7 +4,7 @@
     "sreId": "tell",
     "shmId": "turing1",
     "tier": "2",
-    "domain": "telfinder.turingsafehaven.ac.uk",
+    "domain": "tellfinder.turingsafehaven.ac.uk",
     "netbiosName": "TELL",
     "ipPrefix": "10.228.48",
     "rdsAllowedSources": "default",
