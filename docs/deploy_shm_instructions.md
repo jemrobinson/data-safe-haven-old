@@ -383,13 +383,24 @@ From your **deployment machine**
 4. Read through the following notes, then follow the [VPN set up instructions](https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-configuration-azure-cert) using the Windows or Mac sections as appropriate.
 
 **NOTES:**
-- **You do not need to install the `VpnServerRoot.cer` certificate, as we're using our own self-signed root certificate**
+- **You do not need to install the `VpnServerRoot.cer` certificate, as we're using our own self-signed root certificate, i.e. (`SHM-<SHM ID>-P2S-CLIENT`).**
 - Use SSTP (Windows) or IKEv2 (OSX) for the VPN type
 - Name the VPN connection "Safe Haven Management Gateway (`<SHM ID>`)", where `<SHM ID>` will be the one defined in the config file.
 - **Windows:** do not rename the VPN client as this will break it
 - **Windows:** you may get a "Windows protected your PC" pop up. If so, click `More info -> Run anyway`.
 - **Windows:** you may encounter a further warning along the lines of `Windows cannot access the specified device, path, or file`. This may mean that your antivirus is blocking the VPN client. You will need configure your antivirus software to make an exception.
 - **OSX:** you can view the details of the downloaded certificate by highlighting the certificate file in Finder and pressing the spacebar. You can then look for the certificate of the same name in the login KeyChain and view its details by double clicking the list entry. If the details match the certificate has been successfully installed.
+- **OSX:** when choosing an identity (step 7. in [VPN set up instructions](https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-configuration-azure-cert)), select our own self-signed root certificate, i.e. (`SHM-<SHM ID>-P2S-CLIENT`).
+
+<p align="center">
+    <img src="images/deploy_shm/macos_vpn_certificate.png" width="80%" title="Certificate details">
+</p>
+
+- **OSX:** when specifying `Local ID` field (step 8. in [VPN set up instructions](https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-configuration-azure-cert)), use our own self-signed root certificate, i.e. (`SHM-<SHM ID>-P2S-CLIENT`).
+
+<p align="center">
+    <img src="images/deploy_shm/macos_vpn_network.png" width="80%" title="Certificate details">
+</p>
 
 You should now be able to connect to the SHM virtual network via the VPN. Each time you need to access the virtual network ensure you are connected via the VPN.
 
@@ -406,7 +417,7 @@ From your **deployment machine**
 6. Log in as a **domain** user (ie. `<admin username>@<SHM domain>`) using the username and password obtained from the Azure portal as follows:
 rather than simply `<admin username>`)
     - On the Azure portal navigate to the `RG_SHM_SECRETS` resource group and then the `kv-shm-<SHM ID>` key vault and then select `secrets` on the left hand panel.
-    - The username is the `shm-<SHM ID>-vm-admin-username` secret. Add your custom AD domain to the username so the login is `<admin username>@SHM domain>` rather than simply `<admin username>`.
+    - The username is the `shm-<SHM ID>-domain-admin-username` secret. Add your custom AD domain to the username so the login is `<admin username>@SHM domain>` rather than simply `<admin username>`.
     - The password in the `shm-<SHM ID>-domain-admin-password` secret.
 7. If you see a warning dialog that the certificate cannot be verified as root, accept this and continue.
 
@@ -425,6 +436,11 @@ rather than simply `<admin username>`)
         - Click `Next`
     - On the `Connect to Azure AD` screen:
         - On the webpage pop-up, provide credentials for your **internal** Global Administrator for the SHM Azure AD
+
+        <p align="center">
+            <img src="images/deploy_shm/vm_aadc_install_5.png" width="80%" title="Certificate details">
+        </p>
+
         - If you receive an Internet Explorer pop-up dialog `Content within this application coming from the website below is being blocked by Internet Explorer Advanced Security Configuration: https://login.microsoft.com`
             - Click `Add`
             - Click `Add`
@@ -438,12 +454,24 @@ rather than simply `<admin username>`)
         - Approve the login with MFA if required
             - If you see a Windows Security Warning, check `Don't show this message again` and click `Yes`.
     - On the `Connect your directories` screen:
-        - Ensure that correct forest (your custom domain name; e.g `turingsafehaven.ac.uk`) is selected and click `Add Directory`
+        - Ensure that correct forest (your custom domain name; e.g `turingsafehaven.ac.uk`) is selected
+
+        <p align="center">
+            <img src="images/deploy_shm/vm_aadc_install_6_1.png" width="80%" title="Certificate details">
+        </p>
+
+          click `Add Directory`
+
         - On the `AD forest account` pop-up:
             - Select `Use existing AD account`
             - Enter the details for the `localadsync` user.
-                - Username: use the `shm-<SHM ID>-aad-localsync-username` secret in the SHM Key Vault.
+                - Username: use the domain name from [2](https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/deploy_shm_instructions.md#domain-name) + \ + `shm-<SHM ID>-aad-localsync-username` secret in the SHM Key Vault.
                 - Password: use the `shm-<SHM ID>-aad-localsync-password` secret in the SHM Key Vault.
+
+                <p align="center">
+                    <img src="images/deploy_shm/vm_aadc_install_6_2_2.png" width="80%" title="Certificate details">
+                </p>
+
             - Click `OK`
             - **Troubleshooting:** if you get an error that the username/password is incorrect or that the domain/directory could not be found, try resetting the password for this user in the **Domain Controller** Active Directory to the value in the secret listed above.
                   - In Server Manager click `Tools > Active Directory Users and Computers`
