@@ -1,5 +1,4 @@
-data localizedString
-{
+data localizedString {
     # culture="en-US"
     ConvertFrom-StringData @'
         RoleNotFoundError              = Please ensure that the PowerShell module for role '{0}' is installed
@@ -28,8 +27,7 @@ data localizedString
 }
 
 # Internal function to assert if the role specific module is installed or not
-function Assert-Module
-{
+function Assert-Module {
     [CmdletBinding()]
     param
     (
@@ -43,22 +41,19 @@ function Assert-Module
         $ImportModule
     )
 
-    if (-not (Get-Module -Name $ModuleName -ListAvailable))
-    {
+    if (-not (Get-Module -Name $ModuleName -ListAvailable)) {
         $errorId = '{0}_ModuleNotFound' -f $ModuleName;
         $errorMessage = $localizedString.RoleNotFoundError -f $moduleName;
         ThrowInvalidOperationError -ErrorId $errorId -ErrorMessage $errorMessage;
     }
 
-    if ($ImportModule)
-    {
+    if ($ImportModule) {
         Import-Module -Name $ModuleName
     }
 } #end function Assert-Module
 
 # Internal function to test whether computer is a member of a domain
-function Test-DomainMember
-{
+function Test-DomainMember {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param ( )
@@ -68,8 +63,7 @@ function Test-DomainMember
 
 
 # Internal function to get the domain name of the computer
-function Get-DomainName
-{
+function Get-DomainName {
     [CmdletBinding()]
     [OutputType([System.String])]
     param ( )
@@ -78,8 +72,7 @@ function Get-DomainName
 } # function Get-DomainName
 
 # Internal function to build domain FQDN
-function Resolve-DomainFQDN
-{
+function Resolve-DomainFQDN {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -90,16 +83,14 @@ function Resolve-DomainFQDN
         [System.String] $ParentDomainName
     )
     $domainFQDN = $DomainName
-    if ($ParentDomainName)
-    {
+    if ($ParentDomainName) {
         $domainFQDN = '{0}.{1}' -f $DomainName, $ParentDomainName;
     }
     return $domainFQDN
 }
 
 ## Internal function to test/ domain availability
-function Test-ADDomain
-{
+function Test-ADDomain {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -114,20 +105,16 @@ function Test-ADDomain
     )
     Write-Verbose -Message ($localizedString.CheckingDomain -f $DomainName);
     $ldapDomain = 'LDAP://{0}' -f $DomainName;
-    if ($PSBoundParameters.ContainsKey('Credential'))
-    {
+    if ($PSBoundParameters.ContainsKey('Credential')) {
         $domain = New-Object DirectoryServices.DirectoryEntry($ldapDomain, $Credential.UserName, $Credential.GetNetworkCredential().Password);
-    }
-    else
-    {
+    } else {
         $domain = New-Object DirectoryServices.DirectoryEntry($ldapDomain);
     }
     return ($null -ne $domain);
 }
 
 # Internal function to get an Active Directory object's parent Distinguished Name
-function Get-ADObjectParentDN
-{
+function Get-ADObjectParentDN {
     <#
         Copyright (c) 2016 The University Of Vermont
         All rights reserved.
@@ -163,14 +150,13 @@ function Get-ADObjectParentDN
 
     # https://www.uvm.edu/~gcd/2012/07/listing-parent-of-ad-object-in-powershell/
     $distinguishedNameParts = $DN -split '(?<![\\]),';
-    $distinguishedNameParts[1..$($distinguishedNameParts.Count-1)] -join ',';
+    $distinguishedNameParts[1..$($distinguishedNameParts.Count - 1)] -join ',';
 
 } #end function GetADObjectParentDN
 
 # Internal function that validates the Members, MembersToInclude and MembersToExclude combination
 # is valid. If the combination is invalid, an InvalidArgumentError is raised.
-function Assert-MemberParameters
-{
+function Assert-MemberParameters {
     [CmdletBinding()]
     param
     (
@@ -195,48 +181,40 @@ function Assert-MemberParameters
         $ModuleName = 'xActiveDirectory'
     )
 
-    if($PSBoundParameters.ContainsKey('Members'))
-    {
-        if($PSBoundParameters.ContainsKey('MembersToInclude') -or $PSBoundParameters.ContainsKey('MembersToExclude'))
-        {
+    if ($PSBoundParameters.ContainsKey('Members')) {
+        if ($PSBoundParameters.ContainsKey('MembersToInclude') -or $PSBoundParameters.ContainsKey('MembersToExclude')) {
             # If Members are provided, Include and Exclude are not allowed.
             $errorId = '{0}_MembersPlusIncludeOrExcludeConflict' -f $ModuleName;
-            $errorMessage = $localizedString.MembersAndIncludeExcludeError -f 'Members','MembersToInclude','MembersToExclude';
+            $errorMessage = $localizedString.MembersAndIncludeExcludeError -f 'Members', 'MembersToInclude', 'MembersToExclude';
             ThrowInvalidArgumentError -ErrorId $errorId -ErrorMessage $errorMessage;
         }
 
-        if ($Members.Length -eq 0) # )
-        {
+        if ($Members.Length -eq 0) {
+ # )
             $errorId = '{0}_MembersIsNull' -f $ModuleName;
-            $errorMessage = $localizedString.MembersIsNullError -f 'Members','MembersToInclude','MembersToExclude';
+            $errorMessage = $localizedString.MembersIsNullError -f 'Members', 'MembersToInclude', 'MembersToExclude';
             ThrowInvalidArgumentError -ErrorId $errorId -ErrorMessage $errorMessage;
         }
     }
 
-    if ($PSBoundParameters.ContainsKey('MembersToInclude'))
-    {
+    if ($PSBoundParameters.ContainsKey('MembersToInclude')) {
         $MembersToInclude = [System.String[]] @(Remove-DuplicateMembers -Members $MembersToInclude);
     }
 
-    if ($PSBoundParameters.ContainsKey('MembersToExclude'))
-    {
+    if ($PSBoundParameters.ContainsKey('MembersToExclude')) {
         $MembersToExclude = [System.String[]] @(Remove-DuplicateMembers -Members $MembersToExclude);
     }
 
-    if (($PSBoundParameters.ContainsKey('MembersToInclude')) -and ($PSBoundParameters.ContainsKey('MembersToExclude')))
-    {
-        if (($MembersToInclude.Length -eq 0) -and ($MembersToExclude.Length -eq 0))
-        {
+    if (($PSBoundParameters.ContainsKey('MembersToInclude')) -and ($PSBoundParameters.ContainsKey('MembersToExclude'))) {
+        if (($MembersToInclude.Length -eq 0) -and ($MembersToExclude.Length -eq 0)) {
             $errorId = '{0}_EmptyIncludeAndExclude' -f $ModuleName;
             $errorMessage = $localizedString.IncludeAndExcludeAreEmptyError -f 'MembersToInclude', 'MembersToExclude';
             ThrowInvalidArgumentError -ErrorId $errorId -ErrorMessage $errorMessage;
         }
 
         # Both MembersToInclude and MembersToExlude were provided. Check if they have common principals.
-        foreach ($member in $MembersToInclude)
-        {
-            if ($member -in $MembersToExclude)
-            {
+        foreach ($member in $MembersToInclude) {
+            if ($member -in $MembersToExclude) {
                 $errorId = '{0}_IncludeAndExcludeConflict' -f $ModuleName;
                 $errorMessage = $localizedString.IncludeAndExcludeConflictError -f $member, 'MembersToInclude', 'MembersToExclude';
                 ThrowInvalidArgumentError -ErrorId $errorId -ErrorMessage $errorMessage;
@@ -247,8 +225,7 @@ function Assert-MemberParameters
 } #end function Assert-MemberParameters
 
 ## Internal function to remove duplicate strings (members) from a string array
-function Remove-DuplicateMembers
-{
+function Remove-DuplicateMembers {
     [CmdletBinding()]
     [OutputType([System.String[]])]
     param
@@ -261,13 +238,10 @@ function Remove-DuplicateMembers
     Set-StrictMode -Version Latest
 
     $destIndex = 0;
-    for([int] $sourceIndex = 0 ; $sourceIndex -lt $Members.Count; $sourceIndex++)
-    {
+    for ([int] $sourceIndex = 0 ; $sourceIndex -lt $Members.Count; $sourceIndex++) {
         $matchFound = $false;
-        for([int] $matchIndex = 0; $matchIndex -lt $destIndex; $matchIndex++)
-        {
-            if($Members[$sourceIndex] -eq $Members[$matchIndex])
-            {
+        for ([int] $matchIndex = 0; $matchIndex -lt $destIndex; $matchIndex++) {
+            if ($Members[$sourceIndex] -eq $Members[$matchIndex]) {
                 # A duplicate is found. Discard the duplicate.
                 Write-Verbose -Message ($localizedString.RemovingDuplicateMember -f $Members[$sourceIndex]);
                 $matchFound = $true;
@@ -275,8 +249,7 @@ function Remove-DuplicateMembers
             }
         }
 
-        if(!$matchFound)
-        {
+        if (!$matchFound) {
             $Members[$destIndex++] = $Members[$sourceIndex].ToLowerInvariant();
         }
     }
@@ -293,8 +266,7 @@ function Remove-DuplicateMembers
 
 # Internal function to test whether the existing array members match the defined explicit array
 # members, the included members are present and the exlcuded members are not present.
-function Test-Members
-{
+function Test-Members {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -324,60 +296,47 @@ function Test-Members
         $MembersToExclude
     )
 
-    if ($PSBoundParameters.ContainsKey('Members'))
-    {
-        if ($null -eq $Members -or (($Members.Count -eq 1) -and ($Members[0].Length -eq 0)))
-        {
+    if ($PSBoundParameters.ContainsKey('Members')) {
+        if ($null -eq $Members -or (($Members.Count -eq 1) -and ($Members[0].Length -eq 0))) {
             $Members = @();
         }
         Write-Verbose ($localizedString.CheckingMembers -f 'Explicit');
         $Members = [System.String[]] @(Remove-DuplicateMembers -Members $Members);
-        if ($ExistingMembers.Count -ne $Members.Count)
-        {
+        if ($ExistingMembers.Count -ne $Members.Count) {
             Write-Verbose -Message ($localizedString.MembershipCountMismatch -f $Members.Count, $ExistingMembers.Count);
             return $false;
         }
 
-        foreach ($member in $Members)
-        {
-            if ($member -notin $ExistingMembers)
-            {
+        foreach ($member in $Members) {
+            if ($member -notin $ExistingMembers) {
                 Write-Verbose -Message ($localizedString.MemberNotInDesiredState -f $member);
                 return $false;
             }
         }
     } #end if $Members
 
-    if ($PSBoundParameters.ContainsKey('MembersToInclude'))
-    {
-        if ($null -eq $MembersToInclude -or (($MembersToInclude.Count -eq 1) -and ($MembersToInclude[0].Length -eq 0)))
-        {
+    if ($PSBoundParameters.ContainsKey('MembersToInclude')) {
+        if ($null -eq $MembersToInclude -or (($MembersToInclude.Count -eq 1) -and ($MembersToInclude[0].Length -eq 0))) {
             $MembersToInclude = @();
         }
         Write-Verbose -Message ($localizedString.CheckingMembers -f 'Included');
         $MembersToInclude = [System.String[]] @(Remove-DuplicateMembers -Members $MembersToInclude);
-        foreach ($member in $MembersToInclude)
-        {
-            if ($member -notin $ExistingMembers)
-            {
+        foreach ($member in $MembersToInclude) {
+            if ($member -notin $ExistingMembers) {
                 Write-Verbose -Message ($localizedString.MemberNotInDesiredState -f $member);
                 return $false;
             }
         }
     } #end if $MembersToInclude
 
-    if ($PSBoundParameters.ContainsKey('MembersToExclude'))
-    {
-        if ($null -eq $MembersToExclude -or (($MembersToExclude.Count -eq 1) -and ($MembersToExclude[0].Length -eq 0)))
-        {
+    if ($PSBoundParameters.ContainsKey('MembersToExclude')) {
+        if ($null -eq $MembersToExclude -or (($MembersToExclude.Count -eq 1) -and ($MembersToExclude[0].Length -eq 0))) {
             $MembersToExclude = @();
         }
         Write-Verbose -Message ($localizedString.CheckingMembers -f 'Excluded');
         $MembersToExclude = [System.String[]] @(Remove-DuplicateMembers -Members $MembersToExclude);
-        foreach ($member in $MembersToExclude)
-        {
-            if ($member -in $ExistingMembers)
-            {
+        foreach ($member in $MembersToExclude) {
+            if ($member -in $ExistingMembers) {
                 Write-Verbose -Message ($localizedString.MemberNotInDesiredState -f $member);
                 return $false;
             }
@@ -389,8 +348,7 @@ function Test-Members
 
 } #end function Test-Membership
 
-function ConvertTo-TimeSpan
-{
+function ConvertTo-TimeSpan {
     [CmdletBinding()]
     [OutputType([System.TimeSpan])]
     param
@@ -401,13 +359,12 @@ function ConvertTo-TimeSpan
         $TimeSpan,
 
         [Parameter(Mandatory = $true)]
-        [ValidateSet('Seconds','Minutes','Hours','Days')]
+        [ValidateSet('Seconds', 'Minutes', 'Hours', 'Days')]
         [System.String]
         $TimeSpanType
     )
     $newTimeSpanParams = @{ };
-    switch ($TimeSpanType)
-    {
+    switch ($TimeSpanType) {
         'Seconds' { $newTimeSpanParams['Seconds'] = $TimeSpan }
         'Minutes' { $newTimeSpanParams['Minutes'] = $TimeSpan }
         'Hours' { $newTimeSpanParams['Hours'] = $TimeSpan }
@@ -428,8 +385,7 @@ function ConvertTo-TimeSpan
 
         ConvertFrom-TimeSpan
 #>
-function ConvertFrom-TimeSpan
-{
+function ConvertFrom-TimeSpan {
     [CmdletBinding()]
     [OutputType([System.Int32])]
     param
@@ -440,12 +396,11 @@ function ConvertFrom-TimeSpan
         $TimeSpan,
 
         [Parameter(Mandatory = $true)]
-        [ValidateSet('Seconds','Minutes','Hours','Days')]
+        [ValidateSet('Seconds', 'Minutes', 'Hours', 'Days')]
         [System.String]
         $TimeSpanType
     )
-    switch ($TimeSpanType)
-    {
+    switch ($TimeSpanType) {
         'Seconds' { return $TimeSpan.TotalSeconds -as [System.UInt32] }
         'Minutes' { return $TimeSpan.TotalMinutes -as [System.UInt32] }
         'Hours' { return $TimeSpan.TotalHours -as [System.UInt32] }
@@ -475,15 +430,14 @@ function ConvertFrom-TimeSpan
         Returns connection parameters suitable for New-ADUser using the splatted cmdlet
         parameters.
 #>
-function Get-ADCommonParameters
-{
+function Get-ADCommonParameters {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
     (
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [Alias('UserName','GroupName','ComputerName')]
+        [Alias('UserName', 'GroupName', 'ComputerName')]
         [System.String]
         $Identity,
 
@@ -518,42 +472,32 @@ function Get-ADCommonParameters
         $RemainingArguments
     )
 
-    if ($UseNameParameter)
-    {
-        if ($PreferCommonName -and ($PSBoundParameters.ContainsKey('CommonName')))
-        {
+    if ($UseNameParameter) {
+        if ($PreferCommonName -and ($PSBoundParameters.ContainsKey('CommonName'))) {
             $adConnectionParameters = @{ Name = $CommonName; }
-        }
-        else {
+        } else {
             $adConnectionParameters = @{ Name = $Identity; }
         }
-    }
-    else
-    {
-        if ($PreferCommonName -and ($PSBoundParameters.ContainsKey('CommonName')))
-        {
+    } else {
+        if ($PreferCommonName -and ($PSBoundParameters.ContainsKey('CommonName'))) {
             $adConnectionParameters = @{ Identity = $CommonName; }
-        }
-        else {
+        } else {
             $adConnectionParameters = @{ Identity = $Identity; }
         }
     }
 
-    if ($Credential)
-    {
+    if ($Credential) {
         $adConnectionParameters['Credential'] = $Credential;
     }
 
-    if ($Server)
-    {
+    if ($Server) {
         $adConnectionParameters['Server'] = $Server;
     }
 
     return $adConnectionParameters;
 } #end function Get-ADCommonParameters
 
-function ThrowInvalidOperationError
-{
+function ThrowInvalidOperationError {
     [CmdletBinding()]
     param
     (
@@ -574,8 +518,7 @@ function ThrowInvalidOperationError
     throw $errorRecord;
 }
 
-function ThrowInvalidArgumentError
-{
+function ThrowInvalidArgumentError {
     [CmdletBinding()]
     param
     (
@@ -598,8 +541,7 @@ function ThrowInvalidArgumentError
 } #end function ThrowInvalidArgumentError
 
 ## Internal function to test site availability
-function Test-ADReplicationSite
-{
+function Test-ADReplicationSite {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -619,20 +561,16 @@ function Test-ADReplicationSite
 
     $existingDC = "$((Get-ADDomainController -Discover -DomainName $DomainName -ForceDiscover).HostName)";
 
-    try
-    {
+    try {
         $site = Get-ADReplicationSite -Identity $SiteName -Server $existingDC -Credential $Credential;
-    }
-    catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException]
-    {
+    } catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException] {
         return $false;
     }
 
     return ($null -ne $site);
 }
 
-function ConvertTo-DeploymentForestMode
-{
+function ConvertTo-DeploymentForestMode {
     [CmdletBinding()]
     [OutputType([Microsoft.DirectoryServices.Deployment.Types.ForestMode])]
     param
@@ -658,26 +596,22 @@ function ConvertTo-DeploymentForestMode
 
     $convertedMode = $null
 
-    if ($PSCmdlet.ParameterSetName -eq 'ByName' -and $Mode)
-    {
+    if ($PSCmdlet.ParameterSetName -eq 'ByName' -and $Mode) {
         $convertedMode = $Mode -as [Microsoft.DirectoryServices.Deployment.Types.ForestMode]
     }
 
-    if ($PSCmdlet.ParameterSetName -eq 'ById')
-    {
+    if ($PSCmdlet.ParameterSetName -eq 'ById') {
         $convertedMode = $ModeId -as [Microsoft.DirectoryServices.Deployment.Types.ForestMode]
     }
 
-    if ([enum]::GetValues([Microsoft.DirectoryServices.Deployment.Types.ForestMode]) -notcontains $convertedMode)
-    {
+    if ([enum]::GetValues([Microsoft.DirectoryServices.Deployment.Types.ForestMode]) -notcontains $convertedMode) {
         return $null
     }
 
     return $convertedMode
 }
 
-function ConvertTo-DeploymentDomainMode
-{
+function ConvertTo-DeploymentDomainMode {
     [CmdletBinding()]
     [OutputType([Microsoft.DirectoryServices.Deployment.Types.DomainMode])]
     param
@@ -703,37 +637,33 @@ function ConvertTo-DeploymentDomainMode
 
     $convertedMode = $null
 
-    if ($PSCmdlet.ParameterSetName -eq 'ByName' -and $Mode)
-    {
+    if ($PSCmdlet.ParameterSetName -eq 'ByName' -and $Mode) {
         $convertedMode = $Mode -as [Microsoft.DirectoryServices.Deployment.Types.DomainMode]
     }
 
-    if ($PSCmdlet.ParameterSetName -eq 'ById')
-    {
+    if ($PSCmdlet.ParameterSetName -eq 'ById') {
         $convertedMode = $ModeId -as [Microsoft.DirectoryServices.Deployment.Types.DomainMode]
     }
 
-    if ([enum]::GetValues([Microsoft.DirectoryServices.Deployment.Types.DomainMode]) -notcontains $convertedMode)
-    {
+    if ([enum]::GetValues([Microsoft.DirectoryServices.Deployment.Types.DomainMode]) -notcontains $convertedMode) {
         return $null
     }
 
     return $convertedMode
 }
 
-function Restore-ADCommonObject
-{
+function Restore-ADCommonObject {
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [Alias('UserName','GroupName','ComputerName')]
+        [Alias('UserName', 'GroupName', 'ComputerName')]
         [System.String]
         $Identity,
 
         [Parameter(Mandatory = $true)]
-        [ValidateSet('Computer','OrganizationalUnit','User','Group')]
+        [ValidateSet('Computer', 'OrganizationalUnit', 'User', 'Group')]
         [System.String]
         $ObjectClass,
 
@@ -767,21 +697,17 @@ function Restore-ADCommonObject
     $restorableObject = Get-ADObject @getAdObjectParams
     $restoredObject = $null
 
-    if ($restorableObject)
-    {
+    if ($restorableObject) {
         Write-Verbose -Message ($localizedString.FoundRestoreTargetInRecycleBin -f $Identity, $ObjectClass, $restorableObject.DistinguishedName)
 
-        try
-        {
+        try {
             $restoreParams = $commonParams.Clone()
             $restoreParams['PassThru'] = $true
             $restoreParams['ErrorAction'] = 'Stop'
             $restoreParams['Identity'] = $restorableObject.DistinguishedName
             $restoredObject = Restore-ADObject @restoreParams
             Write-Verbose -Message ($localizedString.RecycleBinRestoreSuccessful -f $Identity, $ObjectClass)
-        }
-        catch [Microsoft.ActiveDirectory.Management.ADException]
-        {
+        } catch [Microsoft.ActiveDirectory.Management.ADException] {
             # After Get-TargetResource is through, only one error can occur here: Object parent does not exist
             ThrowInvalidOperationError -ErrorId "$($Identity)_RecycleBinRestoreFailed" -ErrorMessage ($localizedString.RecycleBinRestoreFailed -f $Identity, $ObjectClass, $_.Exception.Message)
         }
@@ -801,8 +727,7 @@ function Restore-ADCommonObject
     .EXAMPLE
         Get-ADDomainNameFromDistinguishedName -DistinguishedName 'CN=ExampleObject,OU=ExampleOU,DC=example,DC=com'
 #>
-function Get-ADDomainNameFromDistinguishedName
-{
+function Get-ADDomainNameFromDistinguishedName {
     [CmdletBinding()]
     param
     (
@@ -811,16 +736,14 @@ function Get-ADDomainNameFromDistinguishedName
         $DistinguishedName
     )
 
-    if ($DistinguishedName -notlike '*DC=*')
-    {
+    if ($DistinguishedName -notlike '*DC=*') {
         return
     }
 
     $splitDistinguishedName = ($DistinguishedName -split 'DC=')
     $splitDistinguishedNameParts = $splitDistinguishedName[1..$splitDistinguishedName.Length]
     $domainFqdn = ""
-    foreach ($part in $splitDistinguishedNameParts)
-    {
+    foreach ($part in $splitDistinguishedNameParts) {
         $domainFqdn += "DC=$part"
     }
 
@@ -837,8 +760,7 @@ function Get-ADDomainNameFromDistinguishedName
         Author original code: Robert D. Biddle (https://github.com/RobBiddle)
         Author refactored code: Jan-Hendrik Peters (https://github.com/nyanhp)
 #>
-function Add-ADCommonGroupMember
-{
+function Add-ADCommonGroupMember {
     [CmdletBinding()]
     param
     (
@@ -857,37 +779,27 @@ function Add-ADCommonGroupMember
 
     Assert-Module -ModuleName ActiveDirectory
 
-    if ($MembersInMultipleDomains.IsPresent)
-    {
-        foreach($member in $Members)
-        {
+    if ($MembersInMultipleDomains.IsPresent) {
+        foreach ($member in $Members) {
             $memberDomain = Get-ADDomainNameFromDistinguishedName -DistinguishedName $member
 
-            if (-not $memberDomain)
-            {
+            if (-not $memberDomain) {
                 ThrowInvalidArgumentError -ErrorId "$($member)_EmptyDomainError" -ErrorMessage ($localizedString.EmptyDomainError -f $member, $Parameters.GroupName)
             }
 
             Write-Verbose -Message ($localizedString.AddingGroupMember -f $member, $memberDomain, $Parameters.GroupName)
             $memberObjectClass = (Get-ADObject -Identity $member -Server $memberDomain -Properties ObjectClass).ObjectClass
-            if ($memberObjectClass -eq 'computer')
-            {
+            if ($memberObjectClass -eq 'computer') {
                 $memberObject = Get-ADComputer -Identity $member -Server $memberDomain
-            }
-            elseif ($memberObjectClass -eq 'group')
-            {
+            } elseif ($memberObjectClass -eq 'group') {
                 $memberObject = Get-ADGroup -Identity $member -Server $memberDomain
-            }
-            elseif ($memberObjectClass -eq 'user')
-            {
+            } elseif ($memberObjectClass -eq 'user') {
                 $memberObject = Get-ADUser -Identity $member -Server $memberDomain
             }
 
             Add-ADGroupMember @Parameters -Members $memberObject
         }
-    }
-    else
-    {
+    } else {
         Add-ADGroupMember @Parameters -Members $Members
     }
 }

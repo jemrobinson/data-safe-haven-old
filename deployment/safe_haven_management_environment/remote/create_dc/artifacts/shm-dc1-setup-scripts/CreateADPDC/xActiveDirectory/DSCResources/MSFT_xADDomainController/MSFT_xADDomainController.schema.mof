@@ -1,4 +1,4 @@
-[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+﻿[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 class MSFT_xADDomainController : OMI_BaseResource
 {
     [Key, Description("The FQDN of the domain the Domain Controller will be joining.")] String DomainName;

@@ -11,8 +11,7 @@ $script:localizedData = Get-LocalizedData -ResourceName 'MSFT_xADReplicationSite
     .PARAMETER SitesExcluded
         Specifies the list of sites to remove from a site link.
 #>
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -28,18 +27,15 @@ function Get-TargetResource
 
     $siteLink = Get-ADReplicationSiteLink -Identity $Name -Properties Description -ErrorAction SilentlyContinue
 
-    if ($null -ne $siteLink)
-    {
-        if ($siteLink.SitesIncluded)
-        {
+    if ($null -ne $siteLink) {
+        if ($siteLink.SitesIncluded) {
             $siteCommonNames = @()
-            foreach ($siteDN in $siteLink.SitesIncluded)
-            {
+            foreach ($siteDN in $siteLink.SitesIncluded) {
                 $siteCommonNames += Resolve-SiteLinkName -SiteName $siteDn
             }
         }
 
-        $sitesExcludedEvaluated = $SitesExcluded | Where-Object -FilterScript {$_ -notin $siteCommonNames}
+        $sitesExcludedEvaluated = $SitesExcluded | Where-Object -FilterScript { $_ -notin $siteCommonNames }
 
         $returnValue = @{
             Name                          = $Name
@@ -51,9 +47,7 @@ function Get-TargetResource
             Ensure                        = 'Present'
         }
 
-    }
-    else
-    {
+    } else {
         Write-Verbose -Message ($script:localizedData.SiteLinkNotFound -f $Name)
         $returnValue = @{
             Name                          = $Name
@@ -94,8 +88,7 @@ function Get-TargetResource
     .PARAMETER Ensure
         Specifies if the site link is created or deleted.
 #>
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -129,8 +122,7 @@ function Set-TargetResource
         $Ensure = 'Present'
     )
 
-    if ($Ensure -eq 'Present')
-    {
+    if ($Ensure -eq 'Present') {
         # modify parameters for splatting to New-ADReplicationSiteLink
         $desiredParameters = $PSBoundParameters
         $desiredParameters.Remove('Ensure')
@@ -138,13 +130,10 @@ function Set-TargetResource
 
         $currentADSiteLink = Get-TargetResource -Name $Name
         # since Set and New have different parameters we have to test if the site link exists to determine what cmdlet we need to use
-        if ( $currentADSiteLink.Ensure -eq 'Absent' )
-        {
+        if ( $currentADSiteLink.Ensure -eq 'Absent' ) {
             Write-Verbose -Message ($script:localizedData.NewSiteLink -f $Name)
             New-ADReplicationSiteLink @desiredParameters
-        }
-        else
-        {
+        } else {
             # now we have to determine if we need to add or remove sites from SitesIncluded
             $setParameters = @{
                 Identity = $Name
@@ -152,41 +141,34 @@ function Set-TargetResource
 
             # build the SitesIncluded hashtable
             $sitesIncludedParameters = @{}
-            if ($SitesExcluded)
-            {
+            if ($SitesExcluded) {
                 Write-Verbose -Message ($script:localizedData.RemovingSites -f $($SiteExcluded -join ', '), $Name)
                 # wrapped in $() as we were getting some weird results without it,
                 # results were not being added into Hashtable as strings
                 $sitesIncludedParameters.Add('Remove', $($SitesExcluded))
             }
 
-            if ($SitesIncluded)
-            {
+            if ($SitesIncluded) {
                 Write-Verbose -Message ($script:localizedData.AddingSites -f $($SitesIncluded -join ', '), $Name)
                 # wrapped in $() as we were getting some weird results without it,
                 # results were not being added into Hashtable as strings
                 $sitesIncludedParameters.Add('Add', $($SitesIncluded))
             }
 
-            if ($null -ne $($sitesIncludedParameters.Keys))
-            {
+            if ($null -ne $($sitesIncludedParameters.Keys)) {
                 $setParameters.Add('SitesIncluded', $sitesIncludedParameters)
             }
 
             # add the rest of the parameteres
-            foreach ($parameter in $PSBoundParameters.Keys)
-            {
-                if ($parameter -notmatch 'SitesIncluded|SitesExcluded|Name|Ensure')
-                {
+            foreach ($parameter in $PSBoundParameters.Keys) {
+                if ($parameter -notmatch 'SitesIncluded|SitesExcluded|Name|Ensure') {
                     $setParameters.Add($parameter, $PSBoundParameters[$parameter])
                 }
             }
 
             Set-ADReplicationSiteLink @setParameters
         }
-    }
-    else
-    {
+    } else {
         Write-Verbose -Message ($script:localizedData.RemoveSiteLink -f $Name)
         Remove-ADReplicationSiteLink -Identity $Name
     }
@@ -217,8 +199,7 @@ function Set-TargetResource
     .PARAMETER Ensure
         Specifies if the site link is created or deleted.
 #>
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -256,38 +237,30 @@ function Test-TargetResource
     $isCompliant = $true
     $currentSiteLink = Get-TargetResource -Name $Name
     # test for Ensure
-    if ($Ensure -ne $currentSiteLink.Ensure)
-    {
+    if ($Ensure -ne $currentSiteLink.Ensure) {
         return $false
     }
 
     # test for SitesIncluded
-    foreach ($desiredIncludedSite in $SitesIncluded)
-    {
-        if ($desiredIncludedSite -notin $currentSiteLink.SitesIncluded)
-        {
+    foreach ($desiredIncludedSite in $SitesIncluded) {
+        if ($desiredIncludedSite -notin $currentSiteLink.SitesIncluded) {
             Write-Verbose -Message ($script:localizedData.SiteNotFound -f $desiredIncludedSite, $($currentSiteLink.SitesIncluded -join ', '))
             $isCompliant = $false
         }
     }
 
     # test for SitesExcluded
-    foreach ($desiredExcludedSite in $SitesExcluded)
-    {
-        if ($desiredExcludedSite -in $currentSiteLink.SitesIncluded)
-        {
+    foreach ($desiredExcludedSite in $SitesExcluded) {
+        if ($desiredExcludedSite -in $currentSiteLink.SitesIncluded) {
             Write-Verbose -Message ($script:localizedData.SiteFoundInExcluded -f $desiredExcludedSite, $($currentSiteLink.SitesIncluded -join ', '))
             $isCompliant = $false
         }
     }
 
     # test for Description|ReplicationFrequencyInMinutes|Cost
-    foreach ($parameter in $PSBoundParameters.Keys)
-    {
-        if ($parameter -match 'Description|ReplicationFrequencyInMinutes|Cost')
-        {
-            if ($PSBoundParameters[$parameter] -ne $currentSiteLink[$parameter])
-            {
+    foreach ($parameter in $PSBoundParameters.Keys) {
+        if ($parameter -match 'Description|ReplicationFrequencyInMinutes|Cost') {
+            if ($PSBoundParameters[$parameter] -ne $currentSiteLink[$parameter]) {
                 Write-Verbose -Message ($script:localizedData.PropertyNotInDesiredState -f $parameter, $($currentSiteLink[$parameter]), $($PSBoundParameters[$parameter]))
                 $isCompliant = $false
             }
@@ -308,8 +281,7 @@ function Test-TargetResource
         PS C:\> Resolve-SiteLinkName -SiteName 'CN=Site1,CN=Sites,CN=Configuration,DC=contoso,DC=com'
         Site1
 #>
-function Resolve-SiteLinkName
-{
+function Resolve-SiteLinkName {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseCmdletCorrectly", "")]
     [OutputType([string])]
     [CmdletBinding()]

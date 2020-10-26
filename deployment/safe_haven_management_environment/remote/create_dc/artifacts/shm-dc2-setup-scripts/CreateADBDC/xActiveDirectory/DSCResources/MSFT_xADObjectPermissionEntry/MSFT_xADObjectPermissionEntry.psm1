@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 
 <#
     .SYNOPSIS
@@ -24,8 +25,7 @@
         The schema GUID of the child object type that can inherit this access
         rule.
 #>
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -75,10 +75,8 @@ function Get-TargetResource
     # Get the current acl
     $acl = Get-Acl -Path "Microsoft.ActiveDirectory.Management\ActiveDirectory:://RootDSE/$Path"
 
-    foreach ($access in $acl.Access)
-    {
-        if ($access.IsInherited -eq $false)
-        {
+    foreach ($access in $acl.Access) {
+        if ($access.IsInherited -eq $false) {
             <#
                 Check if the ace does match the parameters. If yes, the target
                 ace has been found, return present with the assigned rights.
@@ -87,17 +85,14 @@ function Get-TargetResource
                 $access.AccessControlType -eq $AccessControlType -and
                 $access.ObjectType.Guid -eq $ObjectType -and
                 $access.InheritanceType -eq $ActiveDirectorySecurityInheritance -and
-                $access.InheritedObjectType.Guid -eq $InheritedObjectType)
-            {
+                $access.InheritedObjectType.Guid -eq $InheritedObjectType) {
                 Write-Verbose "Target ace has been found"
 
                 $returnValue['Ensure'] = 'Present'
-                $returnValue['ActiveDirectoryRights'] = [String[]] $access.ActiveDirectoryRights.ToString().Split(',').ForEach({ $_.Trim() })
+                $returnValue['ActiveDirectoryRights'] = [String[]] $access.ActiveDirectoryRights.ToString().Split(',').ForEach( { $_.Trim() })
 
                 return $returnValue
-            }
-            else
-            {
+            } else {
                 Write-Verbose "Target ace has not been found"
             }
         }
@@ -140,8 +135,7 @@ function Get-TargetResource
         The schema GUID of the child object type that can inherit this access
         rule.
 #>
-function Set-TargetResource
-{
+function Set-TargetResource {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSShouldProcess', '')]
     [CmdletBinding(SupportsShouldProcess = $true)]
     param
@@ -189,8 +183,7 @@ function Set-TargetResource
     # Get the current acl
     $acl = Get-Acl -Path "Microsoft.ActiveDirectory.Management\ActiveDirectory:://RootDSE/$Path"
 
-    if ($Ensure -eq 'Present')
-    {
+    if ($Ensure -eq 'Present') {
         Write-Verbose "Add access rule to object $Path"
 
         $ntAccount = New-Object -TypeName 'System.Security.Principal.NTAccount' -ArgumentList $IdentityReference
@@ -203,23 +196,18 @@ function Set-TargetResource
                                                                                                        $InheritedObjectType
 
         $acl.AddAccessRule($ace)
-    }
-    else
-    {
+    } else {
         <#
             Iterate through all ace entries to find the desired ace, which
             should be absent. If found, remove the ace from the acl.
         #>
-        foreach ($access in $acl.Access)
-        {
-            if ($access.IsInherited -eq $false)
-            {
+        foreach ($access in $acl.Access) {
+            if ($access.IsInherited -eq $false) {
                 if ($access.IdentityReference.Value -eq $IdentityReference -and
                     $access.AccessControlType -eq $AccessControlType -and
                     $access.ObjectType.Guid -eq $ObjectType -and
                     $access.InheritanceType -eq $ActiveDirectorySecurityInheritance -and
-                    $access.InheritedObjectType.Guid -eq $InheritedObjectType)
-                {
+                    $access.InheritedObjectType.Guid -eq $InheritedObjectType) {
                     Write-Verbose "Remove access rule on object $Path"
 
                     $acl.RemoveAccessRule($access)
@@ -266,8 +254,7 @@ function Set-TargetResource
         The schema GUID of the child object type that can inherit this access
         rule.
 #>
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -324,8 +311,7 @@ function Test-TargetResource
     $returnValue = $currentState.Ensure -eq $Ensure
 
     # Only check the Active Directory rights, if ensure is set to present
-    if ($Ensure -eq 'Present')
-    {
+    if ($Ensure -eq 'Present') {
         # Convert to array to a string for easy compare
         [String] $currentActiveDirectoryRights = ($currentState.ActiveDirectoryRights | Sort-Object) -join ', '
         [String] $desiredActiveDirectoryRights = ($ActiveDirectoryRights | Sort-Object) -join ', '

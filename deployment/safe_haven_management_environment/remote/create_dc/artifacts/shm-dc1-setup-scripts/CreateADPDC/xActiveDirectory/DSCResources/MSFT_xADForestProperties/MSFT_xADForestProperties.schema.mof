@@ -1,4 +1,4 @@
-[ClassVersion("1.0.0.0"), FriendlyName("xADForestProperties")]
+﻿[ClassVersion("1.0.0.0"), FriendlyName("xADForestProperties")]
 class MSFT_xADForestProperties : OMI_BaseResource
 {
     [Write, EmbeddedInstance("MSFT_Credential"), Description("Specifies the user account credentials to use to perform this task.")] String Credential;

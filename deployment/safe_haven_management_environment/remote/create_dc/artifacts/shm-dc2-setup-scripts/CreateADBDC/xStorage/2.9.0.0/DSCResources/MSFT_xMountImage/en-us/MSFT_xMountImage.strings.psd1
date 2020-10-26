@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 ConvertFrom-StringData @'
     GettingMountedImageMessage = Getting Mounted Drive for image file '{0}'.
 

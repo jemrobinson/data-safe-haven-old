@@ -1,8 +1,8 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 Import-Module $PSScriptRoot\Helper.psm1 -Verbose:$false
 
 # Localized messages
-data LocalizedData
-{
+data LocalizedData {
     # culture="en-US"
     ConvertFrom-StringData @'
 CheckingZoneMessage          = Checking DNS server zone with name '{0}' is '{1}'...
@@ -15,8 +15,7 @@ SetPropertyMessage           = DNS server zone property '{0}' is set
 '@
 }
 
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -25,11 +24,11 @@ function Get-TargetResource
         [ValidateNotNullOrEmpty()]
         [System.String]$Name,
 
-        [ValidateSet('None','NonsecureAndSecure','Secure')]
+        [ValidateSet('None', 'NonsecureAndSecure', 'Secure')]
         [System.String]$DynamicUpdate = 'Secure',
 
         [Parameter(Mandatory)]
-        [ValidateSet('Custom','Domain','Forest','Legacy')]
+        [ValidateSet('Custom', 'Domain', 'Forest', 'Legacy')]
         [System.String]$ReplicationScope,
 
         [System.String]$DirectoryPartitionName,
@@ -38,43 +37,38 @@ function Get-TargetResource
 
         [pscredential]$Credential,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]$Ensure = 'Present'
     )
     Assert-Module -ModuleName 'DNSServer'
     Write-Verbose ($LocalizedData.CheckingZoneMessage -f $Name, $Ensure)
-    $cimSessionParams = @{ErrorAction = 'SilentlyContinue'}
-    if ($ComputerName)
-    {
-        $cimSessionParams += @{ComputerName = $ComputerName}
+    $cimSessionParams = @{ErrorAction = 'SilentlyContinue' }
+    if ($ComputerName) {
+        $cimSessionParams += @{ComputerName = $ComputerName }
+    } else {
+        $cimSessionParams += @{ComputerName = $env:COMPUTERNAME }
     }
-    else
-    {
-        $cimSessionParams += @{ComputerName = $env:COMPUTERNAME}
-    }
-    if ($Credential)
-    {
-        $cimSessionParams += @{Credential = $Credential}
+    if ($Credential) {
+        $cimSessionParams += @{Credential = $Credential }
     }
     $cimSession = New-CimSession @cimSessionParams
     $getParams = @{
-        Name = $Name
-        CimSession = $cimSession
+        Name        = $Name
+        CimSession  = $cimSession
         ErrorAction = 'SilentlyContinue'
     }
     $dnsServerZone = Get-DnsServerZone @getParams
     $targetResource = @{
-        Name = $dnsServerZone.ZoneName
-        DynamicUpdate = $dnsServerZone.DynamicUpdate
-        ReplicationScope = $dnsServerZone.ReplicationScope
+        Name                   = $dnsServerZone.ZoneName
+        DynamicUpdate          = $dnsServerZone.DynamicUpdate
+        ReplicationScope       = $dnsServerZone.ReplicationScope
         DirectoryPartitionName = $dnsServerZone.DirectoryPartitionName
-        Ensure = if ($dnsServerZone -eq $null) { 'Absent' } else { 'Present' }
+        Ensure                 = if ($dnsServerZone -eq $null) { 'Absent' } else { 'Present' }
     }
     return $targetResource
 } #end function Get-TargetResource
 
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -83,11 +77,11 @@ function Test-TargetResource
         [ValidateNotNullOrEmpty()]
         [System.String]$Name,
 
-        [ValidateSet('None','NonsecureAndSecure','Secure')]
+        [ValidateSet('None', 'NonsecureAndSecure', 'Secure')]
         [System.String]$DynamicUpdate = 'Secure',
 
         [Parameter(Mandatory)]
-        [ValidateSet('Custom','Domain','Forest','Legacy')]
+        [ValidateSet('Custom', 'Domain', 'Forest', 'Legacy')]
         [System.String]$ReplicationScope,
 
         [System.String]$DirectoryPartitionName,
@@ -96,42 +90,32 @@ function Test-TargetResource
 
         [pscredential]$Credential,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]$Ensure = 'Present'
     )
     $targetResource = Get-TargetResource @PSBoundParameters
     $targetResourceInCompliance = $true
-    if ($Ensure -eq 'Present')
-    {
-        if ($targetResource.Ensure -eq 'Present')
-        {
-            if ($targetResource.DynamicUpdate -ne $DynamicUpdate)
-            {
+    if ($Ensure -eq 'Present') {
+        if ($targetResource.Ensure -eq 'Present') {
+            if ($targetResource.DynamicUpdate -ne $DynamicUpdate) {
                 Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'DynamicUpdate', $DynamicUpdate, $targetResource.DynamicUpdate)
                 $targetResourceInCompliance = $false
             }
-            if ($targetResource.ReplicationScope -ne $ReplicationScope)
-            {
+            if ($targetResource.ReplicationScope -ne $ReplicationScope) {
                 Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'ReplicationScope', $ReplicationScope, $targetResource.ReplicationScope)
                 $targetResourceInCompliance = $false
             }
-            if ($DirectoryPartitionName -and $targetResource.DirectoryPartitionName -ne $DirectoryPartitionName)
-            {
+            if ($DirectoryPartitionName -and $targetResource.DirectoryPartitionName -ne $DirectoryPartitionName) {
                 Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'DirectoryPartitionName', $DirectoryPartitionName, $targetResource.DirectoryPartitionName)
                 $targetResourceInCompliance = $false
             }
-        }
-        else
-        {
+        } else {
             # Dns zone is present and needs removing
             Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'Ensure', 'Present', 'Absent')
             $targetResourceInCompliance = $false
         }
-    }
-    else
-    {
-        if ($targetResource.Ensure -eq 'Present')
-        {
+    } else {
+        if ($targetResource.Ensure -eq 'Present') {
             ## Dns zone is absent and should be present
             Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'Ensure', 'Absent', 'Present')
             $targetResourceInCompliance = $false
@@ -140,8 +124,7 @@ function Test-TargetResource
     return $targetResourceInCompliance
 } #end function Test-TargetResource
 
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -149,11 +132,11 @@ function Set-TargetResource
         [ValidateNotNullOrEmpty()]
         [System.String]$Name,
 
-        [ValidateSet('None','NonsecureAndSecure','Secure')]
+        [ValidateSet('None', 'NonsecureAndSecure', 'Secure')]
         [System.String]$DynamicUpdate = 'Secure',
 
         [Parameter(Mandatory)]
-        [ValidateSet('Custom','Domain','Forest','Legacy')]
+        [ValidateSet('Custom', 'Domain', 'Forest', 'Legacy')]
         [System.String]$ReplicationScope,
 
         [System.String]$DirectoryPartitionName,
@@ -162,58 +145,48 @@ function Set-TargetResource
 
         [pscredential]$Credential,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]$Ensure = 'Present'
     )
     Assert-Module -ModuleName 'DNSServer'
     $targetResource = Get-TargetResource @PSBoundParameters
-    if ($Ensure -eq 'Present')
-    {
-        if ($targetResource.Ensure -eq 'Present')
-        {
+    if ($Ensure -eq 'Present') {
+        if ($targetResource.Ensure -eq 'Present') {
             ## Update the existing zone
             $updateParams = @{
-                Name = $targetResource.Name
+                Name       = $targetResource.Name
                 CimSession = $targetResource.CimSession
             }
-            if ($targetResource.DynamicUpdate -ne $DynamicUpdate)
-            {
-                $updateParams += @{DynamicUpdate = $DynamicUpdate}
+            if ($targetResource.DynamicUpdate -ne $DynamicUpdate) {
+                $updateParams += @{DynamicUpdate = $DynamicUpdate }
                 Write-Verbose ($LocalizedData.SetPropertyMessage -f 'DynamicUpdate')
             }
-            if ($targetResource.ReplicationScope -ne $ReplicationScope)
-            {
-                $updateParams += @{ReplicationScope = $ReplicationScope}
+            if ($targetResource.ReplicationScope -ne $ReplicationScope) {
+                $updateParams += @{ReplicationScope = $ReplicationScope }
                 Write-Verbose ($LocalizedData.SetPropertyMessage -f 'ReplicationScope')
             }
-            if ($DirectoryPartitionName -and $targetResource.DirectoryPartitionName -ne $DirectoryPartitionName)
-            {
-                $updateParams += @{DirectoryPartitionName = $DirectoryPartitionName}
+            if ($DirectoryPartitionName -and $targetResource.DirectoryPartitionName -ne $DirectoryPartitionName) {
+                $updateParams += @{DirectoryPartitionName = $DirectoryPartitionName }
                 Write-Verbose ($LocalizedData.SetPropertyMessage -f 'DirectoryPartitionName')
             }
             Set-DnsServerPrimaryZone @updateParams
-        }
-        elseif ($targetResource.Ensure -eq 'Absent')
-        {
+        } elseif ($targetResource.Ensure -eq 'Absent') {
             ## Create the zone
             Write-Verbose ($LocalizedData.AddingZoneMessage -f $targetResource.Name)
             $addParams = @{
-                Name = $Name
-                DynamicUpdate = $DynamicUpdate
+                Name             = $Name
+                DynamicUpdate    = $DynamicUpdate
                 ReplicationScope = $ReplicationScope
-                CimSession = $targetResource.CimSession
+                CimSession       = $targetResource.CimSession
             }
-            if ($DirectoryPartitionName)
-            {
+            if ($DirectoryPartitionName) {
                 $addParams += @{
                     DirectoryPartitionName = $DirectoryPartitionName
                 }
             }
             Add-DnsServerPrimaryZone @addParams
         }
-    }
-    elseif ($Ensure -eq 'Absent')
-    {
+    } elseif ($Ensure -eq 'Absent') {
         # Remove the DNS Server zone
         Write-Verbose ($LocalizedData.RemovingZoneMessage -f $targetResource.Name)
         Remove-DnsServerZone -Name $targetResource.Name -ComputerName $ComputerName -Force

@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 <#
     .SYNOPSIS
         Returns the current state of the replication subnet.
@@ -8,8 +9,7 @@
     .PARAMETER Site
         The name of the assigned AD replication site, e.g. Default-First-Site-Name.
 #>
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -29,8 +29,7 @@ function Get-TargetResource
     # present, the command will return $null.
     $replicationSubnet = Get-ADReplicationSubnet -Filter { Name -eq $Name }
 
-    if ($null -eq $replicationSubnet)
-    {
+    if ($null -eq $replicationSubnet) {
         # Replication subnet not found, return absent.
         $returnValue = @{
             Ensure   = 'Absent'
@@ -38,13 +37,10 @@ function Get-TargetResource
             Site     = ''
             Location = ''
         }
-    }
-    else
-    {
+    } else {
         # Get the name of the replication site, if it's not empty.
         $replicationSiteName = ''
-        if ($null -ne $replicationSubnet.Site)
-        {
+        if ($null -ne $replicationSubnet.Site) {
             $replicationSiteName = Get-ADObject -Identity $replicationSubnet.Site | Select-Object -ExpandProperty 'Name'
         }
 
@@ -76,8 +72,7 @@ function Get-TargetResource
     .PARAMETER Location
         The location for the AD replication site. Default value is empty.
 #>
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -105,11 +100,9 @@ function Set-TargetResource
     # present, the command will return $null.
     $replicationSubnet = Get-ADReplicationSubnet -Filter { Name -eq $Name }
 
-    if ($Ensure -eq 'Present')
-    {
+    if ($Ensure -eq 'Present') {
         # Add the replication subnet, if it does not exist.
-        if ($null -eq $replicationSubnet)
-        {
+        if ($null -eq $replicationSubnet) {
             Write-Verbose "Create the replication subnet $Name"
 
             $replicationSubnet = New-ADReplicationSubnet -Name $Name -Site $Site -PassThru
@@ -117,12 +110,10 @@ function Set-TargetResource
 
         # Get the name of the replication site, if it's not empty and update the
         # site if it's not vaild.
-        if ($null -ne $replicationSubnet.Site)
-        {
+        if ($null -ne $replicationSubnet.Site) {
             $replicationSiteName = Get-ADObject -Identity $replicationSubnet.Site | Select-Object -ExpandProperty 'Name'
         }
-        if ($replicationSiteName -ne $Site)
-        {
+        if ($replicationSiteName -ne $Site) {
             Write-Verbose "Set on replication subnet $Name the site to $Site"
 
             Set-ADReplicationSubnet -Identity $replicationSubnet.DistinguishedName -Site $Site -PassThru
@@ -132,23 +123,19 @@ function Set-TargetResource
         # string is converted to $null, because the Set-ADReplicationSubnet does
         # not accept an empty string for the location, but $null.
         $nullableLocation = $Location
-        if ([String]::IsNullOrEmpty($Location))
-        {
+        if ([String]::IsNullOrEmpty($Location)) {
             $nullableLocation = $null
         }
-        if ($replicationSubnet.Location -ne $nullableLocation)
-        {
+        if ($replicationSubnet.Location -ne $nullableLocation) {
             Write-Verbose "Set on replication subnet $Name the location to $nullableLocation"
 
             Set-ADReplicationSubnet -Identity $replicationSubnet.DistinguishedName -Location $nullableLocation -PassThru
         }
     }
 
-    if ($Ensure -eq 'Absent')
-    {
+    if ($Ensure -eq 'Absent') {
         # Remove the replication subnet, if it exists.
-        if ($null -ne $replicationSubnet)
-        {
+        if ($null -ne $replicationSubnet) {
             Write-Verbose "Remove the replication subnet $Name"
 
             Remove-ADReplicationSubnet -Identity $replicationSubnet.DistinguishedName -Confirm:$false
@@ -172,8 +159,7 @@ function Set-TargetResource
     .PARAMETER Location
         The location for the AD replication site. Default value is empty.
 #>
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -202,8 +188,7 @@ function Test-TargetResource
 
     $desiredConfigurationMatch = $currentConfiguration.Ensure -eq $Ensure
 
-    if ($Ensure -eq 'Present')
-    {
+    if ($Ensure -eq 'Present') {
         $desiredConfigurationMatch = $desiredConfigurationMatch -and
                                      $currentConfiguration.Site -eq $Site -and
                                      $currentConfiguration.Location -eq $Location

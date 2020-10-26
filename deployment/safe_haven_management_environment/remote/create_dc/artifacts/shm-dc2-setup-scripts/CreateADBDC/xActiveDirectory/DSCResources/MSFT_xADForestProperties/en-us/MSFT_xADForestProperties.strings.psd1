@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 # culture="en-US"
 ConvertFrom-StringData @'
     GetForest = Getting forest suffix information from {0}.

@@ -1,12 +1,11 @@
-﻿## Import the common AD functions
+## Import the common AD functions
 $adCommonFunctions = Join-Path `
     -Path (Split-Path -Path $PSScriptRoot -Parent) `
     -ChildPath '\MSFT_xADCommon\MSFT_xADCommon.psm1'
 Import-Module -Name $adCommonFunctions
 
 # Localized messages
-data localizedData
-{
+data localizedData {
     # culture="en-US"
     ConvertFrom-StringData @'
         RoleNotFoundError              = Please ensure that the PowerShell module for role '{0}' is installed.
@@ -32,8 +31,7 @@ $mutablePropertyMap = @(
     @{ Name = 'ReversibleEncryptionEnabled'; }
 )
 
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -57,22 +55,21 @@ function Get-TargetResource
     Write-Verbose -Message ($localizedData.QueryingDomainPasswordPolicy -f $DomainName);
     $policy = Get-ADDefaultDomainPasswordPolicy @getADDefaultDomainPasswordPolicyParams;
     $targetResource = @{
-        DomainName = $DomainName;
-        ComplexityEnabled = $policy.ComplexityEnabled;
-        LockoutDuration = ConvertFrom-Timespan -Timespan $policy.LockoutDuration -TimeSpanType Minutes;
-        LockoutObservationWindow = ConvertFrom-Timespan -Timespan $policy.LockoutObservationWindow -TimeSpanType Minutes;
-        LockoutThreshold = $policy.LockoutThreshold;
-        MinPasswordAge = ConvertFrom-Timespan -Timespan $policy.MinPasswordAge -TimeSpanType Minutes;
-        MaxPasswordAge = ConvertFrom-Timespan -Timespan $policy.MaxPasswordAge -TimeSpanType Minutes;
-        MinPasswordLength = $policy.MinPasswordLength;
-        PasswordHistoryCount = $policy.PasswordHistoryCount;
+        DomainName                  = $DomainName;
+        ComplexityEnabled           = $policy.ComplexityEnabled;
+        LockoutDuration             = ConvertFrom-Timespan -Timespan $policy.LockoutDuration -TimeSpanType Minutes;
+        LockoutObservationWindow    = ConvertFrom-Timespan -Timespan $policy.LockoutObservationWindow -TimeSpanType Minutes;
+        LockoutThreshold            = $policy.LockoutThreshold;
+        MinPasswordAge              = ConvertFrom-Timespan -Timespan $policy.MinPasswordAge -TimeSpanType Minutes;
+        MaxPasswordAge              = ConvertFrom-Timespan -Timespan $policy.MaxPasswordAge -TimeSpanType Minutes;
+        MinPasswordLength           = $policy.MinPasswordLength;
+        PasswordHistoryCount        = $policy.PasswordHistoryCount;
         ReversibleEncryptionEnabled = $policy.ReversibleEncryptionEnabled;
     }
     return $targetResource;
 } #end Get-TargetResource
 
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -119,26 +116,21 @@ function Test-TargetResource
     $getTargetResourceParams = @{
         DomainName = $DomainName;
     }
-    if ($PSBoundParameters.ContainsKey('Credential'))
-    {
+    if ($PSBoundParameters.ContainsKey('Credential')) {
         $getTargetResourceParams['Credential'] = $Credential;
     }
-    if ($PSBoundParameters.ContainsKey('DomainController'))
-    {
+    if ($PSBoundParameters.ContainsKey('DomainController')) {
         $getTargetResourceParams['DomainController'] = $DomainController;
     }
     $targetResource = Get-TargetResource @getTargetResourceParams;
 
     $inDesiredState = $true;
-    foreach ($property in $mutablePropertyMap)
-    {
+    foreach ($property in $mutablePropertyMap) {
         $propertyName = $property.Name;
-        if ($PSBoundParameters.ContainsKey($propertyName))
-        {
+        if ($PSBoundParameters.ContainsKey($propertyName)) {
             $expectedValue = $PSBoundParameters[$propertyName];
             $actualValue = $targetResource[$propertyName];
-            if ($expectedValue -ne $actualValue)
-            {
+            if ($expectedValue -ne $actualValue) {
                 $valueIncorrectMessage = $localizedData.ResourcePropertyValueIncorrect -f $propertyName, $expectedValue, $actualValue;
                 Write-Verbose -Message $valueIncorrectMessage;
                 $inDesiredState = $false;
@@ -146,20 +138,16 @@ function Test-TargetResource
         }
     }
 
-    if ($inDesiredState)
-    {
+    if ($inDesiredState) {
         Write-Verbose -Message ($localizedData.ResourceInDesiredState -f $DomainName);
         return $true;
-    }
-    else
-    {
+    } else {
         Write-Verbose -Message ($localizedData.ResourceNotInDesiredState -f $DomainName);
         return $false;
     }
 } #end Test-TargetResource
 
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -206,14 +194,11 @@ function Set-TargetResource
     $PSBoundParameters['Identity'] = $DomainName;
     $setADDefaultDomainPasswordPolicyParams = Get-ADCommonParameters @PSBoundParameters;
 
-    foreach ($property in $mutablePropertyMap)
-    {
+    foreach ($property in $mutablePropertyMap) {
         $propertyName = $property.Name;
-        if ($PSBoundParameters.ContainsKey($propertyName))
-        {
+        if ($PSBoundParameters.ContainsKey($propertyName)) {
             $propertyValue = $PSBoundParameters[$propertyName];
-            if ($property.IsTimeSpan -eq $true)
-            {
+            if ($property.IsTimeSpan -eq $true) {
                 $propertyValue = ConvertTo-TimeSpan -TimeSpan $propertyValue -TimeSpanType Minutes;
             }
             $setADDefaultDomainPasswordPolicyParams[$propertyName] = $propertyValue;

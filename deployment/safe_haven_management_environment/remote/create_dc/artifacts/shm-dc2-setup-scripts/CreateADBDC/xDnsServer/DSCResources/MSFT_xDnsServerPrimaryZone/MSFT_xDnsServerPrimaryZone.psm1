@@ -1,8 +1,8 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 Import-Module $PSScriptRoot\..\Helper.psm1 -Verbose:$false
 
 # Localized messages
-data LocalizedData
-{
+data LocalizedData {
     # culture="en-US"
     ConvertFrom-StringData @'
 CheckingZoneMessage          = Checking DNS server zone with name '{0}' is '{1}'...
@@ -15,8 +15,7 @@ SetPropertyMessage           = DNS server zone property '{0}' is set
 '@
 }
 
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -28,10 +27,10 @@ function Get-TargetResource
         [ValidateNotNullOrEmpty()]
         [System.String]$ZoneFile = "$Name.dns",
 
-        [ValidateSet('None','NonsecureAndSecure')]
+        [ValidateSet('None', 'NonsecureAndSecure')]
         [System.String]$DynamicUpdate = 'None',
-        
-        [ValidateSet('Present','Absent')]
+
+        [ValidateSet('Present', 'Absent')]
         [System.String]$Ensure = 'Present'
     )
 
@@ -40,18 +39,17 @@ function Get-TargetResource
     $dnsServerZone = Get-DnsServerZone -Name $Name -ErrorAction SilentlyContinue;
 
     $targetResource = @{
-        Name = $dnsServerZone.Name;
-        ZoneFile = $dnsServerZone.ZoneFile;
+        Name          = $dnsServerZone.Name;
+        ZoneFile      = $dnsServerZone.ZoneFile;
         DynamicUpdate = $dnsServerZone.DynamicUpdate;
-        Ensure = if ($dnsServerZone -eq $null) { 'Absent' } else { 'Present' };
+        Ensure        = if ($dnsServerZone -eq $null) { 'Absent' } else { 'Present' };
     }
 
     return $targetResource;
 
 } #end function Get-TargetResource
 
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -63,42 +61,32 @@ function Test-TargetResource
         [ValidateNotNullOrEmpty()]
         [System.String]$ZoneFile = "$Name.dns",
 
-        [ValidateSet('None','NonsecureAndSecure')]
+        [ValidateSet('None', 'NonsecureAndSecure')]
         [System.String]$DynamicUpdate = 'None',
-        
-        [ValidateSet('Present','Absent')]
+
+        [ValidateSet('Present', 'Absent')]
         [System.String]$Ensure = 'Present'
     )
 
     $targetResource = Get-TargetResource @PSBoundParameters;
     $targetResourceInCompliance = $true;
 
-    if ($Ensure -eq 'Present')
-    {
-        if ($targetResource.Ensure -eq 'Present')
-        {
-            if ($targetResource.ZoneFile -ne $ZoneFile)
-            {
+    if ($Ensure -eq 'Present') {
+        if ($targetResource.Ensure -eq 'Present') {
+            if ($targetResource.ZoneFile -ne $ZoneFile) {
                 Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'ZoneFile', $targetResource.ZoneFile, $ZoneFile);
                 $targetResourceInCompliance = $false;
-            }
-            elseif ($targetResource.DynamicUpdate -ne $DynamicUpdate)
-            {
+            } elseif ($targetResource.DynamicUpdate -ne $DynamicUpdate) {
                 Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'DynamicUpdate', $targetResource.DynamicUpdate, $DynamicUpdate);
                 $targetResourceInCompliance = $false;
             }
-        }
-        else
-        {
+        } else {
             # Dns zone is present and needs removing
             Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'Ensure', 'Absent', 'Present');
             $targetResourceInCompliance = $false;
         }
-    }
-    else
-    {
-        if ($targetResource.Ensure -eq 'Present')
-        {
+    } else {
+        if ($targetResource.Ensure -eq 'Present') {
             ## Dns zone is absent and should be present
             Write-Verbose ($LocalizedData.NotDesiredPropertyMessage -f 'Ensure', 'Absent', 'Present');
             $targetResourceInCompliance = $false;
@@ -109,8 +97,7 @@ function Test-TargetResource
 
 } #end function Test-TargetResource
 
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -121,10 +108,10 @@ function Set-TargetResource
         [ValidateNotNullOrEmpty()]
         [System.String]$ZoneFile = "$Name.dns",
 
-        [ValidateSet('None','NonsecureAndSecure')]
+        [ValidateSet('None', 'NonsecureAndSecure')]
         [System.String]$DynamicUpdate = 'None',
-        
-        [ValidateSet('Present','Absent')]
+
+        [ValidateSet('Present', 'Absent')]
         [System.String]$Ensure = 'Present'
     )
 
@@ -133,29 +120,22 @@ function Set-TargetResource
     if ($Ensure -eq 'Present') {
         Write-Verbose ($LocalizedData.CheckingZoneMessage -f $Name, $Ensure);
         $dnsServerZone = Get-DnsServerZone -Name $Name -ErrorAction SilentlyContinue;
-        if ($dnsServerZone)
-        {
+        if ($dnsServerZone) {
             ## Update the existing zone
-            if ($dnsServerZone.ZoneFile -ne $ZoneFile)
-            {
+            if ($dnsServerZone.ZoneFile -ne $ZoneFile) {
                 $dnsServerZone | Set-DnsServerPrimaryZone -ZoneFile $ZoneFile;
                 Write-Verbose ($LocalizedData.SetPropertyMessage -f 'ZoneFile');
             }
-            if ($dnsServerZone.DynamicUpdate -ne $DynamicUpdate)
-            {
+            if ($dnsServerZone.DynamicUpdate -ne $DynamicUpdate) {
                 $dnsServerZone | Set-DnsServerPrimaryZone -DynamicUpdate $DynamicUpdate;
                 Write-Verbose ($LocalizedData.SetPropertyMessage -f 'DynamicUpdate');
             }
-        }
-        elseif (-not $dnsServerZone)
-        {
+        } elseif (-not $dnsServerZone) {
             ## Create the zone
             Write-Verbose ($LocalizedData.AddingZoneMessage -f $Name);
             Add-DnsServerPrimaryZone -Name $Name -ZoneFile $ZoneFile -DynamicUpdate $DynamicUpdate;
         }
-    }
-    elseif ($Ensure -eq 'Absent')
-    {
+    } elseif ($Ensure -eq 'Absent') {
         # Remove the DNS Server zone
         Write-Verbose ($LocalizedData.RemovingZoneMessage -f $Name);
         Get-DnsServerZone -Name $Name | Remove-DnsServerZone -Force;

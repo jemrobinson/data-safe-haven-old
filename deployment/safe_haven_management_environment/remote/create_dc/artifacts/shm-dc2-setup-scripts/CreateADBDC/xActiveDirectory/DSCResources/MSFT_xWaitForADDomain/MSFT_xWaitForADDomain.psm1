@@ -1,5 +1,5 @@
-﻿function Get-TargetResource
-{
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+function Get-TargetResource {
     [OutputType([System.Collections.Hashtable])]
     param
     (
@@ -11,37 +11,33 @@
         [UInt64]$RetryIntervalSec = 60,
 
         [UInt32]$RetryCount = 10,
-        
+
         [UInt32]$RebootRetryCount = 0
 
     )
 
-    if($DomainUserCredential)
-    {
-        $convertToCimCredential = New-CimInstance -ClassName MSFT_Credential -Property @{Username=[string]$DomainUserCredential.UserName; Password=[string]$null} -Namespace root/microsoft/windows/desiredstateconfiguration -ClientOnly
-    }
-    else
-    {
+    if ($DomainUserCredential) {
+        $convertToCimCredential = New-CimInstance -ClassName MSFT_Credential -Property @{Username = [string]$DomainUserCredential.UserName; Password = [string]$null } -Namespace root/microsoft/windows/desiredstateconfiguration -ClientOnly
+    } else {
         $convertToCimCredential = $null
     }
-    
+
     $domain = Get-Domain -DomainName $DomainName -DomainUserCredential $DomainUserCredential
-         
-   
+
+
     $returnValue = @{
-        DomainName = $domain.Name
+        DomainName           = $domain.Name
         DomainUserCredential = $convertToCimCredential
-        RetryIntervalSec = $RetryIntervalSec
-        RetryCount = $RetryCount
-        RebootRetryCount = $RebootRetryCount
+        RetryIntervalSec     = $RetryIntervalSec
+        RetryCount           = $RetryCount
+        RebootRetryCount     = $RebootRetryCount
     }
-    
+
     $returnValue
 }
 
 
-function Set-TargetResource
-{
+function Set-TargetResource {
     param
     (
         [Parameter(Mandatory)]
@@ -52,63 +48,50 @@ function Set-TargetResource
         [UInt64]$RetryIntervalSec = 60,
 
         [UInt32]$RetryCount = 10,
-        
+
         [UInt32]$RebootRetryCount = 0
 
     )
 
     $rebootLogFile = "$env:temp\xWaitForADDomain_Reboot.tmp"
-    
-    for($count = 0; $count -lt $RetryCount; $count++)
-    {
+
+    for ($count = 0; $count -lt $RetryCount; $count++) {
         $domain = Get-Domain -DomainName $DomainName -DomainUserCredential $DomainUserCredential
-         
-        if($domain)
-        {
-            if($RebootRetryCount -gt 0)
-            {
+
+        if ($domain) {
+            if ($RebootRetryCount -gt 0) {
                 Remove-Item $rebootLogFile -ErrorAction SilentlyContinue
             }
-            
+
             break;
-        }
-        else 
-        {
+        } else {
             Write-Verbose -Message "Domain $DomainName not found. Will retry again after $RetryIntervalSec sec"
             Start-Sleep -Seconds $RetryIntervalSec
             Clear-DnsClientCache
-        }    
+        }
     }
 
-    if(-not $domain) 
-    {
-        if($RebootRetryCount -gt 0)
-        {
+    if (-not $domain) {
+        if ($RebootRetryCount -gt 0) {
             [UInt32]$rebootCount = Get-Content $RebootLogFile -ErrorAction SilentlyContinue
-            
-            if($rebootCount -lt $RebootRetryCount)
-            {
+
+            if ($rebootCount -lt $RebootRetryCount) {
                 $rebootCount = $rebootCount + 1
-                Write-Verbose -Message  "Domain $DomainName not found after $count attempts with $RetryIntervalSec sec interval. Rebooting.  Reboot attempt number $rebootCount of $RebootRetryCount."
+                Write-Verbose -Message "Domain $DomainName not found after $count attempts with $RetryIntervalSec sec interval. Rebooting.  Reboot attempt number $rebootCount of $RebootRetryCount."
                 Set-Content -Path $RebootLogFile -Value $rebootCount
                 $global:DSCMachineStatus = 1
-            }
-            else 
-            {
-                throw "Domain '$($DomainName)' NOT found after $RebootRetryCount Reboot attempts."     
+            } else {
+                throw "Domain '$($DomainName)' NOT found after $RebootRetryCount Reboot attempts."
             }
 
-            
-        }
-        else
-        {
+
+        } else {
             throw "Domain '$($DomainName)' NOT found after $RetryCount attempts."
         }
     }
 }
 
-function Test-TargetResource
-{
+function Test-TargetResource {
     [OutputType([System.Boolean])]
     param
     (
@@ -120,34 +103,29 @@ function Test-TargetResource
         [UInt64]$RetryIntervalSec = 60,
 
         [UInt32]$RetryCount = 10,
-        
+
         [UInt32]$RebootRetryCount = 0
 
     )
-    
+
     $rebootLogFile = "$env:temp\xWaitForADDomain_Reboot.tmp"
-    
+
     $domain = Get-Domain -DomainName $DomainName -DomainUserCredential $DomainUserCredential
-   
-    if($domain)
-    {
-        if($RebootRetryCount -gt 0)
-        {
+
+    if ($domain) {
+        if ($RebootRetryCount -gt 0) {
             Remove-Item $rebootLogFile -ErrorAction SilentlyContinue
         }
-            
+
         $true
-    }
-    else 
-    {
+    } else {
         $false
-    }    
+    }
 }
 
 
 
-function Get-Domain
-{
+function Get-Domain {
     [OutputType([PSObject])]
     param
     (
@@ -158,28 +136,22 @@ function Get-Domain
 
     )
     Write-Verbose -Message "Checking for domain $DomainName ..."
-  
-    if($DomainUserCredential)
-    {
-        $context = new-object System.DirectoryServices.ActiveDirectory.DirectoryContext('Domain', $DomainName, $DomainUserCredential.UserName, $DomainUserCredential.GetNetworkCredential().Password)
+
+    if ($DomainUserCredential) {
+        $context = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext('Domain', $DomainName, $DomainUserCredential.UserName, $DomainUserCredential.GetNetworkCredential().Password)
+    } else {
+        $context = New-Object System.DirectoryServices.ActiveDirectory.DirectoryContext('Domain', $DomainName)
     }
-    else
-    {
-        $context = new-object System.DirectoryServices.ActiveDirectory.DirectoryContext('Domain',$DomainName)
-    }
-    
-    try 
-    {
+
+    try {
         $domain = ([System.DirectoryServices.ActiveDirectory.DomainController]::FindOne($context)).domain.ToString()
         Write-Verbose -Message "Found domain $DomainName"
         $returnValue = @{
             Name = $domain
         }
-    
+
        $returnValue
-    }
-    catch
-    {
+    } catch {
         Write-Verbose -Message "Domain $DomainName not found"
     }
 }

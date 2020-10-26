@@ -1,5 +1,5 @@
-﻿function Get-TargetResource
-{
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -16,7 +16,7 @@
         [System.String]
         $Target,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]
         $Ensure = 'Present'
     )
@@ -25,16 +25,15 @@
     $record = Get-DnsServerResourceRecord -ZoneName $Zone -Name $Name -ErrorAction SilentlyContinue
     if ($record -eq $null) {
         return @{
-            Name = $Name;
-            Zone = $Zone;
+            Name   = $Name;
+            Zone   = $Zone;
             Target = $Target;
             Ensure = 'Absent';
         }
-    }
-    else {
+    } else {
         return @{
-            Name = $record.HostName;
-            Zone = $Zone;
+            Name   = $record.HostName;
+            Zone   = $Zone;
             Target = $record.RecordData.IPv4Address.ToString();
             Ensure = 'Present';
         }
@@ -42,8 +41,7 @@
 }
 
 
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -59,23 +57,21 @@ function Set-TargetResource
         [System.String]
         $Target,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]
         $Ensure = 'Present'
     )
     if ($Ensure -eq 'Present') {
         Write-Verbose "Creating for DNS $Target in $Zone"
         Add-DnsServerResourceRecordA -IPv4Address $Target -Name $Name -ZoneName $Zone
-    }
-    elseif ($Ensure -eq 'Absent') {
+    } elseif ($Ensure -eq 'Absent') {
         Write-Verbose "Removing DNS $Target in $Zone"
         Remove-DnsServerResourceRecord -Name $Name -ZoneName $Zone -RRType A
     }
 }
 
 
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -92,7 +88,7 @@ function Test-TargetResource
         [System.String]
         $Target,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]
         $Ensure = 'Present'
     )

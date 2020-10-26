@@ -1,3 +1,4 @@
+﻿[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 [ClassVersion("1.0.0.0"), FriendlyName("xADReplicationSite")]
 class MSFT_xADReplicationSite : OMI_BaseResource
 {

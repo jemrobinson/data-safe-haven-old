@@ -27,8 +27,7 @@ Import-Module -Name ( Join-Path `
     .PARAMETER RetryCount
     The number of times to loop the retry interval while waiting for the drive.
 #>
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -70,8 +69,7 @@ function Get-TargetResource
     .PARAMETER RetryCount
     The number of times to loop the retry interval while waiting for the drive.
 #>
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -93,11 +91,9 @@ function Set-TargetResource
 
     $volumeFound = $false
 
-    for ($count = 0; $count -lt $RetryCount; $count++)
-    {
+    for ($count = 0; $count -lt $RetryCount; $count++) {
         $volume = Get-Volume -DriveLetter $DriveLetter -ErrorAction SilentlyContinue
-        if ($volume)
-        {
+        if ($volume) {
             Write-Verbose -Message ( @(
                     "$($MyInvocation.MyCommand): "
                     $($LocalizedData.VolumeFoundMessage -f $DriveLetter)
@@ -105,12 +101,10 @@ function Set-TargetResource
 
             $volumeFound = $true
             break
-        }
-        else
-        {
+        } else {
             Write-Verbose -Message ( @(
                     "$($MyInvocation.MyCommand): "
-                    $($LocalizedData.VolumeNotFoundMessage -f $DriveLetter,$RetryIntervalSec)
+                    $($LocalizedData.VolumeNotFoundMessage -f $DriveLetter, $RetryIntervalSec)
                 ) -join '' )
 
             Start-Sleep -Seconds $RetryIntervalSec
@@ -121,10 +115,9 @@ function Set-TargetResource
         } # if
     } # for
 
-    if (-not $volumeFound)
-    {
+    if (-not $volumeFound) {
         New-InvalidOperationException `
-            -Message $($LocalizedData.VolumeNotFoundAfterError -f $DriveLetter,$RetryCount)
+            -Message $($LocalizedData.VolumeNotFoundAfterError -f $DriveLetter, $RetryCount)
     } # if
 } # function Set-TargetResource
 
@@ -141,8 +134,7 @@ function Set-TargetResource
     .PARAMETER RetryCount
     The number of times to loop the retry interval while waiting for the drive.
 #>
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -168,8 +160,7 @@ function Test-TargetResource
     $null = Get-PSDrive
 
     $volume = Get-Volume -DriveLetter $DriveLetter -ErrorAction SilentlyContinue
-    if ($volume)
-    {
+    if ($volume) {
         Write-Verbose -Message ( @(
                 "$($MyInvocation.MyCommand): "
                 $($LocalizedData.VolumeFoundMessage -f $DriveLetter)

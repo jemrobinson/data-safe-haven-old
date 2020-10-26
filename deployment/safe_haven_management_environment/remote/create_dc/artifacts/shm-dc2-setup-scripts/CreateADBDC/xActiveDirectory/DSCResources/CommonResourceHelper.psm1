@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 <#
     .SYNOPSIS
         Retrieves the localized string data based on the machine's culture.
@@ -10,8 +11,7 @@
             AuditPolicyOption: MSFT_AuditPolicyOption
 
 #>
-function Get-LocalizedData
-{
+function Get-LocalizedData {
     [OutputType([String])]
     [CmdletBinding()]
     param
@@ -28,21 +28,17 @@ function Get-LocalizedData
     )
 
     # With the helper module just update the name and path variables as if it were a resource.
-    if ($PSCmdlet.ParameterSetName -eq 'helper')
-    {
+    if ($PSCmdlet.ParameterSetName -eq 'helper') {
         $resourceDirectory = $PSScriptRoot
         $ResourceName = $HelperName
-    }
-    else
-    {
+    } else {
         # Step up one additional level to build the correct path to the resource culture.
         $resourceDirectory = Join-Path -Path (Split-Path $PSScriptRoot -Parent) -ChildPath (Join-Path -Path 'DSCResources' -ChildPath $ResourceName)
     }
 
     $localizedStringFileLocation = Join-Path -Path $resourceDirectory -ChildPath $PSUICulture
 
-    if (-not (Test-Path -Path $localizedStringFileLocation))
-    {
+    if (-not (Test-Path -Path $localizedStringFileLocation)) {
         # Fallback to en-US
         $localizedStringFileLocation = Join-Path -Path $resourceDirectory -ChildPath 'en-US'
     }

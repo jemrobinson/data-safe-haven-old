@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 # Suppressed as per PSSA Rule Severity guidelines for unit/integration tests:
 # https://github.com/PowerShell/DscResources/blob/master/PSSARuleSeverities.md
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
@@ -27,8 +28,7 @@ Import-Module -Name ( Join-Path `
     .PARAMETER RetryCount
     The number of times to loop the retry interval while waiting for the disk.
 #>
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -67,8 +67,7 @@ function Get-TargetResource
     .PARAMETER RetryCount
     The number of times to loop the retry interval while waiting for the disk.
 #>
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -87,34 +86,29 @@ function Set-TargetResource
 
     $diskFound = $false
 
-    for ($count = 0; $count -lt $RetryCount; $count++)
-    {
+    for ($count = 0; $count -lt $RetryCount; $count++) {
         $disk = Get-Disk -Number $DiskNumber -ErrorAction SilentlyContinue
-        if ($disk)
-        {
+        if ($disk) {
             Write-Verbose -Message ( @(
                     "$($MyInvocation.MyCommand): "
-                    $($LocalizedData.DiskFoundMessage -f $DiskNumber,$disk.FriendlyName)
+                    $($LocalizedData.DiskFoundMessage -f $DiskNumber, $disk.FriendlyName)
                 ) -join '' )
 
             $diskFound = $true
             break
-        }
-        else
-        {
+        } else {
             Write-Verbose -Message ( @(
                     "$($MyInvocation.MyCommand): "
-                    $($LocalizedData.DiskNotFoundMessage -f $DiskNumber,$RetryIntervalSec)
+                    $($LocalizedData.DiskNotFoundMessage -f $DiskNumber, $RetryIntervalSec)
                 ) -join '' )
 
             Start-Sleep -Seconds $RetryIntervalSec
         } # if
     } # for
 
-    if (-not $diskFound)
-    {
+    if (-not $diskFound) {
         New-InvalidOperationException `
-            -Message $($LocalizedData.DiskNotFoundAfterError -f $DiskNumber,$RetryCount)
+            -Message $($LocalizedData.DiskNotFoundAfterError -f $DiskNumber, $RetryCount)
     } # if
 } # function Set-TargetResource
 
@@ -131,8 +125,7 @@ function Set-TargetResource
     .PARAMETER RetryCount
     The number of times to loop the retry interval while waiting for the disk.
 #>
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -151,11 +144,10 @@ function Test-TargetResource
         ) -join '' )
 
     $disk = Get-Disk -Number $DiskNumber -ErrorAction SilentlyContinue
-    if ($disk)
-    {
+    if ($disk) {
         Write-Verbose -Message ( @(
                 "$($MyInvocation.MyCommand): "
-                $($LocalizedData.DiskFoundMessage -f $DiskNumber,$disk.FriendlyName)
+                $($LocalizedData.DiskFoundMessage -f $DiskNumber, $disk.FriendlyName)
             ) -join '' )
 
         return $true

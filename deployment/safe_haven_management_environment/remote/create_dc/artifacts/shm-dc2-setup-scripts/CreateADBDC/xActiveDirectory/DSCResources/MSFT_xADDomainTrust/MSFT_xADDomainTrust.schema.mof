@@ -1,3 +1,4 @@
+﻿[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 
 [ClassVersion("1.0.1.0"), FriendlyName("xADDomainTrust")]
 class MSFT_xADDomainTrust : OMI_BaseResource

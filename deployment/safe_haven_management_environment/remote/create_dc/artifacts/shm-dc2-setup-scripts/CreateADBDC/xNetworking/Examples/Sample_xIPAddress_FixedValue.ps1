@@ -1,5 +1,5 @@
-configuration Sample_xIPAddress_FixedValue
-{
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+configuration Sample_xIPAddress_FixedValue {
     param
     (
         [string[]]$NodeName = 'localhost'
@@ -11,10 +11,10 @@ configuration Sample_xIPAddress_FixedValue
     {
         xIPAddress NewIPAddress
         {
-            IPAddress      = "2001:4898:200:7:6c71:a102:ebd8:f482"
+            IPAddress = "2001:4898:200:7:6c71:a102:ebd8:f482"
             InterfaceAlias = "Ethernet"
-            SubnetMask     = 24
-            AddressFamily  = "IPV6"
+            SubnetMask = 24
+            AddressFamily = "IPV6"
         }
     }
 }

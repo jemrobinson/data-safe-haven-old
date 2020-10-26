@@ -1,4 +1,4 @@
-[ClassVersion("1.0.1.0"), FriendlyName("xADDomain")]
+﻿[ClassVersion("1.0.1.0"), FriendlyName("xADDomain")]
 class MSFT_xADDomain : OMI_BaseResource
 {
     [Key, Description("Name of the domain to which the user will be added")] String DomainName;

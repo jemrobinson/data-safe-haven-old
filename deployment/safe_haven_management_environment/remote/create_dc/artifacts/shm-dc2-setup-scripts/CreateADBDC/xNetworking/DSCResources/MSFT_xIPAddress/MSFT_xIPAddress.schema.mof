@@ -1,4 +1,5 @@
-[ClassVersion("1.0.0"), FriendlyName("xIPAddress")] 
+﻿[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+[ClassVersion("1.0.0"), FriendlyName("xIPAddress")]
 class MSFT_xIPAddress : OMI_BaseResource
 {
   [Key] string IPAddress;

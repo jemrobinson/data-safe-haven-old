@@ -1,6 +1,6 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 # Localized messages
-data LocalizedData
-{
+data LocalizedData {
     # culture="en-US"
     ConvertFrom-StringData @'
 RoleNotFound = Please ensure that the PowerShell module for role {0} is installed
@@ -8,37 +8,34 @@ RoleNotFound = Please ensure that the PowerShell module for role {0} is installe
 }
 
 # Internal function to throw terminating error with specified errroCategory, errorId and errorMessage
-function New-TerminatingError
-{
+function New-TerminatingError {
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory)]
         [String]$errorId,
-        
+
         [Parameter(Mandatory)]
         [String]$errorMessage,
 
         [Parameter(Mandatory)]
         [System.Management.Automation.ErrorCategory]$errorCategory
     )
-    
-    $exception = New-Object System.InvalidOperationException $errorMessage 
+
+    $exception = New-Object System.InvalidOperationException $errorMessage
     $errorRecord = New-Object System.Management.Automation.ErrorRecord $exception, $errorId, $errorCategory, $null
     throw $errorRecord
 }
 
 # Internal function to assert if the role specific module is installed or not
-function Assert-Module
-{
+function Assert-Module {
     [CmdletBinding()]
     param
     (
         [string]$moduleName = 'DnsServer'
     )
 
-    if(! (Get-Module -Name $moduleName -ListAvailable))
-    {
+    if (! (Get-Module -Name $moduleName -ListAvailable)) {
         $errorMsg = $($LocalizedData.RoleNotFound) -f $moduleName
         New-TerminatingError -errorId 'ModuleNotFound' -errorMessage $errorMsg -errorCategory ObjectNotFound
     }

@@ -1,4 +1,4 @@
-﻿configuration CreateADBDC {
+configuration CreateADBDC {
     Param (
         # Get deployment details
         [Parameter(Mandatory)]
@@ -30,50 +30,50 @@
         }
 
         xWaitforDisk Disk2 {
-            DiskNumber       = 2
+            DiskNumber = 2
             RetryIntervalSec = $RetryIntervalSec
-            RetryCount       = $RetryCount
+            RetryCount = $RetryCount
         }
 
         xDisk ADDataDisk {
-            DiskNumber  = 2
+            DiskNumber = 2
             DriveLetter = "F"
-            DependsOn   = "[xWaitForDisk]Disk2"
+            DependsOn = "[xWaitForDisk]Disk2"
         }
 
         WindowsFeatureSet Prereqs {
-            Name                 = $features
-            Ensure               = "Present"
+            Name = $features
+            Ensure = "Present"
             IncludeAllSubFeature = $true
-        } 
+        }
 
         xDnsServerAddress DnsServerAddress {
-            Address        = $DNSServer
+            Address = $DNSServer
             InterfaceAlias = $Interface.Name
-            AddressFamily  = "IPv4"
-            DependsOn      = "[WindowsFeatureSet]Prereqs"
+            AddressFamily = "IPv4"
+            DependsOn = "[WindowsFeatureSet]Prereqs"
         }
 
         xWaitForADDomain DscForestWait {
-            DomainName           = $DomainName
+            DomainName = $DomainName
             DomainUserCredential = $DomainCreds
-            RetryCount           = $RetryCount
-            RetryIntervalSec     = $RetryIntervalSec
-            DependsOn            = "[WindowsFeatureSet]Prereqs"
+            RetryCount = $RetryCount
+            RetryIntervalSec = $RetryIntervalSec
+            DependsOn = "[WindowsFeatureSet]Prereqs"
         }
 
         xADDomainController BDC {
-            DomainName                    = $DomainName         
+            DomainName = $DomainName
             DomainAdministratorCredential = $DomainCreds
             SafemodeAdministratorPassword = $SafeModeAdminCreds
-            DatabasePath                  = "F:\NTDS"
-            LogPath                       = "F:\NTDS"
-            SysvolPath                    = "F:\SYSVOL"
-            DependsOn                     = "[xWaitForADDomain]DscForestWait"
+            DatabasePath = "F:\NTDS"
+            LogPath = "F:\NTDS"
+            SysvolPath = "F:\SYSVOL"
+            DependsOn = "[xWaitForADDomain]DscForestWait"
         }
 
         xPendingReboot RebootAfterPromotion {
-            Name      = "RebootAfterDCPromotion"
+            Name = "RebootAfterDCPromotion"
             DependsOn = "[xADDomainController]BDC"
         }
     }

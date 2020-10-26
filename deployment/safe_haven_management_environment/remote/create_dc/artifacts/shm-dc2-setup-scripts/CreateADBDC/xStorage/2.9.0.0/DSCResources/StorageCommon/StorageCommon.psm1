@@ -1,4 +1,5 @@
-﻿Import-Module -Name (Join-Path -Path (Split-Path $PSScriptRoot -Parent) `
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+Import-Module -Name (Join-Path -Path (Split-Path $PSScriptRoot -Parent) `
                                -ChildPath 'CommonResourceHelper.psm1')
 
 # Localized messages for Write-Verbose statements in this resource
@@ -14,8 +15,7 @@ $script:localizedData = Get-LocalizedData -ResourceName 'StorageCommon'
     .PARAMETER Colon
     Will ensure the returned string will include or exclude a colon.
 #>
-function Assert-DriveLetterValid
-{
+function Assert-DriveLetterValid {
     [CmdletBinding()]
     [OutputType([String])]
     param
@@ -30,8 +30,7 @@ function Assert-DriveLetterValid
     )
 
     $Matches = @([regex]::matches($DriveLetter, '^([A-Za-z]):?$', 'IgnoreCase'))
-    if (-not $Matches)
-    {
+    if (-not $Matches) {
         # DriveLetter format is invalid
         New-InvalidArgumentException `
             -Message $($LocalizedData.InvalidDriveLetterFormatError -f $DriveLetter) `
@@ -39,8 +38,7 @@ function Assert-DriveLetterValid
     }
     # This is the drive letter without a colon
     $DriveLetter = $Matches.Groups[1].Value
-    if ($Colon)
-    {
+    if ($Colon) {
         $DriveLetter = $DriveLetter + ':'
     } # if
     return $DriveLetter
@@ -58,8 +56,7 @@ function Assert-DriveLetterValid
     .PARAMETER Slash
     Will ensure the returned path will include or exclude a slash.
 #>
-function Assert-AccessPathValid
-{
+function Assert-AccessPathValid {
     [CmdletBinding()]
     [OutputType([String])]
     param
@@ -73,8 +70,7 @@ function Assert-AccessPathValid
         $Slash
     )
 
-    if (-not (Test-Path -Path $AccessPath -PathType Container))
-    {
+    if (-not (Test-Path -Path $AccessPath -PathType Container)) {
         # AccessPath is invalid
         New-InvalidArgumentException `
             -Message $($LocalizedData.InvalidAccessPathError -f $AccessPath) `
@@ -82,17 +78,12 @@ function Assert-AccessPathValid
     } # if
 
     # Remove or Add the trailing slash
-    if($AccessPath.EndsWith('\'))
-    {
-        if (-not $Slash)
-        {
+    if ($AccessPath.EndsWith('\')) {
+        if (-not $Slash) {
             $AccessPath = $AccessPath.TrimEnd('\')
         } # if
-    }
-    else
-    {
-        if ($Slash)
-        {
+    } else {
+        if ($Slash) {
             $AccessPath = "$AccessPath\"
         } # if
     } # if

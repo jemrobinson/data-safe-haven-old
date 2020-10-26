@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 ConvertFrom-StringData @'
     GettingWaitForDiskStatusMessage = Getting Wait for Disk status for disk '{0}'.
 

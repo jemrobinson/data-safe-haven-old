@@ -1,5 +1,5 @@
-function Get-TargetResource
-{
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+function Get-TargetResource {
     [OutputType([Hashtable])]
     param
     (
@@ -10,19 +10,17 @@ function Get-TargetResource
     )
     Write-Verbose 'Getting current DNS forwarders.'
     [array]$currentIPs = (Get-CimInstance -Namespace root\MicrosoftDNS -ClassName microsoftdns_server).Forwarders
-    $targetResource =  @{
+    $targetResource = @{
         IsSingleInstance = $IsSingleInstance
-        IPAddresses = @()
+        IPAddresses      = @()
     }
-    if ($currentIPs)
-    {
+    if ($currentIPs) {
         $targetResource.IPAddresses = $currentIPs
     }
     Write-Output $targetResource
 }
 
-function Set-TargetResource
-{
+function Set-TargetResource {
     param
     (
         [Parameter(Mandatory)]
@@ -30,21 +28,19 @@ function Set-TargetResource
         [string]$IsSingleInstance,
         [string[]]$IPAddresses
     )
-    if (!$IPAddresses)
-    {
+    if (!$IPAddresses) {
         $IPAddresses = @()
     }
     Write-Verbose 'Setting DNS forwarders.'
     $setParams = @{
         Namespace = 'root\MicrosoftDNS'
-        Query = 'select * from microsoftdns_server'
-        Property = @{Forwarders = $IPAddresses}
+        Query     = 'select * from microsoftdns_server'
+        Property  = @{Forwarders = $IPAddresses }
     }
     Set-CimInstance @setParams
 }
 
-function Test-TargetResource
-{
+function Test-TargetResource {
     [OutputType([Bool])]
     param
     (
@@ -54,14 +50,11 @@ function Test-TargetResource
         [string[]]$IPAddresses
     )
     [array]$currentIPs = (Get-TargetResource @PSBoundParameters).IPAddresses
-    if ($currentIPs.Count -ne $IPAddresses.Count)
-    {
+    if ($currentIPs.Count -ne $IPAddresses.Count) {
         return $false
     }
-    foreach ($ip in $IPAddresses)
-    {
-        if ($ip -notin $currentIPs)
-        {
+    foreach ($ip in $IPAddresses) {
+        if ($ip -notin $currentIPs) {
             return $false
         }
     }

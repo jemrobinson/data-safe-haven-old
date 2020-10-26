@@ -1,8 +1,7 @@
-﻿# DSC configuration for Firewall
+# DSC configuration for Firewall
 
-configuration Sample_xFirewall_AddFirewallRuleToNewGroup
-{
-    param 
+configuration Sample_xFirewall_AddFirewallRuleToNewGroup {
+    param
     (
         [string[]]$NodeName = 'localhost'
     )
@@ -13,9 +12,9 @@ configuration Sample_xFirewall_AddFirewallRuleToNewGroup
     {
         xFirewall Firewall
         {
-            Name                  = "MyAppFirewallRule"            
-            ApplicationPath       = "c:\windows\system32\MyApp.exe"
-	        Access                = "Allow"
+            Name = "MyAppFirewallRule"
+            ApplicationPath = "c:\windows\system32\MyApp.exe"
+	        Access = "Allow"
         }
     }
  }

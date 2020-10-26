@@ -1,16 +1,14 @@
-﻿<#
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+<#
     .SYNOPSIS
         Tests if the current machine is a Nano server.
 #>
-function Test-IsNanoServer
-{
-    if (Test-Command -Name Get-ComputerInfo)
-    {
+function Test-IsNanoServer {
+    if (Test-Command -Name Get-ComputerInfo) {
         $computerInfo = Get-ComputerInfo
 
         if ("Server" -eq $computerInfo.OsProductType `
-            -and "NanoServer" -eq $computerInfo.OsServerLevel)
-        {
+            -and "NanoServer" -eq $computerInfo.OsServerLevel) {
             return $true
         }
     }
@@ -22,8 +20,7 @@ function Test-IsNanoServer
     .SYNOPSIS
         Tests if the the specified command is found.
 #>
-function Test-Command
-{
+function Test-Command {
     param
     (
         [String] $Name
@@ -42,8 +39,7 @@ function Test-Command
     .PARAMETER ArgumentName
         The name of the invalid argument that is causing this error to be thrown
 #>
-function New-InvalidArgumentException
-{
+function New-InvalidArgumentException {
     [CmdletBinding()]
     param
     (
@@ -61,7 +57,7 @@ function New-InvalidArgumentException
     $argumentException = New-Object -TypeName 'ArgumentException' -ArgumentList @( $Message,
         $ArgumentName )
     $newObjectParams = @{
-        TypeName = 'System.Management.Automation.ErrorRecord'
+        TypeName     = 'System.Management.Automation.ErrorRecord'
         ArgumentList = @( $argumentException, $ArgumentName, 'InvalidArgument', $null )
     }
     $errorRecord = New-Object @newObjectParams
@@ -79,8 +75,7 @@ function New-InvalidArgumentException
     .PARAMETER ErrorRecord
         The error record containing the exception that is causing this terminating error
 #>
-function New-InvalidOperationException
-{
+function New-InvalidOperationException {
     [CmdletBinding()]
     param
     (
@@ -93,24 +88,19 @@ function New-InvalidOperationException
         $ErrorRecord
     )
 
-    if ($null -eq $Message)
-    {
+    if ($null -eq $Message) {
         $invalidOperationException = New-Object -TypeName 'InvalidOperationException'
-    }
-    elseif ($null -eq $ErrorRecord)
-    {
+    } elseif ($null -eq $ErrorRecord) {
         $invalidOperationException =
             New-Object -TypeName 'InvalidOperationException' -ArgumentList @( $Message )
-    }
-    else
-    {
+    } else {
         $invalidOperationException =
             New-Object -TypeName 'InvalidOperationException' -ArgumentList @( $Message,
                 $ErrorRecord.Exception )
     }
 
     $newObjectParams = @{
-        TypeName = 'System.Management.Automation.ErrorRecord'
+        TypeName     = 'System.Management.Automation.ErrorRecord'
         ArgumentList = @( $invalidOperationException.ToString(), 'MachineStateIncorrect',
             'InvalidOperation', $null )
     }
@@ -131,8 +121,7 @@ function New-InvalidOperationException
             For Service: MSFT_xServiceResource
             For Registry: MSFT_xRegistryResource
 #>
-function Get-LocalizedData
-{
+function Get-LocalizedData {
     [CmdletBinding()]
     param
     (
@@ -145,8 +134,7 @@ function Get-LocalizedData
     $resourceDirectory = (Join-Path -Path $PSScriptRoot -ChildPath $ResourceName)
     $localizedStringFileLocation = Join-Path -Path $resourceDirectory -ChildPath $PSUICulture
 
-    if (-not (Test-Path -Path $localizedStringFileLocation))
-    {
+    if (-not (Test-Path -Path $localizedStringFileLocation)) {
         # Fallback to en-US
         $localizedStringFileLocation = Join-Path -Path $resourceDirectory -ChildPath 'en-US'
     }

@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 ConvertFrom-StringData @'
     SiteNotFound = Site: {0} not found in SitesIncluded. Current SitesIncluded: {1}.
     SiteFoundInExcluded = Excluded {0} site found in SitesIncluded. Current SitesIncluded: {1}.

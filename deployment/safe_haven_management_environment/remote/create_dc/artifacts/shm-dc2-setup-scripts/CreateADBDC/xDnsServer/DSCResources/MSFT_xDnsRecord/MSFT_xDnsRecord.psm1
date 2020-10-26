@@ -1,6 +1,6 @@
-﻿# Localized messages
-data LocalizedData
-{
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+# Localized messages
+data LocalizedData {
     # culture="en-US"
     ConvertFrom-StringData @'
         GettingDnsRecordMessage   = Getting DNS record '{0}' ({1}) in zone '{2}'.
@@ -13,8 +13,7 @@ data LocalizedData
 }
 
 
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -36,42 +35,38 @@ function Get-TargetResource
         [System.String]
         $Target,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]
         $Ensure = 'Present'
     )
 
     Write-Verbose -Message ($LocalizedData.GettingDnsRecordMessage -f $Name, $Type, $Zone)
     $record = Get-DnsServerResourceRecord -ZoneName $Zone -Name $Name -ErrorAction SilentlyContinue
-    
-    if ($record -eq $null) 
-    {
+
+    if ($record -eq $null) {
         return @{
-            Name = $Name.HostName;
-            Zone = $Zone;
+            Name   = $Name.HostName;
+            Zone   = $Zone;
             Target = $Target;
             Ensure = 'Absent';
         }
     }
-    if ($Type -eq "CName") 
-    {
+    if ($Type -eq "CName") {
         $recordData = ($record.RecordData.hostnamealias).TrimEnd('.')
     }
-    if ($Type -eq "ARecord") 
-    {
+    if ($Type -eq "ARecord") {
         $recordData = $record.RecordData.IPv4address.IPAddressToString
     }
 
     return @{
-        Name = $record.HostName;
-        Zone = $Zone;
+        Name   = $record.HostName;
+        Zone   = $Zone;
         Target = $recordData;
         Ensure = 'Present';
     }
 } #end function Get-TargetResource
 
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -92,49 +87,41 @@ function Set-TargetResource
         [System.String]
         $Target,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]
         $Ensure = 'Present'
     )
 
-    $DNSParameters = @{ Name = $Name; ZoneName = $Zone; } 
+    $DNSParameters = @{ Name = $Name; ZoneName = $Zone; }
 
-    if ($Ensure -eq 'Present')
-    {
-        if ($Type -eq "ARecord")
-        {
-            $DNSParameters.Add('A',$true)
-            $DNSParameters.Add('IPv4Address',$target)
+    if ($Ensure -eq 'Present') {
+        if ($Type -eq "ARecord") {
+            $DNSParameters.Add('A', $true)
+            $DNSParameters.Add('IPv4Address', $target)
         }
-        if ($Type -eq "CName")
-        {
-            $DNSParameters.Add('CName',$true)
-            $DNSParameters.Add('HostNameAlias',$Target)
+        if ($Type -eq "CName") {
+            $DNSParameters.Add('CName', $true)
+            $DNSParameters.Add('HostNameAlias', $Target)
         }
         Write-Verbose -Message ($LocalizedData.CreatingDnsRecordMessage -f $Type, $Target, $Zone)
         Add-DnsServerResourceRecord @DNSParameters
-    }
-    elseif ($Ensure -eq 'Absent')
-    {
-        
-        $DNSParameters.Add('Computername','localhost')
-        $DNSParameters.Add('Force',$true)
+    } elseif ($Ensure -eq 'Absent') {
 
-        if ($Type -eq "ARecord")
-        {
-            $DNSParameters.Add('RRType','A')
+        $DNSParameters.Add('Computername', 'localhost')
+        $DNSParameters.Add('Force', $true)
+
+        if ($Type -eq "ARecord") {
+            $DNSParameters.Add('RRType', 'A')
         }
-        if ($Type -eq "CName")
-        {
-            $DNSParameters.Add('RRType','CName')
+        if ($Type -eq "CName") {
+            $DNSParameters.Add('RRType', 'CName')
         }
         Write-Verbose -Message ($LocalizedData.RemovingDnsRecordMessage -f $Type, $Target, $Zone)
         Remove-DnsServerResourceRecord @DNSParameters
     }
 } #end function Set-TargetResource
 
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -156,25 +143,20 @@ function Test-TargetResource
         [System.String]
         $Target,
 
-        [ValidateSet('Present','Absent')]
+        [ValidateSet('Present', 'Absent')]
         [System.String]
         $Ensure = 'Present'
     )
 
     $result = @(Get-TargetResource @PSBoundParameters)
-    if ($Ensure -ne $result.Ensure)
-    {
+    if ($Ensure -ne $result.Ensure) {
         Write-Verbose -Message ($LocalizedData.NotDesiredPropertyMessage -f 'Ensure', $Ensure, $result.Ensure)
         Write-Verbose -Message ($LocalizedData.NotInDesiredStateMessage -f $Name)
         return $false
-    }
-    elseif ($Ensure -eq 'Present')
-    {
-        if ($result.Target -notcontains $Target)
-        {
+    } elseif ($Ensure -eq 'Present') {
+        if ($result.Target -notcontains $Target) {
             $resultTargetString = $result.Target
-            if ($resultTargetString -is [System.Array])
-            {
+            if ($resultTargetString -is [System.Array]) {
                 ## We have an array, create a single string for verbose output
                 $resultTargetString = $result.Target -join ','
             }

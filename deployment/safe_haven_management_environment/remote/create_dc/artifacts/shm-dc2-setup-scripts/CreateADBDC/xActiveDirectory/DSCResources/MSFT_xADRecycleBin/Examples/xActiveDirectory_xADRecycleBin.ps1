@@ -1,5 +1,5 @@
-Configuration Example_xADRecycleBin
-{
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+Configuration Example_xADRecycleBin {
 Param(
     [parameter(Mandatory = $true)]
     [System.String]
@@ -7,7 +7,7 @@ Param(
 
     [parameter(Mandatory = $true)]
     [System.Management.Automation.PSCredential]
-    $EACredential 
+    $EACredential
 )
 
     Import-DscResource -Module xActiveDirectory
@@ -25,7 +25,7 @@ Param(
 $ConfigurationData = @{
     AllNodes = @(
         @{
-            NodeName = '2012r2-dc'
+            NodeName                    = '2012r2-dc'
             PSDscAllowPlainTextPassword = $true
         }
     )
@@ -36,4 +36,3 @@ Example_xADRecycleBin -EACredential (Get-Credential contoso\administrator) -Fore
 Start-DscConfiguration -Path .\Example_xADRecycleBin -Wait -Verbose -WhatIf
 
 Start-DscConfiguration -Path .\Example_xADRecycleBin -Wait -Verbose
-

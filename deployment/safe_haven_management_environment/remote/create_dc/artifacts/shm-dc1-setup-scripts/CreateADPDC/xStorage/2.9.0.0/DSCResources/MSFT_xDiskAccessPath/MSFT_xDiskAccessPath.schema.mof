@@ -1,5 +1,4 @@
-
-[ClassVersion("1.0.0.0"), FriendlyName("xDiskAccessPath")]
+﻿[ClassVersion("1.0.0.0"), FriendlyName("xDiskAccessPath")]
 class MSFT_xDiskAccessPath : OMI_BaseResource
 {
     [Key, Description("Specifies the access path folder to the assign the disk volume to.")] String AccessPath;

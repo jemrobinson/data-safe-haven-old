@@ -1,4 +1,4 @@
-[ClassVersion("1.0.0.0"), FriendlyName("xADComputer")]
+﻿[ClassVersion("1.0.0.0"), FriendlyName("xADComputer")]
 class MSFT_xADComputer : OMI_BaseResource
 {
     [Key, Description("Specifies the name of the computer")] String ComputerName;

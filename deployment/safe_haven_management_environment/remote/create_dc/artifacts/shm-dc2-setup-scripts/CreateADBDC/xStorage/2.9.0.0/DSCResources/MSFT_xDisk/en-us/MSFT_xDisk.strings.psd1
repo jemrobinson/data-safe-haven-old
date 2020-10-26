@@ -1,4 +1,5 @@
-﻿ConvertFrom-StringData @'
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
+ConvertFrom-StringData @'
     GettingDiskMessage = Getting Disk '{0}' status for drive letter '{1}'.
     SettingDiskMessage = Setting Disk '{0}' status for drive letter '{1}'.
     SetDiskOnlineMessage = Setting disk number '{0}' online.

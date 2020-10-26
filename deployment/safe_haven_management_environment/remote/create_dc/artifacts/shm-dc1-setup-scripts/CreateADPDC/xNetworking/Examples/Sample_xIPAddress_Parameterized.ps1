@@ -1,5 +1,4 @@
-﻿configuration Sample_xIPAddress_Parameterized
-{
+configuration Sample_xIPAddress_Parameterized {
     param
     (
 
@@ -16,7 +15,7 @@
 
         [int]$SubnetMask = 16,
 
-        [ValidateSet("IPv4","IPv6")]
+        [ValidateSet("IPv4", "IPv6")]
         [string]$AddressFamily = 'IPv4'
     )
 
@@ -26,11 +25,11 @@
     {
         xIPAddress NewIPAddress
         {
-            IPAddress      = $IPAddress
+            IPAddress = $IPAddress
             InterfaceAlias = $InterfaceAlias
             DefaultGateway = $DefaultGateway
-            SubnetMask     = $SubnetMask
-	        AddressFamily  = $AddressFamily
+            SubnetMask = $SubnetMask
+	        AddressFamily = $AddressFamily
         }
     }
 }

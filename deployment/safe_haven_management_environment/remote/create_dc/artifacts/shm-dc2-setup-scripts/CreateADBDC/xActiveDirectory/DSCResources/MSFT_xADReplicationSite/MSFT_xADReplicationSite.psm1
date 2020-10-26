@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 <#
     .SYNOPSIS
         Returns the current state of the AD replication site.
@@ -5,8 +6,7 @@
     .PARAMETER Name
         Specifies the name of the AD replication site.
 #>
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -20,16 +20,13 @@ function Get-TargetResource
     # present, the command will return $null.
     $replicationSite = Get-ADReplicationSite -Filter { Name -eq $Name }
 
-    if ($null -eq $replicationSite)
-    {
+    if ($null -eq $replicationSite) {
         $returnValue = @{
             Ensure                     = 'Absent'
             Name                       = $Name
             RenameDefaultFirstSiteName = ''
         }
-    }
-    else
-    {
+    } else {
         $returnValue = @{
             Ensure                     = 'Present'
             Name                       = $Name
@@ -55,8 +52,7 @@ function Get-TargetResource
         Specify if the Default-First-Site-Name should be renamed, if it exists.
         Dafult value is 'false'.
 #>
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -74,8 +70,7 @@ function Set-TargetResource
         $RenameDefaultFirstSiteName = $false
     )
 
-    if ($Ensure -eq 'Present')
-    {
+    if ($Ensure -eq 'Present') {
         $defaultFirstSiteName = Get-ADReplicationSite -Filter { Name -eq 'Default-First-Site-Name' }
 
         <#
@@ -83,22 +78,18 @@ function Set-TargetResource
             and if it still exists. If both is true, rename the replication site
             instead of creating a new site.
         #>
-        if ($RenameDefaultFirstSiteName -and ($null -ne $defaultFirstSiteName))
-        {
+        if ($RenameDefaultFirstSiteName -and ($null -ne $defaultFirstSiteName)) {
             Write-Verbose "Add the replication site 'Default-First-Site-Name' to '$Name'"
 
             Rename-ADObject -Identity $defaultFirstSiteName.DistinguishedName -NewName $Name -ErrorAction Stop
-        }
-        else
-        {
+        } else {
             Write-Verbose "Add the replication site '$Name'"
 
             New-ADReplicationSite -Name $Name -ErrorAction Stop
         }
     }
 
-    if ($Ensure -eq 'Absent')
-    {
+    if ($Ensure -eq 'Absent') {
         Write-Verbose "Remove the replication site '$Name'"
 
         Remove-ADReplicationSite -Identity $Name -Confirm:$false -ErrorAction Stop
@@ -120,8 +111,7 @@ function Set-TargetResource
         Specify if the Default-First-Site-Name should be renamed, if it exists.
         Dafult value is 'false'.
 #>
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param

@@ -1,8 +1,7 @@
 $moduleRoot = Split-Path -Path $MyInvocation.MyCommand.Path -Parent
 #region LocalizedData
 $culture = 'en-us'
-if (Test-Path -Path (Join-Path -Path $moduleRoot -ChildPath $PSUICulture))
-{
+if (Test-Path -Path (Join-Path -Path $moduleRoot -ChildPath $PSUICulture)) {
     $culture = $PSUICulture
 }
 $importLocalizedDataParams = @{
@@ -50,8 +49,7 @@ Import-Module -Name $adCommonFunctions
 .PARAMETER UserPrincipalNameSuffixToRemove
     The User Principal Name Suffix(es) to remove in the forest. Cannot be used with UserPrincipalNameSuffix.
 #>
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -96,8 +94,7 @@ function Get-TargetResource
         Identity = $ForestName
     }
 
-    if ($Credential)
-    {
+    if ($Credential) {
         $getADForestParameters['Credential'] = $Credential
     }
 
@@ -148,8 +145,7 @@ function Get-TargetResource
 .PARAMETER UserPrincipalNameSuffixToRemove
     The User Principal Name Suffix(es) to remove in the forest. Cannot be used with UserPrincipalNameSuffix.
 #>
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -196,45 +192,37 @@ function Test-TargetResource
 
     ## Validate parameters before we even attempt to retrieve anything
     $assertMemberParameters = @{}
-    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffix') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffix))
-    {
+    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffix') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffix)) {
         $assertMemberParameters['Members'] = $ServicePrincipalNameSuffix
     }
-    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffixToAdd') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffixToAdd))
-    {
+    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffixToAdd') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffixToAdd)) {
         $assertMemberParameters['MembersToInclude'] = $ServicePrincipalNameSuffixToAdd
     }
-    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffixToRemove') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffixToRemove))
-    {
+    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffixToRemove') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffixToRemove)) {
         $assertMemberParameters['MembersToExclude'] = $ServicePrincipalNameSuffixToRemove
     }
 
     Assert-MemberParameters @assertMemberParameters -ErrorAction Stop
 
-    if (-not ( Test-Members @assertMemberParameters -ExistingMembers ($forest.SpnSuffixes -split ',') ))
-    {
+    if (-not ( Test-Members @assertMemberParameters -ExistingMembers ($forest.SpnSuffixes -split ',') )) {
         Write-Verbose -Message $LocalizedData.ForestSpnSuffixNotInDesiredState
         $inDesiredState = $false
     }
 
     $assertMemberParameters = @{}
-    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffix') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffix))
-    {
+    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffix') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffix)) {
         $assertMemberParameters['Members'] = $UserPrincipalNameSuffix
     }
-    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffixToAdd') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffixToAdd))
-    {
+    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffixToAdd') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffixToAdd)) {
         $assertMemberParameters['MembersToInclude'] = $UserPrincipalNameSuffixToAdd
     }
-    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffixToRemove') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffixToRemove))
-    {
+    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffixToRemove') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffixToRemove)) {
         $assertMemberParameters['MembersToExclude'] = $UserPrincipalNameSuffixToRemove
     }
 
     Assert-MemberParameters @assertMemberParameters -ErrorAction Stop
 
-    if (-not ( Test-Members @assertMemberParameters -ExistingMembers ($forest.UpnSuffixes -split ',') ))
-    {
+    if (-not ( Test-Members @assertMemberParameters -ExistingMembers ($forest.UpnSuffixes -split ',') )) {
         Write-Verbose -Message $LocalizedData.ForestUpnSuffixNotInDesiredState
         $inDesiredState = $false
     }
@@ -272,8 +260,7 @@ function Test-TargetResource
 .PARAMETER UserPrincipalNameSuffixToRemove
     The User Principal Name Suffix(es) to remove in the forest. Cannot be used with UserPrincipalNameSuffix.
 #>
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding()]
     param
     (
@@ -317,14 +304,12 @@ function Set-TargetResource
         Identity = $ForestName
     }
 
-    if ($Credential)
-    {
+    if ($Credential) {
         $setADForestParameters['Credential'] = $Credential
     }
 
     # add ServicePrincipalName parameter
-    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffix') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffix))
-    {
+    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffix') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffix)) {
         $replaceServicePrincipalNameSuffix = $ServicePrincipalNameSuffix -join ','
         $setADForestParameters['SpnSuffixes'] = @{
             replace = $($ServicePrincipalNameSuffix)
@@ -332,8 +317,7 @@ function Set-TargetResource
 
         Write-Verbose -Message ($localizedData.ReplaceSpnSuffix -f $replaceServicePrincipalNameSuffix)
     }
-    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffixToAdd') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffixToAdd))
-    {
+    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffixToAdd') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffixToAdd)) {
         $addServicePrincipalNameSuffix = $ServicePrincipalNameSuffixToAdd -join ','
         $setADForestParameters['SpnSuffixes'] = @{
             add = $($ServicePrincipalNameSuffixToAdd)
@@ -341,15 +325,11 @@ function Set-TargetResource
 
         Write-Verbose -Message ($localizedData.AddSpnSuffix -f $addServicePrincipalNameSuffix)
     }
-    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffixToRemove') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffixToRemove))
-    {
+    if ($PSBoundParameters.ContainsKey('ServicePrincipalNameSuffixToRemove') -and -not [system.string]::IsNullOrEmpty($ServicePrincipalNameSuffixToRemove)) {
         $removeServicePrincipalNameSuffix = $ServicePrincipalNameSuffixToRemove -join ','
-        if ($setADForestParameters['SpnSuffixes'])
-        {
+        if ($setADForestParameters['SpnSuffixes']) {
             $setADForestParameters['SpnSuffixes']['remove'] = $($ServicePrincipalNameSuffixToRemove)
-        }
-        else
-        {
+        } else {
             $setADForestParameters['SpnSuffixes'] = @{
                 remove = $($ServicePrincipalNameSuffixToRemove)
             }
@@ -359,8 +339,7 @@ function Set-TargetResource
     }
 
     # add UserPrincipalName parameter
-    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffix') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffix))
-    {
+    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffix') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffix)) {
         $replaceUserPrincipalNameSuffix = $UserPrincipalNameSuffix -join ','
         $setADForestParameters['UpnSuffixes'] = @{
             replace = $($UserPrincipalNameSuffix)
@@ -368,8 +347,7 @@ function Set-TargetResource
 
         Write-Verbose -Message ($localizedData.ReplaceUpnSuffix -f $replaceUserPrincipalNameSuffix)
     }
-    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffixToAdd') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffixToAdd))
-    {
+    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffixToAdd') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffixToAdd)) {
         $addUserPrincipalNameSuffix = $UserPrincipalNameSuffixToAdd -join ','
         $setADForestParameters['UpnSuffixes'] = @{
             add = $($UserPrincipalNameSuffixToAdd)
@@ -377,15 +355,11 @@ function Set-TargetResource
 
         Write-Verbose -Message ($localizedData.AddUpnSuffix -f $addUserPrincipalNameSuffix)
     }
-    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffixToRemove') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffixToRemove))
-    {
+    if ($PSBoundParameters.ContainsKey('UserPrincipalNameSuffixToRemove') -and -not [system.string]::IsNullOrEmpty($UserPrincipalNameSuffixToRemove)) {
         $removeUserPrincipalNameSuffix = $UserPrincipalNameSuffixToRemove -join ','
-        if ($setADForestParameters['UpnSuffixes'])
-        {
+        if ($setADForestParameters['UpnSuffixes']) {
             $setADForestParameters['UpnSuffixes']['remove'] = $($UserPrincipalNameSuffixToRemove)
-        }
-        else
-        {
+        } else {
             $setADForestParameters['UpnSuffixes'] = @{
                 remove = $($UserPrincipalNameSuffixToRemove)
             }

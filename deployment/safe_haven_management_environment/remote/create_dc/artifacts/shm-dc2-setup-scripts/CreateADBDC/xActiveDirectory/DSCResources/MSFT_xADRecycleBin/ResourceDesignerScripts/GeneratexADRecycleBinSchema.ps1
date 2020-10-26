@@ -1,3 +1,4 @@
+[ClassVersion("1.0.1.0"), FriendlyName("xADDomainController")]
 New-xDscResource -Name MSFT_xADRecycleBin -FriendlyName xADRecycleBin -ModuleName xActiveDirectory -Path . -Force -Property @(
     New-xDscResourceProperty -Name ForestFQDN -Type String -Attribute Key
     New-xDscResourceProperty -Name EnterpriseAdministratorCredential -Type PSCredential -Attribute Required

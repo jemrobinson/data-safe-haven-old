@@ -1,4 +1,4 @@
-[ClassVersion("1.0.1.0"), FriendlyName("xADGroup")]
+﻿[ClassVersion("1.0.1.0"), FriendlyName("xADGroup")]
 class MSFT_xADGroup : OMI_BaseResource
 {
     [Key, Description("Name of the Active Directory group")] String GroupName;

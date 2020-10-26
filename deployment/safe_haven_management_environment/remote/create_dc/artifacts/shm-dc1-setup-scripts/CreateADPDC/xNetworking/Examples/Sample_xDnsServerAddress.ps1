@@ -1,5 +1,4 @@
-configuration Sample_xDnsServerAddress
-{
+configuration Sample_xDnsServerAddress {
     param
     (
         [string[]]$NodeName = 'localhost',
@@ -10,7 +9,7 @@ configuration Sample_xDnsServerAddress
         [Parameter(Mandatory)]
         [string]$InterfaceAlias,
 
-        [ValidateSet("IPv4","IPv6")]
+        [ValidateSet("IPv4", "IPv6")]
         [string]$AddressFamily = 'IPv4'
     )
 
@@ -20,9 +19,9 @@ configuration Sample_xDnsServerAddress
     {
         xDnsServerAddress DnsServerAddress
         {
-            Address        = $DnsServerAddress
+            Address = $DnsServerAddress
             InterfaceAlias = $InterfaceAlias
-            AddressFamily  = $AddressFamily
+            AddressFamily = $AddressFamily
         }
     }
 }

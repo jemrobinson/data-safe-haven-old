@@ -1,4 +1,4 @@
-[ClassVersion("1.0.0.0"), FriendlyName("xADReplicationSubnet")]
+﻿[ClassVersion("1.0.0.0"), FriendlyName("xADReplicationSubnet")]
 class MSFT_xADReplicationSubnet : OMI_BaseResource
 {
     [Write, Description("Specifies if the AD replication subnet should be added or remove. Default value is 'Present'. { *Present* | Absent }."), ValueMap{"Present", "Absent"}, Values{"Present", "Absent"}] string Ensure;

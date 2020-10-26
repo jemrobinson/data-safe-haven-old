@@ -1,5 +1,4 @@
-function Get-TargetResource
-{
+function Get-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]
     param
@@ -13,8 +12,7 @@ function Get-TargetResource
         $EnterpriseAdministratorCredential
     )
 
-    Try
-    {
+    Try {
         # AD cmdlets generate non-terminating errors.
         $ErrorActionPreference = 'Stop'
 
@@ -30,15 +28,13 @@ function Get-TargetResource
         }
     }
 
-    Catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException],[Microsoft.ActiveDirectory.Management.ADServerDownException] {
+    Catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException], [Microsoft.ActiveDirectory.Management.ADServerDownException] {
         Write-Error -Message "Cannot contact forest $ForestFQDN. Check the spelling of the Forest FQDN and make sure that a domain contoller is available on the network."
         Throw $_
-    }
-    Catch [System.Security.Authentication.AuthenticationException] {
+    } Catch [System.Security.Authentication.AuthenticationException] {
         Write-Error -Message "Credential error. Check the username and password used."
         Throw $_
-    }
-    Catch {
+    } Catch {
         Write-Error -Message "Unhandled exception getting Recycle Bin status for forest $ForestFQDN."
         Throw $_
     }
@@ -48,18 +44,17 @@ function Get-TargetResource
     }
 
     $returnValue = @{
-        ForestFQDN = $ForestFQDN
+        ForestFQDN        = $ForestFQDN
         RecycleBinEnabled = $RecycleBinEnabled
-        ForestMode = $RootDSE.forestFunctionality.ToString()
+        ForestMode        = $RootDSE.forestFunctionality.ToString()
     }
 
     $returnValue
 }
 
 
-function Set-TargetResource
-{
-    [CmdletBinding(SupportsShouldProcess=$true)]
+function Set-TargetResource {
+    [CmdletBinding(SupportsShouldProcess = $true)]
     param
     (
         [parameter(Mandatory = $true)]
@@ -72,8 +67,7 @@ function Set-TargetResource
     )
 
 
-    Try
-    {
+    Try {
         # AD cmdlets generate non-terminating errors.
         $ErrorActionPreference = 'Stop'
 
@@ -93,15 +87,13 @@ function Set-TargetResource
         }
     }
 
-    Catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException],[Microsoft.ActiveDirectory.Management.ADServerDownException] {
+    Catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException], [Microsoft.ActiveDirectory.Management.ADServerDownException] {
         Write-Error -Message "Cannot contact forest $ForestFQDN. Check the spelling of the Forest FQDN and make sure that a domain contoller is available on the network."
         Throw $_
-    }
-    Catch [System.Security.Authentication.AuthenticationException] {
+    } Catch [System.Security.Authentication.AuthenticationException] {
         Write-Error -Message "Credential error. Check the username and password used."
         Throw $_
-    }
-    Catch {
+    } Catch {
         Write-Error -Message "Unhandled exception setting Recycle Bin status for forest $ForestFQDN."
         Throw $_
     }
@@ -113,8 +105,7 @@ function Set-TargetResource
 }
 
 
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
     param
@@ -146,15 +137,13 @@ function Test-TargetResource
         }
     }
 
-    Catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException],[Microsoft.ActiveDirectory.Management.ADServerDownException] {
+    Catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException], [Microsoft.ActiveDirectory.Management.ADServerDownException] {
         Write-Error -Message "Cannot contact forest $ForestFQDN. Check the spelling of the Forest FQDN and make sure that a domain contoller is available on the network."
         Throw $_
-    }
-    Catch [System.Security.Authentication.AuthenticationException] {
+    } Catch [System.Security.Authentication.AuthenticationException] {
         Write-Error -Message "Credential error. Check the username and password used."
         Throw $_
-    }
-    Catch {
+    } Catch {
         Write-Error -Message "Unhandled exception testing Recycle Bin status for forest $ForestFQDN."
         Throw $_
     }
@@ -184,6 +173,3 @@ Get-TargetResource -ForestFQDN contoso.cm -EnterpriseAdministratorCredential $cr
 Test-TargetResource -ForestFQDN contoso.cm -EnterpriseAdministratorCredential $cred
 Set-TargetResource -ForestFQDN contoso.cm -EnterpriseAdministratorCredential $cred -WhatIf
 #>
-
-
-

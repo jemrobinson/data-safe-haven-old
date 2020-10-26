@@ -10,22 +10,22 @@
 # RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '2.9.0.0'
+ModuleVersion     = '2.9.0.0'
 
 # ID used to uniquely identify this module
-GUID = '00d73ca1-58b5-46b7-ac1a-5bfcf5814faf'
+GUID              = '00d73ca1-58b5-46b7-ac1a-5bfcf5814faf'
 
 # Author of this module
-Author = 'PowerShell DSC'
+Author            = 'PowerShell DSC'
 
 # Company or vendor of this module
-CompanyName = 'Microsoft Corporation'
+CompanyName       = 'Microsoft Corporation'
 
 # Copyright statement for this module
-Copyright = '2015'
+Copyright         = '2015'
 
 # Description of the functionality provided by this module
-Description = 'This module contains all resources related to the PowerShell Storage module, or pertaining to disk management.'
+Description       = 'This module contains all resources related to the PowerShell Storage module, or pertaining to disk management.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '4.0'
@@ -67,13 +67,13 @@ PowerShellVersion = '4.0'
 FunctionsToExport = '*'
 
 # Cmdlets to export from this module
-CmdletsToExport = '*'
+CmdletsToExport   = '*'
 
 # Variables to export from this module
 VariablesToExport = '*'
 
 # Aliases to export from this module
-AliasesToExport = '*'
+AliasesToExport   = '*'
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -85,18 +85,18 @@ AliasesToExport = '*'
 # FileList = @()
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-PrivateData = @{
+PrivateData       = @{
 
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @('DesiredStateConfiguration', 'DSC', 'DSCResourceKit', 'DSCResource')
+        Tags         = @('DesiredStateConfiguration', 'DSC', 'DSCResourceKit', 'DSCResource')
 
         # A URL to the license for this module.
-        LicenseUri = 'https://github.com/PowerShell/xStorage/blob/master/LICENSE'
+        LicenseUri   = 'https://github.com/PowerShell/xStorage/blob/master/LICENSE'
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/PowerShell/xStorage'
+        ProjectUri   = 'https://github.com/PowerShell/xStorage'
 
         # A URL to an icon representing this module.
         # IconUri = ''
@@ -137,7 +137,3 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
-
-
-
-
