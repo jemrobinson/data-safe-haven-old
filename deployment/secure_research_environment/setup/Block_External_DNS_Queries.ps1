@@ -33,9 +33,9 @@ $null = Set-NetworkSecurityGroupRules -NetworkSecurityGroup $computeNsg -Rules $
 $null = Set-AzContext -SubscriptionId $config.shm.subscriptionName
 $scriptPath = Join-Path $PSScriptRoot ".." "remote" "network_configuration" "scripts" "Block_External_DNS_Queries_Remote.ps1"
 $params = @{
-    sreId                  = "`"$($config.sre.id)`""
-    blockedCidrsList       = "`"$($config.sre.network.vnet.subnets.data.cidr)`""
-    exceptionCidrsList     = "`"$($config.sre.dataserver.ip)/32`""
+    sreId              = "`"$($config.sre.id)`""
+    blockedCidrsList   = "`"$($config.sre.network.vnet.subnets.data.cidr)`""
+    exceptionCidrsList = "`"$($config.sre.dataserver.ip)/32`""
 }
 foreach ($dnsServerName in @($config.shm.dc.vmName, $config.shm.dcb.vmName)) {
     Add-LogMessage -Level Info "Blocking external DNS resolution for DSVMs via $($dnsServerName)..."

@@ -49,8 +49,8 @@ function New-ReadOnlyAccountSasToken {
     return New-AccountSasToken -subscriptionName "$SubscriptionName" `
                                -resourceGroup "$ResourceGroup" `
                                -AccountName "$AccountName" `
-                               -Service Blob,File `
-                               -ResourceType Service,Container,Object `
+                               -Service Blob, File `
+                               -ResourceType Service, Container, Object `
                                -Permission "rl"
 }
 Export-ModuleMember -Function New-ReadOnlyAccountSasToken

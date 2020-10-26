@@ -111,14 +111,14 @@ $null = Deploy-ResourceGroup -Name $config.sre.dataserver.rg -Location $config.s
 # -----------------------------------------
 $ingressdataStorage = Deploy-StorageAccount -Name $config.sre.storage.data.ingress.accountName -ResourceGroupName $config.sre.dataserver.rg -Location $config.sre.location
 $null = Deploy-StorageShare -Name $config.sre.storage.data.ingress.containerName -StorageAccount $ingressdataStorage
-$ingressSharePassword = (Get-AzStorageAccountKey -ResourceGroupName $config.sre.dataserver.rg -Name $config.sre.storage.data.ingress.accountName | Where-Object {$_.KeyName -eq "key1"}).Value
+$ingressSharePassword = (Get-AzStorageAccountKey -ResourceGroupName $config.sre.dataserver.rg -Name $config.sre.storage.data.ingress.accountName | Where-Object { $_.KeyName -eq "key1" }).Value
 
 
 # Deploy a storage account for data egress
 # ----------------------------------------
 $egressdataStorage = Deploy-StorageAccount -Name $config.sre.storage.data.egress.accountName -ResourceGroupName $config.sre.dataserver.rg -Location $config.sre.location
 $null = Deploy-StorageShare -Name $config.sre.storage.data.egress.containerName -StorageAccount $egressdataStorage
-$egressSharePassword = (Get-AzStorageAccountKey -ResourceGroupName $config.sre.dataserver.rg -Name $config.sre.storage.data.egress.accountName | Where-Object {$_.KeyName -eq "key1"}).Value
+$egressSharePassword = (Get-AzStorageAccountKey -ResourceGroupName $config.sre.dataserver.rg -Name $config.sre.storage.data.egress.accountName | Where-Object { $_.KeyName -eq "key1" }).Value
 
 
 # Ensure that the DSVM resource group exists

@@ -2,9 +2,9 @@
 # ------------------------------------------
 function Get-MirrorAddresses {
     param(
-        [Parameter(Position = 0,HelpMessage = "CRAN IP address")]
+        [Parameter(Position = 0, HelpMessage = "CRAN IP address")]
         [string]$cranIp = $null,
-        [Parameter(Position = 1,HelpMessage = "PyPI IP address")]
+        [Parameter(Position = 1, HelpMessage = "PyPI IP address")]
         [string]$pypiIp = $null
     )
     if ($cranIp) {
@@ -27,7 +27,7 @@ function Get-MirrorAddresses {
             url = $cranUrl
         }
         pypi = [ordered]@{
-            url = $pypiUrl
+            url  = $pypiUrl
             host = $pypiHost
         }
     }

@@ -79,7 +79,7 @@ $null = Set-AzContext -SubscriptionId $config.shm.subscriptionName
 $ruleNameFilter = "sre-$($config.sre.id)*"
 # Application rules
 # -----------------
-foreach ($ruleCollectionName in $firewall.ApplicationRuleCollections | Where-Object { $_.Name -like "$ruleNameFilter*"} | ForEach-Object { $_.Name }) {
+foreach ($ruleCollectionName in $firewall.ApplicationRuleCollections | Where-Object { $_.Name -like "$ruleNameFilter*" } | ForEach-Object { $_.Name }) {
     $null = $firewall.RemoveApplicationRuleCollectionByName($ruleCollectionName)
     Add-LogMessage -Level Info "Removed existing '$ruleCollectionName' application rule collection."
 }
@@ -100,7 +100,7 @@ if (-not $rules.applicationRuleCollections) {
 
 # Network rules
 # -------------
-foreach ($ruleCollectionName in $firewall.NetworkRuleCollections | Where-Object { $_.Name -like "$ruleNameFilter*"} | ForEach-Object { $_.Name }) {
+foreach ($ruleCollectionName in $firewall.NetworkRuleCollections | Where-Object { $_.Name -like "$ruleNameFilter*" } | ForEach-Object { $_.Name }) {
     $null = $firewall.RemoveNetworkRuleCollectionByName($ruleCollectionName)
     Add-LogMessage -Level Info "Removed existing '$ruleCollectionName' network rule collection."
 }
