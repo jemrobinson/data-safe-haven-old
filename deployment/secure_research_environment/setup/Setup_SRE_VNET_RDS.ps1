@@ -76,19 +76,19 @@ $sreAdminUsername = Resolve-KeyVaultSecret -VaultName $config.sre.keyVault.name 
 # Ensure that boot diagnostics resource group and storage account exist
 # ---------------------------------------------------------------------
 $null = Deploy-ResourceGroup -Name $config.sre.storage.bootdiagnostics.rg -Location $config.sre.location
-$null = Deploy-StorageAccount -Name $config.sre.storage.bootdiagnostics.accountName -ResourceGroupName $config.sre.storage.bootdiagnostics.rg -Location $config.sre.location
+$null = Deploy-StorageAccount -Name $config.sre.storage.bootdiagnostics.accountName -ResourceGroupName $config.sre.storage.bootdiagnostics.rg -Kind "BlobStorage" -Location $config.sre.location
 
 
 # Ensure that SRE resource group and storage accounts exist
 # ---------------------------------------------------------
 $null = Deploy-ResourceGroup -Name $config.sre.storage.artifacts.rg -Location $config.sre.location
-$sreStorageAccount = Deploy-StorageAccount -Name $config.sre.storage.artifacts.accountName -ResourceGroupName $config.sre.storage.artifacts.rg -Location $config.sre.location
+$sreStorageAccount = Deploy-StorageAccount -Name $config.sre.storage.artifacts.accountName -ResourceGroupName $config.sre.storage.artifacts.rg -Kind "BlobStorage" -Location $config.sre.location
 
 
 # Get SHM storage account
 # -----------------------
 $null = Set-AzContext -Subscription $config.shm.subscriptionName
-$shmStorageAccount = Deploy-StorageAccount -Name $config.shm.storage.artifacts.accountName -ResourceGroupName $config.shm.storage.artifacts.rg -Location $config.shm.location
+$shmStorageAccount = Deploy-StorageAccount -Name $config.shm.storage.artifacts.accountName -ResourceGroupName $config.shm.storage.artifacts.rg -Kind "BlobStorage" -Location $config.shm.location
 $null = Set-AzContext -Subscription $config.sre.subscriptionName
 
 

@@ -27,7 +27,7 @@ $null = Deploy-StorageAccount -Name $config.storage.bootdiagnostics.accountName 
 # Setup artifacts resource group and storage account
 # --------------------------------------------------
 $null = Deploy-ResourceGroup -Name $config.storage.artifacts.rg -Location $config.location
-$storageAccount = Deploy-StorageAccount -Name $config.storage.artifacts.accountName -ResourceGroupName $config.storage.artifacts.rg -Location $config.location
+$storageAccount = Deploy-StorageAccount -Name $config.storage.artifacts.accountName -ResourceGroupName $config.storage.artifacts.rg -Kind "BlobStorage" -Location $config.location
 
 
 # Create blob storage containers
