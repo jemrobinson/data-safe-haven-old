@@ -95,26 +95,26 @@ The following core SHM properties must be defined in a JSON file named `shm_<SHM
 
 ## Configure DNS for the custom domain
 
-[![Powershell](https://img.shields.io/badge/local-Run%20this%20on%20your%20deployment%20machine-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
+[![Powershell](https://img.shields.io/badge/local-Runtime%3A%20a%20few%20minutes-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
+
+Replacing `<SHM ID>` by the [management environment ID](#management-environment-id) specified in the configuration file, run the following:
 
 ```pwsh
 ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
 ```
 
-where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
+#### :warning: Troubleshooting
+If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, following the instructions below.
 
-#### :exclamation: Troubleshooting
-+ If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
+<details><summary><b>Manual DNS configuration instructions</b></summary>
 
-<details><summary>Manual DNS configuration instructions</summary>
-
-  + To find the required values for the NS records on the portal, click `All resources` in the far left panel, search for "DNS Zone" and locate the DNS Zone with the SHM's domain. The NS record will list 4 Azure name servers.
-  + Duplicate these records to the parent DNS system as follows:
-    + If the parent domain has an Azure DNS Zone, create an NS record set in this zone. The name should be set to the subdomain (e.g. `testa`) or `@` if using a custom domain, and the values duplicated from above (for example, for a new subdomain `testa.dsgroupdev.co.uk`, duplicate the NS records from the Azure DNS Zone `testa.dsgroupdev.co.uk` to the Azure DNS Zone for `dsgroupdev.co.uk`, by creating a record set with name `testa`).
-    <p align="center">
-        <img src="../../images/deploy_sre/subdomain_ns_record.png" width="80%" title="Subdomain NS record">
-    </p>
-    + If the parent domain is outside of Azure, create NS records in the registrar for the new domain with the same value as the NS records in the new Azure DNS Zone for the domain.
++ To find the required values for the NS records on the portal, click `All resources` in the far left panel, search for "DNS Zone" and locate the DNS Zone with the SHM's domain. The NS record will list 4 Azure name servers.
++ Duplicate these records to the parent DNS system as follows:
+  + If the parent domain has an Azure DNS Zone, create an NS record set in this zone. The name should be set to the subdomain (e.g. `testa`) or `@` if using a custom domain, and the values duplicated from above (for example, for a new subdomain `testa.dsgroupdev.co.uk`, duplicate the NS records from the Azure DNS Zone `testa.dsgroupdev.co.uk` to the Azure DNS Zone for `dsgroupdev.co.uk`, by creating a record set with name `testa`).
+  <p align="center">
+      <img src="../../images/deploy_sre/subdomain_ns_record.png" width="80%" title="Subdomain NS record">
+  </p>
+  + If the parent domain is outside of Azure, create NS records in the registrar for the new domain with the same value as the NS records in the new Azure DNS Zone for the domain.
 
 </details>
 
@@ -137,6 +137,8 @@ where `<SHM ID>` is the [management environment ID](#management-environment-id) 
 
 ### Add the SHM domain to the new AAD
 
+<details><summary><b>Get the Azure Active Directory Tenant ID</b></summary>
+
 + Navigate to the AAD you have created within the Azure portal. You can do this by:
   + Clicking the link displayed at the end of the initial AAD deployment.
   + Clicking on your username and profile icon at the top left of the Azure portal, clicking `Switch directory` and selecting the AAD you have just created from the `All Directories` section of the `Directory + Subscription` panel that then displays.
@@ -145,6 +147,7 @@ where `<SHM ID>` is the [management environment ID](#management-environment-id) 
    <p align="center">
       <img src="../../images/deploy_shm/aad_tenant_id.png" width="80%" title="AAD Tenant ID">
    </p>
+</details>
 
 [![Powershell](https://img.shields.io/badge/local-Runtime%3A%20a%20few%20minutes-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
 
@@ -160,7 +163,7 @@ When asked to log in, pick the Azure account that you are building the environme
 The bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
 
 #### :warning: Troubleshooting
-+ ![Windows](https://img.shields.io/badge/-555?&logo=windows&logoColor=white): If the `Connect-AzureAD` command is unavailable, you may need to manually import the correct cross platform module by running `Import-Module AzureAD.Standard.Preview`.
++ ![Windows](https://img.shields.io/badge/-555?&logo=windows&logoColor=white) If the `Connect-AzureAD` command is unavailable, you may need to manually import the correct cross platform module by running `Import-Module AzureAD.Standard.Preview`.
 + If you get an error like `Could not load file or assembly 'Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (0x80131621)` then you may need to try again in a fresh Powershell terminal.
 + Due to delays with DNS propagation, occasionally the script may exhaust the maximum number of retries without managing to verify the domain. If this occurs, run the script again. If it exhausts the number of retries a second time, wait an hour and try again.
 
