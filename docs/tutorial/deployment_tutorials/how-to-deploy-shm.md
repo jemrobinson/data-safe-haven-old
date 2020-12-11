@@ -95,20 +95,26 @@ The following core SHM properties must be defined in a JSON file named `shm_<SHM
 
 ## Configure DNS for the custom domain
 
-From your **deployment machine**
+![Powershell](https://img.shields.io/badge/local-Run%20this%20on%20your%20deployment%20machine-blue?logo=powershell&style=for-the-badge)
+
+<details><summary>Prerequisites</summary>
 
 + Ensure you have the latest version of the Safe Haven repository from [https://github.com/alan-turing-institute/data-safe-haven](https://github.com/alan-turing-institute/data-safe-haven).
 + Open a Powershell terminal and navigate to the `deployment/safe_haven_management_environment/setup` directory within the Safe Haven repository.
-+ Ensure you are logged into Azure within PowerShell using the command: `Connect-AzAccount`. This command will give you a URL and a short alphanumeric code. You will need to visit that URL in a web browser, enter the code and log in to your account on Azure
++ Ensure you are logged into Azure within PowerShell using the command: `Connect-AzAccount`.
+  + This command will give you a URL and a short alphanumeric code.
+  + You will need to visit that URL in a web browser, enter the code and log in to your account on Azure
   + Pick the Azure account that you are building the environment with when asked to log in
 
-> ![Powershell](https://img.shields.io/badge/local-Code%20to%20run%20locally-red?logo=powershell&style=for-the-badge)
-> ```pwsh
-> ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
-> ```
+</details>
 
+```pwsh
+./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
+```
 where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
-+ If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
+
+![Troubleshooting](https://img.shields.io/badge/Troubleshooting-DNS-configuration-red?logo=LGTM&style=for-the-badge)
+If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
 
 <details><summary>Manual DNS configuration instructions</summary>
 
