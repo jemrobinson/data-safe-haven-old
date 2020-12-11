@@ -100,11 +100,13 @@ The following core SHM properties must be defined in a JSON file named `shm_<SHM
 ```pwsh
 ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
 ```
+
 where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
 
-<details><summary><img src="https://img.shields.io/badge/Troubleshooting-Manual%20DNS%20configuration%20instructions-red?logo=LGTM&style=for-the-badge"/></summary>
+#### :exclamation: Troubleshooting
++ If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
 
-If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
+<details><summary>Manual DNS configuration instructions</summary>
 
   + To find the required values for the NS records on the portal, click `All resources` in the far left panel, search for "DNS Zone" and locate the DNS Zone with the SHM's domain. The NS record will list 4 Azure name servers.
   + Duplicate these records to the parent DNS system as follows:
@@ -162,18 +164,23 @@ If you see a message `You need to add the following NS records to the parent DNS
 
 ## Deploy key vault for SHM secrets and create emergency admin account
 
-From your **deployment machine**
+[![Powershell](https://img.shields.io/badge/local-Runtime%3A%20a%20few%20minutes-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
 
-+ Ensure you have the latest version of the Safe Haven repository from [https://github.com/alan-turing-institute/data-safe-haven](https://github.com/alan-turing-institute/data-safe-haven).
-+ Open a Powershell terminal and navigate to the `deployment/safe_haven_management_environment/setup` directory within the Safe Haven repository.
-+ Ensure you are logged into Azure within Powershell using the command: `Connect-AzAccount`. This command will give you a URL and a short alphanumeric code. You will need to visit that URL in a web browser and enter the code
-  + Pick the Azure account that you are building the environment with when asked to log in
-  + NB. If your account is a guest in additional Azure tenants, you may need to add the `-Tenant <Tenant ID>` flag, where `<Tenant ID>` is the ID of the Azure tenant you want to deploy into.
-  + Run `pwsh { ./Setup_SHM_KeyVault_And_Emergency_Admin.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }`, where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` is the `Tenant ID` you copied from the AAD
-    + :pencil: Note the bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
-    + Pick the Azure account that you are building the environment with when asked to log in
-    + **Troubleshooting:** If you get an error like `Could not load file or assembly 'Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (0x80131621)` then you may need to try again in a fresh Powershell terminal.
-+ This will take **a few minutes** to run.
+```pwsh
+pwsh { ./Setup_SHM_KeyVault_And_Emergency_Admin.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
+```
+
+where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` is the `Tenant ID` you copied from the AAD
+
++ When asked to log in, pick the Azure account that you are building the environment with
+
+#### :pencil: Notes
++ Note the bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
+
+#### :exclamation: Troubleshooting
+If you get an error like `Could not load file or assembly 'Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (0x80131621)` then you may need to try again in a fresh Powershell terminal.
+
+## Manually assigning the Global Administrator role.
 
 The User who creates the AAD will automatically have a **guest** account created in the AAD, with the Global Administrator (GA) Role. Users with this role have access to all administrative features in Azure Active Directory). You will use this account for almost all administration of the Safe Haven Azure AD.
 
@@ -809,3 +816,4 @@ From your **deployment machine**
   + This command will give you a URL and a short alphanumeric code.
   + You will need to visit that URL in a web browser, enter the code and log in to your account on Azure
   + Pick the Azure account that you are building the environment with when asked to log in
+  + NB. If your account is a guest in additional Azure tenants, you may need to add the `-Tenant <Tenant ID>` flag, where `<Tenant ID>` is the ID of the Azure tenant you want to deploy into.
