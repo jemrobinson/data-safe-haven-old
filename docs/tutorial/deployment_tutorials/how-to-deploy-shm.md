@@ -102,10 +102,10 @@ From your **deployment machine**
 + Ensure you are logged into Azure within PowerShell using the command: `Connect-AzAccount`. This command will give you a URL and a short alphanumeric code. You will need to visit that URL in a web browser, enter the code and log in to your account on Azure
   + Pick the Azure account that you are building the environment with when asked to log in
 
-```pwsh
-![Powershell](https://img.shields.io/badge/local-Code%20to%20run%20locally-red?logo=powershell&style=for-the-badge)
-./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
-```
+> ![Powershell](https://img.shields.io/badge/local-Code%20to%20run%20locally-red?logo=powershell&style=for-the-badge)
+> ```pwsh
+> ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
+> ```
 
 where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
 + If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
