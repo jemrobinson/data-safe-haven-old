@@ -109,13 +109,14 @@ From your **deployment machine**
   <text fill="#c19c00" font-family="sans-serif" x="40" y="20" alignment-baseline="middle" text-anchor="left">./Setup_SHM_DNS_Zone.ps1 -shmId &lt;SHM ID&gt;</text>
 </svg>
 
-<span class="float-left text-red tooltipped tooltipped-n" aria-label="Does not meet accessibility standards"><%= octicon("alert") %></span>
-<div class="text-orange-light mb-2">
-  .text-orange-light on white
-</div>
+<svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="50">
+  <text font-size="16" x="10" y="20">
+    <tspan fill="#c50f1f">&gt;</tspan> <tspan fill="#c19c00">./Setup_SHM_DNS_Zone.ps1 -shmId &lt;SHM ID&gt;</tspan>
+  </text>
+</svg>
 
-```pwsh
 :pushpin: Code to run on your deployment machine
+```pwsh
 ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
 ```
 
