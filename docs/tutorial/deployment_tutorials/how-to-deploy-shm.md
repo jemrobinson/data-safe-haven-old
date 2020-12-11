@@ -117,7 +117,7 @@ a[href='red'] {
 where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
 
 
-#### :pushpin: [Code to run on your deployment machine](red)
+![PyPI version](https://img.shields.io/badge/label-Run%20Locally-red?logo=powershell&style=for-the-badge)
 ```pwsh
 ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
 ```
