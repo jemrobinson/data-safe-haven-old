@@ -103,11 +103,26 @@ From your **deployment machine**
   + Pick the Azure account that you are building the environment with when asked to log in
 + Run `./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>`, where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
 
+a[href='red'] {
+    color: red;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
 #### :pushpin: Code to run on your deployment machine
 ```pwsh
 ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
 ```
 where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
+
+
+#### :pushpin: [Code to run on your deployment machine](red)
+```pwsh
+./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
+```
+where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
+
 
 + If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
 
