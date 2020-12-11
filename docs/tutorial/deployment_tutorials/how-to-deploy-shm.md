@@ -145,39 +145,41 @@ where `<SHM ID>` is the [management environment ID](#management-environment-id) 
    <p align="center">
       <img src="../../images/deploy_shm/aad_tenant_id.png" width="80%" title="AAD Tenant ID">
    </p>
-+ Add the SHM domain:
-  + Ensure you have the latest version of the Safe Haven repository from [https://github.com/alan-turing-institute/data-safe-haven](https://github.com/alan-turing-institute/data-safe-haven).
-  + Open a Powershell terminal and navigate to the `deployment/safe_haven_management_environment/setup` directory within the Safe Haven repository.
-  <!-- + Run `pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }`, where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` is the `Tenant ID` you copied from the AAD -->
-  ![Powershell](https://img.shields.io/badge/local-Code%20to%20run%20locally-red?logo=powershell&style=for-the-badge)
-  ```pwsh
-  pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
-  ```
-  where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` is the `Tenant ID` you copied from the AAD
 
-    + :pencil: Note the bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
-    + :warning: If you do not do this before running the next script, you will have to exit Powershell and start it again.
-    + :warning: **Windows:** If the `Connect-AzureAD` command is unavailable, you may need to manually import the correct cross platform module by running `Import-Module AzureAD.Standard.Preview`.
-    + **Troubleshooting:** If you get an error like `Could not load file or assembly 'Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (0x80131621)` then you may need to try again in a fresh Powershell terminal.
-    + :warning: Due to delays with DNS propagation, occasionally the script may exhaust the maximum number of retries without managing to verify the domain. If this occurs, run the script again. If it exhausts the number of retries a second time, wait an hour and try again.
-  + Pick the Azure account that you are building the environment with when asked to log in
+[![Powershell](https://img.shields.io/badge/local-Runtime%3A%20a%20few%20minutes-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
+
+Replacing `<SHM ID>` by the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` by the `Tenant ID` you copied from the AAD, run the following:
+
+```pwsh
+pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
+```
+
+When asked to log in, pick the Azure account that you are building the environment with.
+
+#### :pencil: Notes
+The bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
+
+#### :warning: Troubleshooting
++ ![Windows](https://img.shields.io/badge/-555?&logo=windows&logoColor=white): If the `Connect-AzureAD` command is unavailable, you may need to manually import the correct cross platform module by running `Import-Module AzureAD.Standard.Preview`.
++ If you get an error like `Could not load file or assembly 'Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (0x80131621)` then you may need to try again in a fresh Powershell terminal.
++ Due to delays with DNS propagation, occasionally the script may exhaust the maximum number of retries without managing to verify the domain. If this occurs, run the script again. If it exhausts the number of retries a second time, wait an hour and try again.
 
 ## Deploy key vault for SHM secrets and create emergency admin account
 
 [![Powershell](https://img.shields.io/badge/local-Runtime%3A%20a%20few%20minutes-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
 
+Replacing `<SHM ID>` by the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` by the `Tenant ID` you copied from the AAD, run the following:
+
 ```pwsh
 pwsh { ./Setup_SHM_KeyVault_And_Emergency_Admin.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
 ```
 
-where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` is the `Tenant ID` you copied from the AAD
-
-+ When asked to log in, pick the Azure account that you are building the environment with
+When asked to log in, pick the Azure account that you are building the environment with.
 
 #### :pencil: Notes
-+ Note the bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
+The bracketing `pwsh { ... }` runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
 
-#### :exclamation: Troubleshooting
+#### :warning: Troubleshooting
 If you get an error like `Could not load file or assembly 'Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (0x80131621)` then you may need to try again in a fresh Powershell terminal.
 
 ## Manually assigning the Global Administrator role.
