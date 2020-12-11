@@ -95,29 +95,16 @@ The following core SHM properties must be defined in a JSON file named `shm_<SHM
 
 ## Configure DNS for the custom domain
 
-![Powershell](https://img.shields.io/badge/local-Run%20this%20on%20your%20deployment%20machine-blue?logo=powershell&style=for-the-badge)
-
-<details><summary>Prerequisites</summary>
-
-+ Ensure you have the latest version of the Safe Haven repository from [https://github.com/alan-turing-institute/data-safe-haven](https://github.com/alan-turing-institute/data-safe-haven).
-+ Open a Powershell terminal and navigate to the `deployment/safe_haven_management_environment/setup` directory within the Safe Haven repository.
-+ Ensure you are logged into Azure within PowerShell using the command: `Connect-AzAccount`.
-  + This command will give you a URL and a short alphanumeric code.
-  + You will need to visit that URL in a web browser, enter the code and log in to your account on Azure
-  + Pick the Azure account that you are building the environment with when asked to log in
-
-</details>
+[![Powershell](https://img.shields.io/badge/local-Run%20this%20on%20your%20deployment%20machine-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
 
 ```pwsh
 ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
 ```
 where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
 
-<details><summary>![Troubleshooting](https://img.shields.io/badge/Troubleshooting-Manual%20DNS%20configuration%20instructions-red?logo=LGTM&style=for-the-badge)</summary>
+<details><summary><img src="https://img.shields.io/badge/Troubleshooting-Manual%20DNS%20configuration%20instructions-red?logo=LGTM&style=for-the-badge"/></summary>
 
 If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
-
-<!-- <details><summary>Manual DNS configuration instructions</summary> -->
 
   + To find the required values for the NS records on the portal, click `All resources` in the far left panel, search for "DNS Zone" and locate the DNS Zone with the SHM's domain. The NS record will list 4 Azure name servers.
   + Duplicate these records to the parent DNS system as follows:
@@ -810,3 +797,15 @@ From your **deployment machine**
   + NB. If your account is a guest in additional Azure tenants, you may need to add the `-Tenant <Tenant ID>` flag, where `<Tenant ID>` is the ID of the Azure tenant you want to deploy into.
 + Deploy and configure the package mirrors by running `./Setup_SHM_Package_Mirrors.ps1 -shmId <SHM ID> -tier <desired tier>`, where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
 + This will take **around 30 minutes** to run.
+
+
+## Appendix A: Common operations
+
+### :information_source: Running local Powershell scripts
+
++ Ensure you have the latest version of the Safe Haven repository from [https://github.com/alan-turing-institute/data-safe-haven](https://github.com/alan-turing-institute/data-safe-haven).
++ Open a Powershell terminal and navigate to the `deployment/safe_haven_management_environment/setup` directory within the Safe Haven repository.
++ Ensure you are logged into Azure within PowerShell using the command: `Connect-AzAccount`.
+  + This command will give you a URL and a short alphanumeric code.
+  + You will need to visit that URL in a web browser, enter the code and log in to your account on Azure
+  + Pick the Azure account that you are building the environment with when asked to log in
