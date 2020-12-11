@@ -101,29 +101,11 @@ From your **deployment machine**
 + Open a Powershell terminal and navigate to the `deployment/safe_haven_management_environment/setup` directory within the Safe Haven repository.
 + Ensure you are logged into Azure within PowerShell using the command: `Connect-AzAccount`. This command will give you a URL and a short alphanumeric code. You will need to visit that URL in a web browser, enter the code and log in to your account on Azure
   + Pick the Azure account that you are building the environment with when asked to log in
-+ Run `./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>`, where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
-
-a[href='red'] {
-    color: red;
-    pointer-events: none;
-    cursor: default;
-    text-decoration: none;
-}
-
-#### :pushpin: Code to run on your deployment machine
+![Powershell](https://img.shields.io/badge/local-Code%20to%20run%20locally-red?logo=powershell&style=for-the-badge)
 ```pwsh
 ./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
 ```
 where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
-
-
-![PyPI version](https://img.shields.io/badge/label-Run%20Locally-red?logo=powershell&style=for-the-badge)
-```pwsh
-./Setup_SHM_DNS_Zone.ps1 -shmId <SHM ID>
-```
-where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
-
-
 + If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
 
 <details><summary>Manual DNS configuration instructions</summary>
@@ -168,7 +150,13 @@ where `<SHM ID>` is the [management environment ID](#management-environment-id) 
 + Add the SHM domain:
   + Ensure you have the latest version of the Safe Haven repository from [https://github.com/alan-turing-institute/data-safe-haven](https://github.com/alan-turing-institute/data-safe-haven).
   + Open a Powershell terminal and navigate to the `deployment/safe_haven_management_environment/setup` directory within the Safe Haven repository.
-  + Run `pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }`, where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` is the `Tenant ID` you copied from the AAD
+  <!-- + Run `pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }`, where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` is the `Tenant ID` you copied from the AAD -->
+  ![Powershell](https://img.shields.io/badge/local-Code%20to%20run%20locally-red?logo=powershell&style=for-the-badge)
+  ```pwsh
+  pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
+  ```
+  where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` is the `Tenant ID` you copied from the AAD
+
     + :pencil: Note the bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
     + :warning: If you do not do this before running the next script, you will have to exit Powershell and start it again.
     + :warning: **Windows:** If the `Connect-AzureAD` command is unavailable, you may need to manually import the correct cross platform module by running `Import-Module AzureAD.Standard.Preview`.
