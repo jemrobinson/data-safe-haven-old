@@ -113,10 +113,11 @@ The following core SHM properties must be defined in a JSON file named `shm_<SHM
 ```
 where `<SHM ID>` is the [management environment ID](#management-environment-id) specified in the configuration file.
 
-![Troubleshooting](https://img.shields.io/badge/Troubleshooting-DNS-configuration-red?logo=LGTM&style=for-the-badge)
+<details><summary>![Troubleshooting](https://img.shields.io/badge/Troubleshooting-Manual%20DNS%20configuration%20instructions-red?logo=LGTM&style=for-the-badge)</summary>
+
 If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, as follows:
 
-<details><summary>Manual DNS configuration instructions</summary>
+<!-- <details><summary>Manual DNS configuration instructions</summary> -->
 
   + To find the required values for the NS records on the portal, click `All resources` in the far left panel, search for "DNS Zone" and locate the DNS Zone with the SHM's domain. The NS record will list 4 Azure name servers.
   + Duplicate these records to the parent DNS system as follows:
