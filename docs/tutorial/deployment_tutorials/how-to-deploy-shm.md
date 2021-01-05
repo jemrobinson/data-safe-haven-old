@@ -102,7 +102,9 @@ Replacing `<SHM ID>` by the [management environment ID](#management-environment-
 ```
 
 #### :warning: Troubleshooting
-If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, following the instructions below.
+If you see a message `You need to add the following NS records to the parent DNS system for...` you will need to add the NS records manually to the parent's DNS system, following the instructions in the `Optional` section below.
+
+#### :fast_forward: Optional
 
 <details><summary><b>Manual DNS configuration instructions</b></summary>
 
@@ -144,11 +146,19 @@ pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
 Run this code, replacing the `<placeholder>` values as follows:
 
 - `<SHM ID>` should be replaced by the [management environment ID](#management-environment-id) specified in the configuration file
-- `<AAD tenant ID>` should be replaced by the Azure Active Directory `Tenant ID` - if you do not know this, follow the instructions below
+- `<AAD tenant ID>` should be replaced by the Azure Active Directory `Tenant ID` - if you do not know this, follow the instructions in the `Optional` section below.
 
 When asked to log in, pick the Azure account that you are building the environment with.
 
 #### :pencil: Notes
+The bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
+
+#### :warning: Troubleshooting
++ ![Windows](https://img.shields.io/badge/-555?&logo=windows&logoColor=white) If the `Connect-AzureAD` command is unavailable, you may need to manually import the correct cross platform module by running `Import-Module AzureAD.Standard.Preview`.
++ If you get an error like `Could not load file or assembly 'Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (0x80131621)` then you may need to try again in a fresh Powershell terminal.
++ Due to delays with DNS propagation, occasionally the script may exhaust the maximum number of retries without managing to verify the domain. If this occurs, run the script again. If it exhausts the number of retries a second time, wait an hour and try again.
+
+#### :fast_forward: Optional
 
 <details><summary><b>Get the Azure Active Directory Tenant ID</b></summary>
 
@@ -161,14 +171,6 @@ When asked to log in, pick the Azure account that you are building the environme
       <img src="../../images/deploy_shm/aad_tenant_id.png" width="80%" title="AAD Tenant ID">
    </p>
 </details>
-
-#### :pencil: Notes
-The bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
-
-#### :warning: Troubleshooting
-+ ![Windows](https://img.shields.io/badge/-555?&logo=windows&logoColor=white) If the `Connect-AzureAD` command is unavailable, you may need to manually import the correct cross platform module by running `Import-Module AzureAD.Standard.Preview`.
-+ If you get an error like `Could not load file or assembly 'Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.19.8.16603, Culture=neutral PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (0x80131621)` then you may need to try again in a fresh Powershell terminal.
-+ Due to delays with DNS propagation, occasionally the script may exhaust the maximum number of retries without managing to verify the domain. If this occurs, run the script again. If it exhausts the number of retries a second time, wait an hour and try again.
 
 ## Deploy key vault for SHM secrets and create emergency admin account
 
