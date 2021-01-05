@@ -48,7 +48,7 @@ These instructions will deploy a new Safe Haven Management Environment (SHM). Th
 Choose a short ID `<SHM ID>` to identify the management environment (e.g. `testa`).
 
 #### :pencil: Notes
-This must be 7 characters or fewer.
+The `SHM ID` must be 7 characters or fewer.
 
 ### Create configuration file
 
@@ -87,12 +87,9 @@ The following core SHM properties are required - look at `shm_testa_core_config.
 
 #### :pencil: Notes
 - This configuration file is also used when deploying an SRE environment.
-- The `netbiosName` must have a maximum length of 15 characters.
-
-> :pencil: We recommend that you use `<SHM ID>.<some domain that you control>` as the fully qualified domain name. For example
-> - Turing production: we use `<SHM ID>.turingsafehaven.ac.uk` as the domain
-> - Turing testing: we use `<SHM ID>.dsgroupdev.co.uk` as the domain
-> - Other safe havens: follow your organisation's guidance. This may require purchasing a dedicated domain
+- For the fully qualified domain name, we recommend that you use `<SHM ID>.<some domain that you control>`. This may require purchasing a dedicated domain so follow your organisation's guidance.
+  - :information_source: **Turing production** uses `<SHM ID>.turingsafehaven.ac.uk`
+  - :information_source: **Turing development** uses `<SHM ID>.dsgroupdev.co.uk`
 
 ## Configure DNS for the custom domain
 
@@ -147,19 +144,23 @@ pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
 Run this code, replacing the `<placeholder>` values as follows:
 
 - `<SHM ID>` should be replaced by the [management environment ID](#management-environment-id) specified in the configuration file
-- `<AAD tenant ID>` should be replaced by the Azure Active Directory `Tenant ID` - if you do not know this, follow the instructions below <details><summary><b>Get the Azure Active Directory Tenant ID</b></summary>
+- `<AAD tenant ID>` should be replaced by the Azure Active Directory `Tenant ID` - if you do not know this, follow the instructions below
+
+When asked to log in, pick the Azure account that you are building the environment with.
+
+#### :pencil: Notes
+
+<details><summary><b>Get the Azure Active Directory Tenant ID</b></summary>
 
 + Navigate to the AAD you have created within the Azure portal. You can do this by:
   + Clicking the link displayed at the end of the initial AAD deployment.
   + Clicking on your username and profile icon at the top left of the Azure portal, clicking `Switch directory` and selecting the AAD you have just created from the `All Directories` section of the `Directory + Subscription` panel that then displays.
 + If required, click the "hamburger" menu in the top left corner (three horizontal lines) and select `Azure Active Directory`
-+ Click `Overview` in the left panel and copy the `Tenant ID` displayed under the AAD name and initial `something.onmicrosoft.com` domain.
++ Click `Overview` in the left panel and copy the `Tenant ID` displayed under the AAD name and initial `<your directory name>.onmicrosoft.com` domain.
    <p align="center">
       <img src="../../images/deploy_shm/aad_tenant_id.png" width="80%" title="AAD Tenant ID">
    </p>
 </details>
-
-When asked to log in, pick the Azure account that you are building the environment with.
 
 #### :pencil: Notes
 The bracketing `pwsh { ... }` which runs this command in a new Powershell environment. This is necessary in order to prevent conflicts between the `AzureAD` and `Az` Powershell modules.
