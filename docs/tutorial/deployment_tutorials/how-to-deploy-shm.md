@@ -47,16 +47,13 @@ These instructions will deploy a new Safe Haven Management Environment (SHM). Th
 
 Choose a short ID `<SHM ID>` to identify the management environment (e.g. `testa`).
 
+#### :pencil: Notes
+This must be 7 characters or fewer.
+
 ### Create configuration file
 
-The core properties for the Safe Haven Management (SHM) environment must be present in the `environment_configs/core` folder.
-These are also used when deploying an SRE environment.
-
-> :pencil: You should decide on an `<SHM ID>` at this point. This should be 7 characters or fewer.
-
-**NOTE:** The `netbiosName` must have a maximum length of 15 characters.
-
-The following core SHM properties must be defined in a JSON file named `shm_<SHM ID>_core_config.json` - look at `shm_testa_core_config.json` to see an example.
+The core properties for the Safe Haven Management (SHM) environment must be defined in a JSON file named `shm_<SHM ID>_core_config.json` in the `environment_configs/core` folder.
+The following core SHM properties are required - look at `shm_testa_core_config.json` to see an example.
 
 ```json
 {
@@ -87,6 +84,10 @@ The following core SHM properties must be defined in a JSON file named `shm_<SHM
     "overrides": "[Optional, Advanced] Do not use this unless you know what you're doing! If you want to override any of the default settings, you can do so by creating the same JSON structure that would be found in the final config file and nesting it under this entry. For example, to change the size of the data disk on the domain controller, you could use something like: 'shm: { dc: { disks: { data: { sizeGb: 50 } } } }'"
 }
 ```
+
+#### :pencil: Notes
+- This configuration file is also used when deploying an SRE environment.
+- The `netbiosName` must have a maximum length of 15 characters.
 
 > :pencil: We recommend that you use `<SHM ID>.<some domain that you control>` as the fully qualified domain name. For example
 > - Turing production: we use `<SHM ID>.turingsafehaven.ac.uk` as the domain
@@ -137,7 +138,16 @@ If you see a message `You need to add the following NS records to the parent DNS
 
 ### Add the SHM domain to the new AAD
 
-<details><summary><b>Get the Azure Active Directory Tenant ID</b></summary>
+[![Powershell](https://img.shields.io/badge/local-Runtime%3A%20a%20few%20minutes-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
+
+```pwsh
+pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
+```
+
+Run this code, replacing the `<placeholder>` values as follows:
+
+- `<SHM ID>` should be replaced by the [management environment ID](#management-environment-id) specified in the configuration file
+- `<AAD tenant ID>` should be replaced by the Azure Active Directory `Tenant ID` - if you do not know this, follow the instructions below <details><summary><b>Get the Azure Active Directory Tenant ID</b></summary>
 
 + Navigate to the AAD you have created within the Azure portal. You can do this by:
   + Clicking the link displayed at the end of the initial AAD deployment.
@@ -148,14 +158,6 @@ If you see a message `You need to add the following NS records to the parent DNS
       <img src="../../images/deploy_shm/aad_tenant_id.png" width="80%" title="AAD Tenant ID">
    </p>
 </details>
-
-[![Powershell](https://img.shields.io/badge/local-Runtime%3A%20a%20few%20minutes-blue?logo=powershell&style=for-the-badge)](#information_source-running-local-powershell-scripts)
-
-Replacing `<SHM ID>` by the [management environment ID](#management-environment-id) specified in the configuration file and `AAD tenant ID` by the `Tenant ID` you copied from the AAD, run the following:
-
-```pwsh
-pwsh { ./Setup_SHM_AAD_Domain.ps1 -shmId <SHM ID> -tenantId <AAD tenant ID> }
-```
 
 When asked to log in, pick the Azure account that you are building the environment with.
 
