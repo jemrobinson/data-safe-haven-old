@@ -159,29 +159,29 @@
       "vnet": {
         "rg": "RG_SRE_NETWORKING",
         "name": "VNET_SRE_LWMCEN",
-        "cidr": "10.100.72.0/21"
+        "cidr": "10.228.56.0/21"
       },
       "subnets": {
         "identity": {
           "name": "IdentitySubnet",
-          "prefix": "10.100.72",
-          "cidr": "10.100.72.0/24"
+          "prefix": "10.228.56",
+          "cidr": "10.228.56.0/24"
         },
         "rds": {
           "name": "RDSSubnet",
-          "prefix": "10.100.73",
-          "cidr": "10.100.73.0/24"
+          "prefix": "10.228.57",
+          "cidr": "10.228.57.0/24"
         },
         "data": {
           "name": "SharedDataSubnet",
-          "prefix": "10.100.74",
-          "cidr": "10.100.74.0/24"
+          "prefix": "10.228.58",
+          "cidr": "10.228.58.0/24"
         },
         "databases": {
           "name": "DatabasesSubnet",
-          "prefix": "10.100.75",
+          "prefix": "10.228.59",
           "nsg": "databases",
-          "cidr": "10.100.75.0/24"
+          "cidr": "10.228.59.0/24"
         }
       },
       "nsg": {
@@ -281,7 +281,7 @@
         },
         "hostname": "RDG-SRE-LWMCEN",
         "fqdn": "RDG-SRE-LWMCEN.turingsafehaven.ac.uk",
-        "ip": "10.100.73.250"
+        "ip": "10.228.57.250"
       },
       "sessionHost1": {
         "vmName": "APP-SRE-LWMCEN",
@@ -289,7 +289,7 @@
         "nsg": "NSG_SRE_LWMCEN_RDS_SESSION_HOSTS",
         "hostname": "APP-SRE-LWMCEN",
         "fqdn": "APP-SRE-LWMCEN.turingsafehaven.ac.uk",
-        "ip": "10.100.73.249"
+        "ip": "10.228.57.249"
       },
       "sessionHost2": {
         "vmName": "DKP-SRE-LWMCEN",
@@ -297,7 +297,7 @@
         "nsg": "NSG_SRE_LWMCEN_RDS_SESSION_HOSTS",
         "hostname": "DKP-SRE-LWMCEN",
         "fqdn": "DKP-SRE-LWMCEN.turingsafehaven.ac.uk",
-        "ip": "10.100.73.248"
+        "ip": "10.228.57.248"
       }
     },
     "dataserver": {
@@ -307,7 +307,7 @@
       "vmSize": "Standard_D2s_v3",
       "hostname": "DAT-SRE-LWMCEN",
       "fqdn": "DAT-SRE-LWMCEN.turingsafehaven.ac.uk",
-      "ip": "10.100.74.250",
+      "ip": "10.228.58.250",
       "egressDiskGb": 512,
       "ingressDiskGb": 512,
       "sharedDiskGb": 512
@@ -320,14 +320,14 @@
         "vmSize": "Standard_D2s_v3",
         "hostname": "GITLAB-SRE-LWMCEN",
         "fqdn": "GITLAB-SRE-LWMCEN.turingsafehaven.ac.uk",
-        "ip": "10.100.74.151"
+        "ip": "10.228.58.151"
       },
       "hackmd": {
         "vmName": "HACKMD-SRE-LWMCEN",
         "vmSize": "Standard_D2s_v3",
         "hostname": "HACKMD-SRE-LWMCEN",
         "fqdn": "HACKMD-SRE-LWMCEN.turingsafehaven.ac.uk",
-        "ip": "10.100.74.152"
+        "ip": "10.228.58.152"
       }
     },
     "databases": {
