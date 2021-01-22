@@ -1,5 +1,5 @@
 {
-    "subscriptionName": "[Prod] Turing SRE – Sandbox",
+    "subscriptionName": "Turing1 SRE Sandbox",
     "adminSecurityGroupName" : "Safe Haven Production Admins",
     "sreId": "sandbox",
     "shmId": "turing1",

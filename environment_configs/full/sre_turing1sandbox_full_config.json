@@ -130,7 +130,7 @@
     }
   },
   "sre": {
-    "subscriptionName": "[Prod] Turing SRE – Sandbox",
+    "subscriptionName": "Turing1 SRE Sandbox",
     "id": "sandbox",
     "shortName": "sre-sandbox",
     "location": "uksouth",
@@ -194,11 +194,11 @@
     "storage": {
       "artifacts": {
         "rg": "RG_SRE_ARTIFACTS",
-        "accountName": "sreartifactsesrvafzkjdpm"
+        "accountName": "sreartifactssqicdovpmytu"
       },
       "bootdiagnostics": {
         "rg": "RG_SRE_ARTIFACTS",
-        "accountName": "srebootdiagsesrvafzkjdpm"
+        "accountName": "srebootdiagssqicdovpmytu"
       }
     },
     "keyVault": {
