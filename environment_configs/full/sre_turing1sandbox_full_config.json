@@ -79,11 +79,11 @@
     "storage": {
       "artifacts": {
         "rg": "RG_SHM_ARTIFACTS",
-        "accountName": "shmturing1artifactsbkdlp"
+        "accountName": "shmturing1artifactshclnz"
       },
       "bootdiagnostics": {
         "rg": "RG_SHM_ARTIFACTS",
-        "accountName": "shmturing1bootdiagsbkdlp"
+        "accountName": "shmturing1bootdiagshclnz"
       }
     },
     "keyVault": {
@@ -142,12 +142,12 @@
       "dn": "DC=sandbox,DC=turingsafehaven,DC=ac,DC=uk",
       "securityGroups": {
         "dataAdministrators": {
-          "name": "SG SANDBOX SQL Server Administrators",
-          "description": "SG SANDBOX SQL Server Administrators"
+          "name": "SG SANDBOX Data Administrators",
+          "description": "SG SANDBOX Data Administrators"
         },
         "systemAdministrators": {
-          "name": "SG SANDBOX Server Administrators",
-          "description": "SG SANDBOX Server Administrators"
+          "name": "SG SANDBOX System Administrators",
+          "description": "SG SANDBOX System Administrators"
         },
         "researchUsers": {
           "name": "SG SANDBOX Research Users",
@@ -178,7 +178,7 @@
           "cidr": "10.150.2.0/24"
         },
         "databases": {
-          "name": "DbIngressSubnet",
+          "name": "DatabasesSubnet",
           "prefix": "10.150.3",
           "nsg": "databases",
           "cidr": "10.150.3.0/24"
@@ -187,18 +187,18 @@
       "nsg": {
         "data": {},
         "databases": {
-          "name": "NSG_SRE_SANDBOX_DB_INGRESS"
+          "name": "NSG_SRE_SANDBOX_DATABASES"
         }
       }
     },
     "storage": {
       "artifacts": {
         "rg": "RG_SRE_ARTIFACTS",
-        "accountName": "sreartifactszxtgfoabcyjd"
+        "accountName": "sreartifactsesrvafzkjdpm"
       },
       "bootdiagnostics": {
         "rg": "RG_SRE_ARTIFACTS",
-        "accountName": "srebootdiagszxtgfoabcyjd"
+        "accountName": "srebootdiagsesrvafzkjdpm"
       }
     },
     "keyVault": {
@@ -259,7 +259,7 @@
         }
       },
       "datamount": {
-        "name": "SANDBOX Data Mount",
+        "name": "SANDBOX Data Mount Service Account",
         "samAccountName": "datamountsandbox"
       },
       "researchers": {
@@ -277,7 +277,7 @@
         "nsg": "NSG_SRE_SANDBOX_RDS_SERVER",
         "networkRules": {
           "allowedSources": "Internet",
-          "outboundInternet": null
+          "outboundInternet": "Deny"
         },
         "hostname": "RDG-SRE-SANDBOX",
         "fqdn": "RDG-SRE-SANDBOX.turingsafehaven.ac.uk",

@@ -8,6 +8,7 @@
     "netbiosName": "SANDBOX",
     "ipPrefix": "10.150.0",
     "rdsAllowedSources": "Internet",
+    "rdsInternetAccess": "default",
     "computeVmImageType": "Ubuntu",
     "computeVmImageVersion": "0.2.2020050300"
 }
