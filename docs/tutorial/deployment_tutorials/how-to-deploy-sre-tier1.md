@@ -10,7 +10,7 @@
 + [:clipboard: Define SRE Configuration](#clipboard-define-sre-configuration)
 + [:registered: Deploy Key Vault](#registered-deploy-key-vault)
 + [:bicyclist: Optional: Declare Users](#bicyclist-optional-declare-users)
-+ [:computer: Deploy and Configure VM](#computer-deploy, -and-configure-vm)
++ [:computer: Deploy and Configure VM](#computer-deploy-and-configure-vm)
 + [:floppy_disk: Uploading Data](#floppy_disk-uploading-data)
 
 ## :seedling: Prerequisites
