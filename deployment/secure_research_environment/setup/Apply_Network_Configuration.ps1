@@ -90,7 +90,7 @@ $_ = Update-NetworkSecurityGroupRule -Name "OutboundDenyInternet" -NetworkSecuri
 Add-LogMessage -Level Info "Ensuring SRE is peered to correct mirror set..."
 
 # Unpeer any existing networks before (re-)establishing correct peering for SRE
-Invoke-Expression -Command "$(Join-Path '$PSScriptRoot' Unpeer_Sre_And_Mirror_Networks.ps1) -sreId $sreId"
+Invoke-Expression -Command "'$(Join-Path $PSScriptRoot Unpeer_Sre_And_Mirror_Networks.ps1) -configId $configId'"
 
 # Re-peer to the correct network for this SRE
 Add-LogMessage -Level Info "Peering to the correct mirror network..."
