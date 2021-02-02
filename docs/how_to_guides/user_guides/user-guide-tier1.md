@@ -211,7 +211,7 @@ After going through the account setup procedure, you should have:
 
 ### :penguin: Use SSH to log into the SRE
 
-Although the research environment will use the browser-based [`CoCalc`](https://www.cocalc.com), you are required to authenticate by using a secure SSH connection.
+Although you will be connecting to the research environment via RDP, you are required to authenticate by using a secure SSH connection.
 
 Authentication for users requires:
 
@@ -278,13 +278,14 @@ ssh <your username>@<SRE URL> -i <path to your private key> -L8443:localhost:443
 + If the public key authentication is successful you will be prompted for a one-time-password
   + At the prompt `One-time password (OATH) for <your username>` : enter the six digits from your authenticator app with no spaces
 
-### :customs: Log into the CoCalc environment
+### :customs: Connect via RDP
 
-If you connected successfully you should now be able to open a web browser on your computer and go to:
+To connect over RDP simply do the following:
 
-```html
-https://localhost:8443
-```
++ Open Microsoft Remote Desktop
++ Click the `+` icon and choose `Add PC`
++ In the pop up window, set the PC name to `localhost:3389` and click `Add`
++ Double click the new RDP connection you just created and log in
 
 #### Certificate validity
 
