@@ -303,6 +303,9 @@ Add-LogMessage -Level Info -Message `
 @"
 To connect to this VM please do the following:
   ssh <username>@$($config.sre.domain.fqdn) -L<local-port>:localhost:<remote-port>
+  For example:
+    ssh <username>@$($config.sre.domain.fqdn) -L3389:localhost:3389
+  You can then open Microsoft Remote Desktop and connect to localhost:3389
 "@
 
 
