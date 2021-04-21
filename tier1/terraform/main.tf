@@ -150,7 +150,7 @@ resource "azurerm_network_security_group" "dsvm" {
   resource_group_name = azurerm_resource_group.this.name
 }
 
-# Create Guacamole NSG rules
+# Create DSVM NSG rules
 resource "azurerm_network_security_rule" "dsvm" {
   for_each                    = local.dsvm_nsg_rules
   name                        = each.value.name
@@ -273,6 +273,136 @@ resource "azurerm_virtual_machine_data_disk_attachment" "this" {
   count = var.shared_disk_size_gb > 0 ? 1 : 0
 }
 
+# Create Network Security Group
+resource "azurerm_network_security_group" "gpu" {
+  name                = "${local.resource_tag.network_security_group}_gpu"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.this.name
+}
+
+# Create GPU NSG rules
+resource "azurerm_network_security_rule" "gpu" {
+  for_each                    = local.gpu_nsg_rules
+  name                        = each.value.name
+  priority                    = each.value.priority
+  direction                   = each.value.direction
+  access                      = each.value.access
+  protocol                    = each.value.protocol
+  source_port_range           = each.value.source_port_range
+  destination_port_range      = each.value.destination_port_range
+  source_address_prefix       = each.value.source_address_prefix
+  destination_address_prefix  = each.value.destination_address_prefix
+  resource_group_name         = azurerm_resource_group.this.name
+  network_security_group_name = azurerm_network_security_group.gpu.name
+}
+
+# Associate subnet with network security group
+resource "azurerm_network_interface_security_group_association" "gpu" {
+  network_interface_id      = azurerm_network_interface.gpu.id
+  network_security_group_id = azurerm_network_security_group.gpu.id
+}
+
+# Create public IP
+resource "azurerm_public_ip" "gpu" {
+  name                = "${local.resource_tag.public_ip}_gpu"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.this.name
+  sku                 = "Standard"
+  allocation_method   = "Static"
+}
+
+# Register public IP address to write to Ansible inventory
+# (Azure does not assign public IPs until the IP object is attached to a
+# resource, hence the dependency on the virtual machine)
+data "azurerm_public_ip" "gpu" {
+  name                = azurerm_public_ip.gpu.name
+  resource_group_name = azurerm_resource_group.this.name
+  depends_on          = [azurerm_linux_virtual_machine.gpu]
+}
+
+# Create network interface
+resource "azurerm_network_interface" "gpu" {
+  name                = "${local.resource_tag.network_interface}_gpu"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.this.name
+
+  ip_configuration {
+    name                          = "gpu"
+    subnet_id                     = azurerm_subnet.this.id
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.1.0.6"
+    public_ip_address_id          = azurerm_public_ip.gpu.id
+  }
+}
+
+# Create GPU admin key pair
+resource "tls_private_key" "gpu_admin" {
+  algorithm = "RSA"
+  rsa_bits  = "4096"
+}
+
+# Write admin account private key to a file
+resource "local_file" "gpu_admin_private_key" {
+  filename        = "../keys/gpu_admin_id_rsa.pem"
+  file_permission = "0600"
+  content         = tls_private_key.gpu_admin.private_key_pem
+}
+
+# Create GPU virtual machine
+resource "azurerm_linux_virtual_machine" "gpu" {
+  name                  = "${local.resource_tag.virtual_machine}_gpu"
+  location              = var.location
+  resource_group_name   = azurerm_resource_group.this.name
+  network_interface_ids = [azurerm_network_interface.gpu.id]
+  size                  = var.vm_size.gpu
+  computer_name         = "gpu"
+  admin_username        = var.admin_username.gpu
+
+  disable_password_authentication = true
+
+  admin_ssh_key {
+    username   = var.admin_username.gpu
+    public_key = tls_private_key.gpu_admin.public_key_openssh
+  }
+
+  os_disk {
+    name                 = "${local.resource_tag.os_disk}_gpu"
+    caching              = "ReadWrite"
+    storage_account_type = var.storage_type
+    disk_size_gb         = 250
+  }
+
+  source_image_reference {
+    publisher = var.vm_image.publisher
+    offer     = var.vm_image.offer
+    sku       = var.vm_image.sku
+    version   = var.vm_image.version
+  }
+}
+
+# Create shared data disk
+resource "azurerm_managed_disk" "gpu" {
+  name                = "${local.resource_tag.data_disk}_gpu"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.this.name
+
+  storage_account_type = var.storage_type
+  create_option        = "Empty"
+  disk_size_gb         = var.shared_disk_size_gb
+
+  count = var.shared_disk_size_gb > 0 ? 1 : 0
+}
+
+# Attach shared data disk to GPU VM
+resource "azurerm_virtual_machine_data_disk_attachment" "gpu" {
+  managed_disk_id    = azurerm_managed_disk.gpu[count.index].id
+  virtual_machine_id = azurerm_linux_virtual_machine.gpu.id
+  lun                = "0"
+  caching            = "ReadWrite"
+
+  count = var.shared_disk_size_gb > 0 ? 1 : 0
+}
+
 resource "random_string" "storage_suffix" {
   length  = 24
   special = false
@@ -336,6 +466,10 @@ resource "local_file" "ansible_inventory" {
           ansible_host: ${data.azurerm_public_ip.dsvm.ip_address}
           ansible_user: ${var.admin_username.dsvm}
           ansible_ssh_private_key_file: ${local_file.dsvm_admin_private_key.filename}
+        gpu:
+          ansible_host: ${data.azurerm_public_ip.gpu.ip_address}
+          ansible_user: ${var.admin_username.gpu}
+          ansible_ssh_private_key_file: ${local_file.gpu_admin_private_key.filename}
     DOC
 }
 

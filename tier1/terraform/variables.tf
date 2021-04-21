@@ -20,6 +20,7 @@ variable "vm_size" {
   default = {
     guacamole = "Standard_D4s_v4"
     dsvm      = "Standard_D32s_v4"
+    gpu       = "Standard_NC6_Promo"
   }
 }
 
@@ -28,6 +29,7 @@ variable "admin_username" {
   default = {
     guacamole = "guacamole_admin"
     dsvm      = "dsvm_admin"
+    gpu       = "gpu_admin"
   }
 }
 
@@ -174,6 +176,10 @@ locals {
   dsvm_nsg_rules = {
     ssh = var.nsg_rule_ssh
     rdp = var.nsg_rule_rdp
+  }
+
+  gpu_nsg_rules = {
+    ssh = var.nsg_rule_ssh
   }
 }
 
