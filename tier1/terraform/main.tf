@@ -486,6 +486,7 @@ resource "local_file" "terraform_vars" {
     guacamole_private_ip: ${azurerm_network_interface.guacamole.private_ip_address}
     dsvm_admin_user: ${var.admin_username.dsvm}
     dsvm_private_ip: ${azurerm_network_interface.dsvm.private_ip_address}
+    gpu_admin_user: ${var.admin_username.gpu}
     shared_data_disk: ${var.shared_disk_size_gb > 0 ? true : false}
     ingress_unc: ${replace(azurerm_storage_share.this["ingress"].url, "https://", "//")}
     egress_unc: ${replace(azurerm_storage_share.this["egress"].url, "https://", "//")}

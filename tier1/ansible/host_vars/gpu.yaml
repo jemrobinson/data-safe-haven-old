@@ -5,5 +5,14 @@
 fail2ban_ignoreips:
   - "{{ dsvm_private_ip }}"
 
+# SSH server settings
+# Restrict login to admin user
+ssh_allow_users: "{{ gpu_admin_user }}"
+# Allow other users to login from dsvm
+ssh_server_match_address:
+  - address: "{{ dsvm_private_ip }}"
+    rules:
+      - AllowUsers *
+
 # apt Packages
 apt_packages: "{{ apt_packages_development | union(apt_packages_shells) | union(apt_packages_editors) | union(apt_packages_extra_gpu) }}"
