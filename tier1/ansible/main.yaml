@@ -442,6 +442,15 @@
       ansible.builtin.import_role:
         name: oefenweb.rstudio
 
+    - name: Install GPU SSH script
+      become: yes
+      ansible.builtin.copy:
+        src: ssh-gpu
+        dest: /usr/local/bin/ssh-gpu
+        owner: root
+        group: root
+        mode: 0755
+
     - name: Install snaps
       become: yes
       community.general.snap:
