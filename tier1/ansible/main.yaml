@@ -562,16 +562,26 @@
             url: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
             state: present
 
-        - name: Add Nvidia repo
+        - name: Add Nvidia repos
           become: yes
           ansible.builtin.apt_repository:
-            repo: deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64 /
+            repo: "{{ item }}"
             state: present
+          loop:
+            - deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64 /
+            - deb https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/ /
 
-        - name: Install packages
+        - name: Install cuda and related packages
           become: yes
           ansible.builtin.apt:
-            name: cuda
+            name:
+              - cuda
+              - libcudnn8
+              - libcudnn8-dev
+              - libnvinfer7
+              - libnvinfer-dev
+              - libnvinfer-plugin7
+              - libcusolver10
             update_cache: yes
           async: 1800
           poll: 5
