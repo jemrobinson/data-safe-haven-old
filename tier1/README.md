@@ -399,6 +399,31 @@ of your work. This directory is writeable by all users. At the end of a project,
 data stored here can be reviewed, and extracted from the environment by an
 administrator.
 
+### 🧪 The GPU virtual machine
+
+If your environment has a GPU VM deployed, you will be able to find it on the
+same private network as the DSVM with the hostname `gpu` (`$ nslookup gpu`).
+
+You will have a user account on the GPU VM, and an SSH key pair will have been
+automatically configured so that you can authenticate. You can see your key pair
+in `~/.ssh` (`$ ls ~/.ssh`).
+
+For convenience, a script has been provided to login to the GPU VM. In a
+terminal run the command
+
+```
+$ ssh-gpu
+```
+
+You can view the GPU resources, status and CUDA version using
+
+```
+$ nvidia-smi
+```
+
+The GPU VM has a shared directory `/shared` configured in the same way as the
+one on the DSVM.
+
 ### 👔 Recommended workflows
 
 #### Python
@@ -462,3 +487,46 @@ You may then install the defined packages (with identical versions) with
 ```
 $ pip install -r requirements.txt
 ```
+
+#### Jupyter on the GPU VM
+
+If you would like to interact with the GPU through a Jupyter notebook interface
+it is possible to run a Jupyter server on the GPU VM and connect to it from a
+browser on the DSVM.
+
+First, create and activate a virtual environment
+
+```
+$ cd /shared
+$ python -m venv ./venv
+$ source ./venv/bin/activate
+```
+
+Install an IPython kernel
+
+```
+$ pip install ipykernel
+$ ipython kernel install --user --name=myproject
+```
+
+Install any other packages you may want, for example
+
+```
+$ pip install torch
+```
+
+Start the Jupyter server, making sure to allow remote connections
+
+```
+$ jupyter-notebook --ip 0.0.0.0 --no-browser
+```
+
+The Jupyter server will print a url (likely `http://gpu:8888`) with a token
+that you and your team members can use to access the jupyter-notebook interface
+from the DSVM in a browser. Share the link with your team if they want to make
+use of the Jupyter server.
+
+When you use the notebook interface, make sure to select the kernel you created
+above (in this case named "myproject").
+
+![](.images/jupyter_gpu.png)
