@@ -556,16 +556,16 @@
 
     - name: Install GPU drivers/cuda
       block:
-        - name: Add Nvidia repo
-          become: yes
-          ansible.builtin.apt_repository:
-            repo: deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64
-            state: present
-
         - name: Add Nvidia repo key
           become: yes
           ansible.builtin.apt_key:
             url: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
+            state: present
+
+        - name: Add Nvidia repo
+          become: yes
+          ansible.builtin.apt_repository:
+            repo: deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64 /
             state: present
 
         - name: Install packages
