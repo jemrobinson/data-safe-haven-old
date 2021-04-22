@@ -1,0 +1,9 @@
+---
+
+# Fail2ban settings
+# Ignore attempts from DSVM to prevent locking users out
+fail2ban_ignoreips:
+  - "{{ dsvm_private_ip }}"
+
+# apt Packages
+apt_packages: "{{ apt_packages_development | union(apt_packages_shells) | union(apt_packages_editors) | union(apt_packages_extra_gpu) }}"

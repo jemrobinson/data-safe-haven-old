@@ -15,45 +15,10 @@ ssh_server_match_address:
       - PasswordAuthentication yes
       - AuthenticationMethods password
 
-# Packages
-apt_packages_development:
-  - git
-  - tmux
-  - python3-venv
-  - python3.9
-  - python3.9-venv
-  - julia
-  - build-essential
-  - octave
-  - jupyter
-  - gfortran
-  - r-base
-
-apt_packages_shells:
-  - bash
-  - zsh
-  - zsh-syntax-highlighting
-  - zsh-autosuggestions
-  - fish
-
-apt_packages_editors:
-  - vim
-  - vim-fugitive
-  - vim-syntastic
-  - vim-julia
-  - vim-airline
-  - vim-airline-themes
-  - vim-latexsuite
-  - neovim
-  - vim-gtk3
-  - emacs
-
-apt_packages_latex:
-  - texlive-full
-  - texstudio
-
+# Apt packages
 apt_packages: "{{ apt_packages_development | union(apt_packages_shells) | union(apt_packages_editors) | union(apt_packages_latex) | union(apt_packages_extra) }}"
 
+# Snap packages
 snap_packages_default:
   - name: codium
     classic: yes
