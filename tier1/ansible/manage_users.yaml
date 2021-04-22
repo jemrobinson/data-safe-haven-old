@@ -273,3 +273,65 @@
       delegate_to: localhost
       when: email.enabled and item.changed
       loop: "{{ accounts.results }}"
+
+
+- name: Manage GPU users
+  hosts: gpu
+
+  vars_files:
+    - vars/user_vars.yaml
+
+  tasks:
+    - name: Create users
+      become: yes
+      ansible.builtin.user:
+        name: "{{ item.username }}"
+        comment: "{{ item.name }}"
+        groups: shared
+        append: yes
+      loop: "{{ users }}"
+
+
+- name: Create SSH keys for GPU access
+  tags:
+    - ssh_gpu
+
+  hosts:
+    - dsvm
+
+  vars_files:
+    - vars/user_vars.yaml
+
+  tasks:
+    - name: Create SSH key pairs
+      become: yes
+      ansible.builtin.user:
+        name: "{{ item.username }}"
+        generate_ssh_key: yes
+        ssh_key_type: rsa
+        ssh_key_file: .ssh/gpu_rsa
+      loop: "{{ users }}"
+      register: ssh_keys
+
+
+- name: Install SSH keys for GPU access
+  tags:
+    - ssh_gpu
+
+  hosts:
+    - gpu
+
+  vars_files:
+    - vars/user_vars.yaml
+
+  tasks:
+    - name: a
+      debug:
+        var: hostvars['dsvm']['ssh_keys']
+
+    - name: Install public keys
+      become: yes
+      ansible.posix.authorized_key:
+        user: "{{ item.item.username }}"
+        key: "{{ item.ssh_public_key }}"
+      loop: "{{ hostvars['dsvm']['ssh_keys'].results }}"
