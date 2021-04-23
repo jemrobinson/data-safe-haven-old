@@ -15,6 +15,12 @@ ssh_server_match_address:
       - PasswordAuthentication yes
       - AuthenticationMethods password
 
+# SSH client settings
+ssh_remote_hosts:
+  - names: ["gpu"]
+    options:
+      - IdentityFile ~/.ssh/gpu_rsa
+
 # Apt packages
 apt_packages: "{{ apt_packages_development | union(apt_packages_shells) | union(apt_packages_editors) | union(apt_packages_latex) | union(apt_packages_extra) }}"
 

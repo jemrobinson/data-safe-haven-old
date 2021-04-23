@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-ssh ${USER}@gpu -i ${HOME}/.ssh/gpu_rsa

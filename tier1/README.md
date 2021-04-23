@@ -408,11 +408,12 @@ You will have a user account on the GPU VM, and an SSH key pair will have been
 automatically configured so that you can authenticate. You can see your key pair
 in `~/.ssh` (`$ ls ~/.ssh`).
 
-For convenience, a script has been provided to login to the GPU VM. In a
-terminal run the command
+For convenience, the global `ssh_config` on the DSVM has been configured to
+automatically use your public key to authenticate with the GPU VM. So to login
+to the GPU VM you can simply use
 
 ```
-$ ssh-gpu
+$ ssh gpu
 ```
 
 You can view the GPU resources, status and CUDA version using
@@ -422,7 +423,17 @@ $ nvidia-smi
 ```
 
 The GPU VM has a shared directory `/shared` configured in the same way as the
-one on the DSVM.
+one on the DSVM. It also has access to your input and output data in `/data` and
+`/output` respectively.
+
+You can use `rsync` and `scp` to copy data between the DSVM and GPU VM. These
+programs obey `ssh_config` so should work without having to specify your public
+key. For example
+
+```
+$ rsync -avz --delete /shared/my_project gpu:/shared/my_project
+$ scp ~/example.py gpu:~/example.py
+```
 
 ### 👔 Recommended workflows
 
