@@ -19,6 +19,9 @@ param(
 $certDirLocal = New-Item -ItemType Directory -Path $remoteDirectory -Force
 $certStore = "Cert:\LocalMachine\My"
 
+Write-Host "Importing Remote Desktop Module"
+Import-Module RemoteDesktop
+
 Write-Host "Looking for certificate with thumbprint: $certThumbPrint"
 $certificate = Get-ChildItem $certStore | Where-Object { $_.Thumbprint -eq $certThumbPrint }
 if ($null -ne $certificate) {
