@@ -121,16 +121,16 @@ jobs:
         - mv $OUTPUTDIR ${TRAVIS_BUILD_DIR}/output
         - ls -alh ${TRAVIS_BUILD_DIR}/output
         - ls -alh ${TRAVIS_BUILD_DIR}/output/latest
-      deploy:
-        keep_history: false
-        local_dir: ${TRAVIS_BUILD_DIR}/output
-        provider: pages
-        skip_cleanup: true
-        strategy: git
-        target_branch: autodocs
-        token: $GITHUB_TOKEN
-        on:
-          branch: develop
+      # deploy:
+      #   keep_history: false
+      #   local_dir: ${TRAVIS_BUILD_DIR}/output
+      #   provider: pages
+      #   skip_cleanup: true
+      #   strategy: git
+      #   target_branch: autodocs
+      #   token: $GITHUB_TOKEN
+      #   on:
+      #     branch: develop
 
   allow_failures:
     - env: ALLOWED_FAILURE=true

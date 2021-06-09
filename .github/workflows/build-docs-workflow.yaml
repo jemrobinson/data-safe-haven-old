@@ -1,0 +1,48 @@
+name: docs_pages_workflow
+
+# execute this workflow automatically when a we push to master
+on:
+  push:
+    branches: [ 1004-automated-documentation ]
+
+jobs:
+
+  build_docs_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.3.0'
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install required packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git
+          npm install -g pretty-markdown-pdf
+          pip install -r docs/requirements.txt
+      - name: Save nominal configuration
+        shell: bash
+        run: |
+          echo "BACKUPDIR=$(mktemp -d)" >> $GITHUB_ENV
+          echo "OUTPUTDIR=$(mktemp -d)" >> $GITHUB_ENV
+          echo "BACKUPDIR: ${{env.BACKUPDIR}}"
+          echo "OUTPUTDIR: ${{env.OUTPUTDIR}}"
+      - name: Execute script to build our documentation and update pages
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pwd
+          ls -alh
+          which pretty-md-pdf
+          python --version
+          python3 --version
+          echo "GITHUB_TOKEN: ${GITHUB_TOKEN}"
