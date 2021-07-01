@@ -1,0 +1,14 @@
+{
+    "subscriptionName": "Turing1 SRE EDoN Data",
+    "adminSecurityGroupName" : "Safe Haven Production Admins",
+    "sreId": "edon1",
+    "shmId": "turing1",
+    "tier": "3",
+    "domain": "EDoNDataLoading.turingsafehaven.ac.uk",
+    "netbiosName": "edon1",
+    "ipPrefix": "10.228.72",
+    "rdsAllowedSources": "default",
+    "rdsInternetAccess": "default",
+    "computeVmImageType": "Ubuntu",
+    "computeVmImageVersion": "0.2.2020060100"
+}
