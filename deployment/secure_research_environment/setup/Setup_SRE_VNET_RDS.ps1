@@ -27,16 +27,16 @@ $_ = Deploy-ResourceGroup -Name $config.sre.network.vnet.rg -Location $config.sr
 # -------------------------
 Add-LogMessage -Level Info "Creating virtual network '$($config.sre.network.vnet.name)' from template..."
 $params = @{
-    "Virtual Network Name" = $config.sre.network.vnet.Name
-    "Virtual Network Address Space" = $config.sre.network.vnet.cidr
-    "Subnet-Identity Address Prefix" = $config.sre.network.subnets.identity.cidr
-    "Subnet-RDS Address Prefix" = $config.sre.network.subnets.rds.cidr
-    "Subnet-Data Address Prefix" = $config.sre.network.subnets.data.cidr
-    "Subnet-Identity Name" = $config.sre.network.subnets.identity.Name
-    "Subnet-RDS Name" = $config.sre.network.subnets.rds.Name
-    "Subnet-Data Name" = $config.sre.network.subnets.data.Name
-    "VNET_DNS_DC1" = $config.shm.dc.ip
-    "VNET_DNS_DC2" = $config.shm.dcb.ip
+    "Virtual Network Name" = [string]$config.sre.network.vnet.Name
+    "Virtual Network Address Space" = [string]$config.sre.network.vnet.cidr
+    "Subnet-Identity Address Prefix" = [string]$config.sre.network.subnets.identity.cidr
+    "Subnet-RDS Address Prefix" = [string]$config.sre.network.subnets.rds.cidr
+    "Subnet-Data Address Prefix" = [string]$config.sre.network.subnets.data.cidr
+    "Subnet-Identity Name" = [string]$config.sre.network.subnets.identity.Name
+    "Subnet-RDS Name" = [string]$config.sre.network.subnets.rds.Name
+    "Subnet-Data Name" = [string]$config.sre.network.subnets.data.Name
+    "VNET_DNS_DC1" = [string]$config.shm.dc.ip
+    "VNET_DNS_DC2" = [string]$config.shm.dcb.ip
 }
 Deploy-ArmTemplate -TemplatePath (Join-Path $PSScriptRoot ".." "arm_templates" "sre-vnet-gateway-template.json") -Params $params -ResourceGroupName $config.sre.network.vnet.rg
 
@@ -187,25 +187,25 @@ Add-LogMessage -Level Info "Deploying RDS from template..."
 $_ = Set-AzContext -Subscription $config.sre.subscriptionName
 $params = @{
     Administrator_Password = (ConvertTo-SecureString $sreAdminPassword -AsPlainText -Force)
-    Administrator_User = $sreAdminUsername
-    BootDiagnostics_Account_Name = $config.sre.storage.bootdiagnostics.accountName
+    Administrator_User = [string]$sreAdminUsername
+    BootDiagnostics_Account_Name = [string]$config.sre.storage.bootdiagnostics.accountName
     DC_Administrator_Password = (ConvertTo-SecureString $shmDcAdminPassword -AsPlainText -Force)
-    DC_Administrator_User = $shmDcAdminUsername
-    Domain_Name = $config.shm.domain.fqdn
-    NSG_Gateway_Name = $config.sre.rds.gateway.nsg
-    RDS_Gateway_IP_Address = $config.sre.rds.gateway.ip
-    RDS_Gateway_Name = $config.sre.rds.gateway.vmName
-    RDS_Gateway_VM_Size = $config.sre.rds.gateway.vmSize
-    RDS_Session_Host_Apps_IP_Address = $config.sre.rds.sessionHost1.ip
-    RDS_Session_Host_Apps_Name = $config.sre.rds.sessionHost1.vmName
-    RDS_Session_Host_Apps_VM_Size = $config.sre.rds.sessionHost1.vmSize
-    RDS_Session_Host_Desktop_IP_Address = $config.sre.rds.sessionHost2.ip
-    RDS_Session_Host_Desktop_Name = $config.sre.rds.sessionHost2.vmName
-    RDS_Session_Host_Desktop_VM_Size = $config.sre.rds.sessionHost2.vmSize
-    SRE_ID = $config.sre.Id
-    Virtual_Network_Name = $config.sre.network.vnet.Name
-    Virtual_Network_Resource_Group = $config.sre.network.vnet.rg
-    Virtual_Network_Subnet = $config.sre.network.subnets.rds.Name
+    DC_Administrator_User = [string]$shmDcAdminUsername
+    Domain_Name = [string]$config.shm.domain.fqdn
+    NSG_Gateway_Name = [string]$config.sre.rds.gateway.nsg
+    RDS_Gateway_IP_Address = [string]$config.sre.rds.gateway.ip
+    RDS_Gateway_Name = [string]$config.sre.rds.gateway.vmName
+    RDS_Gateway_VM_Size = [string]$config.sre.rds.gateway.vmSize
+    RDS_Session_Host_Apps_IP_Address = [string]$config.sre.rds.sessionHost1.ip
+    RDS_Session_Host_Apps_Name = [string]$config.sre.rds.sessionHost1.vmName
+    RDS_Session_Host_Apps_VM_Size = [string]$config.sre.rds.sessionHost1.vmSize
+    RDS_Session_Host_Desktop_IP_Address = [string]$config.sre.rds.sessionHost2.ip
+    RDS_Session_Host_Desktop_Name = [string]$config.sre.rds.sessionHost2.vmName
+    RDS_Session_Host_Desktop_VM_Size = [string]$config.sre.rds.sessionHost2.vmSize
+    SRE_ID = [string]$config.sre.Id
+    Virtual_Network_Name = [string]$config.sre.network.vnet.Name
+    Virtual_Network_Resource_Group = [string]$config.sre.network.vnet.rg
+    Virtual_Network_Subnet = [string]$config.sre.network.subnets.rds.Name
 }
 Deploy-ArmTemplate -TemplatePath (Join-Path $PSScriptRoot ".." "arm_templates" "sre-rds-template.json") -Params $params -ResourceGroupName $config.sre.rds.rg
 
@@ -318,10 +318,10 @@ Add-LogMessage -Level Info "Adding RDS VMs to correct OUs on SHM DC..."
 # Run remote script
 $scriptPath = Join-Path $PSScriptRoot ".." "remote" "create_rds" "scripts" "Move_RDS_VMs_Into_OUs.ps1"
 $params = @{
-    shmDn = "`"$($config.shm.domain.dn)`""
-    gatewayHostname = "`"$($config.sre.rds.gateway.hostname)`""
-    sh1Hostname = "`"$($config.sre.rds.sessionHost1.hostname)`""
-    sh2Hostname = "`"$($config.sre.rds.sessionHost2.hostname)`""
+    shmDn = [string]$($config.shm.domain.dn)
+    gatewayHostname = [string]$($config.sre.rds.gateway.hostname)
+    sh1Hostname = [string]$($config.sre.rds.sessionHost1.hostname)
+    sh2Hostname = [string]$($config.sre.rds.sessionHost2.hostname)
 }
 $result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.shm.dc.vmName -ResourceGroupName $config.shm.dc.rg -Parameter $params
 Write-Output $result.Value
@@ -365,46 +365,70 @@ Add-LogMessage -Level Success "Found $($filePathsSh1.Count + $filePathsSh2.Count
 $_ = Set-AzContext -SubscriptionId $config.sre.subscriptionName
 $sasToken = New-ReadOnlyAccountSasToken -SubscriptionName $config.sre.subscriptionName -ResourceGroup $config.sre.storage.artifacts.rg -AccountName $sreStorageAccount.StorageAccountName
 $scriptPath = Join-Path $PSScriptRoot ".." "remote" "create_rds" "scripts" "Import_Artifacts.ps1"
+#
+#
+#
+
+
 
 # Copy software and/or scripts to RDS Gateway
 Add-LogMessage -Level Info "[ ] Copying $($filePathsGateway.Count) files to RDS Gateway"
 $params = @{
-    storageAccountName = "`"$($sreStorageAccount.StorageAccountName)`""
+    storageAccountName = [string]$($sreStorageAccount.StorageAccountName)
     storageService = "blob"
-    shareOrContainerName = "`"$containerNameGateway`""
-    sasToken = "`"$sasToken`""
-    pipeSeparatedremoteFilePaths = "`"$($filePathsGateway -join "|")`""
-    downloadDir = "$remoteUploadDir"
+    shareOrContainerName = [string]$containerNameGateway
+    sasToken = [string]$sasToken
+    pipeSeparatedremoteFilePaths = [string]$($filePathsGateway -join "|")
+    downloadDir = [string]$remoteUploadDir
 }
-$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.sre.rds.gateway.vmName -ResourceGroupName $config.sre.rds.rg -Parameter $params
+# Workaround issue with remote params
+$scriptPathTemp = "$scriptPath.gateway.ps1" 
+$params.Keys | % { Add-Content -Path $scriptPathTemp -Value "`$$($_) = `"$($params[$_])`""}
+Get-Content -Path $scriptPath | Add-Content -Path $scriptPathTemp 
+
+
+$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPathTemp -VMName $config.sre.rds.gateway.vmName -ResourceGroupName $config.sre.rds.rg 
 Write-Output $result.Value
+Remove-Item -Path $scriptPathTemp
 
 # Copy software and/or scripts to RDS SH1 (App server)
 Add-LogMessage -Level Info "[ ] Copying $($filePathsSh1.Count) files to RDS Session Host (App server)"
 $params = @{
-    storageAccountName = "`"$($sreStorageAccount.StorageAccountName)`""
+    storageAccountName = [string]$($sreStorageAccount.StorageAccountName)
     storageService = "blob"
-    shareOrContainerName = "`"$containerNameSessionHosts`""
-    sasToken = "`"$sasToken`""
-    pipeSeparatedremoteFilePaths = "`"$($filePathsSh1 -join "|")`""
-    downloadDir = "$remoteUploadDir"
+    shareOrContainerName = [string]$containerNameSessionHosts
+    sasToken = [string]$sasToken
+    pipeSeparatedremoteFilePaths = [string]$($filePathsSh1 -join "|")
+    downloadDir = [string]$remoteUploadDir
 }
-$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.sre.rds.sessionHost1.vmName -ResourceGroupName $config.sre.rds.rg -Parameter $params
+$scriptPathTemp = "$scriptPath.app.ps1" 
+$params.Keys | % { Add-Content -Path $scriptPathTemp -Value "`$$($_) = `"$($params[$_])`""}
+Get-Content -Path $scriptPath | Add-Content -Path $scriptPathTemp 
+
+
+
+$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPathTemp -VMName $config.sre.rds.sessionHost1.vmName -ResourceGroupName $config.sre.rds.rg
 Write-Output $result.Value
 
+Remove-Item -Path $scriptPathTemp
 # Copy software and/or scripts to RDS SH2 (Remote desktop server)
+
 Add-LogMessage -Level Info "[ ] Copying $($filePathsSh2.Count) files to RDS Session Host (Remote desktop server)"
 $params = @{
-    storageAccountName = "`"$($sreStorageAccount.StorageAccountName)`""
+    storageAccountName = [string]$($sreStorageAccount.StorageAccountName)
     storageService = "blob"
-    shareOrContainerName = "`"$containerNameSessionHosts`""
-    sasToken = "`"$sasToken`""
-    pipeSeparatedremoteFilePaths = "`"$($filePathsSh2 -join "|")`""
-    downloadDir = "$remoteUploadDir"
+    shareOrContainerName = [string]$containerNameSessionHosts
+    sasToken = [string]$sasToken
+    pipeSeparatedremoteFilePaths = [string]$($filePathsSh2 -join "|")
+    downloadDir = [string]$remoteUploadDir
 }
-$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.sre.rds.sessionHost2.vmName -ResourceGroupName $config.sre.rds.rg -Parameter $params
-Write-Output $result.Value
+$scriptPathTemp = "$scriptPath.rdssh2.ps1" 
+$params.Keys | % { Add-Content -Path $scriptPathTemp -Value "`$$($_) = `"$($params[$_])`""}
+Get-Content -Path $scriptPath | Add-Content -Path $scriptPathTemp 
 
+$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPathTemp -VMName $config.sre.rds.sessionHost2.vmName -ResourceGroupName $config.sre.rds.rg
+Write-Output $result.Value
+Remove-Item -Path $scriptPathTemp
 
 # Install packages on RDS VMs
 # ---------------------------

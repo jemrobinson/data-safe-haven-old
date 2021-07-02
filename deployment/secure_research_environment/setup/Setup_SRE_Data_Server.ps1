@@ -72,10 +72,15 @@ $_ = Set-AzContext -Subscription $config.shm.subscriptionName
 Add-LogMessage -Level Info "Adding data server VM to correct OUs on SHM DC..."
 $scriptPath = Join-Path $PSScriptRoot ".." "remote" "create_dataserver" "scripts" "Move_Data_Server_VM_Into_OU.ps1"
 $params = @{
-    shmDn = "`"$($config.shm.domain.dn)`""
-    dataServerHostname = "`"$($config.sre.dataserver.hostname)`""
+    shmDn = [string]$($config.shm.domain.dn)
+    dataServerHostname = [string]$($config.sre.dataserver.hostname)
 }
-$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.shm.dc.vmName -ResourceGroupName $config.shm.dc.rg -Parameter $params
+$scriptPathTemp = "$scriptPath.ou.ps1" 
+$params.Keys | % { Add-Content -Path $scriptPathTemp -Value "`$$($_) = `"$($params[$_])`""}
+Get-Content -Path $scriptPath | Add-Content -Path $scriptPathTemp 
+
+$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPathTemp -VMName $config.shm.dc.vmName -ResourceGroupName $config.shm.dc.rg
+Remove-Item -Path $scriptPathTemp
 Write-Output $result.Value
 $_ = Set-AzContext -Subscription $config.sre.subscriptionName
 
@@ -91,13 +96,18 @@ Invoke-WindowsConfigureAndUpdate -VMName $config.sre.dataserver.vmName -Resource
 Add-LogMessage -Level Info "Configuring data server VM..."
 $scriptPath = Join-Path $PSScriptRoot ".." "remote" "create_dataserver" "scripts" "Configure_Data_Server_Remote.ps1"
 $params = @{
-    sreNetbiosName = "`"$($config.sre.domain.netbiosName)`""
-    shmNetbiosName = "`"$($config.shm.domain.netbiosName)`""
-    dataMountUser = "`"$($config.sre.users.datamount.samAccountName)`""
-    researcherUserSgName = "`"$($config.sre.domain.securityGroups.researchUsers.name)`""
-    serverAdminSgName = "`"$($config.shm.domain.securityGroups.serverAdmins.name)`""
+    sreNetbiosName = [string]$($config.sre.domain.netbiosName)
+    shmNetbiosName = [string]$($config.shm.domain.netbiosName)
+    dataMountUser = [string]$($config.sre.users.datamount.samAccountName)
+    researcherUserSgName = [string]$($config.sre.domain.securityGroups.researchUsers.name)
+    serverAdminSgName = [string]$($config.shm.domain.securityGroups.serverAdmins.name)
 }
-$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.sre.dataserver.vmName -ResourceGroupName $config.sre.dataserver.rg -Parameter $params
+$scriptPathTemp = "$scriptPath.ds.ps1" 
+$params.Keys | % { Add-Content -Path $scriptPathTemp -Value "`$$($_) = `"$($params[$_])`""}
+Get-Content -Path $scriptPath | Add-Content -Path $scriptPathTemp 
+
+$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPathTemp -VMName $config.sre.dataserver.vmName -ResourceGroupName $config.sre.dataserver.rg
+Remove-Item -Path $scriptPathTemp
 Write-Output $result.Value
 
 

@@ -25,18 +25,23 @@ $npsSecret = Resolve-KeyVaultSecret -VaultName $config.sre.keyVault.Name -Secret
 $scriptPath = Join-Path $PSScriptRoot ".." "remote" "create_rds" "scripts" "Configure_CAP_And_RAP_Remote.ps1"
 Add-LogMessage -Level Info "[ ] Configuring CAP and RAP settings on RDS Gateway"
 $params = @{
-    sreResearchUserSecurityGroup = "`"$($config.sre.domain.securityGroups.researchUsers.name)`""
-    shmNetbiosName = "$($config.shm.domain.netbiosName)"
-    shmNpsIp = "$($config.shm.nps.ip)"
+    sreResearchUserSecurityGroup = [string]$($config.sre.domain.securityGroups.researchUsers.name)
+    shmNetbiosName = [string]$($config.shm.domain.netbiosName)
+    shmNpsIp = [string]$($config.shm.nps.ip)
     remoteNpsPriority = 1
     remoteNpsTimeout = 60
     remoteNpsBlackout = 60
-    remoteNpsSecret = "$npsSecret"
+    remoteNpsSecret = [string]$npsSecret
     remoteNpsRequireAuthAttrib = "Yes"
-    remoteNpsAcctSharedSecret = "$npsSecret"
-    remoteNpsServerGroup = "`"TS GATEWAY SERVER GROUP`"" # "TS GATEWAY SERVER GROUP" is the group name created when manually configuring an RDS Gateway to use a remote NPS server
+    remoteNpsAcctSharedSecret = [string]$npsSecret
+    remoteNpsServerGroup = [string]"TS GATEWAY SERVER GROUP" # "TS GATEWAY SERVER GROUP" is the group name created when manually configuring an RDS Gateway to use a remote NPS server
 }
-$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.sre.rds.gateway.vmName -ResourceGroupName $config.sre.rds.rg -Parameter $params
+$scriptPathTemp = "$scriptPath.cap.ps1" 
+$params.Keys | % { Add-Content -Path $scriptPathTemp -Value "`$$($_) = `"$($params[$_])`""}
+Get-Content -Path $scriptPath | Add-Content -Path $scriptPathTemp 
+
+$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPathTemp -VMName $config.sre.rds.gateway.vmName -ResourceGroupName $config.sre.rds.rg 
+Remove-Item -Path $scriptPathTemp
 Write-Output $result.Value
 
 
@@ -47,12 +52,17 @@ Add-LogMessage -Level Info "Adding RDS Gateway as RADIUS client on SHM NPS"
 # Run remote script
 $scriptPath = Join-Path $PSScriptRoot ".." "remote" "create_rds" "scripts" "Add_RDS_Gateway_RADIUS_Client_Remote.ps1"
 $params = @{
-    rdsGatewayIp = "`"$($config.sre.rds.gateway.ip)`""
-    rdsGatewayFqdn = "`"$($config.sre.rds.gateway.fqdn)`""
-    npsSecret = "$npsSecret"
-    sreId = "`"$($config.sre.id)`""
+    rdsGatewayIp = [string]$($config.sre.rds.gateway.ip)
+    rdsGatewayFqdn = [string]$($config.sre.rds.gateway.fqdn)
+    npsSecret = [string]$npsSecret
+    sreId = [string]$($config.sre.id)
 }
-$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPath -VMName $config.shm.nps.vmName -ResourceGroupName $config.shm.nps.rg -Parameter $params
+$scriptPathTemp = "$scriptPath.rad.ps1" 
+$params.Keys | % { Add-Content -Path $scriptPathTemp -Value "`$$($_) = `"$($params[$_])`""}
+Get-Content -Path $scriptPath | Add-Content -Path $scriptPathTemp 
+
+$result = Invoke-RemoteScript -Shell "PowerShell" -ScriptPath $scriptPathTemp -VMName $config.shm.nps.vmName -ResourceGroupName $config.shm.nps.rg
+Remove-Item -Path $scriptPathTemp
 Write-Output $result.Value
 $_ = Set-AzContext -SubscriptionId $config.sre.subscriptionName
 

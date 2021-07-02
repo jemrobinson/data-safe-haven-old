@@ -4,20 +4,20 @@
 # C:\Packages\Plugins\Microsoft.CPlat.Core.RunCommandWindows\1.1.0 on the remote VM to cancel a stalled
 # job, but this does not seem to have an immediate effect
 # For details, see https://docs.microsoft.com/en-gb/azure/virtual-machines/windows/run-command
-param(
-    [Parameter(Position=0, HelpMessage = "Storage account name")]
-    [string]$storageAccountName,
-    [Parameter(Position=1, HelpMessage = "Storage service")]
-    [string]$storageService,
-    [Parameter(Position=2, HelpMessage = "File share or blob container name")]
-    [string]$shareOrContainerName,
-    [Parameter(Position=3, HelpMessage = "SAS token with read/list rights to the artifacts storage blob container")]
-    [string]$sasToken,
-    [Parameter(Position=4, HelpMessage = "Pipe separated list of remote file paths")]
-    [string]$pipeSeparatedremoteFilePaths,
-    [Parameter(Position=5, HelpMessage = "Absolute path to artifacts download directory")]
-    [string]$downloadDir
-)
+# param(
+#     [Parameter(Position=0, HelpMessage = "Storage account name")]
+#     [string]$storageAccountName,
+#     [Parameter(Position=1, HelpMessage = "Storage service")]
+#     [string]$storageService,
+#     [Parameter(Position=2, HelpMessage = "File share or blob container name")]
+#     [string]$shareOrContainerName,
+#     [Parameter(Position=3, HelpMessage = "SAS token with read/list rights to the artifacts storage blob container")]
+#     [string]$sasToken,
+#     [Parameter(Position=4, HelpMessage = "Pipe separated list of remote file paths")]
+#     [string]$pipeSeparatedremoteFilePaths,
+#     [Parameter(Position=5, HelpMessage = "Absolute path to artifacts download directory")]
+#     [string]$downloadDir
+# )
 
 # Deserialise blob names
 $remoteFilePaths = $pipeSeparatedremoteFilePaths.Split("|")

@@ -1,15 +1,15 @@
-param(
-  [Parameter(Position=0, Mandatory = $true, HelpMessage = "SRE Netbios name")]
-  [string]$sreNetbiosName,
-  [Parameter(Position=1, Mandatory = $true, HelpMessage = "SHM Netbios name")]
-  [string]$shmNetbiosName,
-  [Parameter(Position=2, Mandatory = $true, HelpMessage = "User which enables the SMB share to be mounted locally")]
-  [string]$dataMountUser,
-  [Parameter(Position=3, Mandatory = $true, HelpMessage = "Security group name for research users")]
-  [string]$researcherUserSgName,
-  [Parameter(Position=4, Mandatory = $true, HelpMessage = "Security group name for server admins")]
-  [string]$serverAdminSgName
-)
+# param(
+#   [Parameter(Position=0, Mandatory = $true, HelpMessage = "SRE Netbios name")]
+#   [string]$sreNetbiosName,
+#   [Parameter(Position=1, Mandatory = $true, HelpMessage = "SHM Netbios name")]
+#   [string]$shmNetbiosName,
+#   [Parameter(Position=2, Mandatory = $true, HelpMessage = "User which enables the SMB share to be mounted locally")]
+#   [string]$dataMountUser,
+#   [Parameter(Position=3, Mandatory = $true, HelpMessage = "Security group name for research users")]
+#   [string]$researcherUserSgName,
+#   [Parameter(Position=4, Mandatory = $true, HelpMessage = "Security group name for server admins")]
+#   [string]$serverAdminSgName
+# )
 
 
 # Initialise the data drives

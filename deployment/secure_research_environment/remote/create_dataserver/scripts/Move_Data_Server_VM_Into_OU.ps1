@@ -4,12 +4,12 @@
 # C:\Packages\Plugins\Microsoft.CPlat.Core.RunCommandWindows\1.1.0 on the remote VM to cancel a stalled
 # job, but this does not seem to have an immediate effect
 # For details, see https://docs.microsoft.com/en-gb/azure/virtual-machines/windows/run-command
-param(
-    [Parameter(Position=0, HelpMessage = "SHM DN")]
-    [string]$shmDn,
-    [Parameter(Position=1, HelpMessage = "Data server hostname")]
-    [string]$dataServerHostname
-)
+# param(
+#     [Parameter(Position=0, HelpMessage = "SHM DN")]
+#     [string]$shmDn,
+#     [Parameter(Position=1, HelpMessage = "Data server hostname")]
+#     [string]$dataServerHostname
+# )
 
 $targetPath = "OU=Secure Research Environment Data Servers,$shmDn"
 Write-Output " [ ] Moving '$dataServerHostname' to '$targetPath'"
