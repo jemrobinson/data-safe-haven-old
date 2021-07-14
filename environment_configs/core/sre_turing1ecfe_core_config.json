@@ -1,0 +1,14 @@
+{
+    "subscriptionName": "Turing1 SRE ECFE",
+    "adminSecurityGroupName" : "Safe Haven Production Admins",
+    "sreId": "ecfe",
+    "shmId": "turing1",
+    "tier": "2",
+    "domain": "ecfe.turingsafehaven.ac.uk",
+    "netbiosName": "ecfe",
+    "ipPrefix": "10.228.80",
+    "rdsAllowedSources": "default",
+    "rdsInternetAccess": "default",
+    "computeVmImageType": "Ubuntu",
+    "computeVmImageVersion": "0.2.2020060100"
+}
