@@ -109,7 +109,7 @@ if ($requestCertificate) {
 
     # Run Posh-ACME commands in a subjob to avoid incompatibility with the Az module
     # ------------------------------------------------------------------------------
-    $certificateFilePath = Start-Job -ArgumentList @($PSScriptRoot, $token, $azureContext.Subscription.Id, $userFriendlyFqdn, $csrPath, $config.shm.organisation.contactEmail, $dryRun) -ScriptBlock {
+    $certificateFilePath = Start-Job -ArgumentList @($PSScriptRoot, $token, $azureContext.Subscription.Id, $userFriendlyFqdn, $csrPath, $emailAddress, $dryRun) -ScriptBlock {
         param(
             [string]$ScriptRoot,
             [string]$AZAccessToken,
