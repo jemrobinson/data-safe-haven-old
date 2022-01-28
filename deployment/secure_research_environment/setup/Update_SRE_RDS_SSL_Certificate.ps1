@@ -49,7 +49,6 @@ Add-LogMessage -Level Info "[ ] Checking whether signed certificate '$certificat
 $kvCertificate = Get-AzKeyVaultCertificate -VaultName $config.sre.keyVault.name -Name $certificateName
 $requestCertificate = $false
 
-
 # Determine whether a certificate request is needed
 # -------------------------------------------------
 if ($null -eq $kvCertificate) {
@@ -74,6 +73,7 @@ if ($null -eq $kvCertificate) {
 
 # Request a new certificate
 # -------------------------
+$remoteDesktopVmFqdn = $config.sre.rds.gateway.fqdn
 $userFriendlyFqdn = $config.sre.domain.fqdn
 if ($requestCertificate) {
     Add-LogMessage -Level Info "Preparing to request a new certificate..."
