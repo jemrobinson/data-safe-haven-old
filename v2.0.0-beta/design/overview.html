@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Design principles &#8212; Data Safe Haven v2.0.0-beta documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v2.0.0-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Design principles
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#available-deployment-tools">
+     Available deployment tools
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#considerations">
+     Considerations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#declarative-rather-than-procedural">
+       Declarative rather than procedural
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-focus-on-infrastructure-orchestration">
+       A focus on infrastructure orchestration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#design-of-the-analysis-environment">
+   Design of the analysis environment
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#default-software-in-analysis-environment">
+     Default software in analysis environment
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#programming-languages">
+       Programming languages
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#development-tools">
+       Development tools
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#management-tools">
+       Management tools
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#machine-learning-tools">
+       Machine learning tools
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualisation-tools">
+       Visualisation tools
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#default-software-on-secure-developer-devices">
+     Default software on secure developer devices
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-software-to-the-list-of-defaults">
+     Adding software to the list of defaults
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/design/overview.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="design-principles">
+<h1>Design principles<a class="headerlink" href="#design-principles" title="Permalink to this headline">¶</a></h1>
+<p>We should ensure that all aspects of our data safe haven solution are deployable via scripts (i.e. our safe havens are defined by “infrastructure as code”). Many aspects of the security of our safe haven will depend on reliably reproducing one of a limited number of validated base configurations, with controlled and audited variations on these for specific instances (e.g. list of users, size and number of virtual machines, available storage etc). We should have a set of version controlled “master scripts” for deploying each base variation and also store the instance specific specification variations in version control. The goal is to have an executable record of each safe haven instance we deploy, for both reproducibility and audit purposes. Running validated parameterised scripts rather than ad-hoc commands will also minimise the risk of inadvertently compromising the security of a safe haven instance on initial deployment or post-deployment modification (e.g. ensuring that all new resources deployed have the appropriate access controls).</p>
+<section id="available-deployment-tools">
+<h2>Available deployment tools<a class="headerlink" href="#available-deployment-tools" title="Permalink to this headline">¶</a></h2>
+<p>We consider the following set of tools for deployment and configuration of computational infrastructure.</p>
+<ul class="simple">
+<li><p>Ansible</p></li>
+<li><p>Azure Resource Management (ARM) templates</p></li>
+<li><p>Azure Powershell Command Line Interface (CLI) or Libraries</p></li>
+<li><p>Azure Python Command Line Interface (CLI) or Libraries</p></li>
+<li><p>Chef</p></li>
+<li><p>Fabric</p></li>
+<li><p>Puppet</p></li>
+<li><p>SaltStack</p></li>
+<li><p>Terraform</p></li>
+</ul>
+</section>
+<section id="considerations">
+<h2>Considerations<a class="headerlink" href="#considerations" title="Permalink to this headline">¶</a></h2>
+<p>We would like our solution to have the following properties.</p>
+<section id="declarative-rather-than-procedural">
+<h3>Declarative rather than procedural<a class="headerlink" href="#declarative-rather-than-procedural" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>A <strong>procedural</strong> approach to infrastructure deployment defines a “recipe” of steps to follow to generate a desired infrastructure state from the current state.</p></li>
+<li><p>A <strong>declarative</strong> approach to infrastructure deployment defines a “configuration” describing the desired infrastructure state <strong>independent</strong> of the current state.</p></li>
+</ul>
+<p>A declarative approach is preferred for the following reasons:</p>
+<ul class="simple">
+<li><p><strong>Clarity</strong> of infrastructure description: With a declarative approach, the latest deployed configuration clearly and completely describes the current state of the deployed infrastructure. With a procedural approach, the current state of the deployed infrastructure is the result of cumulatively applying a set of scripts adding, amending and deleting resources and can only be inferred by mentally running these update scripts.</p></li>
+<li><p><strong>Consistency</strong> of deployment: With a procedural approach, the steps required to reach a desired deployed configuration depend on the current state of the deployment. Unless all instances of a given infrastructure are updated in lockstep, each instance will require different subsets of update scripts to be applied to bring it up to date with the current configuration. Even just deploying a “fresh” instance requires running the initial deployment script plus all subsequent updates in order. In contrast, with a declarative approach, the latest configuration can simply be deployed against all instances and they will be updated to match it.</p></li>
+</ul>
+</section>
+<section id="a-focus-on-infrastructure-orchestration">
+<h3>A focus on infrastructure orchestration<a class="headerlink" href="#a-focus-on-infrastructure-orchestration" title="Permalink to this headline">¶</a></h3>
+<p>Many of the long-standing tools being considered have traditionally focussed on setting up and updating the configuration of existing physical or virtual machines, with support for <strong>orchestrating</strong> the deployment of virtual infrastructure added later as a secondary provision. We plan to use virtual machine images and docker to manage the configuration of compute resources, so orchestration of virtual infrastructure should be first class functionality in our chosen solution.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="design-of-the-analysis-environment">
+<h1>Design of the analysis environment<a class="headerlink" href="#design-of-the-analysis-environment" title="Permalink to this headline">¶</a></h1>
+<p>The analysis environment is a Linux-based virtual machine, pre-configured with typical software necessary for data science work. Other tools can be installed following the <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/SoftwareIngressPolicy">Software ingress policy</a>.</p>
+<p>Note that we have chosen to <em>not</em> support analyses on other operating systems (Windows or Mac for example). There are very few data science analyses that can not be conducted on Linux and very few data science researchers who would not be able to perform their work via a Linux OS. The incremental gain that could come from supporting additional operating systems would not balance out the additional support requirements.</p>
+<p>The section below details the default software installed within the analysis environment.</p>
+<section id="default-software-in-analysis-environment">
+<h2>Default software in analysis environment<a class="headerlink" href="#default-software-in-analysis-environment" title="Permalink to this headline">¶</a></h2>
+<section id="programming-languages">
+<h3>Programming languages<a class="headerlink" href="#programming-languages" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Python (2.7, 3.5 and 3.6)</p>
+<ul>
+<li><p>Anaconda env: <code class="docutils literal notranslate"><span class="pre">py27</span></code></p>
+<ul>
+<li><p>includes all packages from <a class="reference external" href="https://docs.anaconda.com/anaconda/packages/py2.7_linux-64/">here</a>, including <code class="docutils literal notranslate"><span class="pre">pip</span></code></p></li>
+<li><p>in addition the following packages are installed: <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyter_client</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>, <code class="docutils literal notranslate"><span class="pre">keras</span></code>, <code class="docutils literal notranslate"><span class="pre">notebook</span></code>, <code class="docutils literal notranslate"><span class="pre">pystan</span></code>, <code class="docutils literal notranslate"><span class="pre">pytorch</span></code>, <code class="docutils literal notranslate"><span class="pre">r-irkernel</span></code>, <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code>, <code class="docutils literal notranslate"><span class="pre">torchvision</span></code></p></li>
+</ul>
+</li>
+<li><p>Anaconda env: <code class="docutils literal notranslate"><span class="pre">py35</span></code></p>
+<ul>
+<li><p>includes all packages from <a class="reference external" href="https://docs.anaconda.com/anaconda/packages/py3.5_linux-64/">here</a>, including <code class="docutils literal notranslate"><span class="pre">pip</span></code></p></li>
+<li><p>in addition the following packages are installed: <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyterhub</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyter_client</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>, <code class="docutils literal notranslate"><span class="pre">keras</span></code>, <code class="docutils literal notranslate"><span class="pre">notebook</span></code>, <code class="docutils literal notranslate"><span class="pre">pystan</span></code>, <code class="docutils literal notranslate"><span class="pre">pytorch</span></code>, <code class="docutils literal notranslate"><span class="pre">r-irkernel</span></code>, <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code>, <code class="docutils literal notranslate"><span class="pre">torchvision</span></code></p></li>
+</ul>
+</li>
+<li><p>Anaconda env: <code class="docutils literal notranslate"><span class="pre">py36</span></code></p>
+<ul>
+<li><p>includes all packages from <a class="reference external" href="https://docs.anaconda.com/anaconda/packages/py3.6_linux-64/">here</a>, including <code class="docutils literal notranslate"><span class="pre">pip</span></code></p></li>
+<li><p>in addition the following packages are installed: <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyterhub</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyter_client</span></code>, <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>, <code class="docutils literal notranslate"><span class="pre">keras</span></code>, <code class="docutils literal notranslate"><span class="pre">notebook</span></code>, <code class="docutils literal notranslate"><span class="pre">pystan</span></code>, <code class="docutils literal notranslate"><span class="pre">pytorch</span></code>, <code class="docutils literal notranslate"><span class="pre">r-irkernel</span></code>, <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code>, <code class="docutils literal notranslate"><span class="pre">torchvision</span></code></p></li>
+</ul>
+</li>
+<li><p>Note that additional packages can be installed by the user from the internal mirror of the conda and pip package repositories and internet access will not be required for these installations.</p></li>
+</ul>
+</li>
+<li><p>R (CRAN/Bioconductor)</p>
+<ul>
+<li><p>A large number of R packages will be included in the VM. The list is <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/R-package-list">here</a>. If any necessary package is missing, please make a note so that the list (and the VM) can be updated appropriately.</p></li>
+</ul>
+</li>
+<li><p>PostgreSQL</p></li>
+<li><p>Julia 1.0 (or is a different version preferred - clarification needed here)</p></li>
+<li><p>Java JVM</p></li>
+<li><p>.NET Core and mono</p></li>
+<li><p>C/C++</p></li>
+<li><p>Fortran</p></li>
+</ul>
+</section>
+<section id="development-tools">
+<h3>Development tools<a class="headerlink" href="#development-tools" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Bash terminal with basic command line utilities</p></li>
+<li><p>Git</p></li>
+<li><p>htop</p></li>
+<li><p>Web browser</p></li>
+<li><p>Text editors</p>
+<ul>
+<li><p>vim</p></li>
+<li><p>emacs</p></li>
+<li><p>nano</p></li>
+<li><p>VS Code</p></li>
+<li><p>Atom</p>
+<ul>
+<li><p>Note that VS Code and Atom require various extensions to be added while internet access is available. The process for this should follow the <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/SoftwareIngressPolicy">Software ingress policy</a>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>RStudio desktop and server</p></li>
+<li><p>Jupyter Notebook server with R, Python and Julia kernels</p></li>
+<li><p>JupyterLab/JupyterHub</p></li>
+<li><p>Docker (possible issues with root access?)</p></li>
+<li><p>Virtualization software for code requiring root privileges (solving the Docker issue above?)</p></li>
+</ul>
+</section>
+<section id="management-tools">
+<h3>Management tools<a class="headerlink" href="#management-tools" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Azure CLI and other necessary tools (azcopy)</p></li>
+<li><p>Azure Storage Explorer</p></li>
+</ul>
+</section>
+<section id="machine-learning-tools">
+<h3>Machine learning tools<a class="headerlink" href="#machine-learning-tools" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Stan</p></li>
+<li><p>Spark</p></li>
+<li><p>Tensorflow</p></li>
+<li><p>Torch, PyTorch</p></li>
+<li><p>Keras</p></li>
+<li><p>CUDA</p></li>
+<li><p>OpenCV</p></li>
+</ul>
+</section>
+<section id="visualisation-tools">
+<h3>Visualisation tools<a class="headerlink" href="#visualisation-tools" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>FFMPEG</p></li>
+<li><p>Paraview</p></li>
+</ul>
+</section>
+</section>
+<section id="default-software-on-secure-developer-devices">
+<h2>Default software on secure developer devices<a class="headerlink" href="#default-software-on-secure-developer-devices" title="Permalink to this headline">¶</a></h2>
+<p>There are two types of secure devices with different default behaviour:</p>
+<ol>
+<li><p><strong>Short term loan device</strong></p>
+<p>Device on a short term loan does not need any installed software beyond tools necessary to connect to the safe haven environment. All of the analysis work should be done within the secure environment.</p>
+</li>
+<li><p><strong>Device with long term usage</strong></p>
+<p>The user should get a window of opportunity to install any required software themselves, with internet access. If the device is Linux-based (or Mac if compatible), it may be pre-installed with the default software. As a default policy, only Linux environments should be pre-configured.</p>
+</li>
+</ol>
+<p>For additional information see the <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/DeviceTiers">Device tiers</a>.</p>
+</section>
+<section id="adding-software-to-the-list-of-defaults">
+<h2>Adding software to the list of defaults<a class="headerlink" href="#adding-software-to-the-list-of-defaults" title="Permalink to this headline">¶</a></h2>
+<p>The process of adding software to the tools installed by default is detailed in the <span class="xref myst">Software ingress process</span> document.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

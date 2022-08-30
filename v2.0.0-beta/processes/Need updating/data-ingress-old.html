@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Ingress Process &#8212; Data Safe Haven v2.0.0-beta documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v2.0.0-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definitions">
+   Definitions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-categorise-the-data-into-one-of-the-defined-data-tiers">
+   Step 1: Categorise the data into one of the defined Data Tiers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-complete-data-sharing-paperwork">
+   Step 2: Complete data sharing paperwork
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-store-the-signed-documents-in-a-secure-location">
+   Step 3: Store the signed documents in a secure location
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-transfer-from-data-owner-to-turing">
+   Step 4: Transfer from data owner to Turing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-3-sensitive">
+     Tier 3: Sensitive
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#preferred-secure-transfer-process">
+       Preferred secure transfer process
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alternate-secure-transfer-process">
+       Alternate secure transfer process
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#encrypted-transfer-for-large-data-process">
+       Encrypted transfer for large data process
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-2-official">
+     Tier 2: Official
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-1-publishable">
+     Tier 1: Publishable
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#physical-data-format">
+       Physical data format
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-0-public">
+     Tier 0: Public
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-5-transfer-from-staging-area-to-secure-data-area">
+   Step 5: Transfer from staging area to secure data area
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#web-interface">
+     Web Interface
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#command-line-via-secure-copy-protocol">
+     Command line via secure copy protocol
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-6-confirm-that-the-data-in-the-secure-data-area-is-the-same-as-that-transferred-from-the-data-owner">
+   Step 6: Confirm that the data in the secure data area is the same as that transferred from the Data Owner
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-7-clear-the-staging-area">
+   Step 7: Clear the staging area
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-couple-of-outstanding-questions">
+     A couple of outstanding questions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-8-test-the-integrity-of-the-data">
+   Step 8: Test the integrity of the data
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/processes/Need updating/data-ingress-old.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="data-ingress-process">
+<h1>Data Ingress Process<a class="headerlink" href="#data-ingress-process" title="Permalink to this headline">¶</a></h1>
+<p>This document details the ways of importing data to the Data Safe Haven (DSH).
+It is based on the <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/Data-ingress:-policy">Data ingress policy</a>.
+By data we refer to any digital document, file, dataset in any format known and to be known. If the data comes in physical format please refer to the appendix 1.</p>
+<p>Note that <strong>Tier 4 data will never be imported into the Turing Data Safe Haven</strong> as described in the <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/Data-ingress:-policy">Data ingress policy</a>.</p>
+<section id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>staging area</strong> is the file storage location at the Turing Institute that is visible to the data owner.
+The data owner will transfer the data to this location.
+A restricted number of Turing staff will have access to the staging area and data will be deleted from the staging area as soon as it has been transferred to the Data Safe Haven.</p>
+<p>The <strong>secure data area</strong> is the workspace within the Azure infrastructure that contains the data and analysis environment.
+It is in the secure data area that approved researchers will have access to the data.
+Access will be managed via the user roles.
+Note that most researchers will only have read access to this data to avoid accidental deletion.</p>
+<p>The <strong>secure document store</strong> is the single volume within the Azure infrastructure that contains the definitive copy of the signed data transfer agreements.</p>
+<p>The <strong>golden copy</strong> is the exact copy of the data received from the data owner and stored in secure data area.</p>
+</section>
+<section id="step-1-categorise-the-data-into-one-of-the-defined-data-tiers">
+<h2>Step 1: Categorise the data into one of the defined <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/DataTiers">Data Tiers</a><a class="headerlink" href="#step-1-categorise-the-data-into-one-of-the-defined-data-tiers" title="Permalink to this headline">¶</a></h2>
+<p>Remember that Tier-0 is the least sensitive data tier (public data) and Tier-4 the most sensitive (SECRET).</p>
+<p>If there are mixed data sensitivities in the complete data set then the whole data set must be assigned to the <strong>most sensitive</strong> data tier.</p>
+</section>
+<section id="step-2-complete-data-sharing-paperwork">
+<h2>Step 2: Complete data sharing paperwork<a class="headerlink" href="#step-2-complete-data-sharing-paperwork" title="Permalink to this headline">¶</a></h2>
+<p>[WHO] needs to complete the appropriate legal paperwork to ensure that a data sharing agreement is in place.</p>
+<p>This step should also cover ethical considerations of sharing the data.
+The project may need to be approved by the Turing Ethics Advisory Group (EAG; more information can be found at the <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/service?unid=cb5e35246f474d1f90abae8ea262338c">Turing Institute intranet site</a>) and permission to use the data (including <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/UnconsentedPatientData">unconsented patient data</a>) should be obtained.</p>
+<p>The data sharing paperwork must make very clear the tier to which the dataset has been assigned.</p>
+</section>
+<section id="step-3-store-the-signed-documents-in-a-secure-location">
+<h2>Step 3: Store the signed documents in a secure location<a class="headerlink" href="#step-3-store-the-signed-documents-in-a-secure-location" title="Permalink to this headline">¶</a></h2>
+<p>All documents detailed in step 2 should be available in the secure document store.
+They certify that the users are allowed to have access to the specified data, and to process it in agreed ways.</p>
+<p>A likely workflow is that a Business Development Manager or Programme Manager will place the authorised copy of the data sharing agreement in that location.</p>
+<p>The version of the documents stored in the secure document store are the definitive ones.
+There will be a COPY (labelled as such) stored in the same location as the data for user reference.
+There should be a hash to confirm that the documents are indeed the same.</p>
+</section>
+<section id="step-4-transfer-from-data-owner-to-turing">
+<h2>Step 4: Transfer from data owner to Turing<a class="headerlink" href="#step-4-transfer-from-data-owner-to-turing" title="Permalink to this headline">¶</a></h2>
+<p>Different processes should be followed depending on the tier to which the data has been assigned (as described in the <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/wiki/DataClassificationProcess">data classification process</a>.</p>
+<p>It is the responsibility of the Turing staff member conducting this step to ensure that they are following the appropriate process for the assigned data classification tier.</p>
+<section id="tier-3-sensitive">
+<h3>Tier 3: Sensitive<a class="headerlink" href="#tier-3-sensitive" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="#preferred-secure-transfer-process">preferred secure transfer process</a> should be followed by default.
+If it is not possible to use <a class="reference external" href="https://en.wikipedia.org/wiki/Secure_copy">secure copy protocol (SCP) transfer</a> then the <a class="reference external" href="#alternate-secure-transfer-process">alternate secure transfer process</a> should be followed.</p>
+<p>If the data are too large to transfer over the internet then the <a class="reference external" href="#encrypted-transfer-for-large-data-process">encrypted transfer for large data process</a> should be followed.</p>
+<p>Note that tier 3 data in physical form will not be accepted by the Turing Institute.
+It is the responsibility of the data owner to digitise the files.</p>
+<section id="preferred-secure-transfer-process">
+<h4>Preferred secure transfer process<a class="headerlink" href="#preferred-secure-transfer-process" title="Permalink to this headline">¶</a></h4>
+<p>The data should be transferred to the staging area via <a class="reference external" href="https://en.wikipedia.org/wiki/Secure_copy">SCP transfer</a> (not <a class="reference external" href="https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol">SFTP</a>) from the data owner to the Turing Institute.</p>
+<p>In order to set up the transfer, a secure email (via <a class="reference external" href="https://www.egress.com/what-we-offer/email-and-file-protection">Egress</a> which is <a class="reference external" href="https://www.ncsc.gov.uk/scheme/commercial-product-assurance-cpa">certified</a> by the UK National Cyber Security Centre (NCSC)) should be sent to the Data Owner by Turing to provide the access details and instructions for how they can load their data to the staging area in order for Turing to receive it.
+The following Turing staff members are authorised to send this email: Head of IT and Security, IT team member, Programme Manager, REG team member.</p>
+<p>On receipt of this email the data owner will need to provide Turing with a public IP address for a member of the Turing to whitelist in order for the files to be transferred.
+The whitelisting should be for a restricted period; the length of the period will be decided on a case-by-case basis depending on - for example - how responsive the Data Owner is.
+<strong>The length of the period will not exceed one week.</strong>
+If the data is not transferred during this period, the whitelisting will need to be re-set up.
+The following Turing staff members are authorised to whitelist the IP address: Head of IT and Security, IT team member, Programme Manager, REG team member.</p>
+</section>
+<section id="alternate-secure-transfer-process">
+<h4>Alternate secure transfer process<a class="headerlink" href="#alternate-secure-transfer-process" title="Permalink to this headline">¶</a></h4>
+<p>If the SCP transfer process described above is not possible, for example if the data owner has restrictions about what tools they are able to use or download on their devices, the following process may be used.</p>
+<p>The data owner must first encrypt the data, using a strong encryption method to be agreed by REG team - for example using <a class="reference external" href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a> - with a strong password.
+The data owner will then send the encrypted data over normal email or via a website upload. The encryption key must be communicated from the data owner to a Turing staff member verbally over the phone or in person.
+<strong>The key must not be communicated over the same channel through which the encrypted data was sent</strong>.
+The following Turing staff members are authorised to receive the encryption key: Head of IT and Security, IT team member, Programme Manager, REG team member.</p>
+<p>A member of the Turing Institute will then upload the data to the staging area.
+If the data was encrypted when it was received it should <strong>remain encrypted until after transfer to the secure data area</strong>.</p>
+</section>
+<section id="encrypted-transfer-for-large-data-process">
+<h4>Encrypted transfer for large data process<a class="headerlink" href="#encrypted-transfer-for-large-data-process" title="Permalink to this headline">¶</a></h4>
+<p>If the data is so large that it cannot be sent over the internet, the following process may be used.</p>
+<p>The data owner must first encrypt the data, using a strong encryption method to be agreed by REG team - for example using <a class="reference external" href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a> - with a strong password. Turing will accept delivery of the data via an encrypted hard drive.
+The encryption key must be communicated from the data owner to a Turing staff member verbally over the phone or in person.
+<strong>The key must not be delivered in the same physical package as the encrypted hard drive</strong>.
+The following Turing staff members are authorised to receive the encrypted hard drive: Head of IT and Security, IT team member, Programme Manager, REG team member.</p>
+<p>A member of the Turing Institute will then upload the data to the staging area.
+If the data was encrypted when it was received it should <strong>remain encrypted in the staging area until after transfer to the secure data area</strong>.</p>
+</section>
+</section>
+<section id="tier-2-official">
+<h3>Tier 2: Official<a class="headerlink" href="#tier-2-official" title="Permalink to this headline">¶</a></h3>
+<p>For this type of OFFICIAL data; the processes are be the same as for <a class="reference external" href="#tier-3-sensitive">Tier 3</a> above, except IP whitelisting for SCP is not required.</p>
+<p>Note that tier 2 data in physical form will not be accepted by the Turing Institute.
+It is the responsibility of the data owner to digitise the files.</p>
+</section>
+<section id="tier-1-publishable">
+<h3>Tier 1: Publishable<a class="headerlink" href="#tier-1-publishable" title="Permalink to this headline">¶</a></h3>
+<p>The same transfer process as <a class="reference external" href="#tier-3-official">Tier 2</a> is available to the data owners.</p>
+<p>Alternatively they may share the data via a the file sharing site of their choice (for example Dropbox, Box, Google Drive, SharePoint).
+They are recommended - but not required - to password protect these files.
+If a password is used it should be shared with Turing via a different channel that the one sharing the URL to the data.</p>
+<p>One supported example for the file transfer is for Turing to set up an Office365 Group and add the data owners as members of the group (“external guests”).
+The data can then be uploaded to the SharePoint site associated with the group.</p>
+<p>A member of the Turing Institute will then upload the data to the staging area.</p>
+<p>Data <strong>should not be sent over email</strong> to avoid the risk of individuals at Turing unintentionally retaining the data for longer than intended.
+This also reduces risk of accidental pre-publication forwarding of data sets.</p>
+<section id="physical-data-format">
+<h4>Physical data format<a class="headerlink" href="#physical-data-format" title="Permalink to this headline">¶</a></h4>
+<p>If data at tier 1 or lower comes in physical form - for example as sheets of paper - they should be delivered to the Turing by a trusted party of the data owner.
+Each item in the physical dataset will be scanned to create a digital copy and transferred directly to a SharePoint folder from the scanner.
+The scanned files will then be transferred to the staging area.
+The following Turing staff members are authorised to scan the physical data and transfer it to the staging area: Head of IT and Security, IT team member, Programme Manager, REG team member.</p>
+</section>
+</section>
+<section id="tier-0-public">
+<h3>Tier 0: Public<a class="headerlink" href="#tier-0-public" title="Permalink to this headline">¶</a></h3>
+<p>This is publicly available, open data, and as such is likely to be hosted on a public website and can therefore simply be downloaded directly to the staging area.</p>
+</section>
+</section>
+<section id="step-5-transfer-from-staging-area-to-secure-data-area">
+<h2>Step 5: Transfer from staging area to secure data area<a class="headerlink" href="#step-5-transfer-from-staging-area-to-secure-data-area" title="Permalink to this headline">¶</a></h2>
+<p>Once the data is received at Turing a Turing staff member should transfer the data to the secure analysis environment in Azure.
+There are two ways of uploading data to the system: through a web interface where files can be selected and tranferred to the secure data area and copying them using secure copy protocol (SCP).
+The following Turing staff members are authorised to transfer the data: Head of IT and Security, IT team member, Programme Manager, REG team member.</p>
+<p>At this point a copy of the signed data transfer documents - saved in the secure document store - should be made in the secure data area.
+These copies should be marked as COPIES.
+There should be a hash to confirm that the documents are indeed the same.</p>
+<p>It is the responsibility of the Turing staff member conducting this step to ensure that they are following the appropriate process for the assigned data classification tier.</p>
+<p>This transferred version of the data is the <strong>golden copy</strong> and can not be edited once placed in the secure data area.</p>
+<section id="web-interface">
+<h3>Web Interface<a class="headerlink" href="#web-interface" title="Permalink to this headline">¶</a></h3>
+<p>Available using OSX/Windows/GNU/Linux.</p>
+<p>The Turing staff member who is transferring the data can log in and move datasets and files from the staging area to the secure data area.</p>
+</section>
+<section id="command-line-via-secure-copy-protocol">
+<h3>Command line via secure copy protocol<a class="headerlink" href="#command-line-via-secure-copy-protocol" title="Permalink to this headline">¶</a></h3>
+<p>Using the <a class="reference external" href="https://en.wikipedia.org/wiki/Secure_copy">SCP</a> protocol the data can be uploaded by using the IP of the secure data area.
+The Turing staff member who is transferring the data can connect to the server using a secure shell (<code class="docutils literal notranslate"><span class="pre">ssh</span></code> protocol).</p>
+</section>
+</section>
+<section id="step-6-confirm-that-the-data-in-the-secure-data-area-is-the-same-as-that-transferred-from-the-data-owner">
+<h2>Step 6: Confirm that the data in the secure data area is the same as that transferred from the Data Owner<a class="headerlink" href="#step-6-confirm-that-the-data-in-the-secure-data-area-is-the-same-as-that-transferred-from-the-data-owner" title="Permalink to this headline">¶</a></h2>
+<p>A Turing staff member must sent an <a class="reference external" href="https://en.wikipedia.org/wiki/File_verification">integrity verification</a> proof for each file uploaded to the data owner.
+This will include decrypting the data where necessary.
+This step is to verify that the files in the secure data area are the same as the original data that is stored with the Data Owner.</p>
+<blockquote>
+<div><p>TO DO: Write up instructions on how to create the verification for both Turing and data owners.</p>
+</div></blockquote>
+</section>
+<section id="step-7-clear-the-staging-area">
+<h2>Step 7: Clear the staging area<a class="headerlink" href="#step-7-clear-the-staging-area" title="Permalink to this headline">¶</a></h2>
+<p>All copies of the data in the staging area must be deleted after the integrity verification has been completed.</p>
+<blockquote>
+<div><p>QUESTION: Should the dropbox folders and SharePoint folders for Tier 1 data also be cleared at this step?</p>
+</div></blockquote>
+<hr class="docutils" />
+<section id="a-couple-of-outstanding-questions">
+<h3>A couple of outstanding questions<a class="headerlink" href="#a-couple-of-outstanding-questions" title="Permalink to this headline">¶</a></h3>
+<p>Question from Kirstie &amp; Catherine: Is this step part of data ingress? It seems like it’s a data quality control step and is out of scope for this process? Is there a better place to put it!?</p>
+</section>
+</section>
+<section id="step-8-test-the-integrity-of-the-data">
+<h2>Step 8: Test the integrity of the data<a class="headerlink" href="#step-8-test-the-integrity-of-the-data" title="Permalink to this headline">¶</a></h2>
+<p>A member of the Turing Research Engineering team will run all the necessary tests to ensure the integrity of the dataset.
+After the revision a report is generated informing the content and metadata of the data provided by the user in the staging area.
+Any changes in the data should be versioned.
+All the transformation and exploration process should be versioned.
+At the beginning and the end of each session a hash with the code and data should be generated to verify authenticity of the work on the data.
+Once all tests have been complied the resultant data will be ready to go to the secure data area.
+Data in this area can be deleted except for the latest version of the data, that in the case of no longer be needed should be archived along with the code, reports, and policy checks.</p>
+<hr class="docutils" />
+<p>Question for Diego:</p>
+<p>Kirstie &amp; Catherine were wondering why we needed the different folders? The policy says that there will never be a mix of tiers within one project, so this step may not be required.</p>
+<blockquote>
+<div><p>A empty volume is created specifically for the project and will have the necessary folders to store data, the maximum number of folders is 5 with the names: <code class="docutils literal notranslate"><span class="pre">tier0</span></code>, <code class="docutils literal notranslate"><span class="pre">tier1</span></code>, <code class="docutils literal notranslate"><span class="pre">tier2</span></code>, <code class="docutils literal notranslate"><span class="pre">tier3</span></code> and <code class="docutils literal notranslate"><span class="pre">tier4</span></code>. The data is assigned to the corresponding folder. The nominated accounts will have access to the folders accordingly with their access level.</p>
+</div></blockquote>
+<p>Diego-here&gt; thanks for improving the document Kirstie and Catherine. About the folders, from the last meeting James’ recommendation was to use different environments (yes, environments) separated from each other for each tier, not folders as I wrote in this section (I should have updated it in the document, sorry about that).</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

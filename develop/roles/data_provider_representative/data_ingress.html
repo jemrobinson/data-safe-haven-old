@@ -1,0 +1,707 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Data ingress process &#8212; Data Safe Haven develop documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data egress process" href="data_egress.html" />
+    <link rel="prev" title="Dataset Provider Representative" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../introduction/index.html">
+  Introduction
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Roles
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../policies/index.html">
+  Policies
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../design/index.html">
+  Design
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Dataset Provider Representative
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Data ingress process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_egress.html">
+     Data egress process
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../investigator/index.html">
+   Investigator
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../investigator/data_ingress.html">
+     Data ingress process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../investigator/data_egress.html">
+     Data egress process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../investigator/request_software_package.html">
+     Requesting new software packages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../programme_manager/index.html">
+   Programme Manager
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../project_manager/index.html">
+   Project Manager
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../project_manager/project_lifecycle.html">
+     Project lifecycle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../project_manager/data_ingress.html">
+     Data ingress process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../project_manager/data_egress.html">
+     Data egress process
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referee/index.html">
+   Referee
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../researcher/index.html">
+   Researcher
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../researcher/user_guide.html">
+     User guide
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../researcher/user_guide_guacamole.html">
+       User Guide: Apache Guacamole
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../researcher/user_guide_msrds.html">
+       User Guide: Microsoft Remote Desktop
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../researcher/available_software.html">
+     Available software
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_deployer/index.html">
+   System Deployer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_deployer/deploy_shm.html">
+     Deploy a Safe Haven Management Environment (SHM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_deployer/build_srd_image.html">
+     Build an SRE compute image
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../system_deployer/deploy_sre.html">
+     Deploy a Secure Research Environment (SRE)
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../system_deployer/deploy_sre_apache_guacamole.html">
+       Deploy an SRE with Apache Guacamole
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../system_deployer/deploy_sre_microsoft_rds.html">
+       Deploy an SRE with Microsoft RDS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_deployer/migrate_an_shm.html">
+     Migrating an SHM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_manager/index.html">
+   System Manager
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_manager/security_checklist.html">
+     Security evaluation checklist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_manager/administrator_guide.html">
+     Administrator documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>develop</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bringing-data-into-the-environment">
+   Bringing data into the environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#azure-storage-explorer">
+     Azure Storage Explorer
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prerequisites">
+       Prerequisites
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#uploading-your-data">
+       Uploading your data
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sftp">
+     SFTP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physically-bring-in-a-disk">
+     Physically bring in a disk
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/roles/data_provider_representative/data_ingress.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="data-ingress-process">
+<span id="role-data-provider-representative-ingress"></span><h1>Data ingress process<a class="headerlink" href="#data-ingress-process" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Your data is precious to us.
+The utmost care is taken when transferring the data.
+However, you will need to follow the guidance to certify we are able to ensure your security.</p>
+<p>The Data Safe Haven has various technical controls to ensure data security.
+However, the processes and contractual agreements that the <strong>Dataset Provider</strong> agrees to are equally important.</p>
+</section>
+<section id="bringing-data-into-the-environment">
+<h2>Bringing data into the environment<a class="headerlink" href="#bringing-data-into-the-environment" title="Permalink to this headline">¶</a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Before starting any data ingress, make sure that you have gone through the <a class="reference internal" href="../../policies/data_sensitivity_classification/classification_process.html#policy-data-classification-process"><span class="std std-ref">Classification process</span></a>.</p>
+</div>
+<p>There are three methods of transferring data to the Data Safe Haven (in order of preference):</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#role-data-provider-representative-ingress-azure-storage-explorer"><span class="std std-ref">Microsoft Azure Storage Explorer</span></a></p></li>
+<li><p><a class="reference internal" href="#role-data-provider-representative-ingress-sftp"><span class="std std-ref">SFTP</span></a></p></li>
+<li><p><a class="reference internal" href="#role-data-provider-representative-ingress-physical"><span class="std std-ref">Physical</span></a></p></li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Under no circumstance should sensitive data be sent via email, even if encrypted.</p>
+</div>
+<section id="azure-storage-explorer">
+<span id="role-data-provider-representative-ingress-azure-storage-explorer"></span><h3>Azure Storage Explorer<a class="headerlink" href="#azure-storage-explorer" title="Permalink to this headline">¶</a></h3>
+<p>The Safe Haven is built on the Microsoft Azure platform.
+The most convenient way of safely transferring data from the Dataset Provider is to use <a class="reference external" href="https://azure.microsoft.com/en-us/features/storage-explorer/">Azure Storage Explorer</a>.
+You will not need log-in credentials, as your <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> will provide a short-lived secure access token which will let you upload data.</p>
+<section id="prerequisites">
+<h4>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>You must be able to receive a secure email.
+We recommend the <a class="reference external" href="https://www.egress.com/">Egress secure email</a> service, which is free to setup for receiving secure emails.</p></li>
+<li><p>You must know the public IP address(es) that are used by the people in your organisation who will be uploading the data.
+Talk to your IT team if you’re not sure what these are.</p></li>
+</ul>
+</div>
+<p>When your <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> receives the IP address(es) they will send a secure email to the designated uploader.
+This will contain the secure access token, which has <strong>write</strong>, <strong>list</strong> and <strong>delete</strong> privileges, allowing the uploader to:</p>
+<ul class="simple">
+<li><p>upload files</p></li>
+<li><p>verify that files are fully uploaded</p></li>
+<li><p>remove or overwrite outdated files</p></li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The secure access token does <strong>not</strong> permit files to be downloaded.
+This provides additional protection in case the token is accidentally leaked.
+In the event that the token is leaked, inform your <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> who can revoke it.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Whilst the connection between your computers and our repository is one way – you can only send data, not retrieve it – if a malicious actor were to get hold of the link, they could poison your data.</p>
+</div>
+</section>
+<section id="uploading-your-data">
+<span id="role-data-provider-representative-ingress-upload"></span><h4>Uploading your data<a class="headerlink" href="#uploading-your-data" title="Permalink to this headline">¶</a></h4>
+<ol>
+<li><p>Open <a class="reference external" href="https://azure.microsoft.com/en-us/features/storage-explorer/">Azure Storage Explorer</a></p></li>
+<li><p>Click the socket image on the left hand side</p>
+<img alt="Azure Storage Explorer connection" class="align-center" src="../../_images/azure_storage_explorer_connect.png" />
+</li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Resource</span></code>, choose <code class="docutils literal notranslate"><span class="pre">Blob</span> <span class="pre">container</span></code></p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Connection</span> <span class="pre">Method</span></code>, choose <code class="docutils literal notranslate"><span class="pre">Shared</span> <span class="pre">access</span> <span class="pre">signature</span> <span class="pre">URL</span> <span class="pre">(SAS)</span></code> and hit <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Enter</span> <span class="pre">Connection</span> <span class="pre">Info</span></code>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">Display</span> <span class="pre">name</span></code> to <code class="docutils literal notranslate"><span class="pre">ingress</span></code> (or choose an appropriate name)</p></li>
+<li><p>Copy the SAS URL that the administrator sent you via secure email into the <code class="docutils literal notranslate"><span class="pre">Blob</span> <span class="pre">container</span> <span class="pre">SAS</span> <span class="pre">URL</span></code> box and hit <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+<ol class="simple">
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Summary</span></code> page:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Ensure the permissions include <code class="docutils literal notranslate"><span class="pre">Write</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">List</span></code> (if not, you will be unable to upload data and should contact the administrator who sent you the token)</p></li>
+<li><p>Hit <code class="docutils literal notranslate"><span class="pre">Connect</span></code></p></li>
+</ul>
+<ol>
+<li><p>On the left hand side, the connection should show up under <code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">&amp;</span> <span class="pre">Attached</span> <span class="pre">&gt;</span> <span class="pre">Storage</span> <span class="pre">Accounts</span> <span class="pre">&gt;</span> <span class="pre">(Attached</span> <span class="pre">Containers)</span> <span class="pre">&gt;</span> <span class="pre">Blob</span> <span class="pre">Containers</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">ingress</span> <span class="pre">(SAS)</span></code></p>
+<img alt="Azure Storage Explorer container" class="align-center" src="../../_images/azure_storage_explorer_container.png" />
+</li>
+<li><p>You should now be able to upload data to the Safe Haven by clicking the <code class="docutils literal notranslate"><span class="pre">Upload</span></code> button, completing the ingress process</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since you were not given read permissions, it’s expected that you will receive the following warning when uploading a file. Click <code class="docutils literal notranslate"><span class="pre">Yes</span></code>.</p>
+<img alt="Azure Storage Explorer warning" class="align-center" src="../../_images/azcopy_warning.png" />
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>If you receive an error like the following</p>
+<img alt="Azure Storage Explorer error" class="align-center" src="../../_images/azure_storage_explorer_error.png" />
+<ul class="simple">
+<li><p>This means that your IP address is not one that you told the <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> about.</p></li>
+<li><p>Get your IT team to check with the <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> and change the set of IP addresses you’ll be using if necessary.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="sftp">
+<span id="role-data-provider-representative-ingress-sftp"></span><h3>SFTP<a class="headerlink" href="#sftp" title="Permalink to this headline">¶</a></h3>
+<p>If you are unable to install Microsoft Azure Storage Explorer on your system, the next best option is to use <code class="docutils literal notranslate"><span class="pre">SFTP</span></code>.
+Check that your <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> is able to set up an SFTP server for you to access.</p>
+<p>In order to connect:</p>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> should send you a secure email with the address of the SFTP server.</p></li>
+<li><p>They should send a separate secure email with connection details for accessing the server.</p></li>
+<li><p>Please <strong>encrypt</strong> your data before uploading it.</p></li>
+<li><p>Once uploaded, you should send the <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> a secure email with the encryption key.</p></li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Please ensure that you use a modern encryption algorithm and a strong key to secure your data.</p>
+</div>
+</section>
+<section id="physically-bring-in-a-disk">
+<span id="role-data-provider-representative-ingress-physical"></span><h3>Physically bring in a disk<a class="headerlink" href="#physically-bring-in-a-disk" title="Permalink to this headline">¶</a></h3>
+<p>Alternatively, you provide your data on a physical disk/USB stick.</p>
+<ul class="simple">
+<li><p>Please <strong>encrypt</strong> your data before putting it onto the storage device.</p></li>
+<li><p>Deliver/courier the device to the hosting institution.</p></li>
+<li><p>Send the <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> a secure email with the encryption key.</p></li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Please ensure that you use a modern encryption algorithm and a strong key to secure your data.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Dataset Provider Representative</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="data_egress.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data egress process</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

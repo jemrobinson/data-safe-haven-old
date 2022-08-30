@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Starting a project &#8212; Data Safe Haven v3.2.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.2.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-classification-stages">
+   Pre-classification stages
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stakeholder-identification">
+     Stakeholder identification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#review-existing-data-governance-arrangements">
+     Review existing data governance arrangements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#consent-and-privacy-of-individuals-in-the-dataset">
+     Consent and privacy of individuals in the dataset
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification">
+   Classification
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/how_to_guides/project_manager/how-to-start-a-project.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="starting-a-project">
+<h1>Starting a project<a class="headerlink" href="#starting-a-project" title="Permalink to this headline">¶</a></h1>
+<p>This document details how project managers should set up a project that needs to use a Safe Haven.
+The input data and the data analysis that will be carried out with it together form a work package.
+Each work package needs to be classified in to one of five security tiers before any data sharing agreement can be signed.</p>
+<section id="pre-classification-stages">
+<h2>Pre-classification stages<a class="headerlink" href="#pre-classification-stages" title="Permalink to this headline">¶</a></h2>
+<p>Before we can classify the data itself, there are pre-classification stages to complete.</p>
+<section id="stakeholder-identification">
+<h3>Stakeholder identification<a class="headerlink" href="#stakeholder-identification" title="Permalink to this headline">¶</a></h3>
+<p>It is necessary to identify the <strong>data owner</strong> and make sure they have given permission to share the data with Turing.</p>
+<p>If the organisation providing the data owns it then they are the data owner, but they may have purchased or loaned the data in which case they are not the data owner. Under these circumstances an additional step must be taken to ensure that the organisation providing the data have permission from the data owner to share it with Turing.</p>
+<p>The <strong>data controller</strong> - an individual or sub-group of the organisation that owns the data - must be identified.</p>
+<p>The person (or persons) at the organisation providing the data who will formally approve the data classification must be identified.</p>
+<p>There will be additional people at the organisation that owns the data who should provide input in discussions around data sharing and data classification. This list of <strong>data owner stakeholders</strong> must be created and kept up to date.</p>
+<p>Identify the <strong>principal investigator</strong>, who is in charge of the project from the research side.</p>
+<p>Finally, you should identify a <strong>referee</strong>, who able to provide an independent evaluation of the work package.</p>
+</section>
+<section id="review-existing-data-governance-arrangements">
+<h3>Review existing data governance arrangements<a class="headerlink" href="#review-existing-data-governance-arrangements" title="Permalink to this headline">¶</a></h3>
+<p>There may be existing agreements or arrangments that define the scope of data usage by Turing. These should be reviewed before assessing new plans.</p>
+</section>
+<section id="consent-and-privacy-of-individuals-in-the-dataset">
+<h3>Consent and privacy of individuals in the dataset<a class="headerlink" href="#consent-and-privacy-of-individuals-in-the-dataset" title="Permalink to this headline">¶</a></h3>
+<p>If there is data relating to individual people in the data set, it is necessary to identify whether they have consented to their data being shared with others. An understanding of whether they need to be additionally contacted for permission to use the data is required, as is an assessment of any exclusions of informed consent for the purpose of research.</p>
+</section>
+</section>
+<section id="classification">
+<h2>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h2>
+<p>The data classification process follows <span class="xref myst">this flow chart</span>. Step-by-step instructions on how to classify a work package using our web application <a class="reference internal" href="../general/how-to-use-classification-web-app-guide.html"><span class="doc std std-doc">are given here</span></a>.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

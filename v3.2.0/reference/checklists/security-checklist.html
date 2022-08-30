@@ -1,0 +1,1158 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Security evaluation checklist &#8212; Data Safe Haven v3.2.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.2.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contents">
+   Contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multifactor-authentication-and-password-strength">
+   1. Multifactor Authentication and Password strength
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#we-claim">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#which-means">
+     Which means:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verify-by-bb">
+     Verify by (BB):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verify-by-wb">
+     Verify by (WB):
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#isolated-network">
+   2. Isolated Network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Which means:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verify-by">
+     Verify by:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Verify by (WB):
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-devices">
+   3. User devices
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#this-means">
+     This means
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physical-security">
+   4. Physical security
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Which means:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remote-connections">
+   5. Remote connections
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     This means
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#copy-and-paste">
+   6. Copy-and-paste
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     Which means:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     Verify by:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-ingress">
+   7. Data ingress
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     This means
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#storage-volumes-and-egress">
+   8. Storage volumes and egress
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     This means:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-ingress">
+   9. Software Ingress
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     Which means:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id24">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#package-mirrors">
+   10. Package mirrors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     This means:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id27">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#azure-firewalls">
+   11. Azure Firewalls
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id28">
+     We claim:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     Which means:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id30">
+     Verify by:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-technical-security-implementation">
+   12. Non technical security implementation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-addition-sign-off">
+     User addition sign-off
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-classification-sign-off">
+     Data classification sign-off
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-ingress-sign-off">
+     Software ingress sign-off
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/reference/checklists/security-checklist.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="security-evaluation-checklist">
+<h1>Security evaluation checklist<a class="headerlink" href="#security-evaluation-checklist" title="Permalink to this headline">¶</a></h1>
+<p>In this check list we aim to do the following things.</p>
+<ul class="simple">
+<li><p>Establish our current claims about the Data Safe Haven</p></li>
+<li><p>Establish what these security claims mean in terms of implementation</p></li>
+<li><p>How we can verify that we actually do what we say</p></li>
+</ul>
+<p>In particular for verification we will focus on user security and permissions. We will establish two types of verification <strong>Black Box (BB)</strong> and <strong>White Box (WB)</strong>. BB verification involves testing with a user account to confirm levels of user access. In contrast, WB verification involves using an admin account to check the specific configuration required to set user access permissions.</p>
+<p>An overview of our security controls is shown here</p>
+<p align="center">
+    <img src="../../images/security_checklist/recommended-controls.png" width="80%" title="recommended-controls">
+</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#1.-multifactor-authentication-and-password-strength">1. Multifactor Authentication and Password strength</a></p></li>
+<li><p><a class="reference external" href="#2.-isolated-network">2. Isolated Network</a></p></li>
+<li><p><a class="reference external" href="#3.-user-devices">3. User devices</a></p></li>
+<li><p><a class="reference external" href="#4.-physical-security">4. Physical security</a></p></li>
+<li><p><a class="reference external" href="#5.-remote-connections">5. Remote connections</a></p></li>
+<li><p><a class="reference external" href="#6.-copy-and-paste">6. Copy-and-paste</a></p></li>
+<li><p><a class="reference external" href="#7.-data-ingress">7. Data ingress</a></p></li>
+<li><p><a class="reference external" href="#8.-storage-volumes-and-egress">8. Storage volumes and egress</a></p></li>
+<li><p><a class="reference external" href="#9.-software-ingress">9. Software Ingress</a></p></li>
+<li><p><a class="reference external" href="#10.-package-mirrors">10. Package mirrors</a></p></li>
+<li><p><a class="reference external" href="#11.-azure-firewalls">11. Azure Firewalls</a></p></li>
+<li><p><a class="reference external" href="#12.-non-technical-security-implementation">12. Non technical security implementation</a></p></li>
+</ul>
+</section>
+<section id="multifactor-authentication-and-password-strength">
+<h2>1. Multifactor Authentication and Password strength<a class="headerlink" href="#multifactor-authentication-and-password-strength" title="Permalink to this headline">¶</a></h2>
+<section id="we-claim">
+<h3>We claim:<a class="headerlink" href="#we-claim" title="Permalink to this headline">¶</a></h3>
+<p>Users are required to authenticate with Multi Factor Authentication (MFA) in order to access the secure analysis environment.</p>
+<p>Passwords are strong</p>
+</section>
+<section id="which-means">
+<h3>Which means:<a class="headerlink" href="#which-means" title="Permalink to this headline">¶</a></h3>
+<p>Users must set up MFA before accessing the secure analysis environment. Users cannot access the environment without MFA. Users are strongly advised to create passwords of a certain strength.</p>
+</section>
+<section id="verify-by-bb">
+<h3>Verify by (BB):<a class="headerlink" href="#verify-by-bb" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Create a new user without MFA and check that the user cannot access the environment regardless of other credentials.</p>
+<ul>
+<li><p>a) Follow the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-sre.md#bicyclist-set-up-a-non-privileged-user-account">SRE deployment guide</a> for setting up a non privileged user account</p></li>
+<li><p>b) Attempt to sign in to the remote desktop web client using the user account.</p></li>
+<li><p>c) <strong>Verify:</strong> access fails</p></li>
+</ul>
+</li>
+<li><p>Check that the user is able to successfully set up MFA with the right credentials</p>
+<ul>
+<li><p>a) Visit https://aka.ms/mfasetup</p></li>
+<li><p>b) Attempt to login and reset password</p></li>
+<li><p>c) <strong>Verify:</strong> user guided to set up MFA</p></li>
+<li><p>d) Set up MFA</p></li>
+<li><p>e) <strong>Verify:</strong> successfully set up MFA</p></li>
+</ul>
+</li>
+<li><p>Check that the user is able to successfully login to the environment once MFA is set up and using the right credentials</p>
+<ul>
+<li><p>a) <strong>Verify</strong>: login to the portal using the user account and check that MFA is requested</p></li>
+<li><p>b) <strong>Verify</strong>: login into the remote desktop web client successfully and check that MFA is requested</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="verify-by-wb">
+<h3>Verify by (WB):<a class="headerlink" href="#verify-by-wb" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Users are required to set up MFA before they can access the environment</p>
+<ul>
+<li><ol class="simple">
+<li><p>Using an AAD admin account, go to <code class="docutils literal notranslate"><span class="pre">AAD</span> <span class="pre">-&gt;</span> <span class="pre">Users</span> <span class="pre">-&gt;</span> <span class="pre">Multi-Factor</span> <span class="pre">authentication</span> <span class="pre">-&gt;</span> <span class="pre">Service</span> <span class="pre">settings</span></code></p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p><strong>Verify</strong>: app passwords are unenabled (this stops any users bypassing MFA)</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p><strong>Verify</strong>: No trusted ips (this means that no one can skip MFA)</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p><strong>Verify</strong>: Option to remember trusted devices is unchecked (this means the user must authenticate each time)</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Users require a license before they can access the environment</p>
+<ul>
+<li><ol class="simple">
+<li><p>Create a user account, add a license and then set up MFA</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>To add a license, login using an AAD admin account, go to <code class="docutils literal notranslate"><span class="pre">AAD</span> <span class="pre">-&gt;</span> <span class="pre">Users</span> <span class="pre">-&gt;</span> <span class="pre">&lt;select</span> <span class="pre">user&gt;</span> <span class="pre">-&gt;</span> <span class="pre">Licenses</span> <span class="pre">-&gt;</span> <span class="pre">Assignments</span></code>
+and add a P1 license</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>Login to the web client using the user account</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>Remove the license from the user account</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p><strong>Verify</strong>: unable to login to the web client anymore.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="isolated-network">
+<h2>2. Isolated Network<a class="headerlink" href="#isolated-network" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h3>We claim:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The DSH Virtual Network is isolated from external connections (both tier 2 and 3)</p>
+</section>
+<section id="id2">
+<h3>Which means:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Users cannot access any part of the network without already being in the network. Being part of the network involves connecting using an SHM specific Management VPN.</p>
+<p>Whilst in the network, one cannot use the internet to connect outside the network.</p>
+<p>SREs in the same SHM are still isolated from one another.</p>
+</section>
+<section id="verify-by">
+<h3>Verify by:<a class="headerlink" href="#verify-by" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Connect to the SHM DC, NPS, Data server if and only if connected to the SHM VPN:</p>
+<ul>
+<li><p>a) Connect to the SHM VPN</p></li>
+<li><p>b) Connect to the SHM DC. IP details in RG_SHM_DC, login details in SHM secrets as domain admin</p></li>
+<li><p>c) Connect to the SHM NPS. IP details in RG_SHM_NPS, same login</p></li>
+<li><p>d) <strong>Verify:</strong> Connection works</p></li>
+<li><p>e) Disconnect from the SHM VPN</p></li>
+<li><p>f) Attempt to connect to the SHM DC and NPS again</p></li>
+<li><p>g) <strong>Verify:</strong> Connection fails</p></li>
+</ul>
+</li>
+<li><p>Be unable to connect to the internet from within a DSVM on the SRE network.</p>
+<ul>
+<li><p>a) Login as a user to a DSVM from within the SRE by using the web client.</p></li>
+<li><p>b) Choose your favourite three websites and attempt to access the internet using a browser</p></li>
+<li><p>c) <strong>Verify</strong>: Connection fails</p></li>
+<li><p>d) Alternative if using terminal <strong>Verify</strong>: type <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">&lt;website&gt;</span></code> and check that you get the following response <code class="docutils literal notranslate"><span class="pre">&lt;insert</span> <span class="pre">firewall</span> <span class="pre">message</span> <span class="pre">denying</span> <span class="pre">the</span> <span class="pre">connection</span> <span class="pre">as</span> <span class="pre">it</span> <span class="pre">matched</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">rule&gt;</span></code></p></li>
+</ul>
+</li>
+<li><p>Check that users cannot connect beween two SREs within the same SHM, even if they have access to both SREs</p>
+<ul>
+<li><p>a) Ensure you have two SREs managed by the same SHM</p></li>
+<li><p>b) Connect to a DSVM in SRE A as a user by using the web client.</p></li>
+<li><p>c) Attempt to connect to a DSVM SRE B via remote desktop or SSH</p></li>
+<li><p>d) <strong>Verify:</strong> Connection fails</p></li>
+<li><p>e) Repeat the test, this time trying to connect from a DSVM in SRE B to a DSVM in SRE A</p></li>
+</ul>
+</li>
+<li><p>Check that one can connect between the SHM-&gt;SRE and SRE-&gt;SHM</p>
+<ul>
+<li><p>a) Connect to the SHM DC (using the SHM VPN) as domain admin</p></li>
+<li><p>b) Connect to an SRE DSVM using remote desktop or SSH</p></li>
+<li><p>c) <strong>Verify:</strong> Connection succeeds</p></li>
+<li><p>d) Disconnect from both</p></li>
+<li><p>e) Connect to the SRE DSVM</p></li>
+<li><p>f) Connect to the SHM DC using remote desktop or SSH</p></li>
+<li><p>g <strong>Verify:</strong> Connection suceeds [MOR: Ideally it should not be possible to log into any SHM VMs from any SRE VMs, even with admin credentials due to network rules forbidding the connection]</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h3>Verify by (WB):<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Check that the network rules are set appropriately to block outgoing traffic</p>
+<ul>
+<li><p>a) Check <code class="docutils literal notranslate"><span class="pre">RG_SRE_NETWORKING</span> <span class="pre">-&gt;</span> <span class="pre">NSG_SRE_SANDBOX_COMPUTE</span></code></p></li>
+<li><p>b) <strong>Verify:</strong> There exists an OutboundDenyInternet rule with Destination <code class="docutils literal notranslate"><span class="pre">Internet</span></code> and Action <code class="docutils literal notranslate"><span class="pre">Deny</span></code> and no higher priority rule allows connection to the internet.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="user-devices">
+<h2>3. User devices<a class="headerlink" href="#user-devices" title="Permalink to this headline">¶</a></h2>
+<section id="id4">
+<h3>We claim:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>At tier 3, only managed devices can connect to the DSH environment.</p>
+<p>At tier 2, all kinds of devices can connect to the DSH environment (with VPN connection and correct credentials).</p>
+</section>
+<section id="this-means">
+<h3>This means<a class="headerlink" href="#this-means" title="Permalink to this headline">¶</a></h3>
+<p>A managed device is a device provided by a partner institution in which the user does not have admin or root access.</p>
+<p>Network rules for the higher tier Environments can permit access only from Restricted network IP ranges that only permit managed devices to connect.</p>
+</section>
+<section id="id5">
+<h3>Verify by:<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>For tier 2:</p>
+<ul class="simple">
+<li><p>One can connect regardless of device as long as one has the correct VPN and credentials</p>
+<ul>
+<li><p>a) Using a personal device, connect to the environment using the correct VPN and credentials</p></li>
+<li><p>b) <strong>Verify</strong>: Connection suceeds</p></li>
+<li><p>c) Using a managed device, connect to the environment using the correct VPN and credentials.</p></li>
+<li><p>d) <strong>Verify</strong>: Connection suceeds</p></li>
+</ul>
+</li>
+<li><p>There are are network rules permitting access only from the Turing Tier 2 and Tier 3 VPNs</p>
+<ul>
+<li><p>a) Check network rules</p></li>
+<li><p>b) <strong>Verify</strong>: The <code class="docutils literal notranslate"><span class="pre">RDS</span></code> NSG has network rules allowing <strong>inbound</strong> access from <code class="docutils literal notranslate"><span class="pre">&lt;insert</span> <span class="pre">Turing</span> <span class="pre">Tier</span> <span class="pre">2</span> <span class="pre">and</span> <span class="pre">Tier</span> <span class="pre">3</span> <span class="pre">IP</span> <span class="pre">addresses</span> <span class="pre">here&gt;</span></code></p></li>
+<li><p>c) <strong>Verify:</strong> All other NSGs have an inbound Deny All rule and no higher priority rule allowing inbound connections from outside the Virtual Network.</p></li>
+</ul>
+</li>
+</ul>
+<p>For tier 3:</p>
+<ul class="simple">
+<li><p>A device is managed by checking user permissions and where the device has come from. We should check that it is managed by the partner institution’s IT team.</p>
+<ul>
+<li><p>a) Check that the device is managed by the partner institution IT team</p></li>
+<li><p>b) <strong>Verify</strong>: The user lacks root access</p></li>
+</ul>
+</li>
+<li><p>A device is able to connect to the environment if and only if it is managed (with correct VPN and credentials)</p>
+<ul>
+<li><p>a) Using a personal device, attempt to connect to the environment using the correct VPN and credentials</p></li>
+<li><p>b) <strong>Verify</strong>: Connection fails</p></li>
+<li><p>c) Using a managed device, attempt to connect to the environment using the correct VPN and credentials</p></li>
+<li><p>d) <strong>Verify</strong>: Connection suceeds</p></li>
+</ul>
+</li>
+<li><p>We can check that a managed device is within a specific IP range and that the environment firewall accepts it.</p></li>
+<li><p>We can check that the firewall blocks any device with an IP outside of the specified range</p></li>
+</ul>
+</section>
+</section>
+<section id="physical-security">
+<h2>4. Physical security<a class="headerlink" href="#physical-security" title="Permalink to this headline">¶</a></h2>
+<section id="id6">
+<h3>We claim:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>At tier 3 access is limited to certain research office spaces</p>
+</section>
+<section id="id7">
+<h3>Which means:<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Medium security research spaces control the possibility of unauthorised viewing. Card access or other means of restricting entry to only known researchers (such as the signing in of guests on a known list) is required. Screen adaptations or desk partitions can be adopted in open-plan spaces if there is a high risk of “visual eavesdropping”.</p>
+<p>Firewall rules for the Environments can permit access only from Restricted network IP ranges corresponding to these research spaces.</p>
+</section>
+<section id="id8">
+<h3>Verify by:<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>For tier 3:</p>
+<ul class="simple">
+<li><p>Connection outside of the research office space is not possible.</p>
+<ul>
+<li><p>a) Attempt to connect from home using a managed device and the correct VPN connection and credentials</p></li>
+<li><p>b) <strong>Verify:</strong> connection fails</p></li>
+</ul>
+</li>
+<li><p>Connection from within the research office space is possible.</p>
+<ul>
+<li><p>a) Attempt to connect from research office using a managed device and the correct VPN connection and credentials</p></li>
+<li><p>b) <strong>Verify:</strong> connection suceeds</p></li>
+</ul>
+</li>
+<li><p>Check the network IP ranges corresponding to the research spaces and compare against the IPs accepted by the firewall.</p></li>
+<li><p>Physically confirm that measures such as screen adapations or desk partitions are present.</p>
+<ul>
+<li><p>Non technical implementation</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="remote-connections">
+<h2>5. Remote connections<a class="headerlink" href="#remote-connections" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h3>We claim:<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>Connections can only be made via remote desktop (Tier 2+)</p>
+</section>
+<section id="id10">
+<h3>This means<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>User can connect via remote desktop but cannot connect through other means such as SSH (without access to the VPN)</p>
+</section>
+<section id="id11">
+<h3>Verify by:<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Connect as a user to the DSVM via the remote desktop web client</p>
+<ul>
+<li><p>a) login as a user via the remote desktop web client (without using VPN)</p></li>
+<li><p>b) <strong>Verify:</strong> login succeeds</p></li>
+</ul>
+</li>
+<li><p>Unable to connect as a user to the DSVM via SSH</p>
+<ul>
+<li><p>a) Download Putty and attempt to SSH to a DSVM (without using VPN)</p></li>
+<li><p>b) <strong>Verify:</strong> login fails</p></li>
+<li><p>c) <strong>Verify:</strong> The RDS server and Firewall are the <strong>only</strong> resources with public IP addresses</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="copy-and-paste">
+<h2>6. Copy-and-paste<a class="headerlink" href="#copy-and-paste" title="Permalink to this headline">¶</a></h2>
+<section id="id12">
+<h3>We claim:<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>Copy and paste is disabled on the remote desktop</p>
+</section>
+<section id="id13">
+<h3>Which means:<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>One cannot copy something from outside the network and paste it into the network. One cannot copy something from within the network and paste it outside the network.</p>
+</section>
+<section id="id14">
+<h3>Verify by:<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>One is unable to copy some text from outside the network, into a DSVM and vice versa</p>
+<ul>
+<li><p>a) Copy some text from your deployment device</p></li>
+<li><p>b) Login to a DSVM via the remote desktop web client</p></li>
+<li><p>c) Open up a notepad or terminal on the DSVM and attempt to paste the text to it.</p></li>
+<li><p>d) <strong>Verify:</strong> paste fails</p></li>
+<li><p>e) Write some next in the note pad or terminal of the DSVM and copy it</p></li>
+<li><p>f) Attempt to copy the text externally to deployment device (e.g. into URL of browser)</p></li>
+<li><p>g) <strong>Verify:</strong> paste fails</p></li>
+</ul>
+</li>
+<li><p>One can copy between VMs inside the network</p>
+<ul>
+<li><p>a) Login to a DSVM via the remote desktop web client</p></li>
+<li><p>b) Open up a notepad or terminal on the DSVM and attempt to paste the text to it.</p></li>
+<li><p>c) Connect to another DSVM via the remote desktop web client (as a second tab)</p></li>
+<li><p>d) Attempt to paste the text to it.</p></li>
+<li><p>e) <strong>Verify:</strong> paste succeeds</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id15">
+<h3>Verify by:<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Security group policy that blocks clip board access</p></li>
+</ul>
+</section>
+</section>
+<section id="data-ingress">
+<h2>7. Data ingress<a class="headerlink" href="#data-ingress" title="Permalink to this headline">¶</a></h2>
+<section id="id16">
+<h3>We claim:<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>All data transfer to the Turing should be via our secure data transfer process, which provides the Dataset Provider time-limited, write-only access to a dedicated data ingress volume from a specific location.</p>
+<p>Ingressed data is stored in a holding zone until approved to be added for user access.</p>
+</section>
+<section id="id17">
+<h3>This means<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>Prior to access to the ingress volume being provided, the Dataset Provider Representative must provide the IP address(es) from which data will be uploaded and an email address to which a secure upload token can be sent. Once these details have been received, the Turing will open the data ingress volume for upload of data.</p>
+<p>To minimise the risk of unauthorised access to the dataset while the ingress volume is open for uploads, the following security measures are in place:</p>
+<ul class="simple">
+<li><p>Access to the ingress volume is restricted to a limited range of IP addresses associated with the Dataset Provider and the Turing.</p></li>
+<li><p>The Dataset Provider receives a write-only upload token. This allows them to upload, verify and modify the uploaded data, but does not viewing or download of the data. This provides protection against an unauthorised party accessing the data, even they gain access to the upload token.</p></li>
+<li><p>The upload token expires after a time-limited upload window.</p></li>
+<li><p>The upload token is transferred to the Dataset Provider via a secure email system.</p></li>
+</ul>
+</section>
+<section id="id18">
+<h3>Verify by:<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>First identify a select list of IP addresses and an email for which the data will be uploaded and a secure upload token sent. Open the data ingress volume.</p>
+<ul class="simple">
+<li><p>Ensure that the secure upload token is sent only to the email address provided and via a secure email system</p>
+<ul>
+<li><p>a) <strong>Verify:</strong> that email system is secure</p></li>
+<li><p>b) <strong>Verify:</strong> that a secure upload token can be created with write-only permissions</p></li>
+</ul>
+</li>
+<li><p>Ensure that data ingress works for connections from within the accepted IP address and does not work for connections outside the IP address, even if the correct upload token is present.</p>
+<ul>
+<li><p>a) Identify a test device that will have a whitelisted IP address</p></li>
+<li><p>b) Generate a secure upload token with write-only permissions with limited time period</p></li>
+<li><p>c) Attempt to write to the ingress volume via the test device</p></li>
+<li><p>d) <strong>Verify:</strong> that writing suceeds</p></li>
+<li><p>e) <strong>Verify:</strong> that one is unable to view or download from ingress</p></li>
+<li><p>f) Switch to a device that lacks a whitelisted IP address</p></li>
+<li><p>g) Attempt to write to the ingress volume via the test device</p></li>
+<li><p>h) <strong>Verify:</strong> that the access token fails.</p></li>
+</ul>
+</li>
+<li><p>Check the token duration and ensure that the upload fails if the duration has expired.</p>
+<ul>
+<li><p>a) Create a write-only token with short duration</p></li>
+<li><p>b) <strong>Verify:</strong> you can connect and write with the token during the duration</p></li>
+<li><p>c) <strong>Verify:</strong> you cannot connect and write with the token after the duration has expired</p></li>
+</ul>
+</li>
+<li><p>Check that the overall ingress works by uploading different kinds of files, e.g. data, images, scripts (if appropriate).</p></li>
+</ul>
+</section>
+</section>
+<section id="storage-volumes-and-egress">
+<h2>8. Storage volumes and egress<a class="headerlink" href="#storage-volumes-and-egress" title="Permalink to this headline">¶</a></h2>
+<section id="id19">
+<h3>We claim:<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<p>The analysis environment contains a number of different storage volumes. Some of these storage volumes include write permissions that can then be viewed by administrators.</p>
+<p>Egressed data is held in a holding zone until approved to egressed out of the environment.</p>
+</section>
+<section id="id20">
+<h3>This means:<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>A Secure Data volume is a read-only volume that contains the secure data for use in analyses. It is mounted as read-only in the analysis Environments that must access it. One or more such volumes will be mounted depending on how many managed secure datasets the Environment has access to.</p>
+<p>A Secure Document volume contains electronically signed copies of agreements between the Data Provider and the Turing.</p>
+<p>A Secure Scratch volume is a read-write volume used for data analysis. Its contents are automatically and regularly deleted. Users can clean and transform the sensitive data with their analysis scripts, and store the transformed data here.</p>
+<p>An Output volume is a read-write area intended for the extraction of results, such as figures for publication.</p>
+<p>The Software volume is a read-only area which contains software used for analysis.</p>
+<p>A Home volume is a smaller read-write volume used for local programming and configuration files. It should not be used for data analysis outputs, though this is enforced only in policy, not technically. Configuration files for software in the software volume point to the Home volume.</p>
+<p>A domain administrator can view these volumes by logging into the Data Server.</p>
+</section>
+<section id="id21">
+<h3>Verify by:<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Confirm that a user is able to read the different storage volumes and write to Output and Home</p>
+<ul>
+<li><p>a) Login to a DSVM as a non privileged user account via the remote desktop web client</p></li>
+<li><p>b) Open up a file explorer and search for the various storage volumes</p></li>
+<li><p>c) <strong>Verify:</strong> that the different storage volumes exist and can be read (opened)</p></li>
+<li><p>d) <strong>Verify:</strong> that one can write (move files to) Output and Home</p></li>
+<li><p>e) <strong>Verify:</strong> that one cannot write (move files to) the other storage volumes or to outside the environment</p></li>
+</ul>
+</li>
+<li><p>Confirming that the different volumes exist on the Data Server and that logging on requires domain admin permissions</p>
+<ul>
+<li><p>a) Login as domain admin to the SRE Data Server. IP address can be found <code class="docutils literal notranslate"><span class="pre">RG_SRE_DATA</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">DAT-SRE-&lt;sreID&gt;</span></code></p></li>
+<li><p>b) Go to <code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">PC</span></code></p></li>
+<li><p>c) <strong>Verify:</strong> the volumes exist</p></li>
+<li><p>d) <strong>Verify:</strong> that a user has written a file to the Output storage volume</p></li>
+<li><p>e) <strong>Verify:</strong> that a written file can be taken out of the environment</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="software-ingress">
+<h2>9. Software Ingress<a class="headerlink" href="#software-ingress" title="Permalink to this headline">¶</a></h2>
+<section id="id22">
+<h3>We claim:<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<p>The base data science virtual machine provided in the secure analysis Environments comes with a wide range of common data science software pre-installed, as well as package mirrors. For other kinds of software this must be ingressed seperately.</p>
+<p>Ingressed software is stored in a holding zone until approved to be added for user access.</p>
+</section>
+<section id="id23">
+<h3>Which means:<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>For lower tier environments, outbound internet access means users can directly ingress their software from the internet. For higher tier environments we use alternative means.</p>
+<ul class="simple">
+<li><p>Installation during deployment</p>
+<ul>
+<li><p>If known in advance, software can be installed during DSVM deployment whilst there is still internet access, but before project data is added. Once the software is installed, the DSVM is ingressed into the environment with a one way lock.</p></li>
+</ul>
+</li>
+<li><p>Installation after deployment</p>
+<ul>
+<li><p>Once a DSVM has been deployed into the analysis environment it cannot be moved out. There is no outbound internet access.</p></li>
+<li><p>Software is ingressed in a similar manner to data. Researchers are provided temporary write-only access to the software ingress volume (external mode). The access is then revoked and the software is then reviewed. If it passes review, the software ingress volume is changed to provide researchers with read-only access to the environment (internal mode).</p></li>
+<li><p>If the software requires administrator rights to install, a System Manager must do this. Otherwise, the researcher can do this themselves.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id24">
+<h3>Verify by:<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>During deployment:</p>
+<ul class="simple">
+<li><p>Check that one can install software during deployment by using outbound internet</p></li>
+<li><p>Check that outbound internet is closed before adding any project data</p></li>
+</ul>
+<p>After deployment:</p>
+<ul class="simple">
+<li><p>Check that outbound internet access on the DSVM is closed off with the following tests:</p>
+<ul>
+<li><p>Check the network rules block</p></li>
+<li><p>Attempt to access some of your favourite websites (and fail)</p></li>
+<li><p>Attempt to download some software via terminal (and fail)</p></li>
+</ul>
+</li>
+<li><p>Check that the software ingress volume works correctly:</p>
+<ul>
+<li><p>Check that the volume can be changed to external mode and that the researcher can write (but not read) the volume</p></li>
+<li><p>Check that we can revoke write access successfully</p></li>
+<li><p>Check that we can view software that has been written to the volume and that only administrators can read the volume</p></li>
+<li><p>Check that the volume can be changed to internal mode so that other researchers can read it (but not write)</p></li>
+<li><p>Check that software that requires administraor rights to install, can only be run by a System manager.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="package-mirrors">
+<h2>10. Package mirrors<a class="headerlink" href="#package-mirrors" title="Permalink to this headline">¶</a></h2>
+<section id="id25">
+<h3>We claim:<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>Tier 2: User can access full package mirrors</p>
+<p>Tier 3: User can only access whitelisted package mirrors</p>
+</section>
+<section id="id26">
+<h3>This means:<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<p>Tier 2: The user can access any package included within our mirrors. They can freely use these packages without restriction.</p>
+<p>Tier 3: The user can only access a specific set of packages that we have agreed with. They will be unable to download any package not on the whitelist.</p>
+</section>
+<section id="id27">
+<h3>Verify by:<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>Tier 2:</p>
+<ul class="simple">
+<li><p>Download packages from the full mirror.</p>
+<ul>
+<li><p>a) Login as a user into a DSVM via remote desktop web client</p></li>
+<li><p>b) Open up a terminal</p></li>
+<li><p>c) Attempt to install any package that is not included at base</p></li>
+</ul>
+</li>
+</ul>
+<p>Tier 3:</p>
+<ul class="simple">
+<li><p>Download packages on the whitelist</p>
+<ul>
+<li><p>a) Login as a user into a DSVM via remote desktop web client</p></li>
+<li><p>b) Check that the package is not installed on the VM <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">list</span> <span class="pre">&lt;package&gt;</span></code> but on the whitelist</p></li>
+<li><p>c) Attempt to download the package</p></li>
+<li><p>d) <strong>Verify:</strong> the download suceeds</p></li>
+<li><p>e) Take a package that is not included in the whitelist</p></li>
+<li><p>f) Attempt to download the package</p></li>
+<li><p>g) <strong>Verify:</strong> the download fails</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="azure-firewalls">
+<h2>11. Azure Firewalls<a class="headerlink" href="#azure-firewalls" title="Permalink to this headline">¶</a></h2>
+<section id="id28">
+<h3>We claim:<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<p>An Azure Firewall ensures that the administrator VMs have the minimal level of internet access required to function.</p>
+</section>
+<section id="id29">
+<h3>Which means:<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>Whilst all user access VMs are entirely blocked off from the internet, this is not the case for administrator access VMs such as the SHM-DC, SRE DATA server. An Azure Firewall governs the internet access provided to these VMs, limiting them mostly to downloading Windows updates.</p>
+</section>
+<section id="id30">
+<h3>Verify by:<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Admin has limited access to the internet</p>
+<ul>
+<li><p>a) Connect to an administrator VM such as the SHM-DC</p></li>
+<li><p>b) Attempt to connect to your favourite non standard site</p></li>
+<li><p>c) <strong>Verify:</strong> connection fails</p></li>
+</ul>
+</li>
+<li><p>Admin can download Windows updates</p>
+<ul>
+<li><p>a) Connect to an administrator VM such as the SHM-DC</p></li>
+<li><p>b) Attempt to download a Windows update</p></li>
+<li><p>c) <strong>Verify:</strong> download and update successful</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="non-technical-security-implementation">
+<h2>12. Non technical security implementation<a class="headerlink" href="#non-technical-security-implementation" title="Permalink to this headline">¶</a></h2>
+<section id="user-addition-sign-off">
+<h3>User addition sign-off<a class="headerlink" href="#user-addition-sign-off" title="Permalink to this headline">¶</a></h3>
+<p>Non technical implementation</p>
+</section>
+<section id="data-classification-sign-off">
+<h3>Data classification sign-off<a class="headerlink" href="#data-classification-sign-off" title="Permalink to this headline">¶</a></h3>
+<p>Non technical implementation</p>
+</section>
+<section id="software-ingress-sign-off">
+<h3>Software ingress sign-off<a class="headerlink" href="#software-ingress-sign-off" title="Permalink to this headline">¶</a></h3>
+<p>Non technical implementation</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,1326 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Secure Research Environment Build Instructions (RDS remote desktop) &#8212; Data Safe Haven v3.3.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Is the Turing Safe Haven suitable for you?" href="../quick_overview/is-this-safe-haven-suitable-for-you.html" />
+    <link rel="prev" title="Secure Research Environment Build Instructions (CoCalc collaborative notebooks)" href="how-to-deploy-sre-cocalc.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../explanations/README.html">
+  Learn more about the Safe Haven
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../how_to_guides/README.html">
+  How to guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference/README.html">
+  Reference guides
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../README.html">
+  Tutorials and overview
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-build-compute-vm-image.html">
+   Safe Haven VM Image Build Instructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-deploy-shm.html">
+   Safe Haven Management Environment Build Instructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-deploy-sre.html">
+   Secure Research Environment Build Instructions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-deploy-sre-apache-guacamole.html">
+   Secure Research Environment Build Instructions (Guacamole remote desktop)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-deploy-sre-cocalc.html">
+   Secure Research Environment Build Instructions (CoCalc collaborative notebooks)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Secure Research Environment Build Instructions (RDS remote desktop)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quick_overview/is-this-safe-haven-suitable-for-you.html">
+   Is the Turing Safe Haven suitable for you?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quick_overview/what-is-a-safe-haven.html">
+   What is a Safe Haven?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quick_overview/why-might-you-use-a-safe-haven.html">
+   Why might you use a Safe Haven?
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.3.1</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contents">
+   Contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explanation-of-symbols-used-in-this-guide">
+   Explanation of symbols used in this guide
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seedling-1-prerequisites">
+   :seedling: 1. Prerequisites
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vpn-connection-to-the-shm-vnet">
+     VPN connection to the SHM VNet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sre-domain-name">
+     SRE domain name
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploying-multiple-sres-in-parallel">
+     Deploying multiple SREs in parallel
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clipboard-2-secure-research-environment-configuration">
+   :clipboard: 2. Secure Research Environment configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#secure-research-environment-id">
+     Secure research environment ID
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pencil-notes">
+       :pencil: Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-verify-code-version">
+     (Optional) Verify code version
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-view-full-sre-configuration">
+     (Optional) View full SRE configuration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cop-3-prepare-shm-environment">
+   :cop: 3. Prepare SHM environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-remove-data-from-previous-deployments">
+     (Optional) Remove data from previous deployments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#register-sre-with-the-shm">
+     Register SRE with the SHM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#station-4-deploy-networking-components">
+   :station: 4. Deploy networking components
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-sre-dns-zone">
+     Create SRE DNS Zone
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#warning-troubleshooting">
+       :warning: Troubleshooting
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-the-virtual-network">
+     Deploy the virtual network
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       :pencil: Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#floppy-disk-5-deploy-storage-accounts">
+   :floppy_disk: 5. Deploy storage accounts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#satellite-6-deploy-remote-desktop">
+   :satellite: 6. Deploy remote desktop
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-the-remote-desktop-servers">
+     Deploy the remote desktop servers
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       :warning: Troubleshooting
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configure-rds-webclient">
+     Configure RDS webclient
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       :pencil: Notes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       :warning: Troubleshooting
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#secure-rds-webclient">
+     Secure RDS webclient
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       :pencil: Notes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       :warning: Troubleshooting
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-set-up-a-non-privileged-user-account">
+     Optional: Set up a non-privileged user account
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ensure-that-your-non-privileged-user-account-is-in-the-correct-security-group">
+       Ensure that your non-privileged user account is in the correct Security Group
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ensure-that-your-user-account-has-mfa-enabled">
+       Ensure that your user account has MFA enabled
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-the-rds-using-a-non-privileged-user-account">
+     Test the RDS using a non-privileged user account
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       :pencil: Notes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       :warning: Troubleshooting
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#snowflake-7-deploy-web-applications-cocalc-codimd-and-gitlab">
+   :snowflake: 7. Deploy web applications (CoCalc, CodiMD and GitLab)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-cocalc-codimd-and-gitlab-servers">
+     Test CoCalc, CodiMD and GitLab servers
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       :warning: Troubleshooting
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#baseball-8-deploy-databases">
+   :baseball: 8. Deploy databases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-9-deploy-data-science-vms">
+   :computer: 9. Deploy data science VMs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-customise-the-deployed-vm">
+     (Optional) Customise the deployed VM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-a-single-data-science-vm-dsvm">
+     Deploy a single data science VM (DSVM)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       :pencil: Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lock-10-configure-network-lockdown">
+   :lock: 10. Configure network lockdown
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fire-engine-11-configure-firewall">
+   :fire_engine: 11. Configure firewall
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chart-with-upwards-trend-12-configure-logging">
+   :chart_with_upwards_trend: 12. Configure logging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     :warning: Troubleshooting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fire-13-run-smoke-tests-on-dsvm">
+   :fire: 13. Run smoke tests on DSVM
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/tutorial/deployment_tutorials/how-to-deploy-sre-microsoft-rds.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="secure-research-environment-build-instructions-rds-remote-desktop">
+<h1>Secure Research Environment Build Instructions (RDS remote desktop)<a class="headerlink" href="#secure-research-environment-build-instructions-rds-remote-desktop" title="Permalink to this headline">¶</a></h1>
+<p>These instructions will walk you through deploying a Secure Research Environment (SRE) that uses an existing Safe Haven Management (SHM) environment.</p>
+<blockquote>
+<div><p>:warning: If you are deploying a Tier 0 or Tier 1 environment, or a development environment, we would suggest deploying with either <a class="reference internal" href="how-to-deploy-sre-apache-guacamole.html"><span class="doc std std-doc">Guacamole</span></a> for a full remote desktop or <a class="reference internal" href="how-to-deploy-sre-cocalc.html"><span class="doc std std-doc">CoCalc</span></a> for a collaborative notebook based interface.
+These options are more fully automated and, while they do not yet provide the required security assurances for Tier 2 and above environments, they are suitably secure for Tier 0 or 1 environments.</p>
+</div></blockquote>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#seedling-1-prerequisites">:seedling: 1. Prerequisites</a></p></li>
+<li><p><a class="reference external" href="#clipboard-2-secure-research-environment-configuration">:clipboard: 2. Secure Research Environment configuration</a></p></li>
+<li><p><a class="reference external" href="#cop-3-prepare-shm-environment">:cop: 3. Prepare SHM environment</a></p></li>
+<li><p><a class="reference external" href="#station-4-deploy-networking-components">:station: 4. Deploy networking components</a></p></li>
+<li><p><a class="reference external" href="#floppy_disk-5-deploy-storage-accounts">:floppy_disk: 5. Deploy storage accounts</a></p></li>
+<li><p><a class="reference external" href="#satellite-6-deploy-remote-desktop">:satellite: 6. Deploy remote desktop</a></p></li>
+<li><p><a class="reference external" href="#snowflake-7-deploy-web-applications-gitlab-and-CodiMD">:snowflake: 7. Deploy web applications (GitLab and CodiMD)</a></p></li>
+<li><p><a class="reference external" href="#baseball-8-deploy-databases">:baseball: 8. Deploy databases</a></p></li>
+<li><p><a class="reference external" href="#computer-9-deploy-data-science-vms">:computer: 9. Deploy data science VMs</a></p></li>
+<li><p><a class="reference external" href="#lock-10-configure-network-lockdown">:lock: 10. Configure network lockdown</a></p></li>
+<li><p><a class="reference external" href="#fire_engine-11-configure-firewall">:fire_engine: 11. Configure firewall</a></p></li>
+<li><p><a class="reference external" href="#chart_with_upwards_trend-12-configure-logging">:chart_with_upwards_trend: 12. Configure logging</a></p></li>
+<li><p><a class="reference external" href="#fire-13-run-smoke-tests-on-dsvm">:fire: 13. Run smoke tests on DSVM</a></p></li>
+</ul>
+</section>
+<section id="explanation-of-symbols-used-in-this-guide">
+<h2>Explanation of symbols used in this guide<a class="headerlink" href="#explanation-of-symbols-used-in-this-guide" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: estimate of time needed" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=estimate%20of%20time%20needed" /></p>
+<ul class="simple">
+<li><p>This indicates a <code class="docutils literal notranslate"><span class="pre">Powershell</span></code> command which you will need to run locally on your machine</p></li>
+<li><p>Ensure you have checked out the appropriate version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a <code class="docutils literal notranslate"><span class="pre">Powershell</span></code> terminal and navigate to the indicated directory of your locally checked-out version of the Safe Haven repository</p></li>
+<li><p>Ensure that you are logged into Azure by running the <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code> command</p>
+<ul>
+<li><p>:pencil: If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>This command will give you a URL and a short alphanumeric code.</p>
+<ul>
+<li><p>You will need to visit that URL in a web browser, enter the code and log in to your account on Azure</p></li>
+<li><p>:pencil: If you have several Azure accounts, make sure you use one that has permissions to make changes to the subscription you are using</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Remote: estimate of time needed" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=estimate%20of%20time%20needed" /></p>
+<ul class="simple">
+<li><p>This indicates a command which you will need to run remotely on an Azure virtual machine (VM) using <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Remote</span> <span class="pre">Desktop</span></code></p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Remote</span> <span class="pre">Desktop</span></code> and click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Desktop</span></code> / <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">PC</span></code></p></li>
+<li><p>Enter the private IP address of the VM that you need to connect to in the <code class="docutils literal notranslate"><span class="pre">PC</span> <span class="pre">name</span></code> field (this can be found by looking in the Azure portal)</p></li>
+<li><p>Enter the name of the VM (for example <code class="docutils literal notranslate"><span class="pre">DC1-SHM-TESTA</span></code>) in the <code class="docutils literal notranslate"><span class="pre">Friendly</span> <span class="pre">name</span></code> field</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code></p></li>
+<li><p>Ensure you are connected to the SHM VPN that you have set up</p></li>
+<li><p>Double click on the desktop that appears under <code class="docutils literal notranslate"><span class="pre">Saved</span> <span class="pre">Desktops</span></code> or <code class="docutils literal notranslate"><span class="pre">PCs</span></code>.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> specified by the appropriate section of the guide</p></li>
+<li><p>:pencil: If you see a warning dialog that the certificate cannot be verified as root, accept this and continue.</p></li>
+</ul>
+<p><img alt="Portal: estimate of time needed" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-azure&amp;label=portal&amp;color=blue&amp;message=estimate%20of%20time%20needed" /></p>
+<ul class="simple">
+<li><p>This indicates an operation which needs to be carried out in the <a class="reference external" href="https://portal.azure.com"><code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Portal</span></code></a> using a web browser on your local machine.</p></li>
+<li><p>You will need to login to the portal using an account with privileges to make the necessary changes to the resources you are altering</p></li>
+</ul>
+<p><img alt="Azure AD: estimate of time needed" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-academic&amp;label=Azure%20AD&amp;color=blue&amp;message=estimate%20of%20time%20needed" /></p>
+<ul class="simple">
+<li><p>This indicates an operation which needs to be carried out in the <a class="reference external" href="https://portal.azure.com"><code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Portal</span></code></a> using a web browser on your local machine.</p></li>
+<li><p>You will need to login to the portal using an account with administrative privileges on the <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> that you are altering.</p></li>
+<li><p>Note that this might be different from the account which is able to create/alter resources in the Azure subscription where you are building the Safe Haven.</p></li>
+</ul>
+<p>:pencil: <strong>Notes</strong></p>
+<ul class="simple">
+<li><p>This indicates some explanatory notes or examples that provide additional context for the current step.</p></li>
+</ul>
+<p>:warning: <strong>Troubleshooting</strong></p>
+<ul class="simple">
+<li><p>This indicates a set of troubleshooting instructions to help diagnose and fix common problems with the current step.</p></li>
+</ul>
+<p><img alt="macOS" src="https://img.shields.io/badge/-555?&amp;logo=apple&amp;logoColor=white" /><img alt="Windows" src="https://img.shields.io/badge/-555?&amp;logo=windows&amp;logoColor=white" /><img alt="Linux" src="https://img.shields.io/badge/-555?&amp;logo=linux&amp;logoColor=white" /></p>
+<ul class="simple">
+<li><p>These indicate steps that depend on the OS that you are using to deploy the SRE</p></li>
+</ul>
+</section>
+<section id="seedling-1-prerequisites">
+<h2>:seedling: 1. Prerequisites<a class="headerlink" href="#seedling-1-prerequisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">SHM</span> <span class="pre">environment</span></code> that has already been deployed in Azure</p>
+<ul>
+<li><p>Follow the <a class="reference internal" href="how-to-deploy-shm.html"><span class="doc std std-doc">Safe Haven Management (SHM) deployment guide</span></a> if you have not done so already.</p></li>
+</ul>
+</li>
+<li><p>All <a class="reference external" href="how-to-deploy-shm.md#prerequisites">prerequisites needed for deploying the SHM</a></p></li>
+<li><p>An <a class="reference external" href="https://portal.azure.com">Azure subscription</a> with sufficient credits to build the environment in.</p>
+<ul>
+<li><p>This can be the same or different from the one where the SHM is deployed</p></li>
+<li><p>Ensure that the <strong>Owner</strong> of the subscription is an Azure Security group that all administrators can be added to.</p></li>
+<li><p>:maple_leaf: We recommend around $1,000 as a reasonable starting point.</p></li>
+<li><p>:maple_leaf: We recommend using separate Azure Active Directories for users and administrators</p></li>
+</ul>
+</li>
+<li><p>Access to a global administrator account on the SHM Azure Active Directory</p></li>
+</ul>
+<section id="vpn-connection-to-the-shm-vnet">
+<h3>VPN connection to the SHM VNet<a class="headerlink" href="#vpn-connection-to-the-shm-vnet" title="Permalink to this headline">¶</a></h3>
+<p>For some operations, you will need to log on to some of the VMs that you deploy and make manual changes. This is done using the VPN which should have been deployed <a class="reference external" href="how-to-deploy-shm.md#download-a-client-vpn-certificate-for-the-safe-haven-management-network">when setting up the SHM environment</a>.</p>
+</section>
+<section id="sre-domain-name">
+<h3>SRE domain name<a class="headerlink" href="#sre-domain-name" title="Permalink to this headline">¶</a></h3>
+<p>You will need access to a public routable domain name for the SRE and its name servers. This can be a subdomain of the Safe Haven Management domain, e.g, <code class="docutils literal notranslate"><span class="pre">sandbox.testb.dsgroupdev.co.uk</span></code> , or a top-level domain (eg. <code class="docutils literal notranslate"><span class="pre">dsgroup100.co.uk</span></code> ).</p>
+</section>
+<section id="deploying-multiple-sres-in-parallel">
+<h3>Deploying multiple SREs in parallel<a class="headerlink" href="#deploying-multiple-sres-in-parallel" title="Permalink to this headline">¶</a></h3>
+<p>:exclamation: Note that you can only deploy to <strong>one SRE at a time</strong> from a given computer as the <code class="docutils literal notranslate"><span class="pre">Az</span></code> Powershell module can only work within one Azure subscription at a time.</p>
+<p>If you need to deploy multiple SREs in parallel you will need to use multiple computers. These can be different physical computers or you can provision dedicated deployment VMs - this is beyond the scope of this guide.</p>
+</section>
+</section>
+<section id="clipboard-2-secure-research-environment-configuration">
+<h2>:clipboard: 2. Secure Research Environment configuration<a class="headerlink" href="#clipboard-2-secure-research-environment-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The full configuration details for a new SRE are generated by defining a few “core” properties for the new SRE and the management environment in which it will be deployed.</p>
+<section id="secure-research-environment-id">
+<h3>Secure research environment ID<a class="headerlink" href="#secure-research-environment-id" title="Permalink to this headline">¶</a></h3>
+<p>Choose a short ID <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> to identify the secure research environment (e.g. <code class="docutils literal notranslate"><span class="pre">sandbox</span></code>). This can have a <strong>maximum of seven alphanumeric characters</strong>.</p>
+<p>The core properties for the relevant pre-existing Safe Haven Management (SHM) environment must be defined in a JSON file named <code class="docutils literal notranslate"><span class="pre">shm_&lt;SHM</span> <span class="pre">ID&gt;_core_config.json</span></code> in the <code class="docutils literal notranslate"><span class="pre">environment_configs/core</span></code> folder.
+The core properties for the secure research environment (SRE) must be defined in a JSON file named <code class="docutils literal notranslate"><span class="pre">sre_&lt;SHM</span> <span class="pre">ID&gt;&lt;SRE</span> <span class="pre">ID&gt;_core_config.json</span></code> in the <code class="docutils literal notranslate"><span class="pre">environment_configs/core</span></code> folder.</p>
+<p>The following core SRE properties are required - look at <code class="docutils literal notranslate"><span class="pre">sre_testasandbox_core_config.json</span></code> to see an example.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;sreId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The &lt;SRE ID&gt; that you decided on above (eg. &#39;sandbox&#39;).&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;tier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The data classification tier for the SRE. This controls the outbound network restrictions on the SRE and which mirror set the SRE is peered with&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;nexus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Optional, Bool] Whether to use a Nexus repository as a proxy to PyPI and CRAN. Defaults to true if tier is 2 and false otherwise.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;shmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The &lt;SHM ID&gt; that you decided on above (eg. &#39;testa&#39;).&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;subscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Azure subscription that the SRE will be deployed into.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ipPrefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The three octet IP address prefix for the Class A range used by the management environment. See below for suggestion on how to set this&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;inboundAccessFrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A comma-separated string of IP ranges (addresses or CIDR ranges) from which access to the RDS webclient is permitted. See below for suggestion on how to set this.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;outboundInternetAccess&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Whether to allow outbound internet access from inside the remote desktop environment. Either (&#39;Yes&#39;, &#39;Allow&#39;, &#39;Permit&#39;), (&#39;No&#39;, &#39;Deny&#39;, &#39;Forbid&#39;) or &#39;default&#39; (for Tier 0 and 1 &#39;Allow&#39; otherwise &#39;Deny&#39;)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;computeVmImage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The name of the Compute VM image (most commonly &#39;Ubuntu&#39;)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The version of the Compute VM image (e.g. 0.1.2019082900)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;remoteDesktopProvider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Which remote desktop provider to use. Either &#39;ApacheGuacamole&#39; (recommended) or &#39;CoCalc&#39; (tier 0/1 only) or &#39;MicrosoftRDS&#39; (tier 2/3 only)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;dataAdminIpAddresses&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Optional] A list of one or more IP addresses which admins will be using to transfer sensitive data to/from the secure Azure storage area (if not specified then Turing IP addresses will be used).&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;deploymentIpAddresses&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Optional] A list of one or more IP addresses which admins will be using when deploying the SRE (if not specified then deployment commands from any IP address will be permitted).&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;azureAdminGroupName&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Optional] Azure Security Group that admins of this SRE will belong to. If not specified then the same one as the SHM will be used.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Optional] The fully qualified domain name for the SRE. If not specified then &lt;SRE ID&gt;.&lt;SHM domain&gt; will be used.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;databases&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Optional] A list of one or more database flavours from the following list (&#39;MSSQL&#39;, &#39;PostgreSQL&#39;). For example [&#39;MSSQL&#39;, &#39;PostgreSQL&#39;] would deploy both an MS-SQL and a PostgreSQL database.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;overrides&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Optional, Advanced] Do not use this unless you know what you&#39;re doing! If you want to override any of the default settings, you can do so by creating the same JSON structure that would be found in the final config file and nesting it under this entry. For example, to change the name of the Key Vault secret containing the MSSQL admin password, you could use something like: &#39;sre: { databases: { dbmssql: { adminPasswordSecretName: my-password-name } } }&#39;&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="pencil-notes">
+<h4>:pencil: Notes<a class="headerlink" href="#pencil-notes" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>When deciding on what to set the <code class="docutils literal notranslate"><span class="pre">inboundAccessFrom</span></code> field to, we recommend the following settings:</p>
+<ul>
+<li><p>Tier 0/1 SREs: this can be set to <code class="docutils literal notranslate"><span class="pre">Internet</span></code>, allowing access from anywhere.</p></li>
+<li><p>Tier 2 SREs: this should correspond to the <strong>organisational networks</strong> (including guest networks) for all approved partner organisations (i.e. any network managed by the organsiation, such as <code class="docutils literal notranslate"><span class="pre">EduRoam</span></code>, <code class="docutils literal notranslate"><span class="pre">Turing</span> <span class="pre">Guest</span></code>, <code class="docutils literal notranslate"><span class="pre">Turing</span> <span class="pre">Secure</span></code> etc)</p></li>
+<li><p>Tier 3 SREs: this should correspond to the <strong>restricted networks</strong> for all approved partner organisations. These should only permit connections from within medium security access controlled physical spaces and from managed devices (e.g. <code class="docutils literal notranslate"><span class="pre">Turing</span> <span class="pre">Secure</span></code>).</p></li>
+</ul>
+</li>
+<li><p>Setting <code class="docutils literal notranslate"><span class="pre">inboundAccessFrom</span></code> to ‘default’ will use the default Turing network ranges.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ipPrefix</span></code> must be unique for each SRE attached to the same SHM.</p></li>
+<li><p>Each SRE should use a <code class="docutils literal notranslate"><span class="pre">/21</span></code> subspace of the <code class="docutils literal notranslate"><span class="pre">10.0.0.0/24</span></code> private class A range, starting from <code class="docutils literal notranslate"><span class="pre">10.21.0.0</span></code> to cleanly avoid the space already occupied by the SHM <code class="docutils literal notranslate"><span class="pre">10.0.1.0</span> <span class="pre">-</span> <span class="pre">10.0.7.255</span></code> and the mirrors (<code class="docutils literal notranslate"><span class="pre">10.20.2.0-10.20.3.255</span></code>).</p>
+<ul>
+<li><p>It is very important that address spaces do not overlap in the environment as this will cause network faults. This means that prefixes must differ by at least 8 in their third octet.</p></li>
+<li><p>This provides ample addresses for a SRE and capacity to add additional subnets should that be required in the future.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="optional-verify-code-version">
+<h3>(Optional) Verify code version<a class="headerlink" href="#optional-verify-code-version" title="Permalink to this headline">¶</a></h3>
+<p>If you have cloned/forked the code from our GitHub repository, you can confirm which version of the data safe haven you are currently using by running the following commands:</p>
+<p><img alt="Powershell: a few seconds" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20seconds" /></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="n">git</span> <span class="n">fetch</span><span class="p">;</span> <span class="n">git</span> <span class="n">pull</span><span class="p">;</span> <span class="n">git</span> <span class="n">status</span><span class="p">;</span> <span class="n">git</span> <span class="n">log</span> <span class="p">-</span><span class="n">1</span> <span class="p">-</span><span class="n">-pretty</span><span class="p">=</span><span class="s2">&quot;At commit %h (%H)&quot;</span>
+</pre></div>
+</div>
+<p>This will verify that you are on the correct branch and up to date with <code class="docutils literal notranslate"><span class="pre">origin</span></code>. You can include this confirmation in any record you keep of your deployment.</p>
+</section>
+<section id="optional-view-full-sre-configuration">
+<h3>(Optional) View full SRE configuration<a class="headerlink" href="#optional-view-full-sre-configuration" title="Permalink to this headline">¶</a></h3>
+<p>A full configuration, which will be used in subsequent steps, will be automatically generated from your core configuration. Should you wish to, you can print the full SRE config by running the following Powershell command:</p>
+<p><img alt="Powershell: a few seconds" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20seconds" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">ShowConfigFile</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+</section>
+</section>
+<section id="cop-3-prepare-shm-environment">
+<h2>:cop: 3. Prepare SHM environment<a class="headerlink" href="#cop-3-prepare-shm-environment" title="Permalink to this headline">¶</a></h2>
+<section id="optional-remove-data-from-previous-deployments">
+<h3>(Optional) Remove data from previous deployments<a class="headerlink" href="#optional-remove-data-from-previous-deployments" title="Permalink to this headline">¶</a></h3>
+<p>If you are redeploying an SRE in the same subscription and did not use the <code class="docutils literal notranslate"><span class="pre">./SRE_Teardown.ps1</span></code> script to clean up the previous deployment, then there may be residual SRE data in the SHM. If the subscription is not empty, confirm that it is not being used before deleting any resources in it. Clear any remaining SRE data from the SHM by running</p>
+<p><img alt="Powershell: a few minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Remove_SRE_Data_From_SHM</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+</section>
+<section id="register-sre-with-the-shm">
+<h3>Register SRE with the SHM<a class="headerlink" href="#register-sre-with-the-shm" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Powershell: a few minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_Key_Vault_And_Users</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<p>This step will register service accounts with the SHM and also create a Key Vault in the SRE subscription (at <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">&gt;</span> <span class="pre">RG_SHM_&lt;SHM</span> <span class="pre">ID&gt;_SRE_&lt;SRE</span> <span class="pre">ID&gt;_SECRETS</span> <span class="pre">&gt;</span> <span class="pre">kv-&lt;SHM</span> <span class="pre">ID&gt;-sre-&lt;SRE</span> <span class="pre">ID&gt;</span></code>).</p>
+</section>
+</section>
+<section id="station-4-deploy-networking-components">
+<h2>:station: 4. Deploy networking components<a class="headerlink" href="#station-4-deploy-networking-components" title="Permalink to this headline">¶</a></h2>
+<section id="create-sre-dns-zone">
+<h3>Create SRE DNS Zone<a class="headerlink" href="#create-sre-dns-zone" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Powershell: one minute" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=one%20minute" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_DNS_Zone</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<section id="warning-troubleshooting">
+<h4>:warning: Troubleshooting<a class="headerlink" href="#warning-troubleshooting" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>If you see a message <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">add</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">NS</span> <span class="pre">records</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">parent</span> <span class="pre">DNS</span> <span class="pre">system</span> <span class="pre">for...</span></code> you will need to manually add the specified NS records to the parent’s DNS system, as follows:</p></li>
+</ul>
+<details><summary><b>Instructions for manually creating SRE DNS records</b></summary>
+<p><img alt="Portal: one minute" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-azure&amp;label=portal&amp;color=blue&amp;message=one%20minute" /></p>
+<ul class="simple">
+<li><p>To find the required values for the NS records on the portal, click <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">resources</span></code> in the far left panel, search for “DNS Zone” and locate the DNS Zone with SRE’s domain. The NS record will list 4 Azure name servers.
+<img alt="subdomain_ns_record" src="../../_images/subdomain_ns_record.png" /></p></li>
+<li><p>Duplicate these records to the parent DNS system as follows:</p>
+<ul>
+<li><p>If the parent domain has an Azure DNS Zone, create an NS record set in this zone.</p>
+<ul>
+<li><p>The name should be set to the subdomain (e.g. <code class="docutils literal notranslate"><span class="pre">sandbox</span></code> ) or <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> if using a custom domain, and the values duplicated from above.</p></li>
+<li><p>For example, for a new subdomain <code class="docutils literal notranslate"><span class="pre">sandbox.testa.dsgroupdev.co.uk</span></code> , duplicate the NS records from the Azure DNS Zone <code class="docutils literal notranslate"><span class="pre">sandbox.testa.dsgroupdev.co.uk</span></code> to the Azure DNS Zone for <code class="docutils literal notranslate"><span class="pre">testa.dsgroupdev.co.uk</span></code> , by creating a record set with name <code class="docutils literal notranslate"><span class="pre">sandbox</span></code> .</p></li>
+</ul>
+</li>
+<li><p>If the parent domain is outside of Azure, create NS records in the registrar for the new domain with the same value as the NS records in the new Azure DNS Zone for the domain.</p></li>
+</ul>
+</li>
+</ul>
+</details>
+</section>
+</section>
+<section id="deploy-the-virtual-network">
+<h3>Deploy the virtual network<a class="headerlink" href="#deploy-the-virtual-network" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Powershell: five minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=five%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_Networking</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<section id="id1">
+<h4>:pencil: Notes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>The VNet peerings may take a few minutes to provision after the script completes.</p>
+</section>
+</section>
+</section>
+<section id="floppy-disk-5-deploy-storage-accounts">
+<h2>:floppy_disk: 5. Deploy storage accounts<a class="headerlink" href="#floppy-disk-5-deploy-storage-accounts" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: ten minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=ten%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_Storage_Accounts</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<p>This script will create a storage account in the <code class="docutils literal notranslate"><span class="pre">RG_SHM_&lt;shmId&gt;_DATA_PERSISTENT</span></code> resource group, a corresponding private end point in <code class="docutils literal notranslate"><span class="pre">RG_SRE_NETWORKING</span></code> and will configure the DNS zone of the storage account to the right IP address.</p>
+</section>
+<section id="satellite-6-deploy-remote-desktop">
+<h2>:satellite: 6. Deploy remote desktop<a class="headerlink" href="#satellite-6-deploy-remote-desktop" title="Permalink to this headline">¶</a></h2>
+<section id="deploy-the-remote-desktop-servers">
+<h3>Deploy the remote desktop servers<a class="headerlink" href="#deploy-the-remote-desktop-servers" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Powershell: fifty minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=fifty%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_Remote_Desktop</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<section id="id2">
+<h4>:warning: Troubleshooting<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>If you encounter errors with the deployment of the remote desktop servers, re-running <code class="docutils literal notranslate"><span class="pre">Setup_SRE_Remote_Desktop.ps1</span></code> should fix them. If this does not work, please try deleting everything that has been deployed into the <code class="docutils literal notranslate"><span class="pre">RG_SHM_&lt;SHM</span> <span class="pre">ID&gt;_SRE_&lt;SRE</span> <span class="pre">ID&gt;_RDS</span></code> resource group for this SRE and <a class="reference external" href="#tropical_fish-deploy-remote-desktop-servers">attempt to rerun this step again</a>.</p>
+</section>
+</section>
+<section id="configure-rds-webclient">
+<h3>Configure RDS webclient<a class="headerlink" href="#configure-rds-webclient" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Remote: twenty minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=twenty%20minutes" /></p>
+<ul class="simple">
+<li><p>Navigate to the <strong>RDS Gateway</strong> VM in the portal at <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">&gt;</span> <span class="pre">RG_SHM_&lt;SHM</span> <span class="pre">ID&gt;_SRE_&lt;SRE</span> <span class="pre">ID&gt;_RDS</span> <span class="pre">&gt;</span> <span class="pre">RDG-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code> and note the <code class="docutils literal notranslate"><span class="pre">Private</span> <span class="pre">IP</span> <span class="pre">address</span></code> for this VM</p></li>
+<li><p>Log into the <strong>RDS Gateway</strong> (<code class="docutils literal notranslate"><span class="pre">RDG-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code>) VM using this <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">IP</span> <span class="pre">address</span></code> together with the same <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">login&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">password&gt;</span></code> that you used to <a class="reference external" href="how-to-deploy-shm.md#configure-the-first-domain-controller-via-remote-desktop">log into the SHM domain controller</a></p></li>
+<li><p>Run the following command on the RDS VM to configure the remote desktop environment</p></li>
+</ul>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="n">C</span><span class="p">:\</span><span class="n">Installation</span><span class="p">\</span><span class="n">Deploy_RDS_Environment</span><span class="p">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+<section id="id3">
+<h4>:pencil: Notes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>This script cannot be run remotely since remote <code class="docutils literal notranslate"><span class="pre">Powershell</span></code> runs as a local admin but this script has to be run as a domain admin.</p>
+</section>
+<section id="id4">
+<h4>:warning: Troubleshooting<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p><img alt="Windows" src="https://img.shields.io/badge/-555?&amp;logo=windows&amp;logoColor=white" /> when deploying on Windows, the SHM VPN needs to be redownloaded/reconfigured each time an SRE is deployed. Otherwise, there may be difficulties connecting to the <strong>RDS Gateway</strong>.</p>
+</section>
+</section>
+<section id="secure-rds-webclient">
+<h3>Secure RDS webclient<a class="headerlink" href="#secure-rds-webclient" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Powershell: fifteen minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=fifteen%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Secure_SRE_Remote_Desktop_Gateway</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<p>This will perform the following actions, which can be run individually if desired:</p>
+<section id="id5">
+<h4>:pencil: Notes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>If additional TLS protocols become available (or existing ones are found to be insecure) during the lifetime of the SRE, then you can re-run <code class="docutils literal notranslate"><span class="pre">./Disable_Legacy_TLS.ps1</span></code> to update the list of accepted protocols</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./Update_SRE_RDS_SSL_Certificate.ps1</span></code> should be run again whenever you want to update the certificate for this SRE.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4>:warning: Troubleshooting<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">Let's</span> <span class="pre">Encrypt</span></code> will only issue <strong>5 certificates per week</strong> for a particular host (e.g. <code class="docutils literal notranslate"><span class="pre">rdg-sre-sandbox.testa.dsgroupdev.co.uk</span></code> ). For production environments this should usually not be an issue. The signed certificates are also stored in the Key Vault for easy redeployment. However, if you find yourself needing to re-run this step without the Key Vault secret available, either to debug an error experienced in production or when redeploying a test environment frequently during development, you should run <code class="docutils literal notranslate"><span class="pre">./Update_SRE_RDS_SSL_Certificate.ps1</span> <span class="pre">-dryRun</span> <span class="pre">$true</span></code> to use the Let’s Encrypt staging server, which will issue certificates more frequently. However, these certificates will not be trusted by your browser, so you will need to override the security warning in your browser to access the RDS web client for testing.</p>
+<details>
+<summary><strong>Disable insecure TLS connections</strong></summary>
+<p><img alt="Powershell: five minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=five%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Disable_Legacy_TLS</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+</details>
+<details>
+<summary><strong>Configure RDS CAP and RAP settings</strong></summary>
+<p><img alt="Powershell: five minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=five%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Configure_SRE_RDS_CAP_And_RAP</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+</details>
+<details>
+<summary><strong>Update SSL certificate</strong></summary>
+<p><img alt="Powershell: five minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=five%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Update_SRE_RDS_SSL_Certificate</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-emailAddress</span> <span class="p">&lt;</span><span class="n">email</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;email&gt;</span></code> is an email address that you want to be notified when certificates are close to expiry</p></li>
+</ul>
+</details>
+</section>
+</section>
+<section id="optional-set-up-a-non-privileged-user-account">
+<h3>Optional: Set up a non-privileged user account<a class="headerlink" href="#optional-set-up-a-non-privileged-user-account" title="Permalink to this headline">¶</a></h3>
+<p>These steps ensure that you have created a non-privileged user account that you can use for testing.
+You must ensure that you have assigned a licence to this user in the Azure Active Directory so that MFA will work correctly.</p>
+<p>You should have already set up a non-privileged user account upon setting up the SHM, when <a class="reference external" href="./how-to-deploy-shm.md#validate-active-directory-synchronisation">validating the active directory synchronisation</a>, but you may wish to set up another or verify that you have set one up already:</p>
+<details>
+<summary><strong>Set up a non-privileged user account</strong></summary>
+<p><img alt="Remote: five minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=five%20minutes" /></p>
+<ul class="simple">
+<li><p>Log into the <strong>SHM primary domain controller</strong> (<code class="docutils literal notranslate"><span class="pre">DC1-SHM-&lt;SHM</span> <span class="pre">ID&gt;</span></code>) VM using the connection details that you previously used to <a class="reference external" href="how-to-deploy-shm.md#configure-the-first-domain-controller-via-remote-desktop">log into this VM</a></p></li>
+<li><p>Follow the <a class="reference external" href="./how-to-deploy-shm.md#validate-active-directory-synchronisation">user creation instructions</a> from the <a class="reference internal" href="how-to-deploy-shm.html"><span class="doc std std-doc">SHM deployment guide</span></a> (everything under the Validate Active Directory synchronisation header). In brief these involve:</p>
+<ul>
+<li><p>adding your details (ie. your first name, last name, phone number etc.) to a user details CSV file.</p></li>
+<li><p>running <code class="docutils literal notranslate"><span class="pre">C:\Installation\CreateUsers.ps1</span> <span class="pre">&lt;path_to_user_details_file&gt;</span></code> in a Powershell command window with elevated privileges.</p></li>
+</ul>
+</li>
+<li><p>This will create a user in the local Active Directory on the SHM domain controller and start the process of synchronisation to the Azure Active Directory, which will take around 5 minutes.</p></li>
+</ul>
+</details>
+<section id="ensure-that-your-non-privileged-user-account-is-in-the-correct-security-group">
+<h4>Ensure that your non-privileged user account is in the correct Security Group<a class="headerlink" href="#ensure-that-your-non-privileged-user-account-is-in-the-correct-security-group" title="Permalink to this headline">¶</a></h4>
+<p><img alt="Remote: five minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=five%20minutes" /></p>
+<ul class="simple">
+<li><p>Log into the <strong>SHM primary domain controller</strong> (<code class="docutils literal notranslate"><span class="pre">DC1-SHM-&lt;SHM</span> <span class="pre">ID&gt;</span></code>) VM using the connection details that you previously used to <a class="reference external" href="how-to-deploy-shm.md#configure-the-first-domain-controller-via-remote-desktop">log into this VM</a></p></li>
+<li><p>In Server Manager click <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Users</span> <span class="pre">and</span> <span class="pre">Computers</span></code></p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Users</span> <span class="pre">and</span> <span class="pre">Computers</span></code>, expand the domain in the left hand panel click <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Security</span> <span class="pre">Groups</span></code></p></li>
+<li><p>Right click the <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">Research</span> <span class="pre">Users</span></code> security group and select <code class="docutils literal notranslate"><span class="pre">Properties</span></code></p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Members</span></code> tab.</p></li>
+<li><p>If your user is not already listed here you must add them to the group</p>
+<ul>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Add</span></code> button</p></li>
+<li><p>Enter the start of your username and click <code class="docutils literal notranslate"><span class="pre">Check</span> <span class="pre">names</span></code></p></li>
+<li><p>Select your username and click <code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Ok</span></code> again to exit the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">users</span></code> dialogue</p></li>
+</ul>
+</li>
+<li><p>Synchronise with Azure Active Directory by running following <code class="docutils literal notranslate"><span class="pre">Powershell</span></code> command on the SHM primary domain controller</p></li>
+</ul>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="n">C</span><span class="p">:\</span><span class="n">Installation</span><span class="p">\</span><span class="n">Run_ADSync</span><span class="p">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+</section>
+<section id="ensure-that-your-user-account-has-mfa-enabled">
+<h4>Ensure that your user account has MFA enabled<a class="headerlink" href="#ensure-that-your-user-account-has-mfa-enabled" title="Permalink to this headline">¶</a></h4>
+<p>Please ensure that your account is fully set-up (including MFA as <a class="reference external" href="../../how_to_guides/user_guides/user-guide.md#door-set-up-multi-factor-authentication">detailed in the user guide</a>).
+In order to verify this switch to your custom Azure Active Directory in the Azure portal and make the following checks:</p>
+<details>
+<summary><strong>Verify non-privileged user account is set up</strong></summary>
+<p><img alt="Azure AD: one minute" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-academic&amp;label=Azure%20AD&amp;color=blue&amp;message=one%20minute" /></p>
+<ul class="simple">
+<li><p>From the Azure portal, navigate to the AAD you have created.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Usage</span> <span class="pre">Location</span></code> must be set in Azure Active Directory (should be automatically synchronised from the local Active Directory if it was correctly set there)</p>
+<ul>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">&gt;</span> <span class="pre">Manage</span> <span class="pre">/</span> <span class="pre">Users</span> <span class="pre">&gt;</span> <span class="pre">(user</span> <span class="pre">account)</span></code>, and ensure that <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Usage</span> <span class="pre">Location</span></code> is set.</p></li>
+</ul>
+</li>
+<li><p>A licence must be assigned to the user.</p>
+<ul>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">&gt;</span> <span class="pre">Manage</span> <span class="pre">/</span> <span class="pre">Users</span> <span class="pre">&gt;</span> <span class="pre">(user</span> <span class="pre">account)</span> <span class="pre">&gt;</span> <span class="pre">Licenses</span></code> and verify that a license is assigned and the appropriate MFA service enabled.</p></li>
+</ul>
+</li>
+<li><p>MFA must be enabled for the user.</p>
+<ul>
+<li><p>The user must log into <code class="docutils literal notranslate"><span class="pre">aka.ms/mfasetup</span></code> and set up MFA as <a class="reference external" href="../../how_to_guides/user_guides/user-guide.md#door-set-up-multi-factor-authentication">detailed in the user guide</a>.</p></li>
+</ul>
+</li>
+</ul>
+</details>
+</section>
+</section>
+<section id="test-the-rds-using-a-non-privileged-user-account">
+<h3>Test the RDS using a non-privileged user account<a class="headerlink" href="#test-the-rds-using-a-non-privileged-user-account" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Launch a local web browser on your <strong>deployment machine</strong>  and go to <code class="docutils literal notranslate"><span class="pre">https://&lt;SRE</span> <span class="pre">ID&gt;.&lt;safe</span> <span class="pre">haven</span> <span class="pre">domain&gt;</span></code> and log in with the user name and password you set up for the non-privileged user account.</p>
+<ul>
+<li><p>for example for <code class="docutils literal notranslate"><span class="pre">&lt;safe</span> <span class="pre">haven</span> <span class="pre">domain&gt;</span> <span class="pre">=</span> <span class="pre">testa.dsgroupdev.co.uk</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">=</span> <span class="pre">sandbox</span></code> this would be <code class="docutils literal notranslate"><span class="pre">https://sandbox.testa.dsgroupdev.co.uk/</span></code></p></li>
+</ul>
+</li>
+<li><p>You should see a screen like the following. If you do not, follow the <strong>troubleshooting</strong> instructions below.
+<img alt="rds_desktop" src="../../_images/rds_desktop.png" /></p></li>
+</ul>
+<section id="id7">
+<h4>:pencil: Notes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Ensure that you are connecting from one of the <strong>permitted IP ranges</strong> specified in the <code class="docutils literal notranslate"><span class="pre">inboundAccessFrom</span></code> section of the SRE config file. For example, if you have authorised a corporate VPN, check that you have correctly configured you client to connect to it.</p></li>
+<li><p>Note that clicking on the apps will not work until the other servers have been deployed.</p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>:warning: Troubleshooting<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>If you get a <code class="docutils literal notranslate"><span class="pre">404</span> <span class="pre">resource</span> <span class="pre">not</span> <span class="pre">found</span></code> error when accessing the webclient URL, it is likely that the RDS webclient failed to install correctly.</p>
+<ul class="simple">
+<li><p>Go back to the previous section and rerun the <code class="docutils literal notranslate"><span class="pre">C:\Installation\Deploy_RDS_Environment.ps1</span></code> script on the RDS gateway.</p></li>
+<li><p>After doing this, follow the instructions to <a class="reference external" href="#accept-configure-rds-cap-and-rap-settings">configure RDS CAP and RAP settings</a> and to <a class="reference external" href="#closed_lock_with_key-update-ssl-certificate">update the SSL certificate</a>.</p></li>
+</ul>
+<p>If you get an <code class="docutils literal notranslate"><span class="pre">unexpected</span> <span class="pre">server</span> <span class="pre">authentication</span> <span class="pre">certificate</span> <span class="pre">error</span></code> , your browser has probably cached a previous certificate for this domain.</p>
+<ul class="simple">
+<li><p>Do a <a class="reference external" href="https://www.getfilecloud.com/blog/2015/03/tech-tip-how-to-do-hard-refresh-in-browsers/">hard reload</a> of the page (permanent fix)</p></li>
+<li><p>OR open a new private / incognito browser window and visit the page.</p></li>
+</ul>
+<p>If you can see an empty screen with <code class="docutils literal notranslate"><span class="pre">Work</span> <span class="pre">resources</span></code> but no app icons, your user has not been correctly added to the security group.</p>
+<ul class="simple">
+<li><p>Ensure that the user you have logged in with is a member of the <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">Research</span> <span class="pre">Users</span></code> group on the domain controller</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="snowflake-7-deploy-web-applications-cocalc-codimd-and-gitlab">
+<h2>:snowflake: 7. Deploy web applications (CoCalc, CodiMD and GitLab)<a class="headerlink" href="#snowflake-7-deploy-web-applications-cocalc-codimd-and-gitlab" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: fifty minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=fifty%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_WebApp_Servers</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<section id="test-cocalc-codimd-and-gitlab-servers">
+<h3>Test CoCalc, CodiMD and GitLab servers<a class="headerlink" href="#test-cocalc-codimd-and-gitlab-servers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Launch a local web browser on your <strong>deployment machine</strong>  and go to <code class="docutils literal notranslate"><span class="pre">https://&lt;SRE</span> <span class="pre">ID&gt;.&lt;safe</span> <span class="pre">haven</span> <span class="pre">domain&gt;</span></code> and log in with the user name and password you set up for the non-privileged user account.</p>
+<ul>
+<li><p>for example for <code class="docutils literal notranslate"><span class="pre">&lt;safe</span> <span class="pre">haven</span> <span class="pre">domain&gt;</span> <span class="pre">=</span> <span class="pre">testa.dsgroupdev.co.uk</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">=</span> <span class="pre">sandbox</span></code> this would be <code class="docutils literal notranslate"><span class="pre">https://sandbox.testa.dsgroupdev.co.uk/</span></code></p></li>
+</ul>
+</li>
+<li><p>Test <code class="docutils literal notranslate"><span class="pre">CoCalc</span></code> by clicking on the <code class="docutils literal notranslate"><span class="pre">CoCalc</span></code> app icon.</p>
+<ul>
+<li><p>You should receive an MFA request to your phone or authentication app.</p></li>
+<li><p>Once you have approved the sign in, you should see a Chrome window with the CoCalc login page.</p></li>
+<li><p>Log in with the short-form <code class="docutils literal notranslate"><span class="pre">username</span></code> of a user in the <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">Research</span> <span class="pre">Users</span></code> security group.</p></li>
+</ul>
+</li>
+<li><p>Test <code class="docutils literal notranslate"><span class="pre">CodiMD</span></code> by clicking on the <code class="docutils literal notranslate"><span class="pre">CodiMD</span></code> app icon.</p>
+<ul>
+<li><p>You should receive an MFA request to your phone or authentication app.</p></li>
+<li><p>Once you have approved the sign in, you should see a Chrome window with the GitLab login page.</p></li>
+<li><p>Log in with the short-form <code class="docutils literal notranslate"><span class="pre">username</span></code> of a user in the <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">Research</span> <span class="pre">Users</span></code> security group.</p></li>
+</ul>
+</li>
+<li><p>Test <code class="docutils literal notranslate"><span class="pre">GitLab</span></code> by clicking on the <code class="docutils literal notranslate"><span class="pre">GitLab</span></code> app icon.</p>
+<ul>
+<li><p>You should receive an MFA request to your phone or authentication app.</p></li>
+<li><p>Once you have approved the sign in, you should see a Chrome window with the GitLab login page.</p></li>
+<li><p>Log in with the short-form <code class="docutils literal notranslate"><span class="pre">username</span></code> of a user in the <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">Research</span> <span class="pre">Users</span></code> security group.</p></li>
+</ul>
+</li>
+<li><p>If you do not get an MFA prompt or you cannot connect to one of the servers, follow the <strong>troubleshooting</strong> instructions below.</p></li>
+</ul>
+<section id="id9">
+<h4>:warning: Troubleshooting<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>If you can log in to the initial webclient authentication but do not get the MFA request, then the issue is likely that the configuration of the connection between the SHM NPS server and the RDS Gateway server is not correct.</p>
+<ul class="simple">
+<li><p>Ensure that both the SHM NPS server and the RDS Gateway are running</p></li>
+<li><p>Follow the instructions to <a class="reference external" href="#accept-configure-rds-cap-and-rap-settings">configure RDS CAP and RAP settings</a> to reset the configuration of the RDS gateway and NPS VMs.</p></li>
+<li><p>Ensure that the default UDP ports <code class="docutils literal notranslate"><span class="pre">1812</span></code> , <code class="docutils literal notranslate"><span class="pre">1813</span></code> , <code class="docutils literal notranslate"><span class="pre">1645</span></code> and <code class="docutils literal notranslate"><span class="pre">1646</span></code> are all open on the SHM NPS network security group ( <code class="docutils literal notranslate"><span class="pre">NSG_SHM_SUBNET_IDENTITY</span></code> ). <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd316134(v=ws.10)">This documentation</a> gives further details.</p></li>
+</ul>
+<p>If this does not resolve the issue, trying checking the Windows event logs</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">Event</span> <span class="pre">Viewer</span></code> on the SRE RDS Gateway (<code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">views</span> <span class="pre">&gt;</span> <span class="pre">Server</span> <span class="pre">roles</span> <span class="pre">&gt;</span> <span class="pre">Network</span> <span class="pre">Policy</span> <span class="pre">and</span> <span class="pre">Access</span> <span class="pre">Services</span></code>) to check whether the NPS server is contactable and whether it is discarding requests</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">Event</span> <span class="pre">Viewer</span></code> on the SHM NPS server (<code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">views</span> <span class="pre">&gt;</span> <span class="pre">Server</span> <span class="pre">roles</span> <span class="pre">&gt;</span> <span class="pre">Network</span> <span class="pre">Policy</span> <span class="pre">and</span> <span class="pre">Access</span> <span class="pre">Services</span></code>) to check whether NPS requests are being received and whether the NPS server has an LDAP connection to the SHM DC.</p>
+<ul>
+<li><p>Ensure that the requests are being received from the <strong>private</strong> IP address of the RDS Gateway and <strong>not</strong> its public one.</p></li>
+</ul>
+</li>
+<li><p>One common error on the NPS server is <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">RADIUS</span> <span class="pre">message</span> <span class="pre">was</span> <span class="pre">received</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">invalid</span> <span class="pre">RADIUS</span> <span class="pre">client</span> <span class="pre">IP</span> <span class="pre">address</span> <span class="pre">x.x.x.x</span></code> . <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd316135(v=ws.10)">This help page</a> might be useful.</p>
+<ul>
+<li><p>This may indicate that the NPS server could not join the SHM domain. Try <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">DC1-SHM-&lt;SHM</span> <span class="pre">ID&gt;</span></code> from the NPS server and if this does not resolve, try rebooting it.</p></li>
+</ul>
+</li>
+<li><p>Ensure that the <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Firewall</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Domain</span> <span class="pre">Network</span></code> on both the SHM NPS server and the SRE RDS Gateway</p></li>
+</ul>
+<p>If you get a <code class="docutils literal notranslate"><span class="pre">We</span> <span class="pre">couldn't</span> <span class="pre">connect</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">gateway</span> <span class="pre">because</span> <span class="pre">of</span> <span class="pre">an</span> <span class="pre">error</span></code> message, it’s likely that the <code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">RADIUS</span> <span class="pre">Server</span></code> authentication timeouts have not been set correctly.</p>
+<ul class="simple">
+<li><p>Follow the instructions to <a class="reference external" href="#accept-configure-rds-cap-and-rap-settings">configure RDS CAP and RAP settings</a> to reset the authentication timeouts on the RDS gateway.</p>
+<ul>
+<li><p>If you get multiple MFA requests with no change in the <code class="docutils literal notranslate"><span class="pre">Opening</span> <span class="pre">ports</span></code> message, it may be that the shared RADIUS secret does not match on the SHM server and SRE RDS Gateway.</p></li>
+</ul>
+</li>
+<li><p>Follow the instructions to <a class="reference external" href="#accept-configure-rds-cap-and-rap-settings">configure RDS CAP and RAP settings</a> to reset the secret on both the RDS gateway and NPS VMs.</p></li>
+<li><p>This can happen if the NPS secret stored in the Key Vault is too long. We found that a 20 character secret caused problems but the (default) 12 character secret works.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="baseball-8-deploy-databases">
+<h2>:baseball: 8. Deploy databases<a class="headerlink" href="#baseball-8-deploy-databases" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: up to seventy minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=up%20to%20seventy%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_Databases</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<p>This will deploy any databases that you specified in the core config file. The time taken will depend on which (if any) databases you chose.</p>
+<ul class="simple">
+<li><p>The deployment of an <code class="docutils literal notranslate"><span class="pre">MS-SQL</span></code> database will take <strong>around 60 minutes</strong> to complete.</p></li>
+<li><p>The deployment of a <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code> database will take <strong>around 10 minutes</strong> to complete.</p></li>
+</ul>
+</section>
+<section id="computer-9-deploy-data-science-vms">
+<h2>:computer: 9. Deploy data science VMs<a class="headerlink" href="#computer-9-deploy-data-science-vms" title="Permalink to this headline">¶</a></h2>
+<section id="optional-customise-the-deployed-vm">
+<h3>(Optional) Customise the deployed VM<a class="headerlink" href="#optional-customise-the-deployed-vm" title="Permalink to this headline">¶</a></h3>
+<p>If this SRE needs additional software or settings that are not in your default VM image, you can create a custom cloud init file on your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>By default, compute VM deployments will use the <code class="docutils literal notranslate"><span class="pre">cloud-init-compute-vm.template.yaml</span></code> configuration file in the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/cloud_init/</span></code> folder. This does all the necessary steps to configure the VM to work with LDAP.</p></li>
+<li><p>If you require additional steps to be taken at deploy time while the VM still has access to the internet (e.g. to install some additional project-specific software), copy the default cloud init file to a file named <code class="docutils literal notranslate"><span class="pre">cloud-init-compute-vm-shm-&lt;SHM</span> <span class="pre">ID&gt;-sre-&lt;SRE</span> <span class="pre">ID&gt;.template.yaml</span></code> in the same folder and add any additional required steps in the <code class="docutils literal notranslate"><span class="pre">SRE-SPECIFIC</span> <span class="pre">COMMANDS</span></code> block marked with comments.</p></li>
+</ul>
+</section>
+<section id="deploy-a-single-data-science-vm-dsvm">
+<h3>Deploy a single data science VM (DSVM)<a class="headerlink" href="#deploy-a-single-data-science-vm-dsvm" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Powershell: ten minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=ten%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Add_DSVM</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-ipLastOctet</span> <span class="p">&lt;</span><span class="n">IP</span> <span class="n">last</span> <span class="n">octet</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;IP</span> <span class="pre">last</span> <span class="pre">octet&gt;</span></code> is last octet of the IP address</p></li>
+</ul>
+<ul class="simple">
+<li><p>you can also provide a VM size by passing the optional <code class="docutils literal notranslate"><span class="pre">-vmSize</span></code> parameter.</p></li>
+</ul>
+<p>This will deploy a new compute VM into the SRE environment</p>
+<section id="id10">
+<h4>:pencil: Notes<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>The initial shared <code class="docutils literal notranslate"><span class="pre">DSVM</span> <span class="pre">Main</span></code> shared VM should be deployed with the last octet <code class="docutils literal notranslate"><span class="pre">160</span></code></p></li>
+<li><p><img alt="Alan Turing Institute" src="https://img.shields.io/badge/Alan%20Turing%20Institute-555?&amp;logo=canonical&amp;logoColor=white" /> our convention is that subsequent CPU-based VMs are deployed with the next unused last octet in the range <code class="docutils literal notranslate"><span class="pre">161</span></code> to <code class="docutils literal notranslate"><span class="pre">179</span></code> and GPU-based VMs are deployed with the next unused last octet between <code class="docutils literal notranslate"><span class="pre">180</span></code> and <code class="docutils literal notranslate"><span class="pre">199</span></code> .</p></li>
+<li><p>If you want to deploy several DSVMs, simply repeat the above setps with a different IP address last octet</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="lock-10-configure-network-lockdown">
+<h2>:lock: 10. Configure network lockdown<a class="headerlink" href="#lock-10-configure-network-lockdown" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: ten minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=ten%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Apply_SRE_Network_Configuration</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<p>This will apply the locked-down network settings which will restrict access into/out of this SRE.</p>
+</section>
+<section id="fire-engine-11-configure-firewall">
+<h2>:fire_engine: 11. Configure firewall<a class="headerlink" href="#fire-engine-11-configure-firewall" title="Permalink to this headline">¶</a></h2>
+<!-- NB. this could be moved earlier in the deployment process once this has been tested, but the first attempt will just focus on locking down an already-deployed environment -->
+<p><img alt="Powershell: a few minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_Firewall</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+</section>
+<section id="chart-with-upwards-trend-12-configure-logging">
+<h2>:chart_with_upwards_trend: 12. Configure logging<a class="headerlink" href="#chart-with-upwards-trend-12-configure-logging" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: a few minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/secure_research_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Setup_SRE_Logging</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-shmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-sreId</span> <span class="p">&lt;</span><span class="n">SRE</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="how-to-deploy-shm.md#management-environment-id">management environment ID</a> for this SRE</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#secure-research-environment-id">secure research environment ID</a> for this SRE</p></li>
+</ul>
+<section id="id11">
+<h3>:warning: Troubleshooting<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>The API call that installs the logging extensions to the VMs will time out after a few minutes, so you may get some extension installation failure messages if installation of the loggin agent takes longer than this to complete.
+When this happens, you will see a failure message reporting that installation of the extension was not successful for the VM(s) for which the API timed out.
+You may also get this message for other failures in installation.</p>
+<p>In any case, re-running <code class="docutils literal notranslate"><span class="pre">./Setup_SRE_Logging.ps1</span> <span class="pre">-shmId</span> <span class="pre">$shmId</span> <span class="pre">-sreId</span> <span class="pre">$sreId</span></code> will attempt to install the extensions again, skipping any VMs that already have the extensions installed.
+Where the issue was an API timeout, these VMs will report that the extension is already installed when the logging set up script is run again.</p>
+<p>Where there was a genuine failure in the installation of a VM extension, the script will try again to install the extension when the logging set up script is run again.
+If you get consistent failure messages after re-running the logging set up script a few times, then further investigation will be required.</p>
+</section>
+</section>
+<section id="fire-13-run-smoke-tests-on-dsvm">
+<h2>:fire: 13. Run smoke tests on DSVM<a class="headerlink" href="#fire-13-run-smoke-tests-on-dsvm" title="Permalink to this headline">¶</a></h2>
+<p>These tests should be run <strong>after</strong> the network lock down and peering the SRE and package mirror VNets.
+They are automatically uploaded to the compute VM during the deployment step.</p>
+<p><img alt="Remote: five minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=five%20minutes" /></p>
+<ul class="simple">
+<li><p>Use the remote desktop interface at <code class="docutils literal notranslate"><span class="pre">https://&lt;SRE</span> <span class="pre">ID&gt;.&lt;safe</span> <span class="pre">haven</span> <span class="pre">domain&gt;</span></code> to log in to the <strong>DSVM</strong> (<code class="docutils literal notranslate"><span class="pre">SRE-&lt;SRE</span> <span class="pre">ID&gt;-&lt;IP</span> <span class="pre">last</span> <span class="pre">octet&gt;-&lt;version</span> <span class="pre">number&gt;</span></code>) that you have deployed using the scripts above</p></li>
+<li><p>Open a terminal session</p></li>
+<li><p>Enter the test directory using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/opt/verification/smoke_tests</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">bats</span> <span class="pre">run_all_tests.bats</span></code> .</p></li>
+<li><p>If all test results are expected you are done! Otherwise check the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> in this folder for help diagnosing test failures.</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="how-to-deploy-sre-cocalc.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Secure Research Environment Build Instructions (CoCalc collaborative notebooks)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../quick_overview/is-this-safe-haven-suitable-for-you.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Is the Turing Safe Haven suitable for you?</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

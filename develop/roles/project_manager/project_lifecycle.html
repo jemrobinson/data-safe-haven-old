@@ -1,0 +1,622 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Project lifecycle &#8212; Data Safe Haven develop documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data ingress process" href="data_ingress.html" />
+    <link rel="prev" title="Project Manager" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../introduction/index.html">
+  Introduction
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Roles
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../policies/index.html">
+  Policies
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../design/index.html">
+  Design
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_provider_representative/index.html">
+   Dataset Provider Representative
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_provider_representative/data_ingress.html">
+     Data ingress process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_provider_representative/data_egress.html">
+     Data egress process
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../investigator/index.html">
+   Investigator
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../investigator/data_ingress.html">
+     Data ingress process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../investigator/data_egress.html">
+     Data egress process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../investigator/request_software_package.html">
+     Requesting new software packages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../programme_manager/index.html">
+   Programme Manager
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Project Manager
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Project lifecycle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_ingress.html">
+     Data ingress process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_egress.html">
+     Data egress process
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referee/index.html">
+   Referee
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../researcher/index.html">
+   Researcher
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../researcher/user_guide.html">
+     User guide
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../researcher/user_guide_guacamole.html">
+       User Guide: Apache Guacamole
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../researcher/user_guide_msrds.html">
+       User Guide: Microsoft Remote Desktop
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../researcher/available_software.html">
+     Available software
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_deployer/index.html">
+   System Deployer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_deployer/deploy_shm.html">
+     Deploy a Safe Haven Management Environment (SHM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_deployer/build_srd_image.html">
+     Build an SRE compute image
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../system_deployer/deploy_sre.html">
+     Deploy a Secure Research Environment (SRE)
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../system_deployer/deploy_sre_apache_guacamole.html">
+       Deploy an SRE with Apache Guacamole
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../system_deployer/deploy_sre_microsoft_rds.html">
+       Deploy an SRE with Microsoft RDS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_deployer/migrate_an_shm.html">
+     Migrating an SHM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_manager/index.html">
+   System Manager
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_manager/security_checklist.html">
+     Security evaluation checklist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_manager/administrator_guide.html">
+     Administrator documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>develop</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stakeholder-identification">
+   Stakeholder identification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-data-governance-arrangements">
+   Review data governance arrangements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#consent-and-privacy-of-individuals-in-the-dataset">
+   Consent and privacy of individuals in the dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-and-data-ingress">
+   Classification and data ingress
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-shutdown">
+   Environment shutdown
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/roles/project_manager/project_lifecycle.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="project-lifecycle">
+<h1>Project lifecycle<a class="headerlink" href="#project-lifecycle" title="Permalink to this headline">¶</a></h1>
+<p>Each project will contain one or more work packages.
+A work package is a set of input data together with the data analysis that will be performed on it.
+As <strong>project manager</strong> it is your responsibility to keep track of all the work packages belonging to a project.
+You should also ensure that all participants have been appropriately trained and are aware of the policies and procedures for the Data Safe Haven.</p>
+<section id="stakeholder-identification">
+<h2>Stakeholder identification<a class="headerlink" href="#stakeholder-identification" title="Permalink to this headline">¶</a></h2>
+<p>The first stage of any project involves identifying the different stakeholders.
+The <a class="reference internal" href="../data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> represents the organisation providing the data.
+Ensure that you have identified the <strong>data owner</strong> - the organisation who owns the dataset(s) being used in this work package.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Usually the <strong>data provider</strong> is also the <strong>data owner</strong>, but not in cases where they have purchased or loaned the data.</p>
+</div>
+<p>Ensure that the <strong>data owner</strong> has given this project permission to use the data.
+You can do this by checking with the <strong>data controller</strong> - an individual or group at the <strong>data owner</strong>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>There may be additional <strong>data owner stakeholders</strong> working at the <strong>data owner</strong> who can provide input to discussions around data sharing and data classification.</p>
+</div>
+<p>Next you should identify the <a class="reference internal" href="../investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> - the lead researcher with overall responsibility for the project.
+Finally, you should identify a <a class="reference internal" href="../referee/index.html#role-referee"><span class="std std-ref">Referee</span></a>, who able to provide an independent evaluation of the work package if needed.</p>
+</section>
+<section id="review-data-governance-arrangements">
+<h2>Review data governance arrangements<a class="headerlink" href="#review-data-governance-arrangements" title="Permalink to this headline">¶</a></h2>
+<p>There may be existing agreements or arrangements between your institution and the <strong>data owner</strong>.
+These should be reviewed to check the scope of data usage allowed before deciding whether a new agreement is needed.
+Ensure that data sharing agreements are signed off before allowing the project to proceed any further.</p>
+</section>
+<section id="consent-and-privacy-of-individuals-in-the-dataset">
+<h2>Consent and privacy of individuals in the dataset<a class="headerlink" href="#consent-and-privacy-of-individuals-in-the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>If there is data relating to individual people in the data set, they must consent to their data being shared.
+It is therefore necessary to check whether they have already consented or whether they need to be individually contacted to obtain this permission.
+An assessment should also be made of any potential exclusions of informed consent for the purpose of research.</p>
+</section>
+<section id="classification-and-data-ingress">
+<h2>Classification and data ingress<a class="headerlink" href="#classification-and-data-ingress" title="Permalink to this headline">¶</a></h2>
+<p>You should ensure that the <a class="reference internal" href="../data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a>, <a class="reference internal" href="../investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and <a class="reference internal" href="../referee/index.html#role-referee"><span class="std std-ref">Referee</span></a> (if applicable) go through the <a class="reference internal" href="../../policies/data_sensitivity_classification/classification_process.html#policy-data-classification-process"><span class="std std-ref">Classification process</span></a>.
+At the end of this process they should have classified the work package into one of the Data Safe Haven security tiers.
+Follow the guide to <a class="reference internal" href="data_ingress.html"><span class="doc std std-doc">data ingress</span></a> to bring all necessary code and data into the secure research environment.</p>
+</section>
+<section id="environment-setup">
+<h2>Environment setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
+<p>You should now contact your <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> and get them to schedule a <a class="reference internal" href="../system_deployer/index.html#role-system-deployer"><span class="std std-ref">System Deployer</span></a> to set up a new environment for this work package.
+You will need to provide the <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> with contact details (email address and phone number) for each of the participants in this work package.
+Work with the <a class="reference internal" href="../investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and the <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> to ensure that all participants are able to access the environment.
+If new participants are added or removed, ensure that the <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> is made aware and updates access to the environment as appropriate.</p>
+</section>
+<section id="environment-shutdown">
+<h2>Environment shutdown<a class="headerlink" href="#environment-shutdown" title="Permalink to this headline">¶</a></h2>
+<p>At the end of the project, make sure that the project team identify all data or code that they want to egress from the environment.</p>
+<ul class="simple">
+<li><p>ensure that the <a class="reference internal" href="../data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a>, <a class="reference internal" href="../investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and <a class="reference internal" href="../referee/index.html#role-referee"><span class="std std-ref">Referee</span></a> (if applicable) go through the <a class="reference internal" href="../../policies/data_sensitivity_classification/classification_process.html#policy-data-classification-process"><span class="std std-ref">Classification process</span></a>.</p></li>
+<li><p>follow the guide to <a class="reference internal" href="data_egress.html"><span class="doc std std-doc">data egress</span></a> to bring all necessary code and data out of the secure research environment.</p></li>
+<li><p>once this is done, let the <a class="reference internal" href="../system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> know so that they can shut it down and securely delete all the contents of the secure research environment.</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Project Manager</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="data_ingress.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data ingress process</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

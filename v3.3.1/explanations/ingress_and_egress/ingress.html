@@ -1,0 +1,491 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Bringing data and software into the Turing Safe Haven &#8212; Data Safe Haven v3.3.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Implementation details for the Turing Safe Haven" href="../overview/azure-implementation-details.html" />
+    <link rel="prev" title="Taking data and software out of the Turing Safe Haven" href="egress.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../README.html">
+  Learn more about the Safe Haven
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../how_to_guides/README.html">
+  How to guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference/README.html">
+  Reference guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorial/README.html">
+  Tutorials and overview
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/classification-overview.html">
+   Classifying sensitive data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/unconsented-data.html">
+   Unconsented data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="egress.html">
+   Taking data and software out of the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Bringing data and software into the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview/azure-implementation-details.html">
+   Implementation details for the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../security_decisions/physical-resilence-and-availability.html">
+   Design decisions based on physical resilience and availability
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../security_decisions/risk_register.html">
+   Risk Register
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../security_decisions/security-controls.html">
+   Security controls in the Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../security_decisions/security_policies.html">
+   Additional Security Policies for Data Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../security_decisions/supplier_and_software_policy.html">
+   Suppliers and Software Policy
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.3.1</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-ingress-data-entering-a-secure-environment-from-an-external-source">
+   Data ingress (data entering a secure Environment from an external source)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-ingress-software-entering-a-secure-environment-from-an-external-source">
+   Software ingress (software entering a secure Environment from an external source)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-software-to-the-default-environment">
+     Adding software to the default environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation-during-virtual-machine-deployment">
+     Installation during virtual machine deployment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation-after-virtual-machine-deployment">
+     Installation after virtual machine deployment
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/explanations/ingress_and_egress/ingress.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="bringing-data-and-software-into-the-turing-safe-haven">
+<h1>Bringing data and software into the Turing Safe Haven<a class="headerlink" href="#bringing-data-and-software-into-the-turing-safe-haven" title="Permalink to this headline">¶</a></h1>
+<p>This document discusses bringing data or software into the environment from an external source. This process is known as ingress.</p>
+<section id="data-ingress-data-entering-a-secure-environment-from-an-external-source">
+<h2>Data ingress (data entering a secure Environment from an external source)<a class="headerlink" href="#data-ingress-data-entering-a-secure-environment-from-an-external-source" title="Permalink to this headline">¶</a></h2>
+<p>The policies defined here minimise the number of people who have access to restricted information before it is in the Environment.</p>
+<p>Datasets must only be transferred from the Dataset Provider to the Turing after an initial classification has been completed and the data sharing agreement executed.</p>
+<p>For lower tiers, where the Environment is accessible from the internet, standard secure data transfer mechanisms such as secure copy (SCP) and secure file transfer protocol (SFTP) may be used.</p>
+<p>For higher tiers, all data transfer to the Turing should be via our secure data transfer process, which provides the Dataset Provider time-limited, write-only access to a dedicated data ingress volume from a specific location.
+Prior to access to the ingress volume being provided, the Dataset Provider Representative must provide the IP address(es) from which data will be uploaded and an email address to which a secure upload token can be sent.
+Once these details have been received, the Turing will open the data ingress volume for upload of data.</p>
+<p>To minimise the risk of unauthorised access to the dataset while the ingress volume is open for uploads, the following security measures are in place:</p>
+<ul class="simple">
+<li><p>Access to the ingress volume is restricted to a limited range of IP addresses associated with the Dataset Provider and the Turing.</p></li>
+<li><p>The Dataset Provider receives a <strong>write-only</strong> upload token. This allows them to upload, verify and modify the uploaded data, but does not viewing or download of the data. This provides protection against an unauthorised party accessing the data, even they gain access to the upload token.</p></li>
+<li><p>The upload token expires after a time-limited upload window.</p></li>
+<li><p>The upload token is transferred to the Dataset Provider via a secure email system.</p></li>
+</ul>
+<p>To further minimise the risk of unauthorised access to the dataset during the upload window, the Dataset Provider should take the following precautions.</p>
+<ul class="simple">
+<li><p>Data should always be uploaded directly into the secure volume to avoid the risk of individuals unintentionally retaining the dataset for longer than intended.</p></li>
+<li><p>After their dataset has been transferred, the Dataset Provider should immediately indicate that the transfer is complete. In doing so, they lose access to the data volume.</p></li>
+</ul>
+<p>If consensus on data classification cannot be made from metadata, an initial conservative classification may be made to permit the data to be ingressed into a higher tier environment.
+If the final classification of a work package is lower than the initial classification, the data may be egressed from this higher tier environment Environment to a new Environment matching the final classification tier.
+The web management workflows should ensure that all parties have reached consensus on the classification tier at this stage before allowing analysis to begin.</p>
+</section>
+<section id="software-ingress-software-entering-a-secure-environment-from-an-external-source">
+<h2>Software ingress (software entering a secure Environment from an external source)<a class="headerlink" href="#software-ingress-software-entering-a-secure-environment-from-an-external-source" title="Permalink to this headline">¶</a></h2>
+<p>The base data science virtual machine provided in the secure analysis Environments comes with a wide range of common data science software pre-installed.
+Package mirrors also allow access to a wide range of libraries for the programming languages for which package mirrors are provided (currently Python and R).</p>
+<p>For other languages for which no package mirror is provided, or for software which is not available from a package repository, an alternative method of software ingress must be provided.
+This includes custom researcher-written code not available via the package mirrors (e.g. code available on a researcher’s personal or institutional Github repositories).</p>
+<p>For lower tier environments, the data science virtual machine has outbound access to the internet and software can be installed in the usual manner by either a normal user or an administrator as required.</p>
+<p>For higher tier environments, the following software ingress options are available.</p>
+<section id="adding-software-to-the-default-environment">
+<h3>Adding software to the default environment<a class="headerlink" href="#adding-software-to-the-default-environment" title="Permalink to this headline">¶</a></h3>
+<p>If multiple researchers want to install the same tool, it makes sense to add it to the list of tools installed by default in the safe haven analysis environment.
+Adding other software tools to the default list will go through an application process. The requester should submit a form containing the following information:</p>
+<ul class="simple">
+<li><p>Software name</p></li>
+<li><p>Link to installation instructions</p></li>
+<li><p>Justification for requiring this tool</p></li>
+<li><p>Who is going to use this tool.</p></li>
+</ul>
+<p>This request should then be evaluated by the development team of the Turing Safe Haven. The two evaluation criteria are:</p>
+<ul class="simple">
+<li><p>Has this tool been reviewed by a community of developers? Is there a process through which harmful code could have been recognised and removed?</p>
+<ul>
+<li><p>Note that this does not mean a review of the code by a member of the Research Engineering team. Default tools should have a community review and development process. Bespoke code written by an individual developer is not likely to meet this criterion.</p></li>
+</ul>
+</li>
+<li><p>Will this tool be useful to additional researchers? As a rule, any default software should be used by more than 1 person.</p></li>
+</ul>
+<p>As a general rule, code which is primarily written by researchers on any particular project should <em>not</em> be added to the default installation. Instead, such code should follow the policies for software ingress detailed below.</p>
+</section>
+<section id="installation-during-virtual-machine-deployment">
+<h3>Installation during virtual machine deployment<a class="headerlink" href="#installation-during-virtual-machine-deployment" title="Permalink to this headline">¶</a></h3>
+<p>Where requirements for additional software are known in advance of the data science virtual machine being deployed to a secure analysis Environment, the additional software can be installed during deployment.
+In this case, software installation is performed while the virtual machine is outside of the Environment with outbound internet access available, but no access to any project data.
+Once the additional software has been installed, the virtual machine is ingressed to the Environment via a one-way airlock.</p>
+</section>
+<section id="installation-after-virtual-machine-deployment">
+<h3>Installation after virtual machine deployment<a class="headerlink" href="#installation-after-virtual-machine-deployment" title="Permalink to this headline">¶</a></h3>
+<p>Once a virtual machine has been deployed into a secure analysis Environment, it cannot be moved outside of the Environment, as is has had access to the data in the Environment and therefore represents an unauthorised data egress risk.
+As higher tier Environments do not have access to the internet, any additional software required must be brought into the Environment in order to be installed.</p>
+<p>Software is ingressed in a similar manner as data, using a software ingress volume:</p>
+<ul class="simple">
+<li><p>In <strong>external mode</strong> the researcher is provided temporary <strong>write-only</strong> access to a software ingress volume.</p></li>
+<li><p>Once the Researcher transfers the software source or installation package to this volume, their access is revoked and the software is subject to a level of review appropriate to the Environment tier.</p></li>
+<li><p>Once any required review has been passed, the software ingress volume is switched to <strong>internal mode</strong>, where it is made available to Researchers within the analysis Environment with <strong>read-only</strong> access.</p></li>
+<li><p>For software that does not require administrative rights to install, the Researcher can then install the software or transfer the source to a version control repository within the Environment as appropriate.</p></li>
+<li><p>For software that requires administrative rights to install, a System Manager must run the installation process.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="egress.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Taking data and software out of the Turing Safe Haven</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../overview/azure-implementation-details.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Implementation details for the Turing Safe Haven</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

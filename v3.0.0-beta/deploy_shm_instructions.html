@@ -1,0 +1,1364 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Safe Haven Management Environment Build Instructions &#8212; Data Safe Haven v3.0.0-beta documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/toggle.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.0.0-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contents">
+   Contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   1. Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#safe-haven-management-configuration">
+   2. Safe Haven Management configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#domain-name">
+     Domain name
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#management-environment-id-shm-id">
+     Management environment ID
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       &lt;SHM
+      </span>
+      <span class="pre">
+       ID&gt;
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-configuration-file">
+     Create configuration file
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-dns-for-the-custom-domain">
+   3. Configure DNS for the custom domain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup-azure-active-directory-aad">
+   4. Setup Azure Active Directory (AAD)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-new-aad">
+     Create a new AAD
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-the-shm-domain-to-the-new-aad">
+     Add the SHM domain to the new AAD
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-key-vault-for-shm-secrets">
+   5. Deploy key vault for SHM secrets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup-safe-haven-administrators">
+   6. Setup Safe Haven administrators
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-global-administrator">
+     Add global administrator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-additional-administrators-optional">
+     Add additional administrators (optional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enable-mfa">
+     Enable MFA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-and-configure-vnet-and-domain-controllers">
+   7. Deploy and configure VNET and Domain Controllers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-the-virtual-network-and-active-directory-domain-controller">
+     Deploy the Virtual Network and Active Directory Domain Controller
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-a-client-vpn-certificate-for-the-safe-haven-management-vnet">
+     Download a client VPN certificate for the Safe Haven Management VNet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configure-a-vpn-connection-to-the-safe-haven-management-vnet">
+     Configure a VPN connection to the Safe Haven Management VNet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#access-the-first-domain-controller-dc1-via-remote-desktop">
+     Access the first Domain Controller (DC1) via Remote Desktop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-azure-active-directory-connect">
+     Install Azure Active Directory Connect
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-aad-connect-configuration">
+     Additional AAD Connect Configuration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#validation-of-ad-sync">
+     Validation of AD sync
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configure-aad-side-of-ad-connect">
+     Configure AAD side of AD connect
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-and-configure-network-policy-server-nps">
+   8. Deploy and configure Network Policy Server (NPS)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configure-nps-server">
+     Configure NPS server
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mfa-configuation">
+     MFA Configuation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-package-mirrors">
+   9. Deploy package mirrors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-deploy-mirrors">
+     When to deploy mirrors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploying-package-mirrors">
+     Deploying package mirrors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-tearing-down-package-mirrors">
+     [Optional] Tearing down package mirrors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tearing-down-the-shm">
+   10. Tearing down the SHM
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disconnect-from-the-azure-active-directory">
+     Disconnect from the Azure Active Directory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tear-down-any-attached-sres-then-the-shm">
+     Tear down any attached SREs then the SHM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#server-list">
+   Server list
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/deploy_shm_instructions.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="safe-haven-management-environment-build-instructions">
+<h1>Safe Haven Management Environment Build Instructions<a class="headerlink" href="#safe-haven-management-environment-build-instructions" title="Permalink to this headline">¶</a></h1>
+<p>These instructions will deploy a new Safe Haven Management Environment (SHM). This is required to manage your Secure Research Environments (SREs) and must be deployed before you create any SREs. A single SHM can manage all your SREs. Alternatively, you may run multiple SHMs concurrently (eg one for each Data Study Group).</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="#1-prerequisites">Prerequisites</a></p></li>
+<li><p><a class="reference external" href="#2-safe-haven-management-configuration">Safe Haven Management configuration</a></p></li>
+<li><p><a class="reference external" href="#3-configure-dns-for-the-custom-domain">Configure DNS for the custom domain</a></p></li>
+<li><p><a class="reference external" href="#4-setup-azure-active-directory-aad">Setup Azure Active Directory (AAD)</a></p></li>
+<li><p><a class="reference external" href="#5-deploy-key-vault-for-shm-secrets">Deploy key vault for SHM secrets</a></p></li>
+<li><p><a class="reference external" href="#6-setup-safe-haven-administrators">Setup Safe Haven administrators</a></p></li>
+<li><p><a class="reference external" href="#7-deploy-and-configure-vnet-and-domain-controllers">Deploy and configure VNET and Domain Controllers</a></p></li>
+<li><p><a class="reference external" href="#8-deploy-and-configure-network-policy-server-nps">Deploy and configure Network Policy Server (NPS)</a></p></li>
+<li><p><a class="reference external" href="#9-deploy-package-mirrors">Deploy package mirrors</a></p></li>
+<li><p><a class="reference external" href="#10-tearing-down-the-shm">Tear down SHM</a></p></li>
+</ol>
+</section>
+<section id="prerequisites">
+<h2>1. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>An Azure subscription with sufficient credits to build the environment in. If a subscription does not exist, create one with the name <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Management</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>, picking an SRE ID that is not yet in use and setting <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> to the value given in the config file, prefixing the subscription name with <code class="docutils literal notranslate"><span class="pre">[prod]</span> </code> or <code class="docutils literal notranslate"><span class="pre">[dev]</span> </code> to indicate whether it is a production or development environment.</p>
+<ul>
+<li><p>This subscription should have an initial $3,000 for test and production sandbox environments, or the project specific budget for production project environments</p></li>
+<li><p>The relevant Safe Haven Administrator Security Group must have the <strong>Owner</strong> role on the new subscription (e.g. “Safe Haven Test Admins” or “Safe Haven Production Admins”).</p></li>
+<li><p>You will need to be a member of the relevant security group.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> with support for Azure and Azure Active Directory</p>
+<ul>
+<li><p>Install <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell">PowerShell v6.0 or above</a></p></li>
+<li><p>Install the <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/azure/install-az-ps">Azure PowerShell Module</a></p></li>
+<li><p>Install the <strong>cross-platform</strong> AzureAD Powershell module:</p>
+<ul>
+<li><p>:warning: The version of the AzureAD module installable from the standard Powershell Gallery installs on all platforms, but only works on <strong>Windows</strong>. We therefore use the cross-platform module to ensure consistent functionality and behaviour on all platforms.</p></li>
+<li><p>Register the Powershell test gallery: <code class="docutils literal notranslate"><span class="pre">Register-PackageSource</span> <span class="pre">-Trusted</span> <span class="pre">-ProviderName</span> <span class="pre">'PowerShellGet'</span> <span class="pre">-Name</span> <span class="pre">'Posh</span> <span class="pre">Test</span> <span class="pre">Gallery'</span> <span class="pre">-Location</span> <span class="pre">https://www.poshtestgallery.com/api/v2/</span></code></p></li>
+<li><p>Install the cross-platform .NET Standard version of the <code class="docutils literal notranslate"><span class="pre">AzureAD</span></code> module <code class="docutils literal notranslate"><span class="pre">Install-Module</span> <span class="pre">AzureAD.Standard.Preview</span> <span class="pre">-Repository</span> <span class="pre">&quot;Posh</span> <span class="pre">Test</span> <span class="pre">Gallery&quot;</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Remote</span> <span class="pre">Desktop</span></code></p>
+<ul>
+<li><p>On Mac this can be installed from the <a class="reference external" href="https://itunes.apple.com/gb/app/microsoft-remote-desktop-10/id1295203466?mt=12">apple store</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OpenSSL</span></code></p>
+<ul>
+<li><p>Install using your package manager of choice</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="safe-haven-management-configuration">
+<h2>2. Safe Haven Management configuration<a class="headerlink" href="#safe-haven-management-configuration" title="Permalink to this headline">¶</a></h2>
+<section id="domain-name">
+<h3>Domain name<a class="headerlink" href="#domain-name" title="Permalink to this headline">¶</a></h3>
+<p>Choose a domain according to the following rules:</p>
+<ul class="simple">
+<li><p>Turing production: a subdomain of the <code class="docutils literal notranslate"><span class="pre">turingsafehaven.ac.uk</span></code> domain</p></li>
+<li><p>Turing testing: a subdomain of the <code class="docutils literal notranslate"><span class="pre">dsgroupdev.co.uk</span></code> domain</p></li>
+<li><p>Other safe havens: follow your organisation’s guidance. This may require purchasing a dedicated domain</p></li>
+</ul>
+</section>
+<section id="management-environment-id-shm-id">
+<h3>Management environment ID <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code><a class="headerlink" href="#management-environment-id-shm-id" title="Permalink to this headline">¶</a></h3>
+<p>Choose a short ID <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> to identify the management environment (e.g. <code class="docutils literal notranslate"><span class="pre">testa</span></code>).</p>
+</section>
+<section id="create-configuration-file">
+<h3>Create configuration file<a class="headerlink" href="#create-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>The core properties for the Safe Haven Management (SHM) environment must be present in the <code class="docutils literal notranslate"><span class="pre">environment_configs/core</span></code> folder. These are also used when deploying an SRE environment.
+The following core SHM properties must be defined in a JSON file named <code class="docutils literal notranslate"><span class="pre">shm_&lt;SHM</span> <span class="pre">ID&gt;_core_config.json</span></code>. The <code class="docutils literal notranslate"><span class="pre">shm_testa_core_config.json</span></code> provides an example.</p>
+<p><strong>NOTE:</strong> The <code class="docutils literal notranslate"><span class="pre">netbiosName</span></code> must have a maximum length of 15 characters.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;subscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the Azure subscription the management environment is deployed in.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;domainSubscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the Azure subscription holding DNS records.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;adminSecurityGroupName&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the Azure Security Group that admins of this Safe Haven will belong to.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;computeVmImageSubscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Azure Subscription name for compute VM.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The fully qualified domain name for the management environment.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;netbiosname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A short name to use as the local name for the domain. This must be 15 characters or fewer.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;shmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A short ID to identify the management environment.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Safe Haven deployment name.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;organisation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Organisation name.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;townCity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;stateCountyRegion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;countryCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e.g. GB&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The Azure location in which the management environment VMs are deployed.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ipPrefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The three octet IP address prefix for the Class A range used by the management environment. Use 10.0.0 for this unless you have a good reason to use another prefix.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configure-dns-for-the-custom-domain">
+<h2>3. Configure DNS for the custom domain<a class="headerlink" href="#configure-dns-for-the-custom-domain" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/safe_haven_management_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">./Setup_SHM_DNS_Zone.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>, where the SHM ID is the one specified in the config.</p></li>
+<li><p>If you see a message <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">add</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">NS</span> <span class="pre">records</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">parent</span> <span class="pre">DNS</span> <span class="pre">system</span> <span class="pre">for...</span></code> you will need to add the NS records manually to the parent’s DNS system, as follows:</p>
+<ul>
+<li><p>To find the required values for the NS records on the portal, click <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">resources</span></code> in the far left panel, search for “DNS Zone” and locate the DNS Zone with the SHM’s domain. The NS record will list 4 Azure name servers.</p></li>
+<li><p>Duplicate these records to the parent DNS system as follows:</p>
+<ul class="simple">
+<li><p>If the parent domain has an Azure DNS Zone, create an NS record set in this zone. The name should be set to the subdomain (e.g. <code class="docutils literal notranslate"><span class="pre">testa</span></code>) or <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> if using a custom domain, and the values duplicated from above (for example, for a new subdomain <code class="docutils literal notranslate"><span class="pre">testa.dsgroupdev.co.uk</span></code>, duplicate the NS records from the Azure DNS Zone <code class="docutils literal notranslate"><span class="pre">testa.dsgroupdev.co.uk</span></code> to the Azure DNS Zone for <code class="docutils literal notranslate"><span class="pre">dsgroupdev.co.uk</span></code>, by creating a record set with name <code class="docutils literal notranslate"><span class="pre">testa</span></code>).</p></li>
+</ul>
+<p align="center">
+    <img src="images/deploy_sre/subdomain_ns_record.png" width="80%" title="Subdomain NS record">
+</p>
+- If the parent domain is outside of Azure, create NS records in the registrar for the new domain with the same value as the NS records in the new Azure DNS Zone for the domain.
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="setup-azure-active-directory-aad">
+<h2>4. Setup Azure Active Directory (AAD)<a class="headerlink" href="#setup-azure-active-directory-aad" title="Permalink to this headline">¶</a></h2>
+<section id="create-a-new-aad">
+<h3>Create a new AAD<a class="headerlink" href="#create-a-new-aad" title="Permalink to this headline">¶</a></h3>
+<ol>
+<li><p>Login to the <a class="reference external" href="https://azure.microsoft.com/en-gb/features/azure-portal/">Azure Portal</a></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">Resource</span></code>  and search for <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code></p>
+<p align="center">
+   <img src="images/deploy_shm/AAD.png" width="80%" title="Azure Active Directory">
+</p>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span></code></p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">Organisation</span> <span class="pre">Name</span></code> to the value of <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> in your core configuration file (e.g. <code class="docutils literal notranslate"><span class="pre">Turing</span> <span class="pre">Development</span> <span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">A</span></code>)</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">Initial</span> <span class="pre">Domain</span> <span class="pre">Name</span></code> to the <code class="docutils literal notranslate"><span class="pre">Organisation</span> <span class="pre">Name</span></code> all lower case with spaces removed (e.g. <code class="docutils literal notranslate"><span class="pre">turingdevelopmentsafehavena</span></code>)</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">Country</span> <span class="pre">or</span> <span class="pre">Region</span></code> to whatever region is appropriate for your deployment (e.g. <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">Kingdom</span></code>)</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span></code></p></li>
+<li><p>Wait for the AAD to be created</p></li>
+</ol>
+</section>
+<section id="add-the-shm-domain-to-the-new-aad">
+<h3>Add the SHM domain to the new AAD<a class="headerlink" href="#add-the-shm-domain-to-the-new-aad" title="Permalink to this headline">¶</a></h3>
+<ol>
+<li><p>Navigate to the AAD you have created within the Azure portal. You ca n do this by:</p>
+<ul class="simple">
+<li><p>Clicking the link displayed at the end of the initial AAD deployment.</p></li>
+<li><p>Clicking on your username and profile icon at the top left of the Azure portal, clicking “Switch directory” and selecting the AAD you have just created from the “All Directories” section of “Directory + Subscription” panel that then displays.</p></li>
+</ul>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Overview</span></code> in the left panel and copy the <code class="docutils literal notranslate"><span class="pre">Tenant</span> <span class="pre">ID</span></code> displayed under the AAD name and initial <code class="docutils literal notranslate"><span class="pre">something.onmicrosoft.com</span></code> domain.</p>
+<p align="center">
+   <img src="images/deploy_shm/aad_tenant_id.png" width="80%" title="AAD Tenant ID">
+</p>
+</li>
+<li><p>Add the SHM domain:</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/safe_haven_management_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p><strong>IMPORTANT</strong> Ensure you are authenticated to the correct AAD within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzureAD</span> <span class="pre">-TenantId</span> <span class="pre">&lt;aad-tenant-id&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;aad-tenant-id&gt;</span></code> is the <code class="docutils literal notranslate"><span class="pre">Tenant</span> <span class="pre">ID</span></code> you copied from the AAD portal <code class="docutils literal notranslate"><span class="pre">Overview</span></code> page in the previous step. :warning: If you do not do this before running the next script, you will have to exit Powershell and start it again.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">./Setup_SHM_AAD_Domain.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>, where the SHM ID is the one specified in the config.</p></li>
+<li><p>:warning: Due to delays with DNS propagation, occasionally the script may exhaust the maximum number of retries without managing to verify the domain. If this occurs, run the script again. If it exhausts the number of retries a second time, wait an hour and try again.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="deploy-key-vault-for-shm-secrets">
+<h2>5. Deploy key vault for SHM secrets<a class="headerlink" href="#deploy-key-vault-for-shm-secrets" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/safe_haven_management_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code>.</p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Deploy and configure the RDS VMs by running <code class="docutils literal notranslate"><span class="pre">./Setup_SHM_KeyVault.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>, where the SHM ID is the one specified in the config</p></li>
+<li><p>This will take <strong>a few minutes</strong> to run.</p></li>
+</ul>
+</section>
+<section id="setup-safe-haven-administrators">
+<h2>6. Setup Safe Haven administrators<a class="headerlink" href="#setup-safe-haven-administrators" title="Permalink to this headline">¶</a></h2>
+<section id="add-global-administrator">
+<h3>Add global administrator<a class="headerlink" href="#add-global-administrator" title="Permalink to this headline">¶</a></h3>
+<p>The User who creates the AAD will automatically have the Global Administrator (GA) Role (Users with this role have access to all administrative features in Azure Active Directory).</p>
+<p>For some steps, a dedicated <strong>internal</strong> Global Administrator is required (e.g. to add P1 licences), so at least this additional administrator will need to be created.</p>
+<ol class="simple">
+<li><p>Ensure your Azure Portal session is using the new Safe Haven Management (SHM) AAD directory. The name of the current directory is under your username in the top right corner of the Azure portal screen. To change directories click on your username at the top right corner of the screen, then <code class="docutils literal notranslate"><span class="pre">Switch</span> <span class="pre">directory</span></code>, then the name of the new SHM directory.</p></li>
+<li><p>On the left hand panel click <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code>.</p></li>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">Users</span></code> and create a dedicated <strong>internal</strong> Global Administrator:</p>
+<ul class="simple">
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">New</span> <span class="pre">user</span></code> and enter the following details:</p>
+<ul>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">AAD</span> <span class="pre">Global</span> <span class="pre">Admin</span></code></p></li>
+<li><p>Username: <code class="docutils literal notranslate"><span class="pre">admin&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code></p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Groups</span> <span class="pre">and</span> <span class="pre">roles</span> <span class="pre">&gt;</span> <span class="pre">Roles</span></code> change the role to <code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">Administrator</span></code></p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Usage</span> <span class="pre">location</span></code> change the location to the same one you used when setting up this Active Directory (e.g. <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">Kingdom</span></code>)</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span></code></p></li>
+</ul>
+</li>
+<li><p>Click on the username in the users list in the Azure Active Directory</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Reset</span> <span class="pre">password</span></code> icon to generate a temporary password</p></li>
+<li><p>Use this password to log into https://portal.azure.com as the user <code class="docutils literal notranslate"><span class="pre">admin&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code>. You will either need to log out of your existing account or open an incognito/private browsing window.</p></li>
+<li><p>When prompted to change your password on first login:</p>
+<ul>
+<li><p>Look in the key vault under the <code class="docutils literal notranslate"><span class="pre">RG_SHM_SECRETS</span></code> resource group in the management subscription.</p></li>
+<li><p>There should be a secret there called <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-aad-admin-password</span></code></p></li>
+<li><p>Use this as the new password</p></li>
+<li><p>If you are prompted to associate a phone number and email address with the account - do so.</p></li>
+</ul>
+</li>
+<li><p>Once you have set your password and logged in you can administer the Azure Active Directory with this user by selecting <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> in the left hand sidebar</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="add-additional-administrators-optional">
+<h3>Add additional administrators (optional)<a class="headerlink" href="#add-additional-administrators-optional" title="Permalink to this headline">¶</a></h3>
+<p>Giving additional users the GA role, prevents the user you set up earlier from being a single point of failure.</p>
+<ol class="simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">Users</span></code> and add new admin users as above:</p>
+<ul class="simple">
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">+New</span> <span class="pre">user</span></code> and enter the following details:</p>
+<ul>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">Admin</span> <span class="pre">-</span> <span class="pre">Firstname</span> <span class="pre">Lastname</span></code></p></li>
+<li><p>Username: <code class="docutils literal notranslate"><span class="pre">admin.firstname.lastname&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code></p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Groups</span> <span class="pre">and</span> <span class="pre">roles</span> <span class="pre">&gt;</span> <span class="pre">Roles</span></code> change the role to <code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">Administrator</span></code></p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Usage</span> <span class="pre">location</span></code> change the location to <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">Kingdom</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Let Azure set their passwords. They can reset these later.</p></li>
+</ol>
+<p>NB. You can also invite guest users from other Azure Active Directories at this stage</p>
+<ul class="simple">
+<li><p>If their account (<code class="docutils literal notranslate"><span class="pre">user&#64;domain</span></code>) does not have an associated mailbox, invite them as normal and then give them a direct link to the portal for a specific tenant (i.e. <code class="docutils literal notranslate"><span class="pre">https://portal.azure.com/&lt;tenant</span> <span class="pre">id&gt;</span></code>). When they click this they will get taken through the same process that would have happened from the email link. <a class="reference external" href="https://docs.microsoft.com/en-us/azure/active-directory/b2b/redemption-experience">Via Microsoft documentation</a></p></li>
+</ul>
+</section>
+<section id="enable-mfa">
+<h3>Enable MFA<a class="headerlink" href="#enable-mfa" title="Permalink to this headline">¶</a></h3>
+<p>To enable MFA, purchase sufficient licences and add them to all the new users.</p>
+<ul class="simple">
+<li><p>You will also need licences for standard users accessing the Safe Haven.</p></li>
+</ul>
+<ol class="simple">
+<li><p>Ensure that you are logged in as a global admin user (e.g. the <code class="docutils literal notranslate"><span class="pre">admin&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code> account you set up earlier)</p></li>
+</ol>
+<ul class="simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> in the portal</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">&gt;</span> <span class="pre">Licences</span></code> in the left hand sidebar</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">products</span></code> in the left hand sidebar</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">+Try/Buy</span></code> text above the empty product list</p></li>
+<li><p><strong>For production</strong> buy P1 licences:</p>
+<ul>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Purchase</span> <span class="pre">services</span></code> link in the information panel above the trial options.</p></li>
+<li><p>In the “Microsoft 365 Admin Centre” portal that opens:</p>
+<ul>
+<li><p>Expand the <code class="docutils literal notranslate"><span class="pre">Billing</span></code> section of the left hand side bar</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Purchase</span> <span class="pre">services</span></code></p></li>
+<li><p>Scroll down the list of products and select <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Premium</span> <span class="pre">P1</span></code> and click <code class="docutils literal notranslate"><span class="pre">Buy</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Pay</span> <span class="pre">monthly</span></code></p></li>
+<li><p>Enter the number of licences required.</p></li>
+<li><p>Leave <code class="docutils literal notranslate"><span class="pre">automatically</span> <span class="pre">assign</span> <span class="pre">all</span> <span class="pre">of</span> <span class="pre">your</span> <span class="pre">users</span> <span class="pre">with</span> <span class="pre">no</span> <span class="pre">licences</span></code> checked</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Check</span> <span class="pre">out</span> <span class="pre">now</span></code></p></li>
+<li><p>Enter the address of the organisation running the Safe Haven on the next screen</p></li>
+<li><p>Click next and enter payment details when requested</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>For testing</strong> you can enable a free trial of the P2 License (NB. It can take a while for these to appear on your AAD)</p>
+<ul>
+<li><p>Expand the <code class="docutils literal notranslate"><span class="pre">Free</span> <span class="pre">trial</span></code> arrow under <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">AD</span> <span class="pre">Premium</span> <span class="pre">P2</span></code></p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Activate</span></code> button</p></li>
+<li><p>Wait for around 20 minutes until the <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">AD</span> <span class="pre">Premium</span> <span class="pre">P2</span></code> licences appear on the list of <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Products</span></code></p></li>
+</ul>
+</li>
+</ul>
+<ol class="simple">
+<li><p>Add licenses to one or more users</p></li>
+</ol>
+<ul>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Users</span></code> in the left hand sidebar</p></li>
+<li><p>For each user you want to add a licence to, click on their username</p>
+<ul>
+<li><p>Ensure that the user has <code class="docutils literal notranslate"><span class="pre">usage</span> <span class="pre">location</span></code> set under “Settings” (see image below):</p>
+<p align="center">
+    <img src="images/deploy_shm/set_user_location.png" width="80%" title="Set user location">
+</p>
+</li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Licences</span></code> in the left hand sidebar</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Assignments</span></code> in the top bar</p></li>
+<li><p>Assign <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Premium</span> <span class="pre">P1</span></code> and <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Azure</span> <span class="pre">Multi-Factor</span> <span class="pre">Authentication</span></code> then click <code class="docutils literal notranslate"><span class="pre">Save</span></code></p></li>
+</ul>
+</li>
+</ul>
+<ol class="simple">
+<li><p>Configure MFA on Azure Active Directory</p></li>
+</ol>
+<ul>
+<li><p>Sign in to the Azure portal as a user administrator or global administrator.</p></li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> then click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">&gt;</span> <span class="pre">Security</span></code> in the left hand side bar</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">&gt;</span> <span class="pre">MFA</span></code> in the left hand side bar</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">cloud-based</span> <span class="pre">MFA</span> <span class="pre">settings</span></code> link in the <code class="docutils literal notranslate"><span class="pre">Configure</span></code> section of the main panel (if this is not available, trying signing out of the portal and back in again)</p></li>
+<li><p>Configure MFA as follows:</p>
+<ul>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">App</span> <span class="pre">passwords</span></code> section select <code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">not</span> <span class="pre">allow</span> <span class="pre">users</span> <span class="pre">to</span> <span class="pre">create</span> <span class="pre">app</span> <span class="pre">passwords</span> <span class="pre">to</span> <span class="pre">sign</span> <span class="pre">in</span> <span class="pre">to</span> <span class="pre">non-browser</span> <span class="pre">apps</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Verification</span> <span class="pre">options</span></code> section.</p>
+<ul class="simple">
+<li><p><strong>check</strong> <code class="docutils literal notranslate"><span class="pre">Call</span> <span class="pre">to</span> <span class="pre">phone</span></code> and <code class="docutils literal notranslate"><span class="pre">Notification</span> <span class="pre">through</span> <span class="pre">mobile</span> <span class="pre">app</span></code></p></li>
+<li><p><strong>uncheck</strong> <code class="docutils literal notranslate"><span class="pre">Text</span> <span class="pre">message</span> <span class="pre">to</span> <span class="pre">phone</span></code> and <code class="docutils literal notranslate"><span class="pre">Verification</span> <span class="pre">code</span> <span class="pre">from</span> <span class="pre">mobile</span> <span class="pre">app</span> <span class="pre">or</span> <span class="pre">hardware</span> <span class="pre">token</span></code></p></li>
+</ul>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Remember</span> <span class="pre">multi-factor</span> <span class="pre">authentication</span></code> section</p>
+<ul class="simple">
+<li><p>ensure <code class="docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">users</span> <span class="pre">to</span> <span class="pre">remember</span> <span class="pre">multi-factor</span> <span class="pre">authentication</span> <span class="pre">on</span> <span class="pre">devices</span> <span class="pre">they</span> <span class="pre">trust</span></code> is <strong>unchecked</strong></p></li>
+</ul>
+</li>
+<li><p>Click “Save” and close window</p>
+<p align="center">
+    <img src="images/deploy_shm/aad_mfa_settings.png" width="80%" title="AAD MFA settings">
+</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol class="simple">
+<li><p>Require MFA for all admins</p></li>
+</ol>
+<ul class="simple">
+<li><p>Sign in to the Azure portal as a user administrator or global administrator.</p></li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> then click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">&gt;</span> <span class="pre">Properties</span></code> in the left hand side bar</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">Security</span> <span class="pre">Defaults</span></code> at the bottom of the blade.</p></li>
+<li><p>Switch <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">Security</span> <span class="pre">Defaults</span></code> to <code class="docutils literal notranslate"><span class="pre">No</span></code></p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">My</span> <span class="pre">organization</span> <span class="pre">is</span> <span class="pre">using</span> <span class="pre">Conditional</span> <span class="pre">Access</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Save</span></code></p></li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> then click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">&gt;</span> <span class="pre">Security</span></code> in the left hand side bar</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Protect</span> <span class="pre">&gt;</span> <span class="pre">Conditional</span> <span class="pre">access</span></code> in the left hand sidebar</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">New</span> <span class="pre">Policy</span></code></p></li>
+<li><p>Call the policy <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">MFA</span> <span class="pre">for</span> <span class="pre">admins</span></code></p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Assignments</span></code> select <code class="docutils literal notranslate"><span class="pre">Users</span> <span class="pre">and</span> <span class="pre">groups</span></code></p>
+<ul>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Include</span> <span class="pre">&gt;</span> <span class="pre">Select</span> <span class="pre">users</span> <span class="pre">and</span> <span class="pre">groups</span></code> tick <code class="docutils literal notranslate"><span class="pre">Directory</span> <span class="pre">roles</span></code> and select the following roles:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">Administrator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SharePoint</span> <span class="pre">Administrator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Exchange</span> <span class="pre">Administrator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Conditional</span> <span class="pre">Access</span> <span class="pre">Administrator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Security</span> <span class="pre">Administrator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Helpdesk</span> <span class="pre">Administrator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Password</span> <span class="pre">Administrator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Billing</span> <span class="pre">Administrator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Administrator</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Access</span> <span class="pre">controls</span></code> select <code class="docutils literal notranslate"><span class="pre">Grant</span></code></p>
+<ul>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Grant</span> <span class="pre">access</span></code> tick <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">multi-factor</span> <span class="pre">authentication</span></code></p></li>
+</ul>
+</li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">policy</span></code> select <code class="docutils literal notranslate"><span class="pre">On</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="deploy-and-configure-vnet-and-domain-controllers">
+<h2>7. Deploy and configure VNET and Domain Controllers<a class="headerlink" href="#deploy-and-configure-vnet-and-domain-controllers" title="Permalink to this headline">¶</a></h2>
+<section id="deploy-the-virtual-network-and-active-directory-domain-controller">
+<h3>Deploy the Virtual Network and Active Directory Domain Controller<a class="headerlink" href="#deploy-the-virtual-network-and-active-directory-domain-controller" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/safe_haven_management_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul class="simple">
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Deploy and configure the RDS VMs by running <code class="docutils literal notranslate"><span class="pre">./Setup_SHM_DC.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>, where the SHM ID is the one specified in the config</p></li>
+<li><p>This will take <strong>around one hour</strong> to run.</p></li>
+<li><p>Once the script exits successfully you should see the following resource groups under the SHM subscription:</p>
+<p align="center">
+    <img src="images/deploy_shm/resource_groups.png" width="80%" title="Resource groups">
+</p>
+</li>
+</ul>
+</section>
+<section id="download-a-client-vpn-certificate-for-the-safe-haven-management-vnet">
+<h3>Download a client VPN certificate for the Safe Haven Management VNet<a class="headerlink" href="#download-a-client-vpn-certificate-for-the-safe-haven-management-vnet" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Navigate to the SHM Key Vault via <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">-&gt;</span> <span class="pre">RG_SHM_SECRETS</span> <span class="pre">-&gt;</span> <span class="pre">kv-shm-&lt;SHM</span> <span class="pre">ID&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> will be the one defined in the config file.</p></li>
+<li><p>Once there open the “Certificates” page under the “Settings” section in the left hand sidebar.</p></li>
+<li><p>Click on the certificate named <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-vpn-client-cert</span></code>, click on the “current version” and click the “Download in PFX/PEM format” link.</p></li>
+<li><p>To install, double click on the downloaded certificate (or on OSX you can manually drag it into the “login” keychain), leaving the password field blank.</p></li>
+</ol>
+<p><strong>Make sure to securely delete the “*.pfx” certificate file after you have installed it.</strong></p>
+</section>
+<section id="configure-a-vpn-connection-to-the-safe-haven-management-vnet">
+<h3>Configure a VPN connection to the Safe Haven Management VNet<a class="headerlink" href="#configure-a-vpn-connection-to-the-safe-haven-management-vnet" title="Permalink to this headline">¶</a></h3>
+<ol>
+<li><p>Navigate to the Safe Haven Management (SHM) VNet gateway in the SHM subscription via <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">-&gt;</span> <span class="pre">RG_SHM_NETWORKING</span> <span class="pre">-&gt;</span> <span class="pre">VNET_SHM_&lt;SHM</span> <span class="pre">ID&gt;_GW</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> will be the one defined in the config file.</p></li>
+<li><p>Once there open the “Point-to-site configuration page under the “Settings” section in the left hand sidebar (see image below).</p></li>
+<li><p>Click the “Download VPN client” link at the top of the page to get the root certificate (<code class="docutils literal notranslate"><span class="pre">VpnServerRoot.cer</span></code>) and VPN configuration file (<code class="docutils literal notranslate"><span class="pre">VpnSettings.xml</span></code>)</p>
+<p align="center">
+    <img src="images/deploy_shm/certificate_details.png" width="80%" title="Certificate details">
+</p>
+</li>
+<li><p>Read through the following notes, then follow the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-configuration-azure-cert">VPN set up instructions</a> using the Windows or Mac sections as appropriate.</p></li>
+</ol>
+<p><strong>NOTES:</strong></p>
+<ul class="simple">
+<li><p><strong>You do not need to install the <code class="docutils literal notranslate"><span class="pre">VpnServerRoot.cer</span></code> certificate, as we’re using our own self-signed root certificate</strong></p></li>
+<li><p>Use SSTP (Windows) or IKEv2 (OSX) for the VPN type</p></li>
+<li><p>Name the VPN connection “Safe Haven Management Gateway (<code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>)”, where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> will be the one defined in the config file.</p></li>
+<li><p><strong>Windows:</strong> do not rename the VPN client as this will break it</p></li>
+<li><p><strong>Windows:</strong> you may get a “Windows protected your PC” pop up. If so, click <code class="docutils literal notranslate"><span class="pre">More</span> <span class="pre">info</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">anyway</span></code>.</p></li>
+<li><p><strong>OSX:</strong> you can view the details of the downloaded certificate by highlighting the certificate file in Finder and pressing the spacebar. You can then look for the certificate of the same name in the login KeyChain and view its details by double clicking the list entry. If the details match the certificate has been successfully installed.</p></li>
+</ul>
+<p>You should now be able to connect to the SHM virtual network via the VPN. Each time you need to access the virtual network ensure you are connected via the VPN.</p>
+</section>
+<section id="access-the-first-domain-controller-dc1-via-remote-desktop">
+<h3>Access the first Domain Controller (DC1) via Remote Desktop<a class="headerlink" href="#access-the-first-domain-controller-dc1-via-remote-desktop" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Open Microsoft Remote Desktop</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Desktop</span></code></p></li>
+<li><p>In the Azure portal, navigate to the <code class="docutils literal notranslate"><span class="pre">RG_SHM_DC</span></code> resource group and then to the <code class="docutils literal notranslate"><span class="pre">DC1-SHM-&lt;SHM</span> <span class="pre">ID&gt;</span></code> virtual machine (VM).</p></li>
+<li><p>Copy the Private IP address and enter it in the <code class="docutils literal notranslate"><span class="pre">PC</span> <span class="pre">name</span></code> field on remote desktop. Click Add.</p></li>
+<li><p>Double click on the desktop that appears under <code class="docutils literal notranslate"><span class="pre">saved</span> <span class="pre">desktops</span></code>.</p></li>
+<li><p>Log in as a <strong>domain</strong> user (ie. <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code>) using the username and password obtained from the Azure portal as follows:
+rather than simply <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;</span></code>)</p></li>
+</ol>
+<ul class="simple">
+<li><p>On the Azure portal navigate to the <code class="docutils literal notranslate"><span class="pre">RG_SHM_SECRETS</span></code> resource group and then the <code class="docutils literal notranslate"><span class="pre">kv-shm-&lt;SHM</span> <span class="pre">ID&gt;</span></code> key vault and then select <code class="docutils literal notranslate"><span class="pre">secrets</span></code> on the left hand panel.</p></li>
+<li><p>The username is the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-vm-admin-username</span></code> secret. Add your custom AD domain to the username so the login is <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;SHM</span> <span class="pre">domain&gt;</span></code> rather than simply <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;</span></code>.</p></li>
+<li><p>The password in the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-domain-admin-password</span></code> secret.</p></li>
+</ul>
+<ol class="simple">
+<li><p>If you see a warning dialog that the certificate cannot be verified as root, accept this and continue.</p></li>
+</ol>
+</section>
+<section id="install-azure-active-directory-connect">
+<h3>Install Azure Active Directory Connect<a class="headerlink" href="#install-azure-active-directory-connect" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">C:\Installation</span></code></p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">AzureADConnect.msi</span></code> installer</p></li>
+</ol>
+<ul class="simple">
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Welcome</span> <span class="pre">to</span> <span class="pre">Azure</span> <span class="pre">AD</span> <span class="pre">Connect</span></code> screen:</p>
+<ul>
+<li><p>Tick the <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">agree</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">license</span> <span class="pre">terms</span></code> box</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Continue</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Express</span> <span class="pre">Settings</span></code> screen:</p>
+<ul>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Customize</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Install</span> <span class="pre">required</span> <span class="pre">components</span></code> screen:</p>
+<ul>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Install</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">sign-in</span></code> screen:</p>
+<ul>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">Password</span> <span class="pre">Hash</span> <span class="pre">Synchronization</span></code> is selected</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Connect</span> <span class="pre">to</span> <span class="pre">Azure</span> <span class="pre">AD</span></code> screen:</p>
+<ul>
+<li><p>Provide a global administrator details for the Azure Active Directory you are connected to</p></li>
+<li><p>You should have created <code class="docutils literal notranslate"><span class="pre">admin&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code> during the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">additional</span> <span class="pre">administrators</span></code> step and its password should be stored in the Key Vault</p>
+<ul>
+<li><p>If you receive an Internet Explorer pop-up dialog <code class="docutils literal notranslate"><span class="pre">Content</span> <span class="pre">within</span> <span class="pre">this</span> <span class="pre">application</span> <span class="pre">coming</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">website</span> <span class="pre">below</span> <span class="pre">is</span> <span class="pre">being</span> <span class="pre">blocked</span> <span class="pre">by</span> <span class="pre">Internet</span> <span class="pre">Explorer</span> <span class="pre">Advanced</span> <span class="pre">Security</span> <span class="pre">Configuration:</span> <span class="pre">https://login.microsoft.com</span></code></p>
+<ul>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Close</span></code></p></li>
+<li><p>Repeat for the same dialog with <code class="docutils literal notranslate"><span class="pre">https://aadcdn.msftauth.net</span></code></p></li>
+</ul>
+</li>
+<li><p>If you receive an error box <code class="docutils literal notranslate"><span class="pre">We</span> <span class="pre">can't</span> <span class="pre">sign</span> <span class="pre">you</span> <span class="pre">in,.</span> <span class="pre">Javascript</span> <span class="pre">is</span> <span class="pre">required</span> <span class="pre">to</span> <span class="pre">sign</span> <span class="pre">you</span> <span class="pre">in.</span> <span class="pre">Do</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">continue</span> <span class="pre">running</span> <span class="pre">scripts</span> <span class="pre">on</span> <span class="pre">this</span> <span class="pre">page</span></code></p>
+<ul>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Yes</span></code></p></li>
+<li><p>Close the dialog by clicking <code class="docutils literal notranslate"><span class="pre">X</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Enter the global administrator password if prompted</p></li>
+<li><p>Back on the <code class="docutils literal notranslate"><span class="pre">Connect</span> <span class="pre">to</span> <span class="pre">Azure</span> <span class="pre">AD</span></code> screen, click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+<li><p>Approve the login with MFA if required</p>
+<ul>
+<li><p>If you see a Windows Security Warning, check <code class="docutils literal notranslate"><span class="pre">Don't</span> <span class="pre">show</span> <span class="pre">this</span> <span class="pre">message</span> <span class="pre">again</span></code> and click <code class="docutils literal notranslate"><span class="pre">Yes</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Connect</span> <span class="pre">your</span> <span class="pre">directories</span></code> screen:</p>
+<ul>
+<li><p>Ensure that correct forest (your custom domain name; e.g <code class="docutils literal notranslate"><span class="pre">turingsafehaven.ac.uk</span></code>) is selected and click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Directory</span></code></p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">AD</span> <span class="pre">forest</span> <span class="pre">account</span></code> pop-up:</p>
+<ul>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">existing</span> <span class="pre">AD</span> <span class="pre">account</span></code></p></li>
+<li><p>Enter the details for the <code class="docutils literal notranslate"><span class="pre">localadsync</span></code> user.</p>
+<ul>
+<li><p>Username: <code class="docutils literal notranslate"><span class="pre">localadsync&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code> (e.g. localadsync)</p></li>
+<li><p>Password: use the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-localadsync-password</span></code> secret in the management Key Vault.</p></li>
+</ul>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">OK</span></code></p></li>
+<li><p><strong>Troubleshooting:</strong> if you get an error that the username/password is incorrect or that the domain/directory could not be found, try resetting the password for this user to the secret value from the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-localadsync-password</span></code> secret in the management Key Vault.</p>
+<ul>
+<li><p>In Server Manager click <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Users</span> <span class="pre">and</span> <span class="pre">Computers</span></code></p></li>
+<li><p>Expand the domain in the left hand panel</p></li>
+<li><p>Expand the <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Service</span> <span class="pre">Accounts</span></code> OU</p></li>
+<li><p>Right click on the “Local AD Sync Administrator” user and select “reset password”</p></li>
+<li><p>Set the password to the the secret value from the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-localadsync-password</span></code> secret in the management Key Vault.</p></li>
+<li><p>Leave the other settings as is and click <code class="docutils literal notranslate"><span class="pre">OK</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">AD</span> <span class="pre">sign-in</span> <span class="pre">configuration</span></code> screen:</p>
+<ul>
+<li><p>Verify that the <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Principal</span> <span class="pre">Name</span></code> is set to <code class="docutils literal notranslate"><span class="pre">userPrincipalName</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Domain</span> <span class="pre">and</span> <span class="pre">OU</span> <span class="pre">filtering</span></code> screen:</p>
+<ul>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Sync</span> <span class="pre">Selected</span> <span class="pre">domains</span> <span class="pre">and</span> <span class="pre">OUs</span></code></p></li>
+<li><p>Expand the domain and deselect all objects</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Research</span> <span class="pre">Users</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Uniquely</span> <span class="pre">identifying</span> <span class="pre">your</span> <span class="pre">users</span></code> screen:</p>
+<ul>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Filter</span> <span class="pre">users</span> <span class="pre">and</span> <span class="pre">devices</span></code> screen:</p>
+<ul>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Synchronize</span> <span class="pre">all</span> <span class="pre">users</span> <span class="pre">and</span> <span class="pre">devices</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Optional</span> <span class="pre">features</span></code> screen:</p>
+<ul>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Password</span> <span class="pre">Writeback</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Ready</span> <span class="pre">to</span> <span class="pre">configure</span></code> screen:</p>
+<ul>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Install</span></code></p></li>
+<li><p>This may take a few minutes to complete</p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Configuration</span> <span class="pre">complete</span></code> screen:</p>
+<ul>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Exit</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Troubleshooting:</strong> The error <code class="docutils literal notranslate"><span class="pre">Directory</span> <span class="pre">synchronization</span> <span class="pre">is</span> <span class="pre">currently</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">pending</span> <span class="pre">disabled</span> <span class="pre">state</span> <span class="pre">for</span> <span class="pre">this</span> <span class="pre">directory.</span> <span class="pre">Please</span> <span class="pre">wait</span> <span class="pre">until</span> <span class="pre">directory</span> <span class="pre">synchronization</span> <span class="pre">has</span> <span class="pre">been</span> <span class="pre">fully</span> <span class="pre">disabled</span> <span class="pre">before</span> <span class="pre">trying</span> <span class="pre">again</span></code> may occur if you have recently torn down another SHM linked to the same Azure Active Directory. You need to wait for the Azure Active Directory to fully disconnect - this can take up to 72 hours but is typically sooner. You do not need to close the installer window while waiting. If you need to, you can disconnect from the RDS and VPN and reconnect later before clicking <code class="docutils literal notranslate"><span class="pre">Retry</span></code>.</p></li>
+</ul>
+</section>
+<section id="additional-aad-connect-configuration">
+<h3>Additional AAD Connect Configuration<a class="headerlink" href="#additional-aad-connect-configuration" title="Permalink to this headline">¶</a></h3>
+<p>This step allows the locale (country code) to be pushed from the local AD to the Azure Active Directory.</p>
+<ol class="simple">
+<li><p>Update the AAD rules</p></li>
+</ol>
+<ul class="simple">
+<li><p>Open Powershell as an administrator</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">C:\Installation\UpdateAADSyncRule.ps1</span></code></p></li>
+</ul>
+</section>
+<section id="validation-of-ad-sync">
+<h3>Validation of AD sync<a class="headerlink" href="#validation-of-ad-sync" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Add yourself as a new Active Directory user:</p></li>
+</ol>
+<ul class="simple">
+<li><p>In Server Manager select <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Users</span> <span class="pre">and</span> <span class="pre">Computers</span></code> (or open the <code class="docutils literal notranslate"><span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Users</span> <span class="pre">and</span> <span class="pre">Computers</span></code> desktop app directly)</p></li>
+<li><p>Expand the domain</p></li>
+<li><p>Right click on the <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Research</span> <span class="pre">Users</span></code> OU and select <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">-&gt;</span> <span class="pre">User</span></code></p></li>
+<li><p>Create a new user:</p>
+<ul>
+<li><p>First name: <code class="docutils literal notranslate"><span class="pre">&lt;your</span> <span class="pre">first</span> <span class="pre">name&gt;</span></code></p></li>
+<li><p>Last name: <code class="docutils literal notranslate"><span class="pre">&lt;your</span> <span class="pre">last</span> <span class="pre">name&gt;</span></code></p></li>
+<li><p>User login name: <code class="docutils literal notranslate"><span class="pre">&lt;your</span> <span class="pre">first</span> <span class="pre">name&gt;.&lt;your</span> <span class="pre">last</span> <span class="pre">name&gt;</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>Password:</p>
+<ul>
+<li><p>Choose something that is</p>
+<ul>
+<li><p>At least 6 characters</p></li>
+<li><p>Contains uppercase, lowercase and digits</p></li>
+</ul>
+</li>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">must</span> <span class="pre">change</span> <span class="pre">password</span> <span class="pre">at</span> <span class="pre">next</span> <span class="pre">logon</span></code> is ticked</p></li>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">Password</span> <span class="pre">never</span> <span class="pre">expires</span></code> is not ticked</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Finish</span></code></p></li>
+</ul>
+<ol class="simple">
+<li><p>Set the correct region</p></li>
+</ol>
+<ul class="simple">
+<li><p>The user you have just created should now appear in the list of <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Research</span> <span class="pre">Users</span></code> (if not, then right click and select <code class="docutils literal notranslate"><span class="pre">Refresh</span></code>)</p></li>
+<li><p>Right click on this user and select <code class="docutils literal notranslate"><span class="pre">Properties</span></code></p></li>
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">Address</span></code> tab and under the <code class="docutils literal notranslate"><span class="pre">Country/region</span></code> drop-down select <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">Kingdom</span></code></p></li>
+</ul>
+<ol class="simple">
+<li><p>Force a sync to the Azure Active Directory</p></li>
+</ol>
+<ul class="simple">
+<li><p>Open Powershell as an administrator</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">C:\Installation\Run_ADSync.ps1</span> <span class="pre">-sync</span> <span class="pre">Initial</span></code></p></li>
+</ul>
+<ol class="simple">
+<li><p>Go to the Azure Active Directory in <code class="docutils literal notranslate"><span class="pre">portal.azure.com</span></code></p></li>
+</ol>
+<ul class="simple">
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Users</span> <span class="pre">&gt;</span> <span class="pre">All</span> <span class="pre">users</span></code> and confirm that the new user is shown in the user list.</p></li>
+<li><p>It may take a few minutes for the synchronisation to fully propagate in Azure.</p></li>
+</ul>
+</section>
+<section id="configure-aad-side-of-ad-connect">
+<h3>Configure AAD side of AD connect<a class="headerlink" href="#configure-aad-side-of-ad-connect" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Go to the Azure Active Directory in <code class="docutils literal notranslate"><span class="pre">portal.azure.com</span></code></p></li>
+</ol>
+<ul class="simple">
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">&gt;</span> <span class="pre">Password</span> <span class="pre">reset</span></code> from the left hand menu</p></li>
+</ul>
+<ol class="simple">
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">On-premises</span> <span class="pre">integration</span></code> from the left hand side bar</p></li>
+</ol>
+<ul>
+<li><p>Ensure <code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">back</span> <span class="pre">passwords</span> <span class="pre">to</span> <span class="pre">your</span> <span class="pre">on-premises</span> <span class="pre">directory</span></code> is set to yes.</p>
+<p align="center">
+    <img src="images/deploy_shm/enable_writeback.png" width="80%" title="Enable writeback">
+</p>
+</li>
+<li><p>If you changed this setting, click the <code class="docutils literal notranslate"><span class="pre">Save</span></code> icon</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Properties</span></code> from the left hand side bar</p>
+<ul>
+<li><p>Make sure that <code class="docutils literal notranslate"><span class="pre">Self</span> <span class="pre">service</span> <span class="pre">password</span> <span class="pre">reset</span> <span class="pre">enabled</span></code> is set to <code class="docutils literal notranslate"><span class="pre">All</span></code></p>
+<p align="center">
+    <img src="images/deploy_shm/enable_passwordreset.png" width="80%" title="Enable password reset">
+</p>
+</li>
+<li><p>If you changed this setting, click the <code class="docutils literal notranslate"><span class="pre">Save</span></code> icon</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="deploy-and-configure-network-policy-server-nps">
+<h2>8. Deploy and configure Network Policy Server (NPS)<a class="headerlink" href="#deploy-and-configure-network-policy-server-nps" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/safe_haven_management_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Deploy and configure the RDS VMs by running <code class="docutils literal notranslate"><span class="pre">./Setup_SHM_NPS.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>, where the SHM ID is the one specified in the config</p></li>
+<li><p>This will take <strong>around 20 minutes</strong> to run.</p>
+<ul>
+<li><p><strong>Troubleshooting:</strong> If you see an error similar to <code class="docutils literal notranslate"><span class="pre">New-AzResourceGroupDeployment</span> <span class="pre">:</span> <span class="pre">Resource</span> <span class="pre">Microsoft.Compute/virtualMachines/extensions</span> <span class="pre">NPS-SHM-&lt;SHM</span> <span class="pre">ID&gt;/joindomain'</span> <span class="pre">failed</span> <span class="pre">with</span> <span class="pre">message</span></code> you may find this error resolves if you wait and retry later. Alternatively, you can try deleting the extension from the <code class="docutils literal notranslate"><span class="pre">NPS-SHM-&lt;SHM</span> <span class="pre">ID&gt;</span> <span class="pre">&gt;</span> <span class="pre">Extensions</span></code> blade in the Azure portal.</p></li>
+</ul>
+</li>
+</ul>
+<section id="configure-nps-server">
+<h3>Configure NPS server<a class="headerlink" href="#configure-nps-server" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Log in to the NPS Server VM using Microsoft Remote Desktop</p></li>
+</ol>
+<ul class="simple">
+<li><p>the private IP address for the SHM NPS VM can be found in the <code class="docutils literal notranslate"><span class="pre">RG_SHM_NPS</span></code> resource group</p></li>
+<li><p>the Username and Password are the same as for <code class="docutils literal notranslate"><span class="pre">DC1-SHM</span></code> and <code class="docutils literal notranslate"><span class="pre">DC2-SHM</span></code> (ie the credentials you used above to Remote Desktop into the domain controller above):</p></li>
+<li><p>To obtain the login credentials again, on the Azure portal navigate to the <code class="docutils literal notranslate"><span class="pre">RG_SHM_SECRETS</span></code> resource group and then the <code class="docutils literal notranslate"><span class="pre">kv-shm-&lt;SHM</span> <span class="pre">ID&gt;</span></code> key vault and then select <code class="docutils literal notranslate"><span class="pre">secrets</span></code> on the left hand panel.</p></li>
+<li><p>The username is the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-vm-admin-username</span></code> secret plus the domain, ie <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;custom</span> <span class="pre">domain</span></code></p></li>
+<li><p>The password in the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-domain-admin-password</span></code> secret.</p></li>
+</ul>
+<ol class="simple">
+<li><p>In Server Manager select <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Network</span> <span class="pre">Policy</span> <span class="pre">Server</span></code> (or open the <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">Policy</span> <span class="pre">Server</span></code> desktop app directly)</p></li>
+<li><p>Configure NPS server to log to a local text file:</p></li>
+</ol>
+<ul>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">NPS</span> <span class="pre">(Local)</span> <span class="pre">&gt;</span> <span class="pre">Accounting</span></code> on the left-hand sidebar</p>
+<p align="center">
+    <img src="images/deploy_shm/nps_accounting.png" width="80%" title="NPS accounting">
+</p>
+</li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Accounting</span> <span class="pre">&gt;</span> <span class="pre">Configure</span> <span class="pre">Accounting</span></code></p>
+<ul class="simple">
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Introduction</span></code> screen, click <code class="docutils literal notranslate"><span class="pre">Next</span></code>.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Accounting</span> <span class="pre">Options</span></code> screen, select <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">to</span> <span class="pre">text</span> <span class="pre">file</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">local</span> <span class="pre">computer</span></code> then click <code class="docutils literal notranslate"><span class="pre">Next</span></code>.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Configure</span> <span class="pre">Local</span> <span class="pre">File</span> <span class="pre">Logging</span></code> screen, click <code class="docutils literal notranslate"><span class="pre">Next</span></code>.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Summary</span></code> screen, click <code class="docutils literal notranslate"><span class="pre">Next</span></code>.</p></li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Conclusions</span></code> screen, click <code class="docutils literal notranslate"><span class="pre">Close</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">file</span> <span class="pre">properties</span> <span class="pre">&gt;</span> <span class="pre">Change</span> <span class="pre">log</span> <span class="pre">file</span> <span class="pre">properties</span></code></p>
+<ul class="simple">
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">file</span></code> tab, select <code class="docutils literal notranslate"><span class="pre">Daily</span></code> under <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">log</span> <span class="pre">file</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mfa-configuation">
+<h3>MFA Configuation<a class="headerlink" href="#mfa-configuation" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Configure MFA settings:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Open Powershell as an administrator</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">&amp;</span> <span class="pre">&quot;C:\Program</span> <span class="pre">Files\Microsoft\AzureMfa\Config\AzureMfaNpsExtnConfigSetup.ps1&quot;</span></code></p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">A</span></code> when prompted</p></li>
+<li><p>If you are prompted to add webpages to exceptions then accept them.</p></li>
+<li><p><strong>NOTE:</strong> You may get a Javascript error. If you do, simply run this script again.</p></li>
+</ul>
+<ol class="simple">
+<li><p>On the webpage pop-up, sign in as the <code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">Administrator</span></code> (eg. <code class="docutils literal notranslate"><span class="pre">admin&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code>) user. Other administrators added as guests will not work for this step.</p></li>
+</ol>
+<ul class="simple">
+<li><p>If you have not done so already, you may be prompted to add a phone number and backup email for the <code class="docutils literal notranslate"><span class="pre">admin&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code> account at this point.</p></li>
+</ul>
+<ol class="simple">
+<li><p>When prompted to <code class="docutils literal notranslate"><span class="pre">Provide</span> <span class="pre">your</span> <span class="pre">Tenant</span> <span class="pre">ID</span></code>, enter your Azure Active Directory ID. To get this:</p></li>
+</ol>
+<ul class="simple">
+<li><p>In the Azure portal select <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> in the left hand side bar</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Properties</span></code> in the left hand side bar</p></li>
+<li><p>Copy the <code class="docutils literal notranslate"><span class="pre">Directory</span> <span class="pre">ID</span></code> field</p></li>
+<li><p><strong>Troubleshooting:</strong> If you see an error <code class="docutils literal notranslate"><span class="pre">New-MsolServicePrincipalCredential</span> <span class="pre">:</span> <span class="pre">Service</span> <span class="pre">principal</span> <span class="pre">was</span> <span class="pre">not</span> <span class="pre">found</span></code>, this indicates that the <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Multi-Factor</span> <span class="pre">Auth</span> <span class="pre">Client</span></code> is not enabled in Azure Active Directory.</p>
+<ul>
+<li><p>Look at <a class="reference external" href="https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-nps-extension#troubleshooting">the documentation here</a>.</p></li>
+<li><p>Make sure the Safe Haven Azure Active Directory has valid P1 licenses:</p>
+<ul>
+<li><p>Go to the Azure Portal and click <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directories</span></code> in the left hand side bar</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Licenses</span></code>in the left hand side bar then <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">&gt;</span> <span class="pre">All</span> <span class="pre">products</span></code></p></li>
+<li><p>You should see <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Premium</span> <span class="pre">P1</span></code> in the list of products, with a non-zero number of available licenses.</p>
+<ul>
+<li><p>If you do not have P1 licences, purchase some following the instructions at the end of the <a class="reference external" href="#Add-additional-administrators">Add additional administrators</a> section above, making sure to also follow the final step to configure the MFA settings on the Azure Active Directory.</p></li>
+</ul>
+</li>
+<li><p>If you are using the trial <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Premium</span> <span class="pre">P2</span></code> licences, you may find that enabling a trial of <code class="docutils literal notranslate"><span class="pre">Enterprise</span> <span class="pre">Mobility</span> <span class="pre">+</span> <span class="pre">Security</span> <span class="pre">E5</span></code> licences will resolve this.</p></li>
+</ul>
+</li>
+<li><p>Make sure that you have added a P1 licence to at least one user in the <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> and have gone through the MFA setup procedure for that user. You may have to wait a few minutes after doing this</p></li>
+<li><p>If you’ve done all of these things and nothing is working, you may have accidentally removed the <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Multi-Factor</span> <span class="pre">Auth</span> <span class="pre">Client</span></code> Enterprise Application from your <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code>. Run <code class="docutils literal notranslate"><span class="pre">C:\Installation\Ensure_MFA_SP_AAD.ps1</span></code> to create a new service principal and try the previous steps again.</p></li>
+</ul>
+</li>
+<li><p><strong>Troubleshooting:</strong> If you get a <code class="docutils literal notranslate"><span class="pre">New-MsolServicePrincipalCredential:</span> <span class="pre">Access</span> <span class="pre">denied</span></code> error stating <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">have</span> <span class="pre">permissions</span> <span class="pre">to</span> <span class="pre">call</span> <span class="pre">this</span> <span class="pre">cmdlet</span></code>, check the following:</p>
+<ul>
+<li><p>Make sure you are logged in to the NPS server as a <strong>domain</strong> user rather than a local user.</p>
+<ul>
+<li><p>The output of the <code class="docutils literal notranslate"><span class="pre">whoami</span></code> command in Powershell should be <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">netBios</span> <span class="pre">domain&gt;\admin</span></code> rather than <code class="docutils literal notranslate"><span class="pre">NPS-SHM-&lt;SHM</span> <span class="pre">ID&gt;\admin</span></code>.</p></li>
+<li><p>If it is not, reconnect to the remote desktop with the username <code class="docutils literal notranslate"><span class="pre">admin&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code>, using the same password as before</p></li>
+</ul>
+</li>
+<li><p>Make sure you authenticate to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> as the native <code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">Administrator</span></code> (<code class="docutils literal notranslate"><span class="pre">admin&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code>) user when prompted by the script. Other administrators added as guests will not work for this step.</p></li>
+</ul>
+</li>
+</ul>
+<ol class="simple">
+<li><p>At the message <code class="docutils literal notranslate"><span class="pre">Configuration</span> <span class="pre">complete.</span> <span class="pre">Press</span> <span class="pre">Enter</span> <span class="pre">to</span> <span class="pre">continue</span></code>, press <code class="docutils literal notranslate"><span class="pre">Enter</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="deploy-package-mirrors">
+<h2>9. Deploy package mirrors<a class="headerlink" href="#deploy-package-mirrors" title="Permalink to this headline">¶</a></h2>
+<section id="when-to-deploy-mirrors">
+<h3>When to deploy mirrors<a class="headerlink" href="#when-to-deploy-mirrors" title="Permalink to this headline">¶</a></h3>
+<p>A full set of Tier 2 mirrors take around 4 days to fully synchronise with the external package repositories, so you may want to kick off the building of these mirrors before deploying your first SRE.</p>
+</section>
+<section id="deploying-package-mirrors">
+<h3>Deploying package mirrors<a class="headerlink" href="#deploying-package-mirrors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/safe_haven_management_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Deploy and configure the RDS VMs by running <code class="docutils literal notranslate"><span class="pre">./Setup_SHM_Package_Mirrors.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span> <span class="pre">-tier</span> <span class="pre">&lt;desired</span> <span class="pre">tier</span> <span class="pre">eg.</span> <span class="pre">'2'&gt;</span></code>, where the SHM ID is the one specified in the config</p></li>
+<li><p>This will take <strong>around 30 minutes</strong> to run.</p></li>
+</ul>
+</section>
+<section id="optional-tearing-down-package-mirrors">
+<h3>[Optional] Tearing down package mirrors<a class="headerlink" href="#optional-tearing-down-package-mirrors" title="Permalink to this headline">¶</a></h3>
+<p>During normal usage, you should not need to tear down the package mirrors, but if you decide to do so, use the following procedure:</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/safe_haven_management_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Deploy and configure the RDS VMs by running <code class="docutils literal notranslate"><span class="pre">./Teardown_SHM_Package_Mirrors.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span> <span class="pre">-tier</span> <span class="pre">&lt;desired</span> <span class="pre">tier</span> <span class="pre">eg.</span> <span class="pre">'2'&gt;</span></code>, where the SHM ID is the one specified in the config</p></li>
+<li><p>This will take <strong>a few minutes</strong> to run.</p></li>
+</ul>
+</section>
+</section>
+<section id="tearing-down-the-shm">
+<h2>10. Tearing down the SHM<a class="headerlink" href="#tearing-down-the-shm" title="Permalink to this headline">¶</a></h2>
+<p>In order to tear down the SHM, use the following procedure:</p>
+<section id="disconnect-from-the-azure-active-directory">
+<h3>Disconnect from the Azure Active Directory<a class="headerlink" href="#disconnect-from-the-azure-active-directory" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Using Microsoft Remote Desktop, connect to the <code class="docutils literal notranslate"><span class="pre">DC1-SHM-&lt;SHM</span> <span class="pre">ID&gt;</span></code> virtual machine (VM).</p></li>
+<li><p>Log in as a <strong>domain</strong> user (ie. <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code>) using the username and password obtained from the Azure portal.</p></li>
+<li><p>If you see a warning dialog that the certificate cannot be verified as root, accept this and continue.</p></li>
+<li><p>Open Powershell as an administrator</p></li>
+</ol>
+<ul class="simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">C:\Installation</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">.\Disconnect_AD.ps1</span></code></p></li>
+<li><p>You will need to provide login credentials (including MFA if set up) for <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code></p></li>
+</ul>
+<ol class="simple">
+<li><p>Full disconnection of the Azure Active Directory can take up to 72 hours but is typically less. If you are planning to install a new SHM connected to the same Azure Active Directory you may find the <code class="docutils literal notranslate"><span class="pre">AzureADConnect</span></code> installation step requires you to wait for the previous disconnection to complete.</p></li>
+</ol>
+</section>
+<section id="tear-down-any-attached-sres-then-the-shm">
+<h3>Tear down any attached SREs then the SHM<a class="headerlink" href="#tear-down-any-attached-sres-then-the-shm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/administration</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>For each SRE that each attached to the SHM, do the following:</p>
+<ul>
+<li><p>Tear down the SRE by running <code class="docutils literal notranslate"><span class="pre">./SRE_Teardown.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where the SRE ID is the one specified in the relevant config file</p></li>
+</ul>
+</li>
+<li><p>Tear down the SHM by running <code class="docutils literal notranslate"><span class="pre">./SHM_Teardown.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>, where the SHM ID is the one specified in the config</p></li>
+</ul>
+</section>
+</section>
+<section id="server-list">
+<h2>Server list<a class="headerlink" href="#server-list" title="Permalink to this headline">¶</a></h2>
+<p>The following 3 virtual machines are created as a result of these instructions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DC1-SHM-TESTC</span></code> (primary domain controller)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DC2-SHM-TESTC</span></code> (secondary domain controller)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NPS-SHM-TESTC</span></code> (network policy server)</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

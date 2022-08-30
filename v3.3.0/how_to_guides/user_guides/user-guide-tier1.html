@@ -1,0 +1,1079 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Safe Haven User Documentation - Tier 1 &#8212; Data Safe Haven v3.3.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Reference guides" href="../../reference/README.html" />
+    <link rel="prev" title="Safe Haven User Documentation" href="user-guide.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../explanations/README.html">
+  Learn more about the Safe Haven
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../README.html">
+  How to guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference/README.html">
+  Reference guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorial/README.html">
+  Tutorials and overview
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../administrator/how-to-be-a-sysadmin.html">
+   Safe Haven Administrator Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../data_provider/how-to-ingress-data-as-provider.html">
+   Data Ingress to the Turing Data Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer/how-to-contribute.html">
+   Guide for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general/how-to-use-classification-web-app-guide.html">
+   Classification - Instructions for data provider representatives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general/software-package-approval-policy.html">
+   [DRAFT] Turing data safe haven - software package approval policy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general/software-package-request-form.html">
+   Turing data safe haven - software package request form
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../principal_investigator/how-to-egress-data.html">
+   Safe Haven - Egressing Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../project_manager/data-ingress.html">
+   Data Ingress Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../project_manager/how-to-start-a-project.html">
+   Starting a project
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="user-cheat-sheet.html">
+   Data Safe Havens - Cheat Sheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="user-guide.html">
+   Safe Haven User Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Safe Haven User Documentation - Tier 1
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.3.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mailbox-with-mail-table-of-contents">
+   :mailbox_with_mail: Table of contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beginner-introduction-the-turing-safe-haven">
+   :beginner: Introduction: The Turing Safe Haven
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calendar-definitions">
+     :calendar: Definitions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rocket-set-up-your-account">
+   :rocket: Set up your account
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seedling-prerequisites">
+     :seedling: Prerequisites
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#username">
+       Username
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#network-access">
+       Network access
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#your-phone-for-multi-factor-authentication">
+       Your phone for multi-factor authentication
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#domain-names">
+       Domain names
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#key-generate-an-ssh-key">
+     :key: Generate an SSH key
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#generate-an-ssh-key-on-windows">
+       Generate an SSH key on Windows
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#generate-an-ssh-key-on-linux-macos">
+       Generate an SSH key on Linux/macOS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iphone-set-up-multi-factor-authentication">
+     :iphone: Set up multi-factor authentication
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unlock-access-the-secure-research-environment">
+   :unlock: Access the Secure Research Environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#penguin-use-ssh-to-log-into-the-sre">
+     :penguin: Use SSH to log into the SRE
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connect-via-ssh-on-windows">
+       Connect via SSH on Windows
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connect-via-ssh-on-linux-macos">
+       Connect via SSH on Linux/macOS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customs-log-into-the-cocalc-environment">
+     :customs: Log into the CoCalc environment
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#certificate-validity">
+       Certificate validity
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-a-cocalc-account">
+       Creating a CoCalc account
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-a-cocalc-project">
+       Creating a CoCalc project
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-using-the-secure-research-environment">
+   :computer: Using the Secure Research Environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#family-using-cocalc">
+     :family: Using CoCalc
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#books-accessing-data-in-the-sre">
+     :books: Accessing data in the SRE
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#input-data-data">
+       Input data:
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         /data/
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shared-space-shared">
+       Shared space:
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         /shared/
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#output-resources-output">
+       Output resources:
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         /output/
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newspaper-bring-in-new-files-to-the-sre">
+     :newspaper: Bring in new files to the SRE
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bug-report-a-bug">
+   :bug: Report a bug
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wrench-help-us-to-help-you">
+     :wrench: Help us to help you
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pray-acknowledgments">
+   :pray: Acknowledgments
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/how_to_guides/user_guides/user-guide-tier1.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="safe-haven-user-documentation-tier-1">
+<h1>Safe Haven User Documentation - Tier 1<a class="headerlink" href="#safe-haven-user-documentation-tier-1" title="Permalink to this headline">¶</a></h1>
+<section id="mailbox-with-mail-table-of-contents">
+<h2>:mailbox_with_mail: Table of contents<a class="headerlink" href="#mailbox-with-mail-table-of-contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#beginner-introduction-the-turing-safe-haven">:beginner: Introduction: The Turing Safe Haven</a></p>
+<ul>
+<li><p><a class="reference external" href="#calendar-definitions">:calendar: Definitions</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#rocket-set-up-your-account">:rocket: Set up your account</a></p>
+<ul>
+<li><p><a class="reference external" href="#seedling-prerequisites">:seedling: Prerequisites</a></p></li>
+<li><p><a class="reference external" href="#key-generate-an-ssh-key">:key: Generate an SSH key</a></p></li>
+<li><p><a class="reference external" href="#iphone-set-up-multi-factor-authentication">:iphone: Set up multi-factor authentication</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#unlock-access-the-secure-research-environment">:unlock: Access the Secure Research Environment</a></p>
+<ul>
+<li><p><a class="reference external" href="#penguin-use-ssh-to-log-into-the-sre">:penguin: Use SSH to log into the SRE</a></p></li>
+<li><p><a class="reference external" href="#customs-log-into-the-cocalc-environment">:customs: Log into the CoCalc environment</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#computer-using-the-secure-research-environment">:computer: Using the Secure Research Environment</a></p>
+<ul>
+<li><p><a class="reference external" href="#family-using-cocalc">:family: Using CoCalc</a></p></li>
+<li><p><a class="reference external" href="#books-accessing-data-in-the-sre">:books: Accessing data in the SRE</a></p></li>
+<li><p><a class="reference external" href="#newspaper-bring-in-new-files-to-the-sre">:newspaper: Bring in new files to the SRE</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#bug-report-a-bug">:bug: Report a bug</a></p>
+<ul>
+<li><p><a class="reference external" href="#wrench-help-us-to-help-you">:wrench: Help us to help you</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#pray-acknowledgments">:pray: Acknowledgments</a></p></li>
+</ul>
+</section>
+<section id="beginner-introduction-the-turing-safe-haven">
+<h2>:beginner: Introduction: The Turing Safe Haven<a class="headerlink" href="#beginner-introduction-the-turing-safe-haven" title="Permalink to this headline">¶</a></h2>
+<p>Welcome to the Turing Safe Haven!</p>
+<p>Secure research environments (SREs) for analysis of sensitive datasets are essential to give data providers confidence that their datasets will be kept secure over the course of a project.
+The Turing Safe Haven is a prescription for how to set up one or more SREs and give users access to them.
+The Safe Haven SRE design is aimed at allowing groups of researchers to work together on projects that involve sensitive or confidential datasets at scale.
+Our goal is to ensure that you are able to implement the most cutting edge data science techniques while maintaining all ethical and legal responsibilities of information governance and access.</p>
+<p>The data you are working on will have been classified into one of five sensitivity tiers, ranging from open data at Tier 0, to highly sensitive and high risk data at Tier 4.
+The tiers are defined by the most sensitive data in your project, and may be increased if the combination of data is deemed to be require additional levels of security.
+You can read more about this process in our policy paper: <em>Arenas et al, 2019</em>, <a class="reference external" href="https://arxiv.org/abs/1908.08737"><code class="docutils literal notranslate"><span class="pre">arXiv:1908.08737</span></code></a>.</p>
+<p>The level of sensitivity of your data determines whether you have access to the internet within the SRE and whether you are allowed to copy and paste between the secure research environment and other windows on your computer.
+This means you may be limited in which data science tools you are allowed to install.
+You will find that many software packages are already available, and the administrator of the SRE will ingress - bring into the environment - as many additional resources as possible.</p>
+<p><strong>Please read this user guide carefully and remember to refer back to it when you have questions.</strong>
+In many cases the answer is already here, but if you think this resource could be clearer, please let us know so we can improve the documentation for future users.</p>
+<section id="calendar-definitions">
+<h3>:calendar: Definitions<a class="headerlink" href="#calendar-definitions" title="Permalink to this headline">¶</a></h3>
+<p>The following definitions might be useful during the rest of this guide</p>
+<blockquote>
+<div><p><strong>Secure Research Environment (SRE)</strong>: the environment that you will be using to access the sensitive data.</p>
+<p><strong>Turing Safe Haven</strong>: the overall project that details how to create and manage one or more SREs.</p>
+<p><strong>SRE URL</strong>: each SRE has a dedicated URL (for example <code class="docutils literal notranslate"><span class="pre">sandbox.apr20.turingsafehaven.ac.uk</span></code> ) which is used to access the data. We will call this full URL the <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">URL&gt;</span></code> in the rest of this document, and we will call the initial part of the URL the <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> (i.e. <code class="docutils literal notranslate"><span class="pre">sandbox</span></code> in this example).</p>
+</div></blockquote>
+</section>
+</section>
+<section id="rocket-set-up-your-account">
+<h2>:rocket: Set up your account<a class="headerlink" href="#rocket-set-up-your-account" title="Permalink to this headline">¶</a></h2>
+<p>This section of the user guide will help you set up your new account on the SRE which you’ll be using.</p>
+<section id="seedling-prerequisites">
+<h3>:seedling: Prerequisites<a class="headerlink" href="#seedling-prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>Make sure you have all of the following in front of you when connecting to the SRE.</p>
+<ul class="simple">
+<li><p>:e-mail: The email from your SRE administrator with your account details.</p></li>
+<li><p>:wrench: Your <a class="reference external" href="#username">username</a>, given in an email from your SRE administrator.</p></li>
+<li><p>:european_castle: The URL for the SRE, given in an email from your SRE administrator.</p></li>
+<li><p>:computer: Your computer.</p></li>
+<li><p>:satellite: <a class="reference external" href="#network-access">Access</a> to the internet (NB. this might be specific wired or wireless network if specified in the email from your SRE administrator).</p></li>
+<li><p>:iphone: Your <a class="reference external" href="#your-phone-for-multi-factor-authentication">phone</a>, with good internet connectivity.</p></li>
+</ul>
+<p>You should also know who the <strong>designated contact</strong> for your SRE is.
+This might be an administrator or one of the people working on the project with you.
+They will be your primary point of contact if you have any issues in connecting to or using the SRE.</p>
+<blockquote>
+<div><p>:information_source: For example, during the Turing Data Study Groups, the facilitator of each SRE is the designated contact</p>
+</div></blockquote>
+<section id="username">
+<h4>Username<a class="headerlink" href="#username" title="Permalink to this headline">¶</a></h4>
+<p>Your username will usually be in the format <code class="docutils literal notranslate"><span class="pre">firstname.lastname</span></code></p>
+<blockquote>
+<div><p>:point_right: You can find your username in the email you received from the SRE administrator.</p>
+<p>:pencil2: If you have a hyphenated last name, or multiple surnames, or a long family name, your assigned username may not follow the same pattern of <code class="docutils literal notranslate"><span class="pre">firstname.lastname</span></code> .
+Please check with the designated contact for your SRE if you are unsure about your username.</p>
+<p>:information_source: In this document we will use Ada Lovelace as our example user.
+Her username is <code class="docutils literal notranslate"><span class="pre">ada.lovelace</span></code></p>
+</div></blockquote>
+</section>
+<section id="network-access">
+<h4>Network access<a class="headerlink" href="#network-access" title="Permalink to this headline">¶</a></h4>
+<p>The SRE that you’re using may be configured to allow access only from a specific set of IP addresses.
+This may involve being connected to a specific wired or wireless network or using a VPN.
+You also may be required to connect from a specific, secure location.
+You will be told what these requirements are for your particular environment.</p>
+<blockquote>
+<div><p>:point_right: Make sure you know the networks from which you must connect to your SRE.
+This information will be available in the email you received with your connection information.</p>
+</div></blockquote>
+</section>
+<section id="your-phone-for-multi-factor-authentication">
+<h4>Your phone for multi-factor authentication<a class="headerlink" href="#your-phone-for-multi-factor-authentication" title="Permalink to this headline">¶</a></h4>
+<p>Multi-factor authentication (MFA) is one of the most powerful ways of verifying user identity online.
+MFA is one of the levels of security enforced by the Turing Safe Haven.</p>
+<blockquote>
+<div><p>:point_right: Make sure to have your phone with you and that you have good internet connectivity when you are connecting to the SRE.
+:warning: The SRE is not set up to allow you to authenticate through other methods.</p>
+</div></blockquote>
+</section>
+<section id="domain-names">
+<h4>Domain names<a class="headerlink" href="#domain-names" title="Permalink to this headline">¶</a></h4>
+<p>You might receive the SRE URL in the initial email from your SRE administrator, or you might be assigned to a particular SRE at a later point.</p>
+<blockquote>
+<div><p>:information_source: In this document Ada Lovelace - our example user - will be participating in a Turing Data Study Group held in April 2020.
+Her <strong>SRE URL</strong> is <code class="docutils literal notranslate"><span class="pre">sandbox.apr20.turingsafehaven.ac.uk</span></code> .</p>
+</div></blockquote>
+</section>
+</section>
+<section id="key-generate-an-ssh-key">
+<h3>:key: Generate an SSH key<a class="headerlink" href="#key-generate-an-ssh-key" title="Permalink to this headline">¶</a></h3>
+<p>We use SSH keys to authenticate users who try to log into the SRE.
+You will need to provide us with the public part of your SSH key in order for us to register it.
+If you do not already have an SSH key, don’t worry - it’s easy to generate one:</p>
+<section id="generate-an-ssh-key-on-windows">
+<h4>Generate an SSH key on Windows<a class="headerlink" href="#generate-an-ssh-key-on-windows" title="Permalink to this headline">¶</a></h4>
+<p>If you are using Windows, you will need to download an SSH client.
+We recommend installing the free <a class="reference external" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a> program from <code class="docutils literal notranslate"><span class="pre">http://www.chiark.greenend.org.uk/~sgtatham/putty/</span></code> .
+To generate an SSH key with <code class="docutils literal notranslate"><span class="pre">PuTTYgen</span></code> , follow these steps:</p>
+<ul class="simple">
+<li><p>Open the PuTTYgen program.</p>
+<ul>
+<li><p>for <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">of</span> <span class="pre">key</span> <span class="pre">to</span> <span class="pre">generate</span></code> , select <code class="docutils literal notranslate"><span class="pre">RSA</span></code> or <code class="docutils literal notranslate"><span class="pre">Ed25519</span></code></p></li>
+<li><p>for <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">bits</span> <span class="pre">in</span> <span class="pre">generated</span> <span class="pre">key</span></code> , enter <code class="docutils literal notranslate"><span class="pre">4096</span></code></p></li>
+<li><p>click the <code class="docutils literal notranslate"><span class="pre">Generate</span></code> button.
+<img alt="tier1_puttygen_main" src="../../_images/tier1_puttygen_main.png" /></p></li>
+</ul>
+</li>
+<li><p>Generate a random key</p>
+<ul>
+<li><p><strong>Move your mouse around</strong> in the box below the progress bar to fill up the bar</p></li>
+<li><p>When the progress bar is full, <code class="docutils literal notranslate"><span class="pre">PuTTYgen</span></code> will generate your key pair.</p></li>
+</ul>
+</li>
+<li><p>Secure your key</p>
+<ul>
+<li><p>Type a passphrase in the <code class="docutils literal notranslate"><span class="pre">Key</span> <span class="pre">passphrase</span></code> field.</p></li>
+<li><p>Type the same passphrase in the <code class="docutils literal notranslate"><span class="pre">Confirm</span> <span class="pre">passphrase</span></code> field.</p></li>
+<li><p>:warning: You can use a key without a passphrase, but this is not recommended.
+<img alt="tier1_puttygen_generated" src="../../_images/tier1_puttygen_generated.png" /></p></li>
+</ul>
+</li>
+<li><p>Save the key</p>
+<ul>
+<li><p>To save the public key please <strong>select all the text in the top box</strong> and paste this into a text file</p>
+<ul>
+<li><p>We recommend using a name like <code class="docutils literal notranslate"><span class="pre">&lt;usage&gt;_&lt;your</span> <span class="pre">name&gt;_&lt;type&gt;.pub</span></code></p></li>
+<li><p>:information_source: Our example user Ada Lovelace might call hers <code class="docutils literal notranslate"><span class="pre">apr20_ada_lovelace_rsa.pub</span></code></p></li>
+<li><p>:warning: Do <strong>not</strong> use the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">button</span></code> to save the public key as this uses a different file format</p></li>
+</ul>
+</li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">private</span> <span class="pre">key</span> <span class="pre">button</span></code> to save the private key.</p>
+<ul>
+<li><p>Use a name that matches the public key but with the <code class="docutils literal notranslate"><span class="pre">ppk</span></code> extension</p></li>
+<li><p>:information_source: Our example user Ada Lovelace might call hers <code class="docutils literal notranslate"><span class="pre">apr20_ada_lovelace_rsa.ppk</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="generate-an-ssh-key-on-linux-macos">
+<h4>Generate an SSH key on Linux/macOS<a class="headerlink" href="#generate-an-ssh-key-on-linux-macos" title="Permalink to this headline">¶</a></h4>
+<p>On Linux or macOS you can generate a key with <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code> with the following steps:</p>
+<ul>
+<li><p>Choose the name for your key.</p>
+<ul class="simple">
+<li><p>We recommend using a name like <code class="docutils literal notranslate"><span class="pre">&lt;usage&gt;_&lt;your</span> <span class="pre">name&gt;_&lt;type&gt;.pub</span></code></p></li>
+<li><p>:information_source: Our example user Ada Lovelace might call hers <code class="docutils literal notranslate"><span class="pre">apr20_ada_lovelace_rsa</span></code></p></li>
+</ul>
+</li>
+<li><p>Open a <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> window and enter the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -f &lt;the name of your key&gt;
+</pre></div>
+</div>
+<p><img alt="tier1_sshkeygen" src="../../_images/tier1_sshkeygen.png" /></p>
+</li>
+<li><p>Secure your key</p>
+<ul class="simple">
+<li><p>When prompted to <code class="docutils literal notranslate"><span class="pre">Enter</span> <span class="pre">passphrase</span></code> , type a passphrase</p></li>
+<li><p>Type the same passphrase when prompted to <code class="docutils literal notranslate"><span class="pre">Enter</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">passphrase</span> <span class="pre">again</span></code></p></li>
+<li><p>:warning: You can use a key without a passphrase, but this is not recommended.</p></li>
+</ul>
+</li>
+<li><p>This will generate two files in the directory that you’re currently in:</p>
+<ul class="simple">
+<li><p>Public key: called <code class="docutils literal notranslate"><span class="pre">&lt;the</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">your</span> <span class="pre">key&gt;.pub</span></code></p></li>
+<li><p>Private key: called <code class="docutils literal notranslate"><span class="pre">&lt;the</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">your</span> <span class="pre">key&gt;</span></code></p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p>:point_right: Once you’ve generated your SSH key, please send the <strong>public</strong> part of it to your SRE administrator.
+:warning: Keep the private part safe! You will need this to connect to the SRE.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="iphone-set-up-multi-factor-authentication">
+<h3>:iphone: Set up multi-factor authentication<a class="headerlink" href="#iphone-set-up-multi-factor-authentication" title="Permalink to this headline">¶</a></h3>
+<p>The next step in setting up your account is to authenticate your account from your phone.</p>
+<ul class="simple">
+<li><p>You will need to download a two-factor authentication app that is capable of generating 6-digit codes. A few examples are:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Authenticator</span></code> (available for <a class="reference external" href="https://apps.apple.com/us/app/google-authenticator/id388497605">iOS</a> and <a class="reference external" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Android</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Authenticator</span></code> (available for <a class="reference external" href="https://apps.apple.com/us/app/microsoft-authenticator/id983156458">iOS</a> and <a class="reference external" href="https://play.google.com/store/apps/details?id=com.azure.authenticator">Android</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Authy</span></code> (available for <a class="reference external" href="https://apps.apple.com/us/app/twilio-authy/id494168017">iOS</a> and <a class="reference external" href="https://play.google.com/store/apps/details?id=com.authy.authy">Android</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2FA</span> <span class="pre">Authenticator</span></code> (available for <a class="reference external" href="https://apps.apple.com/us/app/2fa-authenticator-2fas/id1217793794">iOS</a> and <a class="reference external" href="https://play.google.com/store/apps/details?id=com.twofasapp">Android</a>)</p></li>
+</ul>
+</li>
+</ul>
+<p>This additional security verification is to make it harder for people to impersonate you and connect to the environment without permission.</p>
+<ul class="simple">
+<li><p>Once you have been assigned to a particular SRE, you will be sent a QR code which will look something like this:
+<img alt="tier1_qrcode" src="../../_images/tier1_qrcode.png" /></p></li>
+<li><p>You should follow the instructions in your preferred app for adding a new account by scanning a QR code.</p></li>
+<li><p>At this point your authenticator app should be generating time-limited 6-digit codes like the following
+<img alt="tier1_totpcode" src="../../_images/tier1_totpcode.png" /></p></li>
+</ul>
+</section>
+</section>
+<section id="unlock-access-the-secure-research-environment">
+<h2>:unlock: Access the Secure Research Environment<a class="headerlink" href="#unlock-access-the-secure-research-environment" title="Permalink to this headline">¶</a></h2>
+<p>After going through the account setup procedure, you should have:</p>
+<ul class="simple">
+<li><p>Your <code class="docutils literal notranslate"><span class="pre">username</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">SRE</span> <span class="pre">URL</span></code> that you will be using</p></li>
+<li><p>Multifactor authentication</p></li>
+</ul>
+<blockquote>
+<div><p>:point_right: If you aren’t sure about any of these then please return to the <a class="reference external" href="#rocket-set-up-your-account"><strong>Set up your account</strong></a> section above.</p>
+</div></blockquote>
+<section id="penguin-use-ssh-to-log-into-the-sre">
+<h3>:penguin: Use SSH to log into the SRE<a class="headerlink" href="#penguin-use-ssh-to-log-into-the-sre" title="Permalink to this headline">¶</a></h3>
+<p>Although the research environment will use the browser-based <a class="reference external" href="https://www.cocalc.com"><code class="docutils literal notranslate"><span class="pre">CoCalc</span></code></a>, you are required to authenticate by using a secure SSH connection.</p>
+<p>Authentication for users requires:</p>
+<ul class="simple">
+<li><p>the correct SSH private key</p></li>
+<li><p>a one-time password from your authenticator app</p></li>
+</ul>
+<section id="connect-via-ssh-on-windows">
+<h4>Connect via SSH on Windows<a class="headerlink" href="#connect-via-ssh-on-windows" title="Permalink to this headline">¶</a></h4>
+<p>To connect over SSH with <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> , follow these steps:</p>
+<ul class="simple">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">PuTTY</span></code> and create a new session</p>
+<ul>
+<li><p>under <code class="docutils literal notranslate"><span class="pre">Host</span> <span class="pre">name</span></code> enter the <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">URL&gt;</span></code> and leave <code class="docutils literal notranslate"><span class="pre">Port</span></code> set to <code class="docutils literal notranslate"><span class="pre">22</span></code></p></li>
+<li><p>:information_source: Our example user Ada Lovelace will use <code class="docutils literal notranslate"><span class="pre">apr20.turingsafehaven.ac.uk</span></code> here
+<img alt="tier1_putty_setup_01" src="../../_images/tier1_putty_setup_01.png" /></p></li>
+</ul>
+</li>
+<li><p>Setup authentication</p>
+<ul>
+<li><p>Expand <code class="docutils literal notranslate"><span class="pre">Connection</span></code> and <code class="docutils literal notranslate"><span class="pre">SSH</span></code> on the left-hand sidebar and select <code class="docutils literal notranslate"><span class="pre">Auth</span></code></p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Browse...</span></code> and select the <strong>private</strong> SSH key that you generated earlier</p></li>
+<li><p>:information_source: Our example user Ada Lovelace will use the <code class="docutils literal notranslate"><span class="pre">apr20_ada_lovelace_rsa.ppk</span></code> key here
+<img alt="tier1_putty_setup_02" src="../../_images/tier1_putty_setup_02.png" /></p></li>
+</ul>
+</li>
+<li><p>Setup SSH forwarding</p>
+<ul>
+<li><p>Expand <code class="docutils literal notranslate"><span class="pre">Connection</span></code> and <code class="docutils literal notranslate"><span class="pre">SSH</span></code> on the left-hand sidebar and select <code class="docutils literal notranslate"><span class="pre">Tunnels</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Source</span> <span class="pre">port</span></code> box put <code class="docutils literal notranslate"><span class="pre">8443</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Destination</span></code> box put <code class="docutils literal notranslate"><span class="pre">127.0.0.1:443</span></code> (note the <code class="docutils literal notranslate"><span class="pre">:</span></code> )</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Add</span></code> button to add the new forwarded port
+<img alt="tier1_putty_setup_03" src="../../_images/tier1_putty_setup_03.png" /></p></li>
+</ul>
+</li>
+<li><p>Save the session</p>
+<ul>
+<li><p>Go back to the <code class="docutils literal notranslate"><span class="pre">Session</span></code> category and enter a name in the <code class="docutils literal notranslate"><span class="pre">Saved</span> <span class="pre">Sessions</span></code> box</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Save</span></code> and these connection details will be saved for future use</p></li>
+</ul>
+</li>
+<li><p>Connect via SSH</p>
+<ul>
+<li><p>Select the session you have saved and click <code class="docutils literal notranslate"><span class="pre">Load</span></code></p></li>
+<li><p>Now click <code class="docutils literal notranslate"><span class="pre">Open</span></code> and the SSH connection window will open</p></li>
+<li><p>:pencil2: Note that you might get a connection warning like the one below. If you do, please select <code class="docutils literal notranslate"><span class="pre">Yes</span></code>
+<img alt="tier1_putty_connection_warning" src="../../_images/tier1_putty_connection_warning.png" /></p></li>
+<li><p>You will be prompted for the passphrase for your key: enter the passphrase you set earlier</p></li>
+<li><p>You will be prompted for a <code class="docutils literal notranslate"><span class="pre">One-time</span> <span class="pre">password</span> <span class="pre">(OATH)</span> <span class="pre">for</span> <span class="pre">&lt;your</span> <span class="pre">username&gt;</span></code> : enter the six digits from your authenticator app with no spaces
+<img alt="tier1_putty_login" src="../../_images/tier1_putty_login.png" /></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="connect-via-ssh-on-linux-macos">
+<h4>Connect via SSH on Linux/macOS<a class="headerlink" href="#connect-via-ssh-on-linux-macos" title="Permalink to this headline">¶</a></h4>
+<p>To connect over SSH simply do the following:</p>
+<ul class="simple">
+<li><p>Open a <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> window and enter the following</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh &lt;your username&gt;@&lt;SRE URL&gt; -i &lt;path to your private key&gt; -L8443:localhost:443
+</pre></div>
+</div>
+<blockquote>
+<div><p>:information_source: Our example user Ada Lovelace would run <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">ada.lovelace&#64;apr20.turingsafehaven.ac.uk</span> <span class="pre">-i</span> <span class="pre">apr20_ada_lovelace_rsa</span> <span class="pre">-L8443:localhost:443</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>If the public key authentication is successful you will be prompted for a one-time-password</p>
+<ul>
+<li><p>At the prompt <code class="docutils literal notranslate"><span class="pre">One-time</span> <span class="pre">password</span> <span class="pre">(OATH)</span> <span class="pre">for</span> <span class="pre">&lt;your</span> <span class="pre">username&gt;</span></code> : enter the six digits from your authenticator app with no spaces</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="customs-log-into-the-cocalc-environment">
+<h3>:customs: Log into the CoCalc environment<a class="headerlink" href="#customs-log-into-the-cocalc-environment" title="Permalink to this headline">¶</a></h3>
+<p>If you connected successfully you should now be able to open a web browser on your computer and go to:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>https://localhost:8443
+</pre></div>
+</div>
+<section id="certificate-validity">
+<h4>Certificate validity<a class="headerlink" href="#certificate-validity" title="Permalink to this headline">¶</a></h4>
+<p>You will probably find that your browser warns you that the secure certificate is invalid
+<img alt="tier1_browser_invalid_certificate" src="../../_images/tier1_browser_invalid_certificate.png" /></p>
+<p>This is because the certificate was generated for <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">URL&gt;</span></code> but you are trying to connect to <code class="docutils literal notranslate"><span class="pre">localhost</span></code> .
+In order to check that the certificate is correct, open it from your browser and check its validity and issuer.
+<img alt="tier1_browser_invalid_certificate_check" src="../../_images/tier1_browser_invalid_certificate_check.png" /></p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Issued</span> <span class="pre">to</span></code> field should be your <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">URL&gt;</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Issued</span> <span class="pre">by</span></code> field should be <code class="docutils literal notranslate"><span class="pre">Let's</span> <span class="pre">Encrypt</span> <span class="pre">Authority</span> <span class="pre">X3</span></code></p></li>
+<li><p>The validity should cover today’s date</p></li>
+</ul>
+<p>If you are happy that the certificate is correct, then please procede to the website</p>
+<ul class="simple">
+<li><p>for example, in <code class="docutils literal notranslate"><span class="pre">Chrome</span></code> you need to click on <code class="docutils literal notranslate"><span class="pre">Advanced</span></code> and then <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">to</span> <span class="pre">localhost</span> <span class="pre">(unsafe)</span></code> )</p></li>
+</ul>
+</section>
+<section id="creating-a-cocalc-account">
+<h4>Creating a CoCalc account<a class="headerlink" href="#creating-a-cocalc-account" title="Permalink to this headline">¶</a></h4>
+<p>You will have to create a local CoCalc account in order to be able to use it.
+You will need to provide the following information:</p>
+<ul class="simple">
+<li><p>First name</p></li>
+<li><p>Last name</p></li>
+<li><p>Email address</p></li>
+<li><p>Password</p></li>
+</ul>
+<p>This is not connected to the account you used to connect via SSH - you can set these details to whatever you want to.
+<img alt="tier1_cocalc_signup" src="../../_images/tier1_cocalc_signup.png" /></p>
+</section>
+<section id="creating-a-cocalc-project">
+<h4>Creating a CoCalc project<a class="headerlink" href="#creating-a-cocalc-project" title="Permalink to this headline">¶</a></h4>
+<p>You will probably want to create a personal <code class="docutils literal notranslate"><span class="pre">CoCalc</span></code> project at this point.
+You can do so by filling out the name of the new project as shown:
+<img alt="tier1_cocalc_project" src="../../_images/tier1_cocalc_project.png" /></p>
+<p>You can invite other users to collaborate on your project and, in fact, you will probably do the majority of your work as part of a collaborative project.</p>
+</section>
+</section>
+</section>
+<section id="computer-using-the-secure-research-environment">
+<h2>:computer: Using the Secure Research Environment<a class="headerlink" href="#computer-using-the-secure-research-environment" title="Permalink to this headline">¶</a></h2>
+<section id="family-using-cocalc">
+<h3>:family: Using CoCalc<a class="headerlink" href="#family-using-cocalc" title="Permalink to this headline">¶</a></h3>
+<p>Full <a class="reference external" href="https://doc.cocalc.com/contents.html">details about how to use CoCalc</a> are available at: <code class="docutils literal notranslate"><span class="pre">https://doc.cocalc.com/contents.html</span></code>
+You have access to the following tools through <code class="docutils literal notranslate"><span class="pre">CoCalc</span></code></p>
+<ul class="simple">
+<li><p>collaborative <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> notebooks</p></li>
+<li><p>the ability to install python/R/Julia packages from the internet</p></li>
+</ul>
+</section>
+<section id="books-accessing-data-in-the-sre">
+<h3>:books: Accessing data in the SRE<a class="headerlink" href="#books-accessing-data-in-the-sre" title="Permalink to this headline">¶</a></h3>
+<p>There are several shared folders available through <code class="docutils literal notranslate"><span class="pre">CoCalc</span></code> that all collaborators within a research project team can see and access:
+You can see these interactively in a terminal by using <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">&gt;</span> <span class="pre">Linux</span> <span class="pre">terminal</span></code> from the project menu.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#input-data-data">input data</a>: <code class="docutils literal notranslate"><span class="pre">/data/</span></code></p></li>
+<li><p><a class="reference external" href="#shared-space-shared">shared space</a>: <code class="docutils literal notranslate"><span class="pre">/shared/</span></code></p></li>
+<li><p><a class="reference external" href="#output-resources-output">output resources</a>: <code class="docutils literal notranslate"><span class="pre">/output/</span></code></p></li>
+</ul>
+<section id="input-data-data">
+<h4>Input data: <code class="docutils literal notranslate"><span class="pre">/data/</span></code><a class="headerlink" href="#input-data-data" title="Permalink to this headline">¶</a></h4>
+<p>Data that has been “ingressed” - approved and brought into the secure research environment - can be found in the <code class="docutils literal notranslate"><span class="pre">/data/</span></code> folder.
+Everyone in your group will be able to access it, but it is <strong>read-only</strong>.</p>
+<blockquote>
+<div><p>:point_right: You will not be able to change any of the files in <code class="docutils literal notranslate"><span class="pre">/data/</span></code> .
+If you want to make derived datasets, for example cleaned and reformatted data, please add those to the <code class="docutils literal notranslate"><span class="pre">/shared/</span></code> or <code class="docutils literal notranslate"><span class="pre">/output/</span></code> directories.
+:pencil2: If you are participating in a Turing Data Study Group you might find example slides and document templates in the <code class="docutils literal notranslate"><span class="pre">/data/</span></code> drive.</p>
+</div></blockquote>
+</section>
+<section id="shared-space-shared">
+<h4>Shared space: <code class="docutils literal notranslate"><span class="pre">/shared/</span></code><a class="headerlink" href="#shared-space-shared" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">/shared/</span></code> folder should be used for any work that you want to share with your group.
+Everyone in your group will be able to access it, and will have <strong>read-and-write access</strong>.</p>
+</section>
+<section id="output-resources-output">
+<h4>Output resources: <code class="docutils literal notranslate"><span class="pre">/output/</span></code><a class="headerlink" href="#output-resources-output" title="Permalink to this headline">¶</a></h4>
+<p>Any outputs that you want to extract from the secure environment should be placed in the <code class="docutils literal notranslate"><span class="pre">/output/</span></code> folder on the data science linux desktop.
+Everyone in your group will be able to access it, and will have <strong>read-and-write access</strong>.
+Anything placed in here will be considered for data egress - removal from the secure research environment - by the project’s principal investigator together with the data provider.</p>
+<blockquote>
+<div><p>:point_right: You may want to consider having subfolders of <code class="docutils literal notranslate"><span class="pre">/output/</span></code> to make the reivew of this directory easier.</p>
+<p>:information_source: For the Turing Data Study Groups, we recommend the following categories:</p>
+<ul class="simple">
+<li><p>Presentation</p></li>
+<li><p>Transformed data/derived data</p></li>
+<li><p>Report</p></li>
+<li><p>Code</p></li>
+<li><p>Images</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="newspaper-bring-in-new-files-to-the-sre">
+<h3>:newspaper: Bring in new files to the SRE<a class="headerlink" href="#newspaper-bring-in-new-files-to-the-sre" title="Permalink to this headline">¶</a></h3>
+<p>Bringing software into a secure research environment may constitute a security risk.
+Bringing new data into the SRE may mean that the environment needs to be updated to a more secure tier.</p>
+<p>The review of the “ingress” of new code or data will be coordinated by the designated contact for your SRE.
+They will have to discuss whether this is an acceptable risk to the data security with the project’s principle investigator and data provider and the decision might be “no”.</p>
+<blockquote>
+<div><p>:point_right: You can make the process as easy as possible by providing as much information as possible about the code or data you’d like to bring into the environment and about how it is to be used.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="bug-report-a-bug">
+<h2>:bug: Report a bug<a class="headerlink" href="#bug-report-a-bug" title="Permalink to this headline">¶</a></h2>
+<p>The Turing Safe Haven SRE has been developed in close collaboration with our users: you!</p>
+<p>We try to make the user experience as smooth as possible and this document has been greatly improved by feedback from event participants and researchers going through the process for the first time.
+We are constantly working to improve the SRE and we really appreciate your input and support as we develop the infrastructure.</p>
+<blockquote>
+<div><p>:point_right: If you find problems with the IT infrastructure, please contact the designated contact for your SRE.</p>
+</div></blockquote>
+<section id="wrench-help-us-to-help-you">
+<h3>:wrench: Help us to help you<a class="headerlink" href="#wrench-help-us-to-help-you" title="Permalink to this headline">¶</a></h3>
+<p>To help us fix your issues please do the following:</p>
+<ul class="simple">
+<li><p>Make sure you have <strong>read this document</strong> and checked if it answers your query.</p>
+<ul>
+<li><p>Please do not log an issue before you have read all of the sections in this document.</p></li>
+</ul>
+</li>
+<li><p>Log out and log back in again (whether this is to the Turing Safe Haven SRE or the Linux data science desktop) at least once.</p>
+<ul>
+<li><p>Re-attempt the process leading to the bug/error at least twice.</p></li>
+<li><p>We know that “turn it off and turn it back on again” is a frustrating piece of advice to receive, but in our experience it works rather well! (Particularly when there are lots of folks trying these steps at the same time.)</p></li>
+<li><p>The multi-factor authentication step in particular is known to have quite a few gremlins.</p></li>
+<li><p>If you are getting frustrated, log out of everything, turn off your computer, take a 15 minute coffee break, and then start the process from the beginning.</p></li>
+</ul>
+</li>
+<li><p>Write down a comprehensive summary of the issue.
+A really good bug report makes it much easier to pin down what the problem is. Please include:</p>
+<ul>
+<li><p>Your computer’s operating system and operating system version.</p></li>
+<li><p>Precise condition under which the error occurs.</p>
+<ul>
+<li><p>What steps would someone need to take to get the exact same error?</p></li>
+</ul>
+</li>
+<li><p>A precise description of the problem.</p>
+<ul>
+<li><p>What happens? What would you expect to happen if there were no error?</p></li>
+</ul>
+</li>
+<li><p>Any workarounds/fixes you have found.</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p>:bird: We very strongly recommend “rubber ducking” this process before you talk to the designated contact for your SRE.</p>
+<p>Either talk through to your imaginary rubber duck, or find a team member to describe the error to, as you write down the steps you have taken.</p>
+<p>It is amazing what saying the steps out loud can do to fix them.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Send the bug report to the designated contact for your SRE.</p></li>
+</ul>
+</section>
+</section>
+<section id="pray-acknowledgments">
+<h2>:pray: Acknowledgments<a class="headerlink" href="#pray-acknowledgments" title="Permalink to this headline">¶</a></h2>
+<p>This user guide is based on an initial document written in August 2020 by James Robinson.</p>
+<p>Updates:</p>
+<ul class="simple">
+<li><p>September 2020 by Jim Madge and Maryleen Ndubuaku.</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="user-guide.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Safe Haven User Documentation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../reference/README.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reference guides</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

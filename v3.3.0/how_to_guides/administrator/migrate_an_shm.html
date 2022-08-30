@@ -1,0 +1,777 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Migrating an SHM &#8212; Data Safe Haven v3.3.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../explanations/README.html">
+  Learn more about the Safe Haven
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../README.html">
+  How to guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference/README.html">
+  Reference guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorial/README.html">
+  Tutorials and overview
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.3.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mailbox-with-mail-table-of-contents">
+   :mailbox_with_mail: Table of contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explanation-of-symbols-used-in-this-guide">
+   Explanation of symbols used in this guide
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seedling-1-prerequisites">
+   :seedling: 1. Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unlock-2-disconnect-the-old-domain-controller-from-the-azure-active-directory">
+   :unlock: 2. Disconnect the old domain controller from the Azure Active Directory
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pencil-notes">
+     :pencil: Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clipboard-3-safe-haven-management-configuration">
+   :clipboard: 3. Safe Haven Management configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#door-4-configure-dns-for-the-custom-domain">
+   :door: 4. Configure DNS for the custom domain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-folder-5-ensure-the-azure-active-directory-domain-is-registered">
+   :file_folder: 5 Ensure the Azure Active Directory domain is registered
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     :pencil: Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-6-deploy-key-vault-for-shm-secrets-and-create-emergency-admin-account">
+   :key: 6. Deploy Key Vault for SHM secrets and create emergency admin account
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     :pencil: Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#station-7-deploy-network-and-vpn-gateway">
+   :station: 7. Deploy network and VPN gateway
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#house-with-garden-8-deploy-the-domain-controllers">
+   :house_with_garden: 8. Deploy the domain controllers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     :pencil: Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zap-9-configure-the-new-domain-controllers">
+   :zap: 9. Configure the new domain controllers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lock-with-ink-pen-suspend-mfa-for-all-users">
+     :lock_with_ink_pen: Suspend MFA for all users
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#busts-in-silhouette-copy-shm-users-from-old-domain-controller">
+     :busts_in_silhouette: Copy SHM users from old domain controller
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anchor-reset-azure-ad-source-anchors">
+     :anchor: Reset Azure AD source anchors
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       :pencil: Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-install-azure-active-directory-connect">
+     :train: Install Azure Active Directory Connect
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       :pencil: Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recycle-update-azure-active-directory-connect-rules">
+     :recycle: Update Azure Active Directory Connect rules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#put-litter-in-its-place-unregister-the-old-domain-controller-in-azure-active-directory">
+     :put_litter_in_its_place: Unregister the old domain controller in Azure Active Directory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ballot-box-with-check-validate-active-directory-synchronisation">
+     :ballot_box_with_check: Validate Active Directory synchronisation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#police-car-10-deploy-and-configure-network-policy-server">
+   :police_car: 10. Deploy and configure network policy server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#closed-lock-with-key-11-require-mfa-for-all-users">
+   :closed_lock_with_key: 11. Require MFA for all users
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fire-engine-12-deploy-firewall">
+   :fire_engine: 12. Deploy firewall
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#package-13-deploy-python-r-package-repositories">
+   :package: 13. Deploy Python/R package repositories
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chart-with-upwards-trend-14-deploy-logging">
+   :chart_with_upwards_trend: 14. Deploy logging
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/how_to_guides/administrator/migrate_an_shm.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="migrating-an-shm">
+<h1>Migrating an SHM<a class="headerlink" href="#migrating-an-shm" title="Permalink to this headline">¶</a></h1>
+<p>This document assumes that you have already deployed a <a class="reference internal" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.html"><span class="doc std std-doc">Safe Haven Management (SHM) environment</span></a> and one or more <a class="reference internal" href="../../tutorial/deployment_tutorials/how-to-deploy-sre.html"><span class="doc std std-doc">Secure Research Environments (SRE)</span></a> that are linked to it.</p>
+<p>It will help you update the SHM to a newer release by deploying a new SHM and migrating the users to it.</p>
+<section id="mailbox-with-mail-table-of-contents">
+<h2>:mailbox_with_mail: Table of contents<a class="headerlink" href="#mailbox-with-mail-table-of-contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#seedling-1-prerequisites">:seedling: 1. Prerequisites</a></p></li>
+<li><p><a class="reference external" href="#unlock-2-disconnect-the-old-domain-controller-from-the-azure-active-directory">:unlock: 2. Disconnect the old domain controller from the Azure Active Directory</a></p></li>
+<li><p><a class="reference external" href="#clipboard-3-safe-haven-management-configuration">:clipboard: 3. Safe Haven Management configuration</a></p></li>
+<li><p><a class="reference external" href="#door-4-configure-dns-for-the-custom-domain">:door: 4. Configure DNS for the custom domain</a></p></li>
+<li><p><a class="reference external" href="#file_folder-5-ensure-the-azure-active-directory-domain-is-registered">:file_folder: 5 Ensure the Azure Active Directory domain is registered</a></p></li>
+<li><p><a class="reference external" href="#key-6-deploy-key-vault-for-shm-secrets-and-create-emergency-admin-account">:key: 6. Deploy Key Vault for SHM secrets and create emergency admin account</a></p></li>
+<li><p><a class="reference external" href="#station-7-deploy-network-and-vpn-gateway">:station: 7. Deploy network and VPN gateway</a></p></li>
+<li><p><a class="reference external" href="#house_with_garden-8-deploy-the-domain-controllers">:house_with_garden: 8. Deploy the domain controllers</a></p></li>
+<li><p><a class="reference external" href="#zap-9-configure-the-new-domain-controllers">:zap: 9. Configure the new domain controllers</a></p>
+<ul>
+<li><p><a class="reference external" href="#lock_with_ink_pen-suspend-mfa-for-all-users">:lock_with_ink_pen: Suspend MFA for all users</a></p></li>
+<li><p><a class="reference external" href="#busts_in_silhouette-copy-shm-users-from-old-domain-controller">:busts_in_silhouette: Copy SHM users from old domain controller</a></p></li>
+<li><p><a class="reference external" href="#anchor-reset-azure-ad-source-anchors">:anchor: Reset Azure AD source anchors</a></p></li>
+<li><p><a class="reference external" href="#train-install-azure-active-directory-connect">:train: Install Azure Active Directory Connect</a></p></li>
+<li><p><a class="reference external" href="#recycle-update-azure-active-directory-connect-rules">:recycle: Update Azure Active Directory Connect rules</a></p></li>
+<li><p><a class="reference external" href="#put_litter_in_its_place-unregister-the-old-domain-controller-in-azure-active-directory">:put_litter_in_its_place: Unregister the old domain controller in Azure Active Directory</a></p></li>
+<li><p><a class="reference external" href="#ballot_box_with_check-validate-active-directory-synchronisation">:ballot_box_with_check: Validate Active Directory synchronisation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#police_car-10-deploy-and-configure-network-policy-server">:police_car: 10. Deploy and configure network policy server</a></p></li>
+<li><p><a class="reference external" href="#closed_lock_with_key-11-require-mfa-for-all-users">:closed_lock_with_key: 11. Require MFA for all users</a></p></li>
+<li><p><a class="reference external" href="#fire_engine-12-deploy-firewall">:fire_engine: 12. Deploy firewall</a></p></li>
+<li><p><a class="reference external" href="#package-13-deploy-PythonR-package-repositories">:package: 13. Deploy Python/R package repositories</a></p></li>
+<li><p><a class="reference external" href="#chart_with_upwards_trend-14-deploy-logging">:chart_with_upwards_trend: 14. Deploy logging</a></p></li>
+</ul>
+</section>
+<section id="explanation-of-symbols-used-in-this-guide">
+<h2>Explanation of symbols used in this guide<a class="headerlink" href="#explanation-of-symbols-used-in-this-guide" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: estimate of time needed" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=estimate%20of%20time%20needed" /></p>
+<ul class="simple">
+<li><p>This indicates a <code class="docutils literal notranslate"><span class="pre">Powershell</span></code> command which you will need to run locally on your machine</p></li>
+<li><p>Ensure you have checked out the appropriate version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a <code class="docutils literal notranslate"><span class="pre">Powershell</span></code> terminal and navigate to the indicated directory of your locally checked-out version of the Safe Haven repository</p></li>
+<li><p>Ensure that you are logged into Azure by running the <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code> command</p>
+<ul>
+<li><p>:pencil: If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>This command will give you a URL and a short alphanumeric code.</p>
+<ul>
+<li><p>You will need to visit that URL in a web browser, enter the code and log in to your account on Azure</p></li>
+<li><p>:pencil: If you have several Azure accounts, make sure you use one that has permissions to make changes to the subscription you are using</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Remote: estimate of time needed" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=estimate%20of%20time%20needed" /></p>
+<ul class="simple">
+<li><p>This indicates a command which you will need to run remotely on an Azure virtual machine (VM) using <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Remote</span> <span class="pre">Desktop</span></code></p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Remote</span> <span class="pre">Desktop</span></code> and click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Desktop</span></code> / <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">PC</span></code></p></li>
+<li><p>Enter the private IP address of the VM that you need to connect to in the <code class="docutils literal notranslate"><span class="pre">PC</span> <span class="pre">name</span></code> field (this can be found by looking in the Azure portal)</p></li>
+<li><p>Enter the name of the VM (for example <code class="docutils literal notranslate"><span class="pre">DC1-SHM-TESTA</span></code>) in the <code class="docutils literal notranslate"><span class="pre">Friendly</span> <span class="pre">name</span></code> field</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code></p></li>
+<li><p>Ensure you are connected to the SHM VPN that you have set up</p></li>
+<li><p>Double click on the desktop that appears under <code class="docutils literal notranslate"><span class="pre">Saved</span> <span class="pre">Desktops</span></code> or <code class="docutils literal notranslate"><span class="pre">PCs</span></code>.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> specified by the appropriate section of the guide</p></li>
+<li><p>:pencil: If you see a warning dialog that the certificate cannot be verified as root, accept this and continue.</p></li>
+</ul>
+<p><img alt="Portal: estimate of time needed" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-azure&amp;label=portal&amp;color=blue&amp;message=estimate%20of%20time%20needed" /></p>
+<ul class="simple">
+<li><p>This indicates an operation which needs to be carried out in the <a class="reference external" href="https://portal.azure.com"><code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Portal</span></code></a> using a web browser on your local machine.</p></li>
+<li><p>You will need to login to the portal using an account with privileges to make the necessary changes to the resources you are altering</p></li>
+</ul>
+<p><img alt="Azure AD: estimate of time needed" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-academic&amp;label=Azure%20AD&amp;color=blue&amp;message=estimate%20of%20time%20needed" /></p>
+<ul class="simple">
+<li><p>This indicates an operation which needs to be carried out in the <a class="reference external" href="https://portal.azure.com"><code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Portal</span></code></a> using a web browser on your local machine.</p></li>
+<li><p>You will need to login to the portal using an account with administrative privileges on the <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> that you are altering.</p></li>
+<li><p>Note that this might be different from the account which is able to create/alter resources in the Azure subscription where you are building the Safe Haven.</p></li>
+</ul>
+<p>:pencil: <strong>Notes</strong></p>
+<ul class="simple">
+<li><p>This indicates some explanatory notes or examples that provide additional context for the current step.</p></li>
+</ul>
+<p>:warning: <strong>Troubleshooting</strong></p>
+<ul class="simple">
+<li><p>This indicates a set of troubleshooting instructions to help diagnose and fix common problems with the current step.</p></li>
+</ul>
+<p><img alt="macOS" src="https://img.shields.io/badge/-555?&amp;logo=apple&amp;logoColor=white" /><img alt="Windows" src="https://img.shields.io/badge/-555?&amp;logo=windows&amp;logoColor=white" /><img alt="Linux" src="https://img.shields.io/badge/-555?&amp;logo=linux&amp;logoColor=white" /></p>
+<ul class="simple">
+<li><p>These indicate steps that depend on the OS that you are using to deploy the SHM</p></li>
+</ul>
+</section>
+<section id="seedling-1-prerequisites">
+<h2>:seedling: 1. Prerequisites<a class="headerlink" href="#seedling-1-prerequisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>All of the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#seedling-1-prerequisites">Safe Haven Management (SHM) environment</a> prerequisites</p></li>
+</ul>
+<p>The following variables will be used during deploying</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;old</span> <span class="pre">SHM</span> <span class="pre">ID&gt;</span></code>: the <a class="reference external" href="#management-environment-id">management environment ID</a> for the previously deployed SHM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>: the <a class="reference external" href="#management-environment-id">management environment ID</a> for the new SHM you want to deploy</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;AAD</span> <span class="pre">tenant</span> <span class="pre">ID&gt;</span></code>: the <code class="docutils literal notranslate"><span class="pre">Tenant</span> <span class="pre">ID</span></code> for the Azure Active Directory that your previously deployed SHM is connected to</p></li>
+</ul>
+</section>
+<section id="unlock-2-disconnect-the-old-domain-controller-from-the-azure-active-directory">
+<h2>:unlock: 2. Disconnect the old domain controller from the Azure Active Directory<a class="headerlink" href="#unlock-2-disconnect-the-old-domain-controller-from-the-azure-active-directory" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Remote: one minute" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=one%20minute" /></p>
+<ul class="simple">
+<li><p>Log into the <strong>SHM primary domain controller</strong> for the old SHM (<code class="docutils literal notranslate"><span class="pre">DC1-SHM-&lt;old</span> <span class="pre">SHM</span> <span class="pre">ID&gt;</span></code>) VM using the <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">IP</span> <span class="pre">address</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">login&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">password&gt;</span></code> from the portal</p></li>
+<li><p>Open Powershell as an administrator</p>
+<ul>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">C:\Installation</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">.\Disconnect_AD.ps1</span></code></p></li>
+<li><p>You will need to provide login credentials (including MFA if set up) for <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code></p></li>
+</ul>
+</li>
+<li><p>:warning: Do not attempt to add users to the old SHM after this point as they will not be synchronised to the Azure Active Directory!</p></li>
+</ul>
+<section id="pencil-notes">
+<h3>:pencil: Notes<a class="headerlink" href="#pencil-notes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Full disconnection of the Azure Active Directory can take up to 72 hours but will typically take around one day</p></li>
+</ul>
+</section>
+</section>
+<section id="clipboard-3-safe-haven-management-configuration">
+<h2>:clipboard: 3. Safe Haven Management configuration<a class="headerlink" href="#clipboard-3-safe-haven-management-configuration" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Create a copy of the configuration file for your previous SHM</p></li>
+<li><p>You may want to change some of the following attributes:</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;azure&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;subscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Azure subscription to deploy the SHM into. You might want to use a different subscription than for your previous SHM.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;shmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The &lt;SHM ID&gt; for the new SHM. If you try to deploy two SHMs with the same ID into the same subscription some resources will not deploy correctly.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="door-4-configure-dns-for-the-custom-domain">
+<h2>:door: 4. Configure DNS for the custom domain<a class="headerlink" href="#door-4-configure-dns-for-the-custom-domain" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: a few minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#door-3-configure-dns-for-the-custom-domain">Safe Haven Management</a> documentation for more details</p>
+</section>
+<section id="file-folder-5-ensure-the-azure-active-directory-domain-is-registered">
+<h2>:file_folder: 5 Ensure the Azure Active Directory domain is registered<a class="headerlink" href="#file-folder-5-ensure-the-azure-active-directory-domain-is-registered" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: a few minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#file_folder-4-setup-azure-active-directory-aad">Safe Haven Management</a> documentation for more details</p>
+<section id="id1">
+<h3>:pencil: Notes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>You will need to use an AAD global admin when the <code class="docutils literal notranslate"><span class="pre">AzureAD</span></code> module asks you to sign-in.</p></li>
+</ul>
+</section>
+</section>
+<section id="key-6-deploy-key-vault-for-shm-secrets-and-create-emergency-admin-account">
+<h2>:key: 6. Deploy Key Vault for SHM secrets and create emergency admin account<a class="headerlink" href="#key-6-deploy-key-vault-for-shm-secrets-and-create-emergency-admin-account" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: ten minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=ten%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#key-5-deploy-key-vault-for-shm-secrets-and-create-emergency-admin-account">Safe Haven Management</a> documentation for more details</p>
+<section id="id2">
+<h3>:pencil: Notes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>You will need to use an AAD global admin when the <code class="docutils literal notranslate"><span class="pre">AzureAD</span></code> module asks you to sign-in.</p></li>
+</ul>
+</section>
+</section>
+<section id="station-7-deploy-network-and-vpn-gateway">
+<h2>:station: 7. Deploy network and VPN gateway<a class="headerlink" href="#station-7-deploy-network-and-vpn-gateway" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: twenty minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=twenty%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>Follow the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#station-8-deploy-network-and-vpn-gateway">Safe Haven Management</a> documentation for instructions on VPN gateway setup</p>
+</section>
+<section id="house-with-garden-8-deploy-the-domain-controllers">
+<h2>:house_with_garden: 8. Deploy the domain controllers<a class="headerlink" href="#house-with-garden-8-deploy-the-domain-controllers" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: one hour" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=one%20hour" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#house_with_garden-9-deploy-and-configure-domain-controllers">Safe Haven Management</a> documentation for more details</p>
+<section id="id3">
+<h3>:pencil: Notes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Do <strong>not</strong> run any of the domain controller configuration steps yet</p></li>
+</ul>
+</section>
+</section>
+<section id="zap-9-configure-the-new-domain-controllers">
+<h2>:zap: 9. Configure the new domain controllers<a class="headerlink" href="#zap-9-configure-the-new-domain-controllers" title="Permalink to this headline">¶</a></h2>
+<section id="lock-with-ink-pen-suspend-mfa-for-all-users">
+<h3>:lock_with_ink_pen: Suspend MFA for all users<a class="headerlink" href="#lock-with-ink-pen-suspend-mfa-for-all-users" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Azure AD: under a minute" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-academic&amp;label=Azure%20AD&amp;color=blue&amp;message=under%20a%20minute" /></p>
+<ul class="simple">
+<li><p>From the Azure portal, navigate to the AAD.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Security</span></code> in the left hand sidebar</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Conditional</span> <span class="pre">access</span></code> in the left hand sidebar</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">MFA</span></code> policy from the policy list</p>
+<ul>
+<li><p>Toggle <code class="docutils literal notranslate"><span class="pre">Enable</span> <span class="pre">policy</span></code> to <code class="docutils literal notranslate"><span class="pre">Off</span></code></p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Save</span></code> button</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="busts-in-silhouette-copy-shm-users-from-old-domain-controller">
+<h3>:busts_in_silhouette: Copy SHM users from old domain controller<a class="headerlink" href="#busts-in-silhouette-copy-shm-users-from-old-domain-controller" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Powershell: five minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=five%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">./</span><span class="n">Copy_SHM_Users</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-oldShmId</span> <span class="p">&lt;</span><span class="n">old</span> <span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span> <span class="n">-newShmId</span> <span class="p">&lt;</span><span class="n">SHM</span> <span class="n">ID</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;old</span> <span class="pre">SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#management-environment-id">management environment ID</a> for the previously deployed SHM</p></li>
+<li><p>where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#management-environment-id">management environment ID</a> for this SHM</p></li>
+</ul>
+</section>
+<section id="anchor-reset-azure-ad-source-anchors">
+<h3>:anchor: Reset Azure AD source anchors<a class="headerlink" href="#anchor-reset-azure-ad-source-anchors" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Remote: ten minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=ten%20minutes" /></p>
+<ul class="simple">
+<li><p>Log into the <strong>SHM primary domain controller</strong> (<code class="docutils literal notranslate"><span class="pre">DC1-SHM-&lt;SHM</span> <span class="pre">ID&gt;</span></code>) VM that you have just deployed using the <code class="docutils literal notranslate"><span class="pre">private</span> <span class="pre">IP</span> <span class="pre">address</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">login&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">password&gt;</span></code> that you obtained from the portal</p></li>
+</ul>
+<p>Run the following <code class="docutils literal notranslate"><span class="pre">Powershell</span></code> commands</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Get local users</span>
+<span class="nv">$userOuPath</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-ADObject</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-eq</span> <span class="s2">&quot;Safe Haven Research Users&quot;</span> <span class="p">}).</span><span class="n">DistinguishedName</span>
+<span class="nv">$users</span> <span class="p">=</span> <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-SearchBase</span> <span class="s2">&quot;$userOuPath&quot;</span> <span class="n">-Properties</span> <span class="p">*</span>
+
+<span class="c"># Connect to AzureAD</span>
+<span class="c"># Use the credentials for an AzureAD global admin (eg. `aad.admin.firstname.surname@&lt;SHM domain&gt;`)</span>
+<span class="nb">Connect-MsolService</span>
+
+<span class="c"># Reset source anchor for AzureAD users</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$user</span> <span class="k">in</span> <span class="nv">$users</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nv">$immutableId</span> <span class="p">=</span> <span class="no">[System.Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="nv">$user</span><span class="p">.</span><span class="n">ObjectGUID</span><span class="p">.</span><span class="n">ToByteArray</span><span class="p">())</span>
+  <span class="nb">Set-MsolUser</span> <span class="n">-UserPrincipalName</span> <span class="p">$(</span><span class="nv">$user</span><span class="p">.</span><span class="n">UserPrincipalName</span><span class="p">)</span> <span class="n">-immutableID</span> <span class="nv">$immutableId</span>
+  <span class="nb">Write-Host</span> <span class="s2">&quot;Set source anchor for </span><span class="p">$(</span><span class="nv">$user</span><span class="p">.</span><span class="n">UserPrincipalName</span><span class="p">)</span><span class="s2"> to $immutableId&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="id4">
+<h4>:pencil: Notes<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Note that all research users in this SHM will have to go to <code class="docutils literal notranslate"><span class="pre">aka.ms/sspr</span></code> to reset their passwords although their MFA configuration will stay the same</p></li>
+</ul>
+</section>
+</section>
+<section id="train-install-azure-active-directory-connect">
+<h3>:train: Install Azure Active Directory Connect<a class="headerlink" href="#train-install-azure-active-directory-connect" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Remote: ten minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=ten%20minutes" /></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#install-azure-active-directory-connect">Safe Haven Management</a> documentation for more details</p>
+<section id="id5">
+<h4>:pencil: Notes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>Since you are trying to connect the new SHM to an Azure Active Directory that was already synchronised, you may find the <code class="docutils literal notranslate"><span class="pre">AzureADConnect</span></code> installation fails with an error like the one below. If this happens then you will need to wait for up to 72 hrs for the previous disconnection to complete.</p>
+<details><summary><b>Directory synchronisation failure</b></summary>
+<p><img alt="aad_connection_failure" src="../../_images/aad_connection_failure.png" /></p>
+</details>
+</section>
+</section>
+<section id="recycle-update-azure-active-directory-connect-rules">
+<h3>:recycle: Update Azure Active Directory Connect rules<a class="headerlink" href="#recycle-update-azure-active-directory-connect-rules" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Remote: one minute" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=one%20minute" /></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#update-azure-active-directory-connect-rules">Safe Haven Management</a> documentation for more details</p>
+</section>
+<section id="put-litter-in-its-place-unregister-the-old-domain-controller-in-azure-active-directory">
+<h3>:put_litter_in_its_place: Unregister the old domain controller in Azure Active Directory<a class="headerlink" href="#put-litter-in-its-place-unregister-the-old-domain-controller-in-azure-active-directory" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Azure AD: one minute" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-academic&amp;label=Azure%20AD&amp;color=blue&amp;message=one%20minute" /></p>
+<ul class="simple">
+<li><p>From the Azure portal, navigate to the AAD you have created.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">AD</span> <span class="pre">Connect</span></code> from the left hand menu</p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Health</span> <span class="pre">And</span> <span class="pre">Analytics</span></code> click <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">AD</span> <span class="pre">Connect</span> <span class="pre">Health</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Sync</span> <span class="pre">services</span></code> from the left hand menu</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">&lt;Safe</span> <span class="pre">Haven</span> <span class="pre">identifier&gt;.onmicrosoft.com</span></code> whose <code class="docutils literal notranslate"><span class="pre">Status</span></code> will be marked as <code class="docutils literal notranslate"><span class="pre">Unhealthy</span></code></p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Connect</span> <span class="pre">Server</span></code> that corresponds to the <strong>old</strong> DC (marked as <code class="docutils literal notranslate"><span class="pre">Unhealthy</span></code>)</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Delete</span></code> in the top bar, type the server name when prompted then click <code class="docutils literal notranslate"><span class="pre">Delete</span></code></p></li>
+</ul>
+</section>
+<section id="ballot-box-with-check-validate-active-directory-synchronisation">
+<h3>:ballot_box_with_check: Validate Active Directory synchronisation<a class="headerlink" href="#ballot-box-with-check-validate-active-directory-synchronisation" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Remote: one minute" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-onedrive&amp;label=remote&amp;color=blue&amp;message=one%20minute" /></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#validate-active-directory-synchronisation">Safe Haven Management</a> documentation for more details</p>
+</section>
+</section>
+<section id="police-car-10-deploy-and-configure-network-policy-server">
+<h2>:police_car: 10. Deploy and configure network policy server<a class="headerlink" href="#police-car-10-deploy-and-configure-network-policy-server" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: twenty minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=twenty%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#police_car-10-deploy-and-configure-network-policy-server">Safe Haven Management</a> documentation for more details</p>
+</section>
+<section id="closed-lock-with-key-11-require-mfa-for-all-users">
+<h2>:closed_lock_with_key: 11. Require MFA for all users<a class="headerlink" href="#closed-lock-with-key-11-require-mfa-for-all-users" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Azure AD: a few minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=microsoft-academic&amp;label=Azure%20AD&amp;color=blue&amp;message=a%20few%20minutes" /></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#closed_lock_with_key-11-require-mfa-for-all-users">Safe Haven Management</a> documentation for more details</p>
+</section>
+<section id="fire-engine-12-deploy-firewall">
+<h2>:fire_engine: 12. Deploy firewall<a class="headerlink" href="#fire-engine-12-deploy-firewall" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: ten minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=ten%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#fire_engine-12-deploy-firewall">Safe Haven Management</a> documentation for more details</p>
+</section>
+<section id="package-13-deploy-python-r-package-repositories">
+<h2>:package: 13. Deploy Python/R package repositories<a class="headerlink" href="#package-13-deploy-python-r-package-repositories" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: thirty minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=thirty%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#package-13-deploy-PythonR-package-repositories">Safe Haven Management</a> documentation for more details</p>
+</section>
+<section id="chart-with-upwards-trend-14-deploy-logging">
+<h2>:chart_with_upwards_trend: 14. Deploy logging<a class="headerlink" href="#chart-with-upwards-trend-14-deploy-logging" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Powershell: a few minutes" src="https://img.shields.io/static/v1?style=for-the-badge&amp;logo=powershell&amp;label=local&amp;color=blue&amp;message=a%20few%20minutes" /> at :file_folder: <code class="docutils literal notranslate"><span class="pre">./deployment/safe_haven_management_environment/setup</span></code></p>
+<p>See the <a class="reference external" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.md#chart_with_upwards_trend-14-deploy-logging">Safe Haven Management</a> documentation for more details</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

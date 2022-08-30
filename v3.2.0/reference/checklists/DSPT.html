@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>NHS DSPT Security Assessment &#8212; Data Safe Haven v3.2.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.2.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/reference/checklists/DSPT.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="nhs-dspt-security-assessment">
+<h1>NHS DSPT Security Assessment<a class="headerlink" href="#nhs-dspt-security-assessment" title="Permalink to this headline">¶</a></h1>
+<p>Below is the updating list for the NHS DSPT self assessment for Cat. 3 orgs that the DSH team is hoping to submit by March.
+Please have a look through and give any feedback/ideas/comments as we collect the remaining evidence and decide on outstanding policies.</p>
+<p>Status Key:</p>
+<ul class="simple">
+<li><p>Y: Yes</p></li>
+<li><p>N: No</p></li>
+<li><p>?: Don’t Know</p></li>
+<li><p>P: Partly</p></li>
+<li><p>NA: Not Applicable</p></li>
+</ul>
+<p>Likely Solution Key:</p>
+<ul class="simple">
+<li><p>PD: Policy Document</p></li>
+<li><p>TD: Technical Documentation</p></li>
+<li><p>TS: Technical Solution</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Evidence Reference</p></th>
+<th class="head"><p>Evidence text - Others (Category 3)</p></th>
+<th class="head"><p>Tool tips - Others (Category 3)</p></th>
+<th class="head"><p>Status</p></th>
+<th class="head"><p>Likely Solution</p></th>
+<th class="head"><p>Notes/Evidence</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.1.1</p></td>
+<td><p>Has responsibility for data security been assigned?</p></td>
+<td><p>This is a formally assigned responsibility for data security to a relevant individual. It could form part of their job description or be an email from the appropriate manager in your organisation.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p>Ian Carter</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.1.2</p></td>
+<td><p>Who are your staff with responsibility for data protection and / or security.</p></td>
+<td><p>Record names and job titles only for staff who have a specialised role.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p>Ian Carter/ members of the data protection team, as listed in the <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=6c4590be2c74466497f5239915717621">Turing Data breach and security incident management policy</a> section 4, also section 7:</p></td>
+</tr>
+<tr class="row-even"><td><p>1.2.1</p></td>
+<td><p>Are there approved data security and protection policies in place that follow relevant guidance?</p></td>
+<td><p>Confirm that you have policies in place that explain the organisation’s plan or principles for data protection, data quality, records management, data security, registration authority, Subject access requests, Freedom of Information and network security.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=5d4e868d975b4e849a43f7cd0e629f16">Data Protection policy</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>1.3.1</p></td>
+<td><p>What is your ICO registration number?</p></td>
+<td><p>You can get this number from the Information Commissioner’s Office website https://ico.org.uk/esdwebpages/search</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p>ZA541179 (from<a class="reference external" href="https://ico.org.uk/ESDWebPages/Entry/ZA541179">ICO</a></p></td>
+</tr>
+<tr class="row-even"><td><p>1.3.2</p></td>
+<td><p>How is transparency information (e.g. your privacy notice) published and available to the public?</p></td>
+<td><p>This covers personal information you collect or manage for patients and the public.  Provide a weblink if possible or other publicly available document.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=11b7dab8a01047ee992508f16a95e566">Data Subjects Protection policy</a> ; <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=5d4e868d975b4e849a43f7cd0e629f16">Data Protection Policy</a> section 2.3 lists potential data collection carreid out by institute</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.3.3</p></td>
+<td><p>How have individuals been informed about their rights and how to exercise them?</p></td>
+<td><p>This covers personal information you collect or manage for patients and the public and could be a website, leaflet, letter or other method. It Would include a list of rights and when/whether they apply to the processing undertaken, contact details and procedure for subject access, and other rights requests.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=11b7dab8a01047ee992508f16a95e566">Data Subjects Request policy</a></p></td>
+</tr>
+<tr class="row-even"><td><p>1.4.1</p></td>
+<td><p>Provide details of the record or register that details each use or sharing of personal information.</p></td>
+<td><p>The record should include for each entry:Purpose of processing, Legal basis relied on from GDPR Article 6 and Article 9, Categories of data subject/personal data, Categories of recipients, whether information is transferred overseas, whether data is retained and disposed of in line with policies, or if not, why not. Whether a written data-sharing agreement or contract is in place and when it ends.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>How do we want to do this?</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.4.2</p></td>
+<td><p>When was the record or register of information flows approved by the Management team or equivalent?</p></td>
+<td><p>This date should be within the last twelve months.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>In and outs of the data safe haven - is this defined enough and does this cover everything?</p></td>
+</tr>
+<tr class="row-even"><td><p>1.4.4</p></td>
+<td><p>Is your organisation compliant with the national data opt-out policy?</p></td>
+<td><p>Please provide your published compliance statement e.g. within a privacy notice and/or Published Data Release Register (https://digital.nhs.uk/services/national-data-opt-out-programme/compliance-with-the-national-data-opt-out).</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=11b7dab8a01047ee992508f16a95e566">Data Subjects Request policy</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>1.5.2</p></td>
+<td><p>What actions have been taken following confidentiality and data protection monitoring/spot checks during the last year?</p></td>
+<td><p>The spot checks should check that staff are doing what it says in your staff Confidentiality and Data Protection guidance and the response should include details of any actions, who has approved the actions and who is taking them forward.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=5d4e868d975b4e849a43f7cd0e629f16">Data Protection Policy</a> section 4.3 &amp; 8</p></td>
+</tr>
+<tr class="row-even"><td><p>1.6.1</p></td>
+<td><p>There is an approved procedure that sets out the organisation’s approach to data protection by design and by default, which includes pseudonymisation requirements.</p></td>
+<td><p>The procedures should be approved by the board or equivalent and aim to ensure that only the minimum necessary personal data are processed, that pseudonymisation is used where possible and that processing is transparent allowing individuals to monitor what is being done with their data.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=5d4e868d975b4e849a43f7cd0e629f16">Data Protection Policy</a>, 3.11 specifically</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.6.2</p></td>
+<td><p>There are technical controls that prevent information from being inappropriately copied or downloaded.</p></td>
+<td><p>Technical controls that can support data protection include access control, encryption, computer port control, pseudonymisation techniques etc.  Provide details at high level.</p></td>
+<td><p>P</p></td>
+<td><p>TD</p></td>
+<td><p>says ‘at some tiers’ in <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/explanations/security_decisions/security-controls.md">security doc</a>, needs to be more specific issue #891</p></td>
+</tr>
+<tr class="row-even"><td><p>1.6.3</p></td>
+<td><p>There are physical controls that prevent unauthorised access  to buildings and locations where personal data are stored or processed.</p></td>
+<td><p>Physical controls that can support data protection include lockable doors, windows and cupboards, clear desk procedure, security badges, key coded locks to access secure areas, records libraries, etc.  Provide details at high level.</p></td>
+<td><p>N</p></td>
+<td><p>PD</p></td>
+<td><p>Policy to be drafted by IT - in progress (IC)</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.6.5</p></td>
+<td><p>There is a staff procedure, agreed by the person with responsibility for data security, on carrying out a Data Protection Impact Assessment that follows relevant ICO guidance.</p></td>
+<td><p>CO guidance available at: https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/accountability-and-governance/data-protection-impact-assessments/</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=5d4e868d975b4e849a43f7cd0e629f16">Data Protection Policy</a> section 3.5</p></td>
+</tr>
+<tr class="row-even"><td><p>1.6.6</p></td>
+<td><p>Is a Data Protection Impact Assessment carried out before high risk processing commences?</p></td>
+<td><p>‘High risk processing’ encompasses: Automated processing; Large scale processing of special categories data - which includes health and genetic data; Systematic monitoring of a public area. If not relevant for your organisation tick to confirm.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>asking IC for more detail - checking with the DPAP/DPIA as well to see if it is spelled out in more detail in these documents</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.7.4</p></td>
+<td><p>Has a records retention schedule been produced?</p></td>
+<td><p>The organisation has produced a retention schedule based on business need with reference to statutory requirements and other guidance (https://digital.nhs.uk/article/1202/Records-Management-Code-of-Practice-for-Health-and-Social-Care-2016).</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=2f2dbf8baf9d42ac8e8bd92540562409">Data retention policy</a></p></td>
+</tr>
+<tr class="row-even"><td><p>1.7.5</p></td>
+<td><p>Provide details of when personal data disposal contract/s were last reviewed/updated.</p></td>
+<td><p>The contract/s should include the requirement to have appropriate security measures in compliance with data protection law and the facility to allow audit by the organisation. If no contract explain how personal data is disposed. The review should be in the last twelve months. Details https://ico.org.uk/media/for-organisations/documents/1475/deleting_personal_data.pdf</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=2f2dbf8baf9d42ac8e8bd92540562409">Data retention policy</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>1.8.3</p></td>
+<td><p>What are your top three data security and protection risks?</p></td>
+<td><p>Record at a heading level</p></td>
+<td><p>N</p></td>
+<td><p>TD</p></td>
+<td><p>need to decide top 3 and record</p></td>
+</tr>
+<tr class="row-even"><td><p>2.2.1</p></td>
+<td><p>Is there a data protection and security induction in place for all new entrants to the organisation?</p></td>
+<td><p>The induction can be delivered face to face or digitally. Records are maintained and the induction is reviewed on a regular basis to ensure its effectiveness.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=fb1b75737e5b452e9f5327a4b8ac2add">Acceptable use policy</a> Section 10: mandated GDPR and cyber training within first month</p></td>
+</tr>
+<tr class="row-odd"><td><p>2.2.2</p></td>
+<td><p>Do all employment contracts contain data security requirements?</p></td>
+<td><p>Please provide any explanatory text in the comments box</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>To check with HR</p></td>
+</tr>
+<tr class="row-even"><td><p>3.1.1</p></td>
+<td><p>Has an approved organisation-wide data security and protection training needs analysis been completed in the last twelve months?</p></td>
+<td><p>This is an assessment of data security and protection training and development needs for all your staff including Board Members. Approved by your SIRO or equivalent.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p>IC to share doc</p></td>
+</tr>
+<tr class="row-odd"><td><p>3.2.1</p></td>
+<td><p>Have at least 95% of all staff, completed their annual Data Security Awareness Training?</p></td>
+<td><p>Please provide your highest percentage figure for the financial year 2020-21 in the space below with an explanation of how you have calculated the figure.</p></td>
+<td><p>?</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>3.4.1</p></td>
+<td><p>Have the senior people with responsibility for data security received appropriate data security and protection training?</p></td>
+<td><p>As defined in your organisations data security and protection training needs analysis.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p>IC believes <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=fb1b75737e5b452e9f5327a4b8ac2add">acceptable use policy</a> cSection 10: mandated GDPR and cyber training within first month covers requirement</p></td>
+</tr>
+<tr class="row-odd"><td><p>4.1.1</p></td>
+<td><p>Your organisation maintains a record of staff and their roles.</p></td>
+<td><p></p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>To check with HR</p></td>
+</tr>
+<tr class="row-even"><td><p>4.1.2</p></td>
+<td><p>Does the organisation understand who has access to personal and confidential data through your systems, including any systems which do not support individual logins?</p></td>
+<td><p>Each system may use its own user list(s) or use federated access. There may be systems where technically or operationally it is not possible to have individual logins but there are alternative methods of maintaining user lists. Where this occurs, it is understood and risk assessed by the organisation.</p></td>
+<td><p>N</p></td>
+<td><p>PD</p></td>
+<td><p>We need to define a specific DSH policy for access - is this something for the team or for IC to do?</p></td>
+</tr>
+<tr class="row-odd"><td><p>4.2.1</p></td>
+<td><p>When was the last audit of user accounts held? An audit of staff accounts from your organisation, to make sure there aren’t any inappropriate access permissions.</p></td>
+<td><p>Record the date when the last user audit was held. This should be completed annually as a minimum</p></td>
+<td><p>N</p></td>
+<td><p>PD</p></td>
+<td><p>We need to define a specific DSH policy for access, is this something for the team or for IC to do?</p></td>
+</tr>
+<tr class="row-even"><td><p>4.3.1</p></td>
+<td><p>All system administrators have signed an agreement which holds them accountable to the highest standards of use.</p></td>
+<td><p>With great power comes great responsibility and all administrators should attest to that responsibility by being signatory to a agreement affirming the highest standard of use. If no systems select Yes.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>IC says that <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=fb1b75737e5b452e9f5327a4b8ac2add&amp;from=0d1cf443-a273-4da6-b2fb-6dfbec2f76f2">Standards of use policy</a> that everyone signs should be enough. Do we agree?</p></td>
+</tr>
+<tr class="row-odd"><td><p>4.5.1</p></td>
+<td><p>Do you have a password policy giving staff advice on managing their passwords?</p></td>
+<td><p>Password policy must cover (a) How to avoid choosing obvious passwords (b) Not to choose common passwords (c) No password reuse. (d) Where and how they may record passwords to store and retrieve them securely. (e) If password management software is allowed, and if so, which.(f) Which passwords they really must memorise and not record anywhere.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/how_to_guides/user_guides/user-guide.md#closed_lock_with_key-set-a-password">password policy</a></p></td>
+</tr>
+<tr class="row-even"><td><p>5.1.2</p></td>
+<td><p>Provide summary details of process reviews held to identify and manage problem processes that cause security breaches.</p></td>
+<td><p>Processes which have caused breaches or near misses, are reviewed to identify and improve processes which force staff to use workarounds which compromise data security.</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p>Section 6 of <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=6c4590be2c74466497f5239915717621">Data Breach &amp; Security Incident Management Policy</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>6.1.1</p></td>
+<td><p>A data security and protection breach reporting system is in place.</p></td>
+<td><p>Confirmation that a functioning data security and protection breach reporting mechanism is in place including use of the DSP Toolkit incident reporting tool</p></td>
+<td><p>Y</p></td>
+<td><p>PD/TS</p></td>
+<td><p>Section 6 of <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=6c4590be2c74466497f5239915717621">Data Breach &amp; Security Incident Management Policy</a> and notes on issue #888</p></td>
+</tr>
+<tr class="row-even"><td><p>6.1.4</p></td>
+<td><p>The person with overall responsibility for data security is notified of the action plan for all data security breaches.</p></td>
+<td><p>If no breaches then please state “No breaches”</p></td>
+<td><p>Y</p></td>
+<td><p>PD</p></td>
+<td><p>Section 6 of <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=6c4590be2c74466497f5239915717621">Data Breach &amp; Security Incident Management Policy</a> and notes on issue #888</p></td>
+</tr>
+<tr class="row-odd"><td><p>6.1.5</p></td>
+<td><p>Individuals affected by a breach are appropriately informed.</p></td>
+<td><p>Data subjects are appropriately informed of data breaches in accordance with (https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/personal-data-breaches/). If no breaches then please tick and state “No breaches”.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>not included in <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=6c4590be2c74466497f5239915717621">Data Breach &amp; Security Incident Management Policy</a> - checking with IC whether there is a justification for this or whether it’s a policy we have to create.</p></td>
+</tr>
+<tr class="row-even"><td><p>6.2.2</p></td>
+<td><p>Number of alerts recorded by the antivirus/anti-malware tool in the last three months.</p></td>
+<td><p>Your antivirus/anti-malware software should record alerts of any potential threats to your system. Provide the number which have been recorded over the last three months. You may need to speak to your IT Supplier to learn how to view this information.</p></td>
+<td><p>P</p></td>
+<td><p>TD</p></td>
+<td><p>ask IC for this? Also any logging from DSH logging #888</p></td>
+</tr>
+<tr class="row-odd"><td><p>6.2.3</p></td>
+<td><p>Has antivirus/anti-malware software been installed on all computers that are connected to or capable of connecting to the Internet?</p></td>
+<td><p>This applies to: application servers; desktop computers; laptop computers,  tablets and mobile devices running windows desktop operating systems. Please include the name of your anti-virus product in the comments.</p></td>
+<td><p>P</p></td>
+<td><p>TD</p></td>
+<td><p>general listed in <a class="reference external" href="https://turingcomplete.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?origin=sspTile&amp;unid=fb1b75737e5b452e9f5327a4b8ac2add&amp;from=0d1cf443-a273-4da6-b2fb-6dfbec2f76f2">acceptable use policy</a> section 5, need to write specific list for DSH as well.</p></td>
+</tr>
+<tr class="row-even"><td><p>7.1.2</p></td>
+<td><p>Do you have a business continuity plan in place to ensure the continuity of services in the event of a data security incident, failure or compromise?</p></td>
+<td><p>This may include the preservation of manual processes for essential services.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>Do we want this to be a business wide or DSH specific one? If DSH specific, need to decide how this would look</p></td>
+</tr>
+<tr class="row-odd"><td><p>7.2.1</p></td>
+<td><p>Explain how your data security incident response and management plan has been tested to ensure all parties understand their roles and responsibilities as part of the plan.</p></td>
+<td><p>This should be in the last twelve months.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>Do we want this to be a business wide or DSH specific one? If DSH specific, need to decide how this would look</p></td>
+</tr>
+<tr class="row-even"><td><p>7.3.2</p></td>
+<td><p>All emergency contacts are kept securely, in hardcopy and are up-to-date.</p></td>
+<td><p>Contacts include phone number as well as email.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>Do we want this to be a business wide or DSH specific one? If DSH specific, need to decide how this would look</p></td>
+</tr>
+<tr class="row-odd"><td><p>7.3.4</p></td>
+<td><p>Suitable backups of all important data and information needed to recover the essential service are made, tested, documented and routinely reviewed.</p></td>
+<td><p>Provide evidence that your backup, testing and review process is effective.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>Do we want this to be a business wide or DSH specific one? If DSH specific, need to decide how this would look, also issue #889</p></td>
+</tr>
+<tr class="row-even"><td><p>7.3.5</p></td>
+<td><p>When did you last successfully restore from backup?</p></td>
+<td><p>Backups should be tested frequently. The example provided may relate to a live or test environment.</p></td>
+<td><p>?</p></td>
+<td><p>PD</p></td>
+<td><p>Do we want this to be a business wide or DSH specific one? If DSH specific, need to decide how this would look issue #889</p></td>
+</tr>
+<tr class="row-odd"><td><p>8.1.1</p></td>
+<td><p>What software do you use?</p></td>
+<td><p>This is a list of all the software that is used in the organisation including version numbers and whether the software is supported i.e. it still receives security updates.</p></td>
+<td><p>N</p></td>
+<td><p>TD</p></td>
+<td><p>list higher level - windows, ubutu, what is outside this and then how it could do something</p></td>
+</tr>
+<tr class="row-even"><td><p>8.2.1</p></td>
+<td><p>List any unsupported software prioritised according to business risk, with remediation plan against each item.</p></td>
+<td><p>Unsupported software is software which is no longer receiving security updates e.g Windows XP, Java or Windows Server 2008. Unsupported software is less secure and so poses a larger risk to your organisation. The unsupported software list will comprise of the results of the software survey where the software is not supported/updated.</p></td>
+<td><p>N</p></td>
+<td><p>TD</p></td>
+<td><p>issue #891</p></td>
+</tr>
+<tr class="row-odd"><td><p>8.2.2</p></td>
+<td><p>The person with overall responsibility for data security confirms that the risks of using unsupported systems are being managed.</p></td>
+<td><p>The person with overall responsibility for data security has made a conscious decision to accept and manage the associated risks of unsupported systems. If no unsupported systems please tick and state “no unsupported systems” as a comment.</p></td>
+<td><p>N</p></td>
+<td><p>TD</p></td>
+<td><p>issue #891</p></td>
+</tr>
+<tr class="row-even"><td><p>8.3.1</p></td>
+<td><p>How do your systems receive updates and how often?</p></td>
+<td><p>This is your strategy for system updates. You may need your IT supplier/s to assist with this.</p></td>
+<td><p>N</p></td>
+<td><p>TD</p></td>
+<td><p>issue #891</p></td>
+</tr>
+<tr class="row-odd"><td><p>9.1.1</p></td>
+<td><p>The person responsible for IT has checked that all networking components have had their default passwords changed.</p></td>
+<td><p>If you don’t have network or internet access please contact the helpdesk to request an exemption. You may need to ask your IT Suppliers for assistance with this.</p></td>
+<td><p>N</p></td>
+<td><p>TD</p></td>
+<td><p>IC to write a policy with IT</p></td>
+</tr>
+<tr class="row-even"><td><p>9.6.2</p></td>
+<td><p>Confirm all health and care data is encrypted at rest on all mobile devices and removeable media.</p></td>
+<td><p></p></td>
+<td><p>NA</p></td>
+<td><p></p></td>
+<td><p>Need to write brief explanation of why NA</p></td>
+</tr>
+<tr class="row-odd"><td><p>10.1.1</p></td>
+<td><p>The organisation has a list of its suppliers that handle personal information, the products and services they deliver, their contact details and the contract duration.</p></td>
+<td><p>A list containing suppliers that handle personal information, systems/services and contract start and end dates.If no suppliers mark N/A as “other text”</p></td>
+<td><p>?</p></td>
+<td><p>TD</p></td>
+<td><p>Do this in conjunction with 8.1.1?</p></td>
+</tr>
+<tr class="row-even"><td><p>10.2.1</p></td>
+<td><p>Your organisation ensures that any supplier of  IT systems that could impact on the delivery of care, or process personal identifiable data, has the appropriate certification.</p></td>
+<td><p>For more information see the ‘2017/18 Data Security Protection Requirements guidance</p></td>
+<td><p>?</p></td>
+<td><p>TD</p></td>
+<td><p>in conjunction with 8.1.1 and 10.1.1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

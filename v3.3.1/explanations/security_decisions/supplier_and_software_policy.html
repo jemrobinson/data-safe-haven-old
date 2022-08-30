@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Suppliers and Software Policy &#8212; Data Safe Haven v3.3.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to guides" href="../../how_to_guides/README.html" />
+    <link rel="prev" title="Additional Security Policies for Data Safe Haven" href="security_policies.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../README.html">
+  Learn more about the Safe Haven
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../how_to_guides/README.html">
+  How to guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference/README.html">
+  Reference guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorial/README.html">
+  Tutorials and overview
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/classification-overview.html">
+   Classifying sensitive data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/unconsented-data.html">
+   Unconsented data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ingress_and_egress/egress.html">
+   Taking data and software out of the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ingress_and_egress/ingress.html">
+   Bringing data and software into the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview/azure-implementation-details.html">
+   Implementation details for the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physical-resilence-and-availability.html">
+   Design decisions based on physical resilience and availability
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="risk_register.html">
+   Risk Register
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="security-controls.html">
+   Security controls in the Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="security_policies.html">
+   Additional Security Policies for Data Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Suppliers and Software Policy
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.3.1</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/explanations/security_decisions/supplier_and_software_policy.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="suppliers-and-software-policy">
+<h1>Suppliers and Software Policy<a class="headerlink" href="#suppliers-and-software-policy" title="Permalink to this headline">¶</a></h1>
+<p>What Software is available in the Data Safe Haven Virtual Machines? (DSVM)
+The DSVM’s currently run the below operating system:</p>
+<ul class="simple">
+<li><p>Ubuntu 18.04 LTS release</p></li>
+</ul>
+<p>The DSVM will also come with the latest version of each of the below software packages (Note that the version is defined at build time, but any packages installed using apt are additionally updated to the latest version available at deploy time).
+It is easiest to update DSVMs by removing an existing VM and redeploying. The data, shared and home directories will be left untouched by this process.
+It is also possible to ingress updated software packages and update in place on a running DSVMs. This is only done in the case of essential security fixes where the project cannot afford the downtime involved in a redeploy.</p>
+<p>Programming languages</p>
+<ul class="simple">
+<li><p>Microsoft .NET framework</p></li>
+<li><p>gcc compilers</p></li>
+<li><p>Java</p></li>
+<li><p>Julia (plus common data science libraries)</p></li>
+<li><p>Python (plus common data science libraries)</p></li>
+<li><p>R (plus common data science libraries)</p></li>
+<li><p>scala</p></li>
+<li><p>spark-shell</p></li>
+</ul>
+<p>Editors/IDEs</p>
+<ul class="simple">
+<li><p>atom</p></li>
+<li><p>emacs</p></li>
+<li><p>nano</p></li>
+<li><p>PyCharm</p></li>
+<li><p>RStudio</p></li>
+<li><p>vim</p></li>
+<li><p>Visual Studio code</p></li>
+</ul>
+<p>Presentation tools</p>
+<ul class="simple">
+<li><p>LaTeX</p></li>
+<li><p>LibreOffice</p></li>
+</ul>
+<p>Development/data science tools</p>
+<ul class="simple">
+<li><p>Azure Data Studio</p></li>
+<li><p>DBeaver</p></li>
+<li><p>Firefox</p></li>
+<li><p>git</p></li>
+<li><p>psql</p></li>
+<li><p>sqlcmd</p></li>
+<li><p>weka</p></li>
+</ul>
+<p>There is currently no unsupported software allowed on the DSVM, a supported operating system and all updated software are installed as part of the build process for the VM.</p>
+<p>How do we handle suppliers having access to personal information? (think this probably needs rephrasing?)</p>
+<p>Microsoft (Azure Cloud Infrastructure):</p>
+<p>The only supplier who we use to support the storage of personal information is Microsoft Azure. However, although Microsoft supplies the infrastructure for the Data Safe Haven, their staff are not able to access customer data</p>
+<p>The Data Safe Haven is designed so that we have control over who has access to our Data and guarantee that what Microsoft promises to us is true surrounding who has access to data with the below policies/certification</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data">Access to customer data by Microsoft operations and support personnel is denied by default</a></p>
+<ul>
+<li><p>From link above: ‘Access to customer data by Microsoft operations and support personnel is denied by default. When access to data related to a support case is granted, it is only granted using a just-in-time (JIT) model using policies that are audited and vetted against our compliance and privacy policies.’</p></li>
+</ul>
+</li>
+<li><p>Azure is <a class="reference external" href="https://azure.microsoft.com/en-gb/blog/azure-is-now-certified-for-the-iso-iec-27701-privacy-standard/">ISO/IEC 27701 certified</a></p>
+<ul>
+<li><p>‘Schellman &amp; Company LLC issued a certificate of registration for ISO/IEC 27701:2019 that covers the requirements, controls, and guidelines for implementing a privacy information security management system as an extension to ISO/IEC 27001:2013 for privacy management as a personally identifiable information (PII) processor relevant to the information security management system supporting Microsoft Azure, Dynamics, and other online services that are deployed in Azure Public, Government cloud, and Germany Cloud, including their development, operations, and infrastructures and their associated security, privacy, and compliance per the statement of applicability version 2019-02. A copy of the certification is available on the Service Trust Portal.’</p></li>
+</ul>
+</li>
+</ul>
+<p>DSPT Requirements breakdown:</p>
+<ul>
+<li><p>8.1.1: What Software do you use?</p>
+<ul class="simple">
+<li><p>Ubuntu 18.04 LTS release
+The DSVM will also come with the latest version of each of the below software packages (Note that the version is defined at build time, but any packages installed using apt are additionally updated to the latest version available at deploy time).
+It is easiest to update DSVMs by removing an existing VM and redeploying. The data, shared and home directories will be left untouched by this process.
+It is also possible to ingress updated software packages and update in place on a running DSVMs. This is only done in the case of essential security fixes where the project cannot afford the downtime involved in a redeploy.</p></li>
+</ul>
+<p>Programming languages</p>
+<ul class="simple">
+<li><p>Microsoft .NET framework</p></li>
+<li><p>gcc compilers</p></li>
+<li><p>Java</p></li>
+<li><p>Julia (plus common data science libraries)</p></li>
+<li><p>Python (plus common data science libraries)</p></li>
+<li><p>R (plus common data science libraries)</p></li>
+<li><p>scala</p></li>
+<li><p>spark-shell</p></li>
+</ul>
+<p>Editors/IDEs</p>
+<ul class="simple">
+<li><p>atom</p></li>
+<li><p>emacs</p></li>
+<li><p>nano</p></li>
+<li><p>PyCharm</p></li>
+<li><p>RStudio</p></li>
+<li><p>vim</p></li>
+<li><p>Visual Studio code</p></li>
+</ul>
+<p>Presentation tools</p>
+<ul class="simple">
+<li><p>LaTeX</p></li>
+<li><p>LibreOffice</p></li>
+</ul>
+<p>Development/data science tools</p>
+<ul class="simple">
+<li><p>Azure Data Studio</p></li>
+<li><p>DBeaver</p></li>
+<li><p>Firefox</p></li>
+<li><p>git</p></li>
+<li><p>psql</p></li>
+<li><p>sqlcmd</p></li>
+<li><p>weka</p></li>
+</ul>
+</li>
+<li><p>8.2.1: List any unsupported software prioritised to business risk</p>
+<p>There is currently no unsupported software allowed on the DSVM, a supported operating system and all updated software are installed as part of the build process for the VM.</p>
+</li>
+<li><p>8.2.2: The person with overall responsibility for data security confirms that the risk of unsupported systems is being managed</p>
+<p>There is currently no unsupported software allowed on the DSVM, a supported operating system and all updated software are installed as part of the build process for the VM.</p>
+</li>
+<li><p>8.3.1: How do your systems receive updates and how often?</p>
+<p>The DSVM will also come with the latest version of each of the below software packages (Note that the version is defined at build time, but any packages installed using apt are additionally updated to the latest version available at deploy time).
+It is easiest to update DSVMs by removing an existing VM and redeploying. The data, shared and home directories will be left untouched by this process.
+It is also possible to ingress updated software packages and update in place on a running DSVMs. This is only done in the case of essential security fixes where the project cannot afford the downtime involved in a redeploy.</p>
+</li>
+<li><p>10.1.1: The organisation has a list of suppliers that handle personal information, products/services they deliver and contact details</p>
+<p>The only supplier who we use to support the storage of personal information is Microsoft Azure. However, although Microsoft supplies the infrastructure for the Data Safe Haven, their staff are not able to access customer data</p>
+</li>
+<li><p>10.2.1 Your organisation ensures that any supplier of IT systems that could impact on the processing of personal identifiable data has the appropriate certification</p>
+<p>The Data Safe Haven is designed so that we have control over who has access to our Data and guarantee that what Microsoft promises to us is true surrounding who has access to data with the below policies/certification</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data">Access to customer data by Microsoft operations and support personnel is denied by default</a></p>
+<ul>
+<li><p>From link above: ‘Access to customer data by Microsoft operations and support personnel is denied by default. When access to data related to a support case is granted, it is only granted using a just-in-time (JIT) model using policies that are audited and vetted against our compliance and privacy policies.’</p></li>
+</ul>
+</li>
+<li><p>Azure is <a class="reference external" href="https://azure.microsoft.com/en-gb/blog/azure-is-now-certified-for-the-iso-iec-27701-privacy-standard/">ISO/IEC 27701 certified</a></p>
+<ul>
+<li><p>‘Schellman &amp; Company LLC issued a certificate of registration for ISO/IEC 27701:2019 that covers the requirements, controls, and guidelines for implementing a privacy information security management system as an extension to ISO/IEC 27001:2013 for privacy management as a personally identifiable information (PII) processor relevant to the information security management system supporting Microsoft Azure, Dynamics, and other online services that are deployed in Azure Public, Government cloud, and Germany Cloud, including their development, operations, and infrastructures and their associated security, privacy, and compliance per the statement of applicability version 2019-02. A copy of the certification is available on the Service Trust Portal.’</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="security_policies.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Additional Security Policies for Data Safe Haven</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../how_to_guides/README.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">How to guides</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

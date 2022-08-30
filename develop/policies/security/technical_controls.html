@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Technical controls &#8212; Data Safe Haven develop documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Recommended security policies" href="security_policies.html" />
+    <link rel="prev" title="Security overview" href="overview.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../introduction/index.html">
+  Introduction
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../roles/index.html">
+  Roles
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Policies
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../design/index.html">
+  Design
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_sensitivity_classification/index.html">
+   Data sensitivity classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/sensitivity_tiers.html">
+     Sensitivity tiers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/classification_process.html">
+     Classification process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/unconsented_data.html">
+     Unconsented data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_transfer/index.html">
+   Data transfer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/data_ingress.html">
+     Data ingress
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/software_ingress.html">
+     Software ingress
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/egress.html">
+     Data egress
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Security
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     Security overview
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Technical controls
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="security_policies.html">
+     Recommended security policies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="software_package_approval_policy.html">
+     Software package approval policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>develop</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multifactor-authentication-and-password-strength">
+   Multifactor Authentication and Password strength
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#isolated-network">
+   Isolated network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-devices">
+   User Devices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physical-security">
+   Physical security
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remote-connections">
+   Remote connections
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#copy-and-paste">
+   Copy-and-paste
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-ingress">
+   Data ingress
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-egress">
+   Data egress
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-ingress">
+   Software ingress
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#azure-firewalls">
+   Azure Firewalls
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/policies/security/technical_controls.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="technical-controls">
+<span id="policy-technical-controls"></span><h1>Technical controls<a class="headerlink" href="#technical-controls" title="Permalink to this headline">¶</a></h1>
+<section id="multifactor-authentication-and-password-strength">
+<h2>Multifactor Authentication and Password strength<a class="headerlink" href="#multifactor-authentication-and-password-strength" title="Permalink to this headline">¶</a></h2>
+<p>Once a user account is created by a <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a>, the user must then activate their account online.
+They choose their own password, which must meet password strength requirements, and set up multi-factor authentication.</p>
+</section>
+<section id="isolated-network">
+<h2>Isolated network<a class="headerlink" href="#isolated-network" title="Permalink to this headline">¶</a></h2>
+<p>Our network security model distinguishes three levels of access networks for user devices.</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">Restricted</span></code> network</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">Institutional</span></code> network</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">Unrestricted</span></code> network (e.g. the open internet or any other non-<code class="docutils literal notranslate"><span class="pre">Restricted</span></code> or non-<code class="docutils literal notranslate"><span class="pre">Institutional</span></code> network)</p></li>
+</ul>
+<p>A <code class="docutils literal notranslate"><span class="pre">Restricted</span></code> network corresponds to a network managed by a trusted institution that can support additional controls such as restricting access to a narrower set of users, devices or locations.
+Access to SREs can be restricted such that access is only allowed by devices which are connected to a particular set of <code class="docutils literal notranslate"><span class="pre">Restricted</span></code> networks.
+Access to a particular SRE may be permitted from multiple <code class="docutils literal notranslate"><span class="pre">Restricted</span></code> networks at multiple trusted organisations.
+This can permit users from multiple organisations to access an SRE, as well permitting users to access the SRE while away from their home institution at another trusted institution.
+However, remote access to a <code class="docutils literal notranslate"><span class="pre">Restricted</span></code> network (for example via VPN) is not permitted.</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">Institutional</span></code> network corresponds to a network managed by a trusted institution.
+Guest access may be permitted on such networks (e.g. eduroam), but these guests should be known users.
+Access to SREs can be restricted such that access is only allowed by devices which are connected to a particular set of <code class="docutils literal notranslate"><span class="pre">Institutional</span></code> networks.
+However, it is assumed that a wide segment of the research community can access these networks.
+This access may also be remote for authorised users (for example, via VPN).</p>
+<p>At tier 2 or above SRE firewall rules permit inbound access only from network IP ranges corresponding to specific pre-approved <code class="docutils literal notranslate"><span class="pre">Institutional</span></code> and <code class="docutils literal notranslate"><span class="pre">Restricted</span></code> networks.
+Similarly, at tier 2 or above, connections to resources outside the SRE private network (such as external websites) are not permitted.
+Finally, different SREs within the same Data Safe Haven are isolated from one another at the network level.</p>
+</section>
+<section id="user-devices">
+<h2>User Devices<a class="headerlink" href="#user-devices" title="Permalink to this headline">¶</a></h2>
+<p>We define two types of devices that <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> might use to connect to an SRE</p>
+<ul class="simple">
+<li><p>Managed devices</p></li>
+<li><p>Open devices</p></li>
+</ul>
+<p>Managed devices are devices provided by a institution on which the user does not have administrator/root access, with the device instead administered by the institution’s IT team.
+They have an extensive suite of research software installed.
+This includes the ability to install packages for standard programming environments without the need for administrator access.
+<a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> can compile and run their own executables in user space (the portion of system memory in which user processes run).</p>
+<p>Open devices include personal devices such as researcher-owned laptops, but also include devices provided by an institution where the user has administrator/root access.
+These devices permit the easy use of a wider range of software than managed devices, as well as easier access to peripheral hardware.
+Firewall rules for the higher tier SREs should permit access only from Restricted network IP ranges that only managed devices are able to connect to.</p>
+<p>For tier 2 and below, any device is allowed to connect to the SRE.
+For tier 3 and above, only managed devices are permitted to connect.</p>
+</section>
+<section id="physical-security">
+<h2>Physical security<a class="headerlink" href="#physical-security" title="Permalink to this headline">¶</a></h2>
+<p>Some data requires a physical security layer around not just the data centre,
+but the physical space users are in when they connect to it.</p>
+<p>We distinguish three levels of physical security for research spaces:</p>
+<ul class="simple">
+<li><p>Open research spaces</p></li>
+<li><p>Medium security research spaces</p></li>
+<li><p>High security research spaces</p></li>
+</ul>
+<p>Open research spaces include university libraries, cafes and common rooms.</p>
+<p>Medium security research spaces control the possibility of unauthorised viewing.
+Card access or other means of restricting entry to only known researchers (such as the signing in of guests on a known list) is required.
+Screen adaptations or desk partitions can be adopted in open-plan spaces if there is a high risk of “visual eavesdropping”.</p>
+<p>Secure research spaces control the possibility of the researcher deliberately removing data.
+Devices will be locked to appropriate desks, and neither enter nor leave the space.
+Mobile devices should be removed before entering, to block the ‘photographic hole’, where mobile phones are used to capture secure data from a screen.
+Only <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> associated with a secure project have access to such a space.</p>
+<p>For tier 3 and higher, we recommend limiting access to medium or high security research spaces.
+This can be enforced by requiring access from Restricted network IP ranges that are only accessible inside such spaces.</p>
+</section>
+<section id="remote-connections">
+<h2>Remote connections<a class="headerlink" href="#remote-connections" title="Permalink to this headline">¶</a></h2>
+<p>Inbound connections are only permitted via the remote desktop gateway.
+This allows Researchers access to a Linux desktop with graphical interface applications running in the remote SRE.</p>
+</section>
+<section id="copy-and-paste">
+<h2>Copy-and-paste<a class="headerlink" href="#copy-and-paste" title="Permalink to this headline">¶</a></h2>
+<p>At tier 2 and higher, the use of copy-and-paste is blocked by the remote desktop gateway.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Users cannot be absolutely prevented from copying data to the device they are using to access the SRE, since malicious users can script automated screen-grabs.
+The aim of this control is to deter non-malicious workaround breach where Researchers misunderstand or misinterpret what is permitted.</p>
+</div>
+</section>
+<section id="data-ingress">
+<h2>Data ingress<a class="headerlink" href="#data-ingress" title="Permalink to this headline">¶</a></h2>
+<p>Data should be transferred securely to the dedicated <code class="docutils literal notranslate"><span class="pre">ingress</span></code> blob storage space for the appropriate SRE.
+We recommend doing this using time-limited, write-only SAS tokens which should be sent to the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> over a secure channel.
+Access to the blob storage space should be locked down to only permit connections from known IP addresses that the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> will be using.</p>
+<p>This data is then exposed to users in the SRE as a secure data volume.
+This is an Azure storage container which is mounted as read-only in the SRE that needs access to it.
+One or more such volumes might be mounted depending on how many managed secure datasets the SRE has access to.</p>
+</section>
+<section id="data-egress">
+<h2>Data egress<a class="headerlink" href="#data-egress" title="Permalink to this headline">¶</a></h2>
+<p>Any data or code that is a desired output of the SRE should be placed in the output volume.
+This is an Azure storage container which is mounted as read-write in the SRE that needs access to it.</p>
+<p>The <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a>, <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and <a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referee</span></a> (if applicable) should review the contents of this volume before deciding how and whether to bring them out of the SRE.
+This can be done using the reverse of the data ingress process, with a time-limited, read-only SAS token.</p>
+</section>
+<section id="software-ingress">
+<h2>Software ingress<a class="headerlink" href="#software-ingress" title="Permalink to this headline">¶</a></h2>
+<p>The analysis machines provided in the SRE come with a wide range of common data science software pre-installed.
+Additionally, the on-demand installation of software packages from certain package repositories (such as PyPI for Python or CRAN for R) is also supported.</p>
+<p>For lower tiers, with access to the internet, required software packages can be installed directly from their canonical sources on the internet.
+For higher tiers, without access to the external internet, full or partial copies of specific package repositories are maintained in the Safe Haven.
+For tier 2, a proxy server is maintained which allows access to any package from the supported repositories.
+For tier 3 or higher, an allowlist of packages which are explicitly marked as safe is maintained for each SRE - a mirror server is made available which only contains these packages.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Installation of any packages which require administrative rights must be done by a <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a></p>
+</div>
+</section>
+<section id="azure-firewalls">
+<h2>Azure Firewalls<a class="headerlink" href="#azure-firewalls" title="Permalink to this headline">¶</a></h2>
+<p>While user-facing machines can be completely isolated from the internet, there are several machines that form part of the supporting infrastructure which need wider internet access.
+Although these can only be accessed by <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Managers</span></a> they are nevertheless restricted by firewall rules which limit them to only essential connections such as to update servers.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="overview.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Security overview</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="security_policies.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Recommended security policies</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

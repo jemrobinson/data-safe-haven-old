@@ -1,0 +1,620 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Data ingress &#8212; Data Safe Haven v3.4.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Software ingress" href="software_ingress.html" />
+    <link rel="prev" title="Data transfer" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../introduction/index.html">
+  Introduction
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../roles/index.html">
+  Roles
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Policies
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../design/index.html">
+  Design
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_sensitivity_classification/index.html">
+   Data sensitivity classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/sensitivity_tiers.html">
+     Sensitivity tiers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/classification_process.html">
+     Classification process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/unconsented_data.html">
+     Unconsented data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Data transfer
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Data ingress
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="software_ingress.html">
+     Software ingress
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="egress.html">
+     Data egress
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../security/index.html">
+   Security
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../security/overview.html">
+     Security overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../security/technical_controls.html">
+     Technical controls
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../security/security_policies.html">
+     Recommended security policies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../security/software_package_approval_policy.html">
+     Software package approval policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.4.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#categorise-the-data-into-one-of-the-defined-tiers">
+   Categorise the data into one of the defined tiers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complete-data-sharing-paperwork">
+   Complete data sharing paperwork
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#store-the-signed-documents-in-a-secure-location">
+   Store the signed documents in a secure location
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transfer-from-data-owner-to-the-data-safe-haven">
+   Transfer from data owner to the Data Safe Haven
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-into-tier-3">
+     Transfer into Tier 3
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#microsoft-azure-storage-explorer">
+       Microsoft Azure Storage Explorer
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sftp-scp">
+       SFTP/SCP
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#website-upload">
+       Website upload
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#physical">
+       Physical
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-into-tier-2">
+     Transfer into Tier 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-into-tier-1">
+     Transfer into Tier 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-into-tier-0">
+     Transfer into Tier 0
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-the-integrity-of-the-data">
+   Test the integrity of the data
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/policies/data_transfer/data_ingress.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="data-ingress">
+<h1>Data ingress<a class="headerlink" href="#data-ingress" title="Permalink to this headline">¶</a></h1>
+<p>Data ingress is the process of bringing sensitive data or software into the environment from an external source.
+The policies defined here minimise the number of people who have access to restricted information before it is in the Environment.
+Datasets must only be transferred from the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> after an initial classification has been completed and the data sharing agreement executed.</p>
+<p>Several methods of transfering sensitive data into the the Data Safe Haven are detailed below.
+These are designed to minimise the risk of unauthorised access to the data.
+In order to facilitate this, the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> should take the following precautions:</p>
+<ul class="simple">
+<li><p>Use the most secure method of data transfer that your organisation can support.</p></li>
+<li><p>Once data transfer is complete, tell the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> so that they can revoke your access.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Since the tier of a secure environment cannot be changed after deployment it is important that all parties have reached consensus on the classification tier before starting data ingress.</p>
+</div>
+<section id="categorise-the-data-into-one-of-the-defined-tiers">
+<h2>Categorise the data into one of the defined tiers<a class="headerlink" href="#categorise-the-data-into-one-of-the-defined-tiers" title="Permalink to this headline">¶</a></h2>
+<p>Remember that <a class="reference internal" href="../data_sensitivity_classification/sensitivity_tiers.html#policy-tier-0"><span class="std std-ref">Tier 0</span></a> is the least sensitive data tier and <a class="reference internal" href="../data_sensitivity_classification/sensitivity_tiers.html#policy-tier-4"><span class="std std-ref">Tier 4</span></a> the most sensitive.
+If there are mixed data sensitivities in the complete data set then the whole data set must be assigned to the <strong>most sensitive</strong> data tier.</p>
+</section>
+<section id="complete-data-sharing-paperwork">
+<h2>Complete data sharing paperwork<a class="headerlink" href="#complete-data-sharing-paperwork" title="Permalink to this headline">¶</a></h2>
+<p>The appropriate legal paperwork needs to be completed to ensure that a data sharing agreement is in place.
+This step should also cover ethical considerations of sharing the data.
+The project may need ethical approval from the appropriate body within the hosting organisation.
+Permission to use the data (including <a class="reference internal" href="../data_sensitivity_classification/unconsented_data.html#policy-unconsented-patient-data"><span class="std std-ref">unconsented patient data</span></a>) should be obtained.
+The data sharing paperwork must make very clear the tier to which the dataset has been assigned.</p>
+</section>
+<section id="store-the-signed-documents-in-a-secure-location">
+<h2>Store the signed documents in a secure location<a class="headerlink" href="#store-the-signed-documents-in-a-secure-location" title="Permalink to this headline">¶</a></h2>
+<p>All documents detailed above should be available in a secure document store.
+They certify that the users are allowed to have access to the specified data, and to process it in agreed ways.
+A likely workflow is that the <a class="reference internal" href="../../roles/project_manager/index.html#role-project-manager"><span class="std std-ref">Project Manager</span></a> will place the authorised copy of the data sharing agreement in that location.
+The version of the documents stored in the secure document store are the definitive ones.</p>
+</section>
+<section id="transfer-from-data-owner-to-the-data-safe-haven">
+<h2>Transfer from data owner to the Data Safe Haven<a class="headerlink" href="#transfer-from-data-owner-to-the-data-safe-haven" title="Permalink to this headline">¶</a></h2>
+<p>Different processes should be followed depending on the tier to which the data has been assigned (as described in the <a class="reference internal" href="../data_sensitivity_classification/classification_process.html#policy-data-classification-process"><span class="std std-ref">data classification process</span></a>).
+It is the responsibility of the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> conducting this step to ensure that they are following the appropriate process for the assigned data classification tier.</p>
+<section id="transfer-into-tier-3">
+<span id="policy-ingress-into-tier-3"></span><h3>Transfer into Tier 3<a class="headerlink" href="#transfer-into-tier-3" title="Permalink to this headline">¶</a></h3>
+<p>There are several methods of transfering sensitive data to the Data Safe Haven which are listed below in order of preference.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When we refer to a <strong>secure channel</strong> below, we mean either a secure email service <a class="reference external" href="https://www.ncsc.gov.uk/information/commercial-product-assurance-cpa">certified</a> by the UK National Cyber Security Centre (NCSC), a secure phone line or a secure in person conversation.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When we refer to <strong>authorised IP address(es)</strong> below, we mean any IP address which has been provided by the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> over a secure channel.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>When we refer to <strong>encryption</strong> below, we are referring to any strong, modern encryption algorithm with a strong password. One possibility is to use a software package like <a class="reference external" href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a>.</p>
+</div>
+<section id="microsoft-azure-storage-explorer">
+<h4>Microsoft Azure Storage Explorer<a class="headerlink" href="#microsoft-azure-storage-explorer" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://azure.microsoft.com/en-us/features/storage-explorer/">Azure Storage Explorer</a> is the most convenient way to safely transfer data.</p>
+<ul class="simple">
+<li><p>the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> creates a time-limited, write-only secure access token and sends this to the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> over a secure channel.</p></li>
+<li><p>the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> uses this token to securely upload their data directly from an authorised IP address to Azure storage.</p></li>
+</ul>
+</section>
+<section id="sftp-scp">
+<h4>SFTP/SCP<a class="headerlink" href="#sftp-scp" title="Permalink to this headline">¶</a></h4>
+<p>The next best option is to use <code class="docutils literal notranslate"><span class="pre">SFTP/SCP</span></code> if the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> is able to support this.</p>
+<ul class="simple">
+<li><p>the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> sets up a server and sends connection details to the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> over a secure channel.</p></li>
+<li><p>the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> uese these details to securely upload their <strong>encrypted data</strong> from an authorised IP address.</p></li>
+<li><p>the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> sends the decryption key to the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> over a secure channel.</p></li>
+<li><p>the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> decrypts the data and moves it to Azure storage before securely deleting any intermediate files.</p></li>
+</ul>
+</section>
+<section id="website-upload">
+<h4>Website upload<a class="headerlink" href="#website-upload" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> uploads their <strong>encrypted data</strong> to a file sharing site of their choice (for example <code class="docutils literal notranslate"><span class="pre">Dropbox</span></code>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Drive</span></code>, <code class="docutils literal notranslate"><span class="pre">SharePoint</span></code>).</p></li>
+<li><p>the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> sends the decryption key to the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> over a secure channel.</p></li>
+<li><p>the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> will then download and decrypt the data and move it to Azure storage before securely deleting any intermediate files.</p></li>
+</ul>
+</section>
+<section id="physical">
+<h4>Physical<a class="headerlink" href="#physical" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> stores their <strong>encrypted data</strong> on a hard drive or USB stick.</p></li>
+<li><p>the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> sends the decryption key to the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> over a secure channel.</p></li>
+<li><p>the hard drive should then be delivered or couriered to a <strong>known individual</strong> at the hosting organisation, authorised by the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a>.</p></li>
+<li><p>the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> will then decrypt the data and move it to Azure storage before securely deleting any intermediate files.</p></li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The decryption key must not be delivered in the same physical package as the encrypted hard drive.</p>
+</div>
+</section>
+</section>
+<section id="transfer-into-tier-2">
+<span id="policy-ingress-into-tier-2"></span><h3>Transfer into Tier 2<a class="headerlink" href="#transfer-into-tier-2" title="Permalink to this headline">¶</a></h3>
+<p>For this category, the processes are be the same as for <a class="reference internal" href="#policy-ingress-into-tier-3"><span class="std std-ref">Tier 3</span></a> above with the exception that pre-declaring an IP address for the <code class="docutils literal notranslate"><span class="pre">SFTP/SCP</span></code> option is not required.</p>
+</section>
+<section id="transfer-into-tier-1">
+<span id="policy-ingress-into-tier-1"></span><h3>Transfer into Tier 1<a class="headerlink" href="#transfer-into-tier-1" title="Permalink to this headline">¶</a></h3>
+<p>The same transfer processes as <a class="reference internal" href="#policy-ingress-into-tier-3"><span class="std std-ref">Tier 2</span></a> is available to the data owners.
+When using the website upload option, it is recommended but not required to encrypt the files.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Under no circumstance should sensitive data be sent via email, even if encrypted.</p>
+</div>
+</section>
+<section id="transfer-into-tier-0">
+<span id="policy-ingress-into-tier-0"></span><h3>Transfer into Tier 0<a class="headerlink" href="#transfer-into-tier-0" title="Permalink to this headline">¶</a></h3>
+<p>This is publicly available, open data, and as such is likely to be hosted on a public website and can therefore simply be downloaded directly to the staging area.</p>
+</section>
+</section>
+<section id="test-the-integrity-of-the-data">
+<h2>Test the integrity of the data<a class="headerlink" href="#test-the-integrity-of-the-data" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> attempt to verify that the files stored in the secure research environment are identical to those made available by the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a>.
+This might involve:</p>
+<ul class="simple">
+<li><p>checking the number and names of files match</p></li>
+<li><p>checking file metadata matches</p></li>
+<li><p>checking that file sizes match</p></li>
+<li><p>checking that file hashes match</p></li>
+</ul>
+<p>An integrity verification report should be generated by the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> which contains the file hashes, sizes and metadata.
+This report should be stored together with the data sharing paperwork.
+Any changes in the data should be versioned and an updated report generated.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data transfer</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="software_ingress.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Software ingress</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Sensitive Data Handling at the Turing - Overview for Data Providers &#8212; Data Safe Haven v1.1.0-beta documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v1.1.0-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-classify">
+   Why classify?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-structure">
+   Document structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definitions-a-model-for-secure-data-research-projects">
+   Definitions - a model for secure data research projects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#work-packages">
+     Work Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#environments-and-platforms">
+     Environments and Platforms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#researcher">
+     Researcher
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#investigator">
+     Investigator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#referee">
+     Referee
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset-provider-and-representative">
+     Dataset Provider and Representative
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#programme-manager">
+     Programme Manager
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-manager">
+     Project Manager
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#system-manager">
+     System Manager
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-defined-infrastructure">
+   Software-defined infrastructure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secure-data-science">
+   Secure data science
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-tiers">
+   Environment Tiers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-0">
+     Tier 0
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-1">
+     Tier 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-2">
+     Tier 2
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#relationships-to-other-classification-schemes">
+       Relationships to other classification schemes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-3">
+     Tier 3
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Relationships to other classification schemes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tier-4">
+     Tier 4
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Relationships to other classification schemes
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connections-to-and-from-the-environment">
+   Connections to and from the Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-classification-process">
+   The classification process
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-egress-and-new-classification">
+   Data egress and new classification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-sharing-agreement">
+   Data sharing agreement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-lifecycle">
+   User lifecycle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-ingress-data-entering-a-secure-environment-from-an-external-source">
+   Data ingress (data entering a secure Environment from an external source)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-library-distributions">
+   Software library distributions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#storage">
+   Storage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-device-networks">
+   User device networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physical-security">
+   Physical security
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-devices">
+   User Devices
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#managed-devices">
+     Managed devices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-devices">
+     Open Devices
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-ingress-software-entering-a-secure-environment-from-an-external-source">
+   Software ingress (software entering a secure Environment from an external source)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation-during-virtual-machine-deployment">
+     Installation during virtual machine deployment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation-after-virtual-machine-deployment">
+     Installation after virtual machine deployment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-choices">
+   The choices
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-installation">
+     Software installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inbound-connections">
+     Inbound connections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outbound-connections">
+     Outbound connections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-ingress">
+     Data ingress
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-egress">
+     Data egress
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#refereeing-of-classification">
+     Refereeing of classification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-factor-authentication">
+     Two factor authentication
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/processes/provider-overview.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="sensitive-data-handling-at-the-turing-overview-for-data-providers">
+<h1>Sensitive Data Handling at the Turing - Overview for Data Providers<a class="headerlink" href="#sensitive-data-handling-at-the-turing-overview-for-data-providers" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Secure Environments for analysis of sensitive datasets are essential for research.</p>
+<p>Such “data safe havens” are a vital part of the research infrastructure.</p>
+<p>It is essential that sensitive or confidential datasets are kept secure, both to enable analysis of personal data in a manner that is capable of being compliant with data protection law, and to avoid jeopardising the consent of society for research activities with personal data (called ‘social license’).</p>
+<p>To create and operate these Environments safely and efficiently whilst ensuring usability, requires, as with many sociotechnical systems, a complex stack of interacting business process and design choices. This document describes the approaches taken by the Alan Turing Institute when building and managing Environments for productive, secure, collaborative research projects.</p>
+<p>We propose choices for the security controls that should be applied in the areas of:</p>
+<ul class="simple">
+<li><p>data classification</p></li>
+<li><p>data ingress (data entering a secure Environment from an external source)</p></li>
+<li><p>data egress (data leaving a secure Environment to an external recipient)</p></li>
+<li><p>software ingress (software entering a secure Environment from an external source)</p></li>
+<li><p>user access</p></li>
+<li><p>user device management</p></li>
+<li><p>analysis Environments</p></li>
+</ul>
+<p>We do this for each of a small set of security “Tiers” - noting that the choice of security controls depends on the sensitivity of the data.</p>
+</section>
+<section id="why-classify">
+<h2>Why classify?<a class="headerlink" href="#why-classify" title="Permalink to this headline">¶</a></h2>
+<p>One of the major drivers for usability or security problems is over- or under-classification, that is, treating data as more or less sensitive than it deserves.</p>
+<p>Regulatory and commercial compliance requirements place constraints on the use of datasets; implementation of that compliance must be set in the context of the threat and risk profile and balanced with researcher productivity.</p>
+<p>Almost all security measures can be circumvented, security can almost always be improved by adding additional barriers, and improvements to security almost always carry a cost in usability and performance.</p>
+<p>Misclassification is seriously costly for research organisations and their partners: overclassification results not just in lost researcher productivity, but also a loss of scientific engagement, as researchers choose not to take part in a project with cumbersome security requirements. Systematic overclassification increases data risk by encouraging workaround breach.</p>
+<p>The risks of under-classification include not only legal and financial sanction, but the loss of the social licence to operate of the whole community of data science researchers.</p>
+</section>
+<section id="document-structure">
+<h2>Document structure<a class="headerlink" href="#document-structure" title="Permalink to this headline">¶</a></h2>
+<p>This document describes our approach to handling research data. It does not cover the Turing’s core enterprise information security practices, which are described elsewhere. Nor do we cover the data-centre level or organisational management security practices which are fundamental to any secure computing facility - we do not operate our own data centres, but rely on upstream data centre provision, such as Microsoft Azure and the Edinburgh Parallel Computing Centre, compliant with ISO 27001 (Information Security Management System Requirements).</p>
+<p>The document is structured as follows: we begin by defining terms which are used throughout the document. We then discuss some aspects of the design, before describing our ‘model’ for secure research Environments. Next, we discuss the possible choices for each security control around each of the areas bullet-pointed above, while leaving open the question of which controls are appropriate at which tiers. Finally, we make specific choices assigning controls to security tiers.</p>
+</section>
+<section id="definitions-a-model-for-secure-data-research-projects">
+<h2>Definitions - a model for secure data research projects<a class="headerlink" href="#definitions-a-model-for-secure-data-research-projects" title="Permalink to this headline">¶</a></h2>
+<section id="work-packages">
+<h3>Work Packages<a class="headerlink" href="#work-packages" title="Permalink to this headline">¶</a></h3>
+<p>Assessing the sensitivity of a dataset requires an understanding of both the base sensitivity of the information contained in the dataset and of the impact on that base sensitivity of the operations that it will undergo in the research project. The classification exercise therefore relates to each stage of a project and not simply to the datasets as they are introduced into it.</p>
+<p>Classification to a tier is therefore <strong>not</strong> a property of a dataset, because a dataset’s sensitivity depends on the data it can be combined with, and the use to which it is put.</p>
+<p>In our model, projects are divided into <strong>work packages</strong>, which we use here to refer to the activities carried out within a distinct phase of work carried out as part of a project, with a specific outcome in mind. A work package can make use of one or more datasets, and includes an idea of the analysis which the research team intends to carry out, the potential outputs they are expecting, and the tools they intend to use – all important factors affecting the data sensitivity.</p>
+<p>Classification is carried out on work packages rather than individual datasets.</p>
+</section>
+<section id="environments-and-platforms">
+<h3>Environments and Platforms<a class="headerlink" href="#environments-and-platforms" title="Permalink to this headline">¶</a></h3>
+<p>Once a work package has been classified, an appropriate secure analysis Environment is instantiated depending on the tier assigned.</p>
+<p>For the initial work package in a project, a new Environment must always be deployed. For additional work packages, the project may deploy a new environment per work package or, where appropriate, add the new work package to an existing Environment deployed for the project.</p>
+<p>When considering adding a work package to an existing environment, the <strong>combination</strong> of the new work package plus all existing work packages the Environment has already been used for must be considered as the effective work package when making classification decisions.
+The classification tier of a combination of work package(s) can never be lower than the highest classification tier of any of the individual work packages, but may be higher due to additional risks introduced by combining datasets and activities across work packages.
+If the combined classification is higher than the tier associated with the existing Environment, a new Environment must be deployed.
+The classification tier of an Environment cannot be upgraded or downgraded “in place”.</p>
+<p>Depending on the classification assigned, an Environment may be instantiated on one of several supported Platforms. The Turing currently supports secure deployments to Microsoft’s Azure cloud platform.</p>
+</section>
+<section id="researcher">
+<h3>Researcher<a class="headerlink" href="#researcher" title="Permalink to this headline">¶</a></h3>
+<p>A project member, who analyses data to produce results. We reserve the capitalised term “Researcher” for this role in our user model. We use the lower case term when considering the population of researchers more widely.</p>
+</section>
+<section id="investigator">
+<h3>Investigator<a class="headerlink" href="#investigator" title="Permalink to this headline">¶</a></h3>
+<p>The research project lead, this individual is responsible for ensuring that project staff comply with the Environment’s security policies. A single lead Investigator must be responsible for a project. Multiple collaborating institutions may have their own lead academic staff, and academic staff might delegate to a researcher the leadership as far as interaction with the Environment is concerned. In both cases, the term Investigator here is independent of this - regardless of academic status or institutional collaboration, this individual accepts responsibility for the conduct of the project and its members.</p>
+</section>
+<section id="referee">
+<h3>Referee<a class="headerlink" href="#referee" title="Permalink to this headline">¶</a></h3>
+<p>A Referee volunteers to review code or derived data (data which is computed from the original dataset), providing evidence to the Investigator and Dataset Provider Representative that the researchers are complying with data handling practices.
+Referees also play a role in classifying work packages at Tiers 2 or above, when they should be consulted by either the research team or the Dataset Provider Representative (see below).</p>
+</section>
+<section id="dataset-provider-and-representative">
+<h3>Dataset Provider and Representative<a class="headerlink" href="#dataset-provider-and-representative" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Dataset Provider</strong> is the organisation who provided the dataset under analysis. The Dataset Provider will designate a single representative contact to liaise with the Turing. This individual is the <strong>Dataset Provider Representative</strong>. They are authorised to act on behalf of the Dataset Provider with respect to the dataset and must be in a position to certify that the Dataset Provider is authorised to share the dataset with the Turing.</p>
+<p>There may be additional people at the Dataset Provider who will have input in discussions around data sharing and data classification. It is the duty of the Dataset Provider Representative to manage this set of stakeholders at the Dataset Provider.</p>
+</section>
+<section id="programme-manager">
+<h3>Programme Manager<a class="headerlink" href="#programme-manager" title="Permalink to this headline">¶</a></h3>
+<p>A designated staff member in the research institution who is responsible for creating and monitoring projects and Environments and overseeing a portfolio of projects. This should be a member of professional staff with oversight for data handling in one or more research domains.</p>
+<p>The Programme Manager can add new users to the system and assign users to specific projects. They assign Project Managers and can, if they wish, take on this role themselves.</p>
+</section>
+<section id="project-manager">
+<h3>Project Manager<a class="headerlink" href="#project-manager" title="Permalink to this headline">¶</a></h3>
+<p>A staff member with responsibility for running a particular project. This role could be filled by the Programme Manager, or a different nominated member of staff within the research institution.</p>
+<p>While the Programme Manager should maintain responsibility for adding users to the user list, and can add users to projects, the Project Manager should also have the authority to assign existing users to their project. To do this they will need to be able to review and search existing users.</p>
+</section>
+<section id="system-manager">
+<h3>System Manager<a class="headerlink" href="#system-manager" title="Permalink to this headline">¶</a></h3>
+<p>Members of Turing staff responsible for configuration and maintenance of the Environment.</p>
+</section>
+</section>
+<section id="software-defined-infrastructure">
+<h2>Software-defined infrastructure<a class="headerlink" href="#software-defined-infrastructure" title="Permalink to this headline">¶</a></h2>
+<p>Our approach - separately instantiating an isolated Environment for each project - is made feasible by the advent of “software-defined infrastructure”.</p>
+<p>It is now possible to specify a whole arrangement of IT infrastructure, servers, storage, access policies and so on, completely as <strong>code</strong>. This code is executed against web services provided by infrastructure providers (the APIs of cloud providers such as Microsoft, Amazon or Google, or an in-house “private cloud” using a technology such as OpenStack), and the infrastructure instantiated.</p>
+<p>Our model therefore assumes the availability of a software-defined infrastructure provision offering, in an ISO 27001 compliant data-centre and organisation, the scripted instantiation of virtual machines, storage, and secure virtual networks.</p>
+<p>We also assume that “Identification, Authorisation and Authentication” (IAA) is available as a service from this provider, so that they provide user account creation, the creation of security groups, the assignment of users to security groups, the restriction of access to resources by such users, login challenge by password and a second factor, password reset, and other such security considerations.</p>
+<p>A software-defined infrastructure platform on which to build, means that the definition of the Environment can be meaningfully audited - as no aspect of it is not described formally in code, it can be fully scrutinised.</p>
+</section>
+<section id="secure-data-science">
+<h2>Secure data science<a class="headerlink" href="#secure-data-science" title="Permalink to this headline">¶</a></h2>
+<p>We highlight two assumptions about the research user community critical to our design:</p>
+<p>Firstly, we must consider not only accidental breach and deliberate attack, but also the possibility of “workaround breach”, where well-intentioned researchers, in an apparent attempt to make their scholarly processes easier, circumvent security measures, for example, by copying out datasets to their personal device. Our user community are relatively technically able; the casual use of technical circumvention measures, not by adversaries but by colleagues, must be considered. This can be mitigated by increasing awareness and placing inconvenience barriers in the way of undesired behaviours, even if those barriers are in principle not too hard to circumvent.</p>
+<p>Secondly, research institutions need to be open about the research we carry out, and hence, the datasets we hold. This is because of both the need to publish our research as part of our impact cases to funders, and because of the need to maintain the trust of society, which provides our social licence. This means we cannot rely on “security through obscurity”: we must make our security decisions assuming that adversaries know what we have, what we are doing with it, and how we secure it.</p>
+</section>
+<section id="environment-tiers">
+<h2>Environment Tiers<a class="headerlink" href="#environment-tiers" title="Permalink to this headline">¶</a></h2>
+<p>Our recommendation for secure information processing tiers is based on work which has gone before. We have begun with the UK government classifications, and reconciled these to the definitions of personal data, whether or not something is ‘special category’ under the GDPR or relates to criminal convictions, and related them to common activities in the research community.</p>
+<p>Where input datasets contain personal data, consideration should always be given at the outset to minimising the personal data, including by pseudonymisation or anonymisation.</p>
+<p><strong>Pseudonymised data</strong> is still personal data, as it can be re-identified by those who hold the key to turn pseudonyms back into individual identifiers. This may include synthetic data derived from personal data, or models trained on personal data, depending on the methods used to synthesise the data or generate the models.</p>
+<p><strong>Anonymised data</strong>, including pseudonymised data where that key is destroyed, is not personal data when it is impossible to re-identify any living individuals from it. However, if the quality of anonymisation is ambiguous or if individuals can be identified when the anonymised data is combined with another dataset, such data would by definition not be anonymised, and would therefore be personal data. The question as to whether re-identification is possible or not is a very subtle one, and the assessment of this risk is critical to the assignment of security tiers.</p>
+<p>We emphasise that this classification is based on considering the sensitivity of all information handled in the project, including information that may be generated by combining or processing input datasets. In every case, the categorisation does not depend only on the input datasets, but on combining information with other information or generated results in a work package.</p>
+<p>Derived information may be of higher security tier than the information in the input datasets. (For example, information on the identities of those who are suspected to possess an undiagnosed neurological condition on the basis of analysis of public social media data.) This should form part of the information constituting a work package; when a project team believes this will be the case, the work package should be classified at the higher tier of secure Environment.</p>
+<p>If it becomes apparent during the project that intended analysis will produce this effect then the inputs should be treated as a new work package with this extra information, and classified afresh, following the full classification process below.
+In the below, “personal data” follows the GDPR definition: information from which a living individual is identified or identifiable. It excludes information about individuals who are dead.</p>
+<section id="tier-0">
+<h3>Tier 0<a class="headerlink" href="#tier-0" title="Permalink to this headline">¶</a></h3>
+<p>Tier 0 Environments are used to handle publicly available, open information, where all generated and combined information is also suitable for open handling.</p>
+<p>Tier 0 applies where none of the information processed, combined or generated includes personal data, commercially sensitive data, or data which will have legal, political or reputational consequences in the event of unauthorised disclosure.</p>
+<p>Tier 0 environments may be used for anonymised or synthetic information generated from personal data, where one has <strong>absolute</strong> confidence in the quality of anonymisation or the privacy preserving nature of the data synthesis. This makes the information no longer personal data. This does <strong>not</strong> include pseudonymised data which can be re-identified in combination with a key or other dataset. This is still considered personal data.</p>
+<p>Note that in practice it is extremely difficult (if not impossible) to guarantee that data is truly anonymous, especially when considering the risk of the anonymised data being linked with other datasets that currently exist or may exist in the future, and the potential development of more sophisticated re-identification attacks.</p>
+<p>If there is not <strong>absolute</strong> confidence in the anonymous or synthetic data no longer being personal data, then the minimum tier environment this data can be processed in is Tier 2.</p>
+<p>Tier 0 data should be considered ready for publication. Although this data is open, there are still advantages to handling it through a managed data analysis infrastructure.</p>
+<p>Management of Tier 0 data in a visible, well ordered infrastructure provides confidence to stakeholders as to the handling of more sensitive datasets.</p>
+<p>Although analysis may take place on personal devices or in non-managed cloud-based analysis Environments, the data should still therefore be listed through the inventory and curatorial systems of a managed research data Environment.</p>
+<p>Finally, audit trails as to the handling of Tier 0 information reduce risks associated with misclassification - if data is mistakenly classified as a lower tier than it should be, we still retain information as to how it was processed during the period of misclassification.</p>
+</section>
+<section id="tier-1">
+<h3>Tier 1<a class="headerlink" href="#tier-1" title="Permalink to this headline">¶</a></h3>
+<p>Tier 1 Environments are used to handle, process and generate data that is intended for eventual publication or that could be published without reputational damage.</p>
+<p>Information is kept private in order to give the research team a competitive advantage, not due to legal data protection requirements.</p>
+<p>Both the datasets and the proposed processing must otherwise meet the criteria for Tier 0.</p>
+<p>In particular, Tier 1 is not suitable for any data derived from personal data that is not otherwise suitable for processing in Tier 0. If this is not the case, then the minimum tier environment such data can be processed in is Tier 2.</p>
+<p>It may also be used for commercial data where commercial consequences of disclosure would be no impact or very low impact, with the agreement of all parties.</p>
+</section>
+<section id="tier-2">
+<h3>Tier 2<a class="headerlink" href="#tier-2" title="Permalink to this headline">¶</a></h3>
+<p>Tier 2 Environments are used to handle, combine or generate information which is not linked to personal data.</p>
+<p>It may be used for pseudonymised or synthetic information generated from personal data, where we have strong, but not absolute, confidence in the quality of pseudonymisation. The risk of processing it so that individuals are capable of being re-identified must be considered as part of the classification process.</p>
+<p>The pseudonymisation or anonymisation process itself, if carried out in the Turing, should take place in a Tier 3 Environment.</p>
+<p>A typical model for a project will be to instantiate both Tier 2 and Tier 3 Environments, with pseudonymised or synthetic data generated in the Tier 3 Environment and then transferred to the Tier 2 Environment.</p>
+<p>Tier 2 Environments are also used to handle, combine or generate information which is confidential, but not, in commercial or national security terms, sensitive. This includes commercial-in-confidence datasets or intellectual property where the legal, commercial, political and reputational consequences from disclosure are low. Where such consequences are not low, Tier 3 should be used.</p>
+<p>At Tier 2, the most significant risks are “workaround breach” and the risk of mistakenly believing data is robustly pseudonymised, when in fact re-identification might be possible.</p>
+<section id="relationships-to-other-classification-schemes">
+<h4>Relationships to other classification schemes<a class="headerlink" href="#relationships-to-other-classification-schemes" title="Permalink to this headline">¶</a></h4>
+<p>Almost all data at the baseline UK government OFFICIAL classification is likely to be Tier 2, as well as a large proportion of data at the OFFICIAL-SENSITIVE [COMMERCIAL] classification.</p>
+<p>All pseudonymised <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/key-definitions/what-is-personal-data/">Personal Data</a> under the GDPR that is not <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/special-category-data/">Special Category Personal Data</a> is Tier 2. Note that pseudonymised data is Personal Data under the GDPR. While anonymised data is not considered Personal Data under the GDPR, in practice it is extremely difficult (if not impossible) to guarantee that data is truly anonymous. Therefore, unless we are absolutely confident in the anonymisation process, we consider all data related to living individuals as Personal Data under the GDPR.</p>
+</section>
+</section>
+<section id="tier-3">
+<h3>Tier 3<a class="headerlink" href="#tier-3" title="Permalink to this headline">¶</a></h3>
+<p>Tier 3 Environments are used to handle, combine or generate personal data, excluding personal data where there is a risk that disclosure might pose a substantial threat to the personal safety, health or security of the data subjects (which would be Tier 4).</p>
+<p>This also includes pseudonymised or synthetic information generated from personal data, where we have only weak confidence in the quality of pseudonymisation.</p>
+<p>Tier 3 Environments are also used to handle, combine or generate information, including intellectual property, which is sensitive in commercial, legal, political, or national security terms. This tier anticipates the need to defend against compromise by attackers with bounded capabilities and resources. This may include hacktivists, single-issue pressure groups, investigative journalists, competent individual hackers and the majority of criminal individuals and groups. The threat profile excludes sophisticated, well-resourced and determined threat actors, such as highly capable serious organised crime groups and state actors.</p>
+<p>The difference between Tier 2 and Tier 3 Environments is the most significant in this model, both for researcher productivity and organisational risk.</p>
+<p>At Tier 3, the risk of hostile actors attempting to break into the Environment becomes significant.</p>
+<section id="id1">
+<h4>Relationships to other classification schemes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>All data at the UK government OFFICIAL-SENSITIVE [PERSONAL] classification will be Tier 3, as well as some data at the OFFICIAL-SENSITIVE [COMMERCIAL] classification, where the consequence of disclosure are particularly high.</p>
+<p>All pseudonymised <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/special-category-data/">Special Category Personal Data</a> under the GDPR is Tier 3.</p>
+<p>All non-pseudonymised <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/key-definitions/what-is-personal-data/">Personal Data</a> under the GDPR, whether or not it is <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/special-category-data/">Special Category Personal Data</a> is Tier 3.</p>
+</section>
+</section>
+<section id="tier-4">
+<h3>Tier 4<a class="headerlink" href="#tier-4" title="Permalink to this headline">¶</a></h3>
+<p>Tier 4 Environments are used to handle, combine or generate personal data where disclosure poses a substantial threat to the personal safety, health or security of the data subjects.</p>
+<p>This also includes handling, combining or generating datasets which are sensitive in commercial or national security terms, and are likely to be subject to attack by sophisticated, well-resourced and determined actors, such as serious organised crime groups and state actors.</p>
+<p>It is at Tier 4 that the risk of hostile actors penetrating the project team becomes significant.</p>
+<section id="id2">
+<h4>Relationships to other classification schemes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>All data at the UK government SECRET classification will be Tier 4.</p>
+</section>
+</section>
+</section>
+<section id="connections-to-and-from-the-environment">
+<h2>Connections to and from the Environment<a class="headerlink" href="#connections-to-and-from-the-environment" title="Permalink to this headline">¶</a></h2>
+<p>At lower tiers direct inbound connections to resources within the Environment may be permitted.
+At higher tiers inbound connections are only permitted via a secure access node (e.g. Microsoft Remote Desktop Services).</p>
+<p>A remote desktop connection allowing access to graphical interface applications should be provided to allow researchers to connect to the remote secure analysis Environment. At all but the lowest tiers, this requires two-factor authentication, and, at some tiers, the copy paste function is disabled.</p>
+<p>At every tier, long and strong passphrases (for example, at least four randomly chosen dictionary words) should be enforced, and users are trained in the use of keychain managers on their access devices, locked with two-factor authentication, so that the inconvenience of repeatedly typing a long passphrase is mitigated, reducing the risk of users choosing insecure passwords.</p>
+<p>At some tiers, we may provide <strong>secure shell</strong> connections using the command line, in addition to the remote desktop.</p>
+<p>The text-based access this grants is sufficient for some professional data scientists. The primary driver for this preference is that processes can easily be reproduced based on the commands typed. If not needed, providing a remote desktop interface adds complexity and therefore risk.</p>
+<p>At some tiers, specific commands commonly used for copying out data can therefore be blocked for users.</p>
+<p>In neither case is the user absolutely prevented from copying out to the device used to access the Environment (with remote desktop software, malicious users can script automated screen-grabs).
+However, this can be made difficult in order to deter casual workaround risk, and, at the highest tiers, prevented by only permitting access to the Environment from user devices permanently located within a secure physical Environment.</p>
+<p>We therefore believe it will be possible to make secure shell access just as secure as remote desktop access, but this remains a work in progress.</p>
+<p>At lower tiers outbound connections from the Environment to the internet and other external resources are permitted.
+At higher tiers connections to resources outside the Environment’s private network are not permitted.</p>
+</section>
+<section id="the-classification-process">
+<h2>The classification process<a class="headerlink" href="#the-classification-process" title="Permalink to this headline">¶</a></h2>
+<p>The Dataset Provider Representative and Investigator must agree on a classification for a work package. If the classification is likely to be Tier 2 or higher, they should also involve an independent Referee. Prior to datasets being transfered to the Turing, only the Dataset Provider Representative will have access to the actual dataset(s). The Investigator (and Refereee if necessary) will need to make their classification judgements based on discussions with the Dataset Provider Representative, alongside a clear description of the dataset and associated metadata such as data dictionaries.</p>
+<p>The Dataset Provider Representative, Investigator and Referee (if applicable) should independently classify the work package using the classification web application or classification flowchart. If the flowchart is used, the full path of decisions made should be recorded, not just the final outcome. If the web application is used, this is done automatically.</p>
+<p>The project should only proceed if the Investigator, the Dataset Provider Representative, and the Referee (if applicable), can come to a consensus on a work package classification. If consensus cannot be reached, the work package should be reconsidered.</p>
+<p>The Turing does not currently have access to a Tier 4 Environment. Therefore, if the work package classification is Tier 4, it should be reconsidered.</p>
+<p>If the classification is Tier 3 or below, the dataset(s) should be ingressed into an Environment at that Tier to which the Investigator and Referee (if applicable) have access, so that they can verify the classification based on complete information. If at this point either the Investigator or Referee disagree with the original classification, the consensus seeking process between the Data Provider Representative, Investigator and Referee (if applicable) should be repeated. If consensus cannot be achieved the dataset(s) must be deleted from the Environment.</p>
+<p>If, at any point during the project, the research team decides to analyse the data differently or for a different purpose than previously agreed, this constitutes a new work package, and should be newly classified by repeating this process. This is also the case if the team wishes to ingress another dataset in combination, which will require Representatives from all Dataset Providers to arrive at the same consensus as the Investigator and Referee (if applicable).</p>
+</section>
+<section id="data-egress-and-new-classification">
+<h2>Data egress and new classification<a class="headerlink" href="#data-egress-and-new-classification" title="Permalink to this headline">¶</a></h2>
+<p>It is a central premise of our model that any output data is classified as a new work package, separate from the work package that it is derived from.</p>
+<p>This is the case whether the output data is for publication (in which case the output data should be Tier 1 or Tier 0) or will be analysed in a new Environment.</p>
+<p>As a convenience, if derived data resulting from analysis is in a form which has been agreed with Dataset Provider Representatives at the initial classification stage – for example, a summary statistic which was the intended output for analysis of a sensitive dataset – then this re-classification may be pre-approved.</p>
+<p>We recommend that, whenever data egress is conducted with the intent of establishing a new environment for further research, a Referee is consulted to ensure balance.</p>
+<p>In all cases, classification of a work package at the point of egress should be done with all parties fully aware of the analytical processes which created the derived data from the initial work package. These processes should be well documented and ideally fully reproducible (e.g. as code that can be run to regenerate the exact output data from the input data).</p>
+<p>The initial classification of a work package may be for the purpose of ingress into an initial high-tier environment to carry out anonymisation, pseudonymisation or synthetic data generation work, with the intention of making the data appropriate for treatment in a lower-tier Environment. In this case, the egress review should include validation that the anonymised, pseudonymised or synthetic data undergoes its own classification process for analysis that will be performed in the “downstream” work package. This should include a review of the anonymisation, pseudonymisation or synthetic data generation process, including all associated code.</p>
+</section>
+<section id="data-sharing-agreement">
+<h2>Data sharing agreement<a class="headerlink" href="#data-sharing-agreement" title="Permalink to this headline">¶</a></h2>
+<p>This should be a formal data sharing agreement as required under data protection law, drafted with the benefit of legal advice, and should be signed after the initial classification of a work package but before a dataset is received by the Turing.
+Where the Dataset Provider is not the owner of all the dataset(s) covered by the data sharing agreement, the agreement must  specify the legal basis under which the Dataset Provider is permitted to share this data with the Turing.
+This agreement should include any specific commitments required from Researchers working with the dataset.
+The Turing has a template agreement that can be used to minimise the turnaround time and legal effort required.</p>
+<p>The classification tier may potentially be raised from that agreed prior to data ingress, once the Investigator and Referee have had a chance to view the actual data.
+The classification tier for later work packages in a project may also be higher than that for the original work package, depending on the planned analysis and any additional data required.
+We therefore recommend that the data sharing agreement is worded to permit this.</p>
+</section>
+<section id="user-lifecycle">
+<h2>User lifecycle<a class="headerlink" href="#user-lifecycle" title="Permalink to this headline">¶</a></h2>
+<p>Users who wish to have access to the Environment first complete an online form certifying they understand the confidentiality requirements. An account is then created for them within the Turing Environment management system, and the user activates this.</p>
+<p>Projects are created in the management system by a Programme Manager, and an Investigator and Project Manager assigned.</p>
+<p>Programme Managers and Project Managers may add users to groups corresponding to specific projects or work packages through the management framework.</p>
+<p>The Project Manager has the authority to assign Referees and Data Provider Representatives to a project or work package.</p>
+<p>At some tiers, new Referees or members of the research team must also be approved by the Dataset Provider Representative.</p>
+<p>Before joining a project or work package, Researchers, Investigators and Referees must agree to any additional commitments specific to that project or work package.</p>
+<p>Users are removed from a project or work package promptly once their involvement with it ends.</p>
+</section>
+<section id="data-ingress-data-entering-a-secure-environment-from-an-external-source">
+<h2>Data ingress (data entering a secure Environment from an external source)<a class="headerlink" href="#data-ingress-data-entering-a-secure-environment-from-an-external-source" title="Permalink to this headline">¶</a></h2>
+<p>The policies defined here minimise the number of people who have access to restricted information before it is in the Environment.</p>
+<p>Datasets must only be transferred from the Dataset Provider to the Turing after an initial classification has been completed and the data sharing agreement executed.</p>
+<p>For lower tiers, where the Environment is accessible from the internet, standard secure data transfer mechanisms such as secure copy (SCP) and secure file transfer protocol (SFTP) may be used.</p>
+<p>For higher tiers, all data transfer to the Turing should be via our secure data transfer process, which provides the Dataset Provider time-limited, write-only access to a dedicated data ingress volume from a specific location.
+Prior to access to the ingress volume being provided, the Dataset Provider Representative must provide the IP address(es) from which data will be uploaded and an email address to which a secure upload token can be sent.
+Once these details have been received, the Turing will open the data ingress volume for upload of data.</p>
+<p>To minimise the risk of unauthorised access to the dataset while the ingress volume is open for uploads, the following security measures are in place:</p>
+<ul class="simple">
+<li><p>Access to the ingress volume is restricted to a limited range of IP addresses associated with the Dataset Provider and the Turing.</p></li>
+<li><p>The Dataset Provider receives a <strong>write-only</strong> upload token. This allows them to upload, verify and modify the uploaded data, but does not viewing or download of the data. This provides protection against an unauthorised party accessing the data, even they gain access to the upload token.</p></li>
+<li><p>The upload token expires after a time-limited upload window.</p></li>
+<li><p>The upload token is transferred to the Dataset Provider via a secure email system.</p></li>
+</ul>
+<p>To further minimise the risk of unauthorised access to the dataset during the upload window, the Dataset Provider should take the following precautions.</p>
+<ul class="simple">
+<li><p>Data should always be uploaded directly into the secure volume to avoid the risk of individuals unintentionally retaining the dataset for longer than intended.</p></li>
+<li><p>After their dataset has been transferred, the Dataset Provider should immediately indicate that the transfer is complete. In doing so, they lose access to the data volume.</p></li>
+</ul>
+<p>If consensus on data classification cannot be made from metadata, an initial conservative classification may be made to permit the data to be ingressed into a higher tier environment.
+If the final classification of a work package is lower than the initial classification, the data may be egressed from this higher tier environment Environment to a new Environment matching the final classification tier.
+The web management workflows should ensure that all parties have reached consensus on the classification tier at this stage before allowing analysis to begin.</p>
+</section>
+<section id="software-library-distributions">
+<h2>Software library distributions<a class="headerlink" href="#software-library-distributions" title="Permalink to this headline">¶</a></h2>
+<p>Maintainers of shared research computing environments face a difficult challenge in keeping research algorithm libraries and platforms up to date - and in many cases these conflict.
+While sophisticated tools to help with this exist, the use of independent virtual environments opens another possibility: downloading the software as needed from package repositories (such as PyPI for Python or CRAN for R), which automate the process of installing and configuring programs.</p>
+<p>For lower tiers, with access to the internet, required software packages can be installed directly from their canonical sources on the internet.
+For higher tiers, without access to the external internet, this requires maintenance of full or partial mirrors (exact copies) of package repositories inside the Environment.</p>
+<p>Use of package mirrors inside the Environment means that the set of default installed packages can be kept to a minimum, reducing the likelihood of encountering package-conflict problems (where a package can be prevented from being installed due to the presence of an existing package with the same name) and saving on System Manager time.</p>
+<p>At the the highest tiers a subset of whitelisted packages (packages which are explicitly marked as safe) is maintained. This whitelist can be specific to the work package if required.
+At other tiers the full package list is mirrored, but with a short delato provide an opportunity for the wider community to catch any malicious code uploaded to the canonical package mirrors.</p>
+</section>
+<section id="storage">
+<h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
+<p>Which storage volumes exist in the analysis Environment?</p>
+<p>A Secure Data volume is a read-only volume that contains the secure data for use in analyses. It is mounted as read-only in the analysis Environments that must access it. One or more such volumes will be mounted depending on how many managed secure datasets the Environment has access to.</p>
+<p>A Secure Document volume contains electronically signed copies of agreements between the Data Provider and the Turing.</p>
+<p>A Secure Scratch volume is a read-write volume used for data analysis. Its contents are automatically and regularly deleted. Users can clean and transform the sensitive data with their analysis scripts, and store the transformed data here.</p>
+<p>An Output volume is a read-write area intended for the extraction of results, such as figures for publication.</p>
+<p>The Software volume is a read-only area which contains software used for analysis.</p>
+<p>A Home volume is a smaller read-write volume used for local programming and configuration files. It should not be used for data analysis outputs, though this is enforced only in policy, not technically. Configuration files for software in the software volume point to the Home volume.</p>
+</section>
+<section id="user-device-networks">
+<h2>User device networks<a class="headerlink" href="#user-device-networks" title="Permalink to this headline">¶</a></h2>
+<p>Our network security model distinguishes three dedicated research networks for
+user devices.</p>
+<ul class="simple">
+<li><p>The open internet (any network outside a partner institution)</p></li>
+<li><p>An Institutional network</p></li>
+<li><p>A Restricted network</p></li>
+</ul>
+<p>An Institutional network corresponds to a network managed by a partner institution.
+Guest access may be permitted on such networks (e.g. eduroam), but these guests should be known users.
+Access to Environments can be restricted such that access is only allowed by devices which are connected to a particular set of Institutional networks.
+However, it is assumed that a wide segment of the research community can access these networks.
+This access may also be remote for authorised users (for example, via VPN).</p>
+<p>A Restricted network corresponds to a network managed by a partner institution that can support additional controls such as restricting access to a narrower set of users, devices or locations.
+Access to Environments can be restricted such that access is only allowed by devices which are connected to a particular set of Restricted networks.
+Access to a particular Environment may be permitted from multiple Restricted networks at multiple partner organisations.
+This can permit users from multiple organisations to access an Environment, as well permitting users to access the Environment while away from their home institution at another partner institution.
+However, remote access to a Restricted network (for example via VPN) is not permitted.</p>
+<p>At higher tiers Environment firewall rules permit access only from network IP ranges corresponding to specific Institutional and Restricted networks approved for the Environment.
+Note that these restrictions on networks that can access Environments relate to inbound connectivity only.
+Separate controls determine whether outbound connections can be made from an Environment and whether inbound connections are permitted directly to resources within the Environment or must be made via a secure access node.
+In addition to these netwrok level restrictions, users must additionally authenticate to the Environment in order to access it.</p>
+</section>
+<section id="physical-security">
+<h2>Physical security<a class="headerlink" href="#physical-security" title="Permalink to this headline">¶</a></h2>
+<p>Some data requires a physical security layer around not just the data centre,
+but the physical space users are in when they connect to it.</p>
+<p>We distinguish three levels of physical security for research spaces:</p>
+<ul class="simple">
+<li><p>Open research spaces</p></li>
+<li><p>Medium security research spaces</p></li>
+<li><p>High security research spaces</p></li>
+</ul>
+<p>Open research spaces include university libraries, cafes and common rooms.</p>
+<p>Medium security research spaces control the possibility of unauthorised viewing.
+Card access or other means of restricting entry to only known researchers (such as the signing in of guests on a known list) is required.
+Screen adaptations or desk partitions can be adopted in open-plan spaces if there is a high risk of “visual eavesdropping”.</p>
+<p>Secure research spaces control the possibility of the researcher deliberately removing data.
+Devices will be locked to appropriate desks, and neither enter nor leave the space.
+Mobile devices should be removed before entering, to block the ‘photographic hole’, where mobile phones are used to capture secure data from a screen.
+Only researchers associated with a secure project have access to such a space.</p>
+<p>Firewall rules for the Environments can permit access only from Restricted network IP ranges corresponding to these research spaces.</p>
+</section>
+<section id="user-devices">
+<h2>User Devices<a class="headerlink" href="#user-devices" title="Permalink to this headline">¶</a></h2>
+<p>What devices should researchers use to connect to the Environment?</p>
+<p>We define two types of devices:</p>
+<ul class="simple">
+<li><p>Managed devices</p></li>
+<li><p>Open devices</p></li>
+</ul>
+<section id="managed-devices">
+<h3>Managed devices<a class="headerlink" href="#managed-devices" title="Permalink to this headline">¶</a></h3>
+<p>Managed devices are devices provided by a partner institution on which the user does not have administrator/root access, with the device instead administered by the institution’s IT team.</p>
+<p>Managed devices could be provided by the Turing, or one of the partner organisations for a work package.</p>
+<p>They have an extensive suite of research software installed.</p>
+<p>This includes the ability to install packages for standard programming environments without the need for administrator access.</p>
+<p>Researchers can compile and run executables they code in User Space (the portion of system memory in which user processes run).</p>
+</section>
+<section id="open-devices">
+<h3>Open Devices<a class="headerlink" href="#open-devices" title="Permalink to this headline">¶</a></h3>
+<p>These include personal devices such as researcher-owned laptops, but also include devices provided by a partner institution where the user has administrator/root access.</p>
+<p>These devices permit the easy use of a wider range of software than managed devices, as well as easier access to peripheral hardware.</p>
+<p>However, such devices should not be used to access the highest tier Environments.</p>
+<p>Firewall rules for the higher tier Environments can permit access only from Restricted network IP ranges that only permit managed devices to connect.</p>
+</section>
+</section>
+<section id="software-ingress-software-entering-a-secure-environment-from-an-external-source">
+<h2>Software ingress (software entering a secure Environment from an external source)<a class="headerlink" href="#software-ingress-software-entering-a-secure-environment-from-an-external-source" title="Permalink to this headline">¶</a></h2>
+<p>The base data science virtual machine provided in the secure analysis Environments comes with a wide range of common data science software pre-installed.
+Package mirrors also allow access to a wide range of libraries for the programming languages for which package mirrors are provided (currently Python and R).</p>
+<p>For other languages for which no package mirror is provided, or for software which is not available from a package repository, an alternative method of software ingress must be provided.
+This includes custom researcher-written code not available via the package mirrors (e.g. code available on a researcher’s personal or institutional Github repositories).</p>
+<p>For lower tier environments, the data science virtual machine has outbound access to the internet and software can be installed in the usual manner by either a normal user or an administrator as required.</p>
+<p>For higher tier environments, the following software ingress options are available.</p>
+<section id="installation-during-virtual-machine-deployment">
+<h3>Installation during virtual machine deployment<a class="headerlink" href="#installation-during-virtual-machine-deployment" title="Permalink to this headline">¶</a></h3>
+<p>Where requirements for additional software are known in advance of the data science virtual machine being deployed to a secure analysis Environment, the additional software sucan be installed during deployment.
+In this case, software installation is performed while the virtual machine is outside of the Environment with outbound internet access available, but no access to any project data.
+Once the additional software has been installed, the virtual machine is ingressed to the Environment via a one-way airlock.</p>
+</section>
+<section id="installation-after-virtual-machine-deployment">
+<h3>Installation after virtual machine deployment<a class="headerlink" href="#installation-after-virtual-machine-deployment" title="Permalink to this headline">¶</a></h3>
+<p>Once a virtual machine has been deployed into a secure analysis Environment, it cannot be moved outside of the Environment, as is has had access to the data in the Environment and therefore represents an unauthorised data egress risk.
+As higher tier Environments do not have access to the internet, any additional software required must be brought into the Environment in order to be installed.</p>
+<p>Software is ingressed in a similar manner as data, using a software ingress volume:</p>
+<ul class="simple">
+<li><p>In <strong>external mode</strong> the researcher is provided temporary <strong>write-only</strong> access to a software ingress volume.</p></li>
+<li><p>Once the Researcher transfers the software source or installation package to this volume, their access is revoked and the software is subject to a level of review appropriate to the Environment tier.</p></li>
+<li><p>Once any required review has been passed, the software ingress volume is switched to <strong>internal mode</strong>, where it is made available to Researchers within the analysis Environment with <strong>read-only</strong> access.</p></li>
+<li><p>For software that does not require administrative rights to install, the Researcher can then install the software or transfer the source to a version control repository within the Environment as appropriate.</p></li>
+<li><p>For software that requires administrative rights to install, a System Manager must run the installation process.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-choices">
+<h2>The choices<a class="headerlink" href="#the-choices" title="Permalink to this headline">¶</a></h2>
+<p>Having described the full model, processes, and lifecycles, we can now enumerate the list of choices that can be made for each Environment.
+These are all separately configurable on an environment-by-environment basis.
+However, we recommend the following at each tier.</p>
+<section id="software-installation">
+<h3>Software installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h3>
+<p>At Tier 3 and above, package mirrors (copies of external repositories inside the secure Environment) should include only white-listed software packages.</p>
+<p>At Tier 2, package mirrors should include all software packages.</p>
+<p>At Tier 2 and above, all software not available from a package mirror must be installed either at the time the analysis machine is first deployed or by ingressing the software installer as data, with an associated ingress review.</p>
+<p>At Tier 1 and 0, all software installation should be from the internet.</p>
+</section>
+<section id="inbound-connections">
+<h3>Inbound connections<a class="headerlink" href="#inbound-connections" title="Permalink to this headline">¶</a></h3>
+<p>At Tier 2 and above, analysis machines and other Environment resources are not accessible directly from client devices.
+Instead, secure “access nodes” provide secure web-based remote desktop facilities used to indirectly access the analysis Environments (e.g. Microsoft Remote Desktop Services).</p>
+<p>At Tier 1 and 0, analysis machines and other Environment resources are directly accessible from client devices.</p>
+<p>At Tier 3 and above Environment access nodes are only available from approved Restricted networks.</p>
+<p>At Tier 2 Environment access nodes are only be accessible from approved Institutional networks.</p>
+<p>At Tier 1 and 0 Environment resources are accessible from the open internet</p>
+</section>
+<section id="outbound-connections">
+<h3>Outbound connections<a class="headerlink" href="#outbound-connections" title="Permalink to this headline">¶</a></h3>
+<p>At Tier 2 and above no connections are permitted from the Environment private network to the internet or other external resources.</p>
+<p>At Tier 1 and 0 the internet is accessible from inside the Environment.</p>
+</section>
+<section id="data-ingress">
+<h3>Data ingress<a class="headerlink" href="#data-ingress" title="Permalink to this headline">¶</a></h3>
+<p>At Tier 2 and above, the high-security data transfer process is required (i.e. write only access from particular locations for a limited time).</p>
+<p>At Tier 1 and 0 the use of standard secure data transfer processes (e.g. SCP/SFTP) may be permitted.</p>
+</section>
+<section id="data-egress">
+<h3>Data egress<a class="headerlink" href="#data-egress" title="Permalink to this headline">¶</a></h3>
+<p>At Tier 3 and above, the Data Provider Representative, Investigator and Referee are all required to sign off all egress of data or code from the Environment.</p>
+<p>At Tier 2, only the Investigator and Referee are required to review and approve all egress of data or code from the Environment.</p>
+<p>At Tier 1 and 0 users are permitted to copy out data when they believe their local device is secure, with the permission of the Investigator.</p>
+</section>
+<section id="refereeing-of-classification">
+<h3>Refereeing of classification<a class="headerlink" href="#refereeing-of-classification" title="Permalink to this headline">¶</a></h3>
+<p>Independent Referee scrutiny of data classification is required when the initial classification by the Investigator and Data Provider Representative is Tier 2 or higher.</p>
+</section>
+<section id="two-factor-authentication">
+<h3>Two factor authentication<a class="headerlink" href="#two-factor-authentication" title="Permalink to this headline">¶</a></h3>
+<p>At Tier 2 and higher, two factor authentication is required to access the Environment.</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

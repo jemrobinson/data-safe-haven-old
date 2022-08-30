@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Sensitivity tiers &#8212; Data Safe Haven v3.4.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Classification process" href="classification_process.html" />
+    <link rel="prev" title="Data sensitivity classification" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../introduction/index.html">
+  Introduction
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../roles/index.html">
+  Roles
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Policies
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../design/index.html">
+  Design
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Data sensitivity classification
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Sensitivity tiers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="classification_process.html">
+     Classification process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="unconsented_data.html">
+     Unconsented data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_transfer/index.html">
+   Data transfer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/data_ingress.html">
+     Data ingress
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/software_ingress.html">
+     Software ingress
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/egress.html">
+     Data egress
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../security/index.html">
+   Security
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../security/overview.html">
+     Security overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../security/technical_controls.html">
+     Technical controls
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../security/security_policies.html">
+     Recommended security policies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../security/software_package_approval_policy.html">
+     Software package approval policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.4.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tier-0">
+   Tier 0
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tier-1">
+   Tier 1
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relationships-to-other-classification-schemes">
+     Relationships to other classification schemes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tier-2">
+   Tier 2
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Relationships to other classification schemes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tier-3">
+   Tier 3
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Relationships to other classification schemes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tier-4">
+   Tier 4
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Relationships to other classification schemes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/policies/data_sensitivity_classification/sensitivity_tiers.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="sensitivity-tiers">
+<span id="policy-classification-sensitivity-tiers"></span><h1>Sensitivity tiers<a class="headerlink" href="#sensitivity-tiers" title="Permalink to this headline">¶</a></h1>
+<p>Our recommendation for secure information processing tiers is based on work which has gone before.
+We have begun with the UK government classifications, and reconciled these to the definitions of personal data, whether or not something is ‘special category’ under the GDPR or relates to criminal convictions, and related them to common activities in the research community.</p>
+<p>Where input datasets contain personal data, consideration should always be given at the outset to minimising the personal data, including by pseudonymisation or anonymisation.</p>
+<p><strong>Pseudonymised data</strong> is still personal data, as it can be re-identified by those who hold the key to turn pseudonyms back into individual identifiers.
+This may include synthetic data derived from personal data, or models trained on personal data, depending on the methods used to synthesise the data or generate the models.</p>
+<p><strong>Anonymised data</strong>, including pseudonymised data where that key is destroyed, is not personal data when it is impossible to re-identify any living individuals from it.
+However, if the quality of anonymisation is ambiguous or if individuals can be identified when the anonymised data is combined with another dataset, such data would by definition not be anonymised, and would therefore be personal data.
+The question as to whether re-identification is possible or not is a very subtle one, and the assessment of this risk is critical to the assignment of security tiers.</p>
+<p>We emphasise that this classification is based on considering the sensitivity of all information handled in the project, including information that may be generated by combining or processing input datasets.
+In every case, the categorisation does not depend only on the input datasets, but on combining information with other information or generated results in a work package.</p>
+<p>Derived information may be of higher security tier than the information in the input datasets.
+For example, information on the identities of those who are suspected to possess an undiagnosed neurological condition on the basis of analysis of public social media data.
+This should form part of the information constituting a work package; when a project team believes this will be the case, the work package should be classified at the higher tier of secure Environment.</p>
+<p>If it becomes apparent during the project that intended analysis will produce this effect then the inputs should be treated as a new work package with this extra information, and classified afresh, following the full classification process below.
+In the below, “personal data” follows the GDPR definition: information from which a living individual is identified or identifiable.
+It excludes information about individuals who are dead.</p>
+<section id="tier-0">
+<span id="policy-tier-0"></span><h2>Tier 0<a class="headerlink" href="#tier-0" title="Permalink to this headline">¶</a></h2>
+<p><strong>Tier 0</strong> Environments are used to handle open information, which is legally available to the general public with no restrictions, where all generated and combined information is also suitable for open handling.
+<strong>Tier 0</strong> applies where none of the information processed, combined or generated includes personal data, commercially sensitive data, or data which will have legal, political or reputational consequences in the event of unauthorised disclosure.
+In cases where anonymised or synthetic information is generated from personal data and one has <strong>absolute</strong> confidence in the quality of anonymisation or the privacy preserving nature of the data synthesis, the information is no longer personal data.
+This does <strong>not</strong> include pseudonymised data which can be re-identified in combination with a key or other dataset, which must still be considered personal data.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>In practice it is extremely difficult (if not impossible) to guarantee that data is truly anonymous, especially when considering the risk of the anonymised data being linked with other datasets that currently exist or may exist in the future, and the potential development of more sophisticated re-identification attacks.</p>
+</div>
+<p>If there is not <strong>absolute</strong> confidence in the anonymous or synthetic data no longer being personal data, then the minimum tier environment this data can be processed in is <a class="reference internal" href="#policy-tier-2"><span class="std std-ref">Tier 2</span></a>.
+<strong>Tier 0</strong> data should be considered ready for publication.
+Although this data is open, there may still be advantages to handling it through a managed data analysis infrastructure.</p>
+<p>Management of <strong>Tier 0</strong> data in a visible, well ordered infrastructure provides confidence to stakeholders as to the handling of more sensitive datasets.
+Although analysis may take place on personal devices or in non-managed cloud-based analysis Environments, the data should still therefore be listed through the inventory and curatorial systems of a managed research data Environment.
+Finally, audit trails as to the handling of <strong>Tier 0</strong> information reduce risks associated with misclassification - if data is mistakenly classified as a lower tier than it should be, we still retain information as to how it was processed during the period of misclassification.</p>
+<div class="admonition-examples-of-data-that-might-be-used-in-tier-0-projects admonition">
+<p class="admonition-title">Examples of data that might be used in Tier 0 projects</p>
+<ul class="simple">
+<li><p>open data that is legally available without restriction</p></li>
+<li><p>anonymised or synthetic personal data where you are <strong>absolutely</strong> confident that it cannot be re-identified</p></li>
+</ul>
+</div>
+</section>
+<section id="tier-1">
+<span id="policy-tier-1"></span><h2>Tier 1<a class="headerlink" href="#tier-1" title="Permalink to this headline">¶</a></h2>
+<p><strong>Tier 1</strong> Environments are used to handle, process and generate data that is intended for eventual publication or that could be published without reputational damage.
+Information is kept private in order to give the research team a competitive advantage, not due to legal data protection requirements.
+Both the datasets and the proposed processing must otherwise meet the criteria for <a class="reference internal" href="#policy-tier-0"><span class="std std-ref">Tier 0</span></a>.</p>
+<div class="admonition-examples-of-data-that-might-be-used-in-tier-1-projects admonition">
+<p class="admonition-title">Examples of data that might be used in Tier 1 projects</p>
+<ul class="simple">
+<li><p>open data that is legally available without restriction.</p></li>
+<li><p>commercial data where consequences of disclosure would be very low.</p></li>
+<li><p>anonymised or synthetic personal data where you are <strong>absolutely</strong> confident that it cannot be re-identified.</p></li>
+</ul>
+</div>
+<section id="relationships-to-other-classification-schemes">
+<h3>Relationships to other classification schemes<a class="headerlink" href="#relationships-to-other-classification-schemes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Pseudonymised data is considered <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/key-definitions/what-is-personal-data/">Personal Data</a> under the GDPR.</p></li>
+<li><p>Anonymised data is not considered Personal Data under the GDPR, but in practice it is extremely difficult (if not impossible) to guarantee that data is truly anonymous.
+Therefore, unless we are <strong>absolutely</strong> confident in the anonymisation process, we consider all data related to living individuals as Personal Data under the GDPR and therefore at least <a class="reference internal" href="#policy-tier-2"><span class="std std-ref">Tier 2</span></a>.</p></li>
+<li><p><strong>Tier 1</strong> is not suitable for any data derived from personal data that is not otherwise suitable for processing in <a class="reference internal" href="#policy-tier-0"><span class="std std-ref">Tier 0</span></a>.
+If this is not the case, then the minimum tier environment such data can be processed in is <a class="reference internal" href="#policy-tier-2"><span class="std std-ref">Tier 2</span></a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="tier-2">
+<span id="policy-tier-2"></span><h2>Tier 2<a class="headerlink" href="#tier-2" title="Permalink to this headline">¶</a></h2>
+<p><strong>Tier 2</strong> Environments are used to handle, combine or generate information which is not linked to identifiable personal data.</p>
+<p>It may be used for pseudonymised, synthetic or anonymised information generated from personal data, where we have <strong>strong</strong>, but not absolute, confidence that the personal data cannot be re-identified.
+This assessment should consider the risk of processing the data in a manner that permits personal data to be re-identified, including by combining it with other data available within the environment.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We recommend using a <a class="reference internal" href="#policy-tier-3"><span class="std std-ref">Tier 3</span></a> environment to perform the pseudonymisation, synthesis or anonymisation process itself,</p>
+</div>
+<p>A typical model for a project will be to instantiate both <strong>Tier 2</strong> and <a class="reference internal" href="#policy-tier-3"><span class="std std-ref">Tier 3</span></a> Environments, with pseudonymised, synthetic or anonymised data generated in the <a class="reference internal" href="#policy-tier-3"><span class="std std-ref">Tier 3</span></a> Environment and then transferred to the <strong>Tier 2</strong> Environment.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Note that pseudonymised data is Personal Data under the GDPR.
+While anonymised data is not considered Personal Data under the GDPR, in practice it is extremely difficult (if not impossible) to guarantee that data is truly anonymous.
+Therefore, unless we are <strong>absolutely</strong> confident in the anonymisation process, we consider all data related to living individuals as Personal Data under the GDPR.</p>
+</div>
+<p><strong>Tier 2</strong> Environments are also used to handle, combine or generate information which is confidential but not, in commercial or national security terms, sensitive.
+This includes commercial-in-confidence datasets or intellectual property where the legal, commercial, political and reputational consequences from disclosure are low.
+Where such consequences are not low, <a class="reference internal" href="#policy-tier-3"><span class="std std-ref">Tier 3</span></a> should be used.</p>
+<p>At <strong>Tier 2</strong>, the most significant risks are “workaround breach” and the risk of mistakenly believing data is robustly pseudonymised or anonymised, when in fact re-identification might be possible.</p>
+<div class="admonition-examples-of-data-that-might-be-used-in-tier-2-projects admonition">
+<p class="admonition-title">Examples of data that might be used in Tier 2 projects</p>
+<ul class="simple">
+<li><p>commercial data where consequences of disclosure would be low.</p></li>
+<li><p>anonymised or synthetic personal data where you are <strong>strongly</strong> confident that it cannot be re-identified.</p></li>
+</ul>
+</div>
+<section id="id1">
+<h3>Relationships to other classification schemes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Almost all data at the baseline UK government OFFICIAL classification is likely to be <strong>Tier 2</strong>, as well as a large proportion of data at the OFFICIAL-SENSITIVE [COMMERCIAL] classification.</p></li>
+<li><p>All pseudonymised <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/key-definitions/what-is-personal-data/">Personal Data</a> under the GDPR that is not <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/special-category-data/">Special Category Personal Data</a> is <strong>Tier 2</strong>.</p></li>
+</ul>
+</section>
+</section>
+<section id="tier-3">
+<span id="policy-tier-3"></span><h2>Tier 3<a class="headerlink" href="#tier-3" title="Permalink to this headline">¶</a></h2>
+<p><strong>Tier 3</strong> Environments are used to handle, combine or generate personal data, excluding personal data where there is a risk that disclosure might pose a substantial threat to the personal safety, health or security of the data subjects (which would be <a class="reference internal" href="#policy-tier-4"><span class="std std-ref">Tier 4</span></a>).
+This also includes pseudonymised, synthetic or anonymised information generated from personal data, where we have only weak confidence that the personal data cannot be re-identified.</p>
+<p><strong>Tier 3</strong> Environments are also used to handle, combine or generate information, including intellectual property, which is sensitive in commercial, legal, political, or national security terms.
+This tier anticipates the need to defend against compromise by attackers with bounded capabilities and resources.
+This may include hacktivists, single-issue pressure groups, investigative journalists, competent individual hackers and the majority of criminal individuals and groups.
+The threat profile excludes sophisticated, well-resourced and determined threat actors, such as highly capable serious organised crime groups and state actors.</p>
+<p>The difference between <a class="reference internal" href="#policy-tier-2"><span class="std std-ref">Tier 2</span></a> and <strong>Tier 3</strong> Environments is the most significant in this model, both for researcher productivity and organisational risk.
+At <strong>Tier 3</strong>, the risk of hostile actors attempting to break into the Environment becomes significant.</p>
+<div class="admonition-examples-of-data-that-might-be-used-in-tier-3-projects admonition">
+<p class="admonition-title">Examples of data that might be used in Tier 3 projects</p>
+<ul class="simple">
+<li><p>commercial data where consequences of disclosure would be high.</p></li>
+<li><p>anonymised or synthetic personal data where you are <strong>weakly</strong> confident that it cannot be re-identified.</p></li>
+<li><p>most non-anonymised personal data.</p></li>
+</ul>
+</div>
+<section id="id2">
+<h3>Relationships to other classification schemes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>All data at the UK government <code class="docutils literal notranslate"><span class="pre">OFFICIAL-SENSITIVE</span> <span class="pre">[PERSONAL]</span></code> classification will be <strong>Tier 3</strong>, as well as some data at the <code class="docutils literal notranslate"><span class="pre">OFFICIAL-SENSITIVE</span> <span class="pre">[COMMERCIAL]</span></code> classification, where the consequence of disclosure are particularly high.</p></li>
+<li><p>All pseudonymised <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/special-category-data/">Special Category Personal Data</a> under the GDPR is <strong>Tier 3</strong>.</p></li>
+<li><p>All non-pseudonymised <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/key-definitions/what-is-personal-data/">Personal Data</a> under the GDPR, whether or not it is <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/special-category-data/">Special Category Personal Data</a> is <strong>Tier 3</strong>.</p></li>
+</ul>
+</section>
+</section>
+<section id="tier-4">
+<span id="policy-tier-4"></span><h2>Tier 4<a class="headerlink" href="#tier-4" title="Permalink to this headline">¶</a></h2>
+<p><strong>Tier 4</strong> Environments are used to handle, combine or generate personal data where disclosure poses a substantial threat to the personal safety, health or security of the data subjects.
+This also includes handling, combining or generating datasets which are sensitive in commercial or national security terms, and are likely to be subject to attack by sophisticated, well-resourced and determined actors, such as serious organised crime groups and state actors.
+It is at <strong>Tier 4</strong> that the risk of hostile actors penetrating the project team becomes significant.</p>
+<div class="admonition-examples-of-data-that-might-be-used-in-tier-4-projects admonition">
+<p class="admonition-title">Examples of data that might be used in Tier 4 projects</p>
+<ul class="simple">
+<li><p>personal data where disclosure poses a substantial threat to the subjects.</p></li>
+<li><p>commercial data where consequences of disclosure would be very high.</p></li>
+<li><p>data where disclosure would cause national security issues.</p></li>
+</ul>
+</div>
+<section id="id3">
+<h3>Relationships to other classification schemes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>All data at the UK government <code class="docutils literal notranslate"><span class="pre">SECRET</span></code> classification will be <strong>Tier 4</strong>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data sensitivity classification</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="classification_process.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Classification process</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

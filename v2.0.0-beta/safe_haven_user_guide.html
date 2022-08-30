@@ -1,0 +1,1248 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Safe Haven User Documentation &#8212; Data Safe Haven v2.0.0-beta documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/toggle.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v2.0.0-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-the-turing-safe-haven">
+   Introduction: The Turing Safe Haven
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-governance-and-challenge-overview">
+     Data governance and challenge overview
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#section-1-setting-up">
+   Section 1: Setting up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wi-fi-access">
+     1.1  Wi-Fi Access
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-factor-authentication">
+     1.2 Multi-Factor Authentication
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#section-2-logging-in-for-the-first-time">
+   Section 2: Logging in for the first time
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#username">
+     2.1 Username
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-a-password">
+     2.2 Setting a password
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuring-multi-factor-authentication">
+     Configuring Multi-Factor Authentication
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mfa-top-tips">
+       MFA:Top tips
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#section-3-accessing-the-safe-haven-for-the-first-time">
+   Section 3: Accessing the Safe Haven for the first time
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#access-credentials">
+     3.1: Access credentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logging-into-the-windows-azure-environment">
+     3.2: Logging into the Windows Azure environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-time-set-up">
+     3.3: First-time set-up
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#section-4-using-the-safe-haven">
+   Section 4: Using the Safe Haven
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-data-analytics-virtual-machine">
+     4.1: Using the data analytics virtual machine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessing-gitlab-and-hackmd-from-the-vm-instead-of-via-work-resources-app">
+     Accessing GitLab and HackMD from the VM instead of via work resources app
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-packages">
+     4.2: Installing packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessing-gitlab-and-storing-code">
+     4.3: Accessing GitLab and storing code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessing-hackmd-and-writing-the-report">
+     4.4: Accessing HackMD and writing the report
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessing-the-data-and-exporting-figures">
+     4.5: Accessing the data and exporting figures
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-and-presenting-the-report-out-slides-for-friday">
+     4.6: Creating and presenting the report-out slides for Friday
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outputs-from-the-week">
+     4.7: Outputs from the week
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#section-5-fixing-bugs">
+   Section 5: Fixing bugs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgments">
+   Acknowledgments
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-a-migrating-to-a-new-data-science-vm-post-package-update">
+   Appendix A: Migrating to a new data science VM post package update
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-b-gitlab-tutorial-notes">
+   Appendix B: Gitlab tutorial notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repositories">
+     Repositories
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-your-git-username-and-set-your-email">
+     Add your Git username and set your email
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloning-projects">
+     Cloning projects
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#command-line-basics">
+     Command Line Basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#branches">
+     Branches
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#downloading-the-latest-changes-in-a-project">
+     Downloading the latest changes in a project
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-and-commit-local-changes">
+     Add and commit local changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-create-a-merge-request">
+     How to create a Merge Request
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-c-troubleshooting">
+   Appendix C: Troubleshooting
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#no-applications-available">
+     No applications available
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#symptom">
+       Symptom
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cause">
+       Cause
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#solution">
+       Solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unexpected-certificate-error">
+     Unexpected certificate error
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Symptom
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Cause
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Solution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-d-safe-haven-setup">
+   Appendix D: Safe Haven setup
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/safe_haven_user_guide.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="safe-haven-user-documentation">
+<h1>Safe Haven User Documentation<a class="headerlink" href="#safe-haven-user-documentation" title="Permalink to this headline">¶</a></h1>
+<p><strong>Table of contents:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#introduction-the-turing-safe-haven"><strong>Introduction:</strong> The Turing Safe Haven</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#section-1-setting-up"><strong>Section 1:</strong> Setting up</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#section-2-logging-in-for-the-first-time"><strong>Section 2:</strong> Logging in for the first time</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#section-3-accessing-the-safe-haven-for-the-first-time"><strong>Section 3:</strong> Accessing the Safe Haven for the first time</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#section-4-using-the-safe-haven"><strong>Section 4:</strong> Using the Safe Haven</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#section-5-fixing-bugs"><strong>Section 5:</strong> Fixing bugs</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#appendix-a-migrating-to-a-new-data-science-vm-post-package-update"><strong>Appendix A:</strong> Migrating to a new data science VM post package update</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#appendix-b-gitlab-tutorial-notes"><strong>Appendix B:</strong>  Gitlab tutorial notes</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#appendix-c-troubleshooting"><strong>Appendix C:</strong> Troubleshooting</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#appendix-d-safe-haven-setup"><strong>Appendix D:</strong> Safe Haven setup</a></p></li>
+</ul>
+<section id="introduction-the-turing-safe-haven">
+<h2>Introduction: The Turing Safe Haven<a class="headerlink" href="#introduction-the-turing-safe-haven" title="Permalink to this headline">¶</a></h2>
+<p>Welcome to the Turing Safe Haven tool. Secure environments for analysis of sensitive datasets are essential for research, giving data providers confidence that their datasets will be kept secure over the course of a project. Here at the Turing, we’ve developed a tool that allows you to set up secure research environments for your projects at scale, to allow you to work on sensitive / confidential datasets. To maintain security of the data and challenge insights, we are legally required to work on some of the challenges within in data safe havens, hosted by the Turing Institute.</p>
+<p>Before you get started in using a safe haven, you’ll need to have classified the data you’re using to understand its sensitivity, and how it should be handled. The classification should be done for each work package (the combination of all linked data you’ll be handling over the project) at ingress and egress from your safe haven environment. There are 5 tiers, ranging from open data at Tier 0, to highly sensitive and high risk data at Tier 4. You can find out more about classifying project data, and how to do it, in our policy paper, available here: https://arxiv.org/abs/1908.08737</p>
+<p>While working in a data safe haven secure environment, you won’t be able to use the internet. All the tools you’ll need for carrying out data science research, as well as the data you’ll be working on, will be ingressed into the safe haven upon its creation.</p>
+<section id="data-governance-and-challenge-overview">
+<h3>Data governance and challenge overview<a class="headerlink" href="#data-governance-and-challenge-overview" title="Permalink to this headline">¶</a></h3>
+<p>The challenges in this DSG are all categorised as Tier 2: “Official” or Tier 3: “Official Sensitive”.</p>
+<p>While you are having an initial problem discussion and brainstorming session, the DSG team will take a participant register and grant you access to the Turing safe haven and to the relevant challenge data. When this is ready, your facilitator will guide you through logging in and using  the Safe Haven following the instructions in this document.</p>
+<p>The environments do not allow connection to the internet. However, there are local copies of the PyPI and CRAN package repositories available inside of the Azure virtual machine. You can install packages you need from these copies in the usual way, for example pip install –user and packages.install for Python and R respectively.</p>
+<p>Note that you will not have access to install packages system-wide and will therefore need to install packages in a user directory. For CRAN, you will be prompted to make a user package directory when you install your first package. For PyPI, you will need to run pip install with the –user flag. See Section 4.2: Installing packages for further details.
+Turing Safe Haven setup</p>
+<p>For full details on the technical setup of the Safe Haven, see <strong>Appendix D</strong>.</p>
+</section>
+</section>
+<section id="section-1-setting-up">
+<h2>Section 1: Setting up<a class="headerlink" href="#section-1-setting-up" title="Permalink to this headline">¶</a></h2>
+<section id="wi-fi-access">
+<h3>1.1  Wi-Fi Access<a class="headerlink" href="#wi-fi-access" title="Permalink to this headline">¶</a></h3>
+<p>You need to be connected to the Turing’s internal Wi-fi network to access any of the challenges:</p>
+<blockquote>
+<div><p>Wi-Fi Name: Turing Guest</p>
+<p>Password  : <em>Available on signage throughout the Turing Institute</em></p>
+</div></blockquote>
+<p>The password is the full string including spaces.</p>
+</section>
+<section id="multi-factor-authentication">
+<h3>1.2 Multi-Factor Authentication<a class="headerlink" href="#multi-factor-authentication" title="Permalink to this headline">¶</a></h3>
+<p>Multi-factor authentication is one of the most powerful ways of protecting your personal information online. In this case, we use MFA to protect the challenge data.</p>
+<p>MFA will ask you to confirm your identity (using your phone number) whenever you connect to the Windows Azure environment. <em>This is why we ask that you bring a mobile device with you to the Data Study Group.</em></p>
+<p>Full instructions on setting this up are given in Section 2 below. We recommend using notifications via the Authenticator app, but a phone call will work too.</p>
+<p>You may encounter some connectivity challenges if your phone provider’s network has low connectivity at the British Library. The DSG team are here to help smooth these processes for you, and balance ease of analysis with our responsibilities as data controllers for the DSG week. Thank you for your patience as we and your facilitators work to get you connected securely.</p>
+</section>
+</section>
+<section id="section-2-logging-in-for-the-first-time">
+<h2>Section 2: Logging in for the first time<a class="headerlink" href="#section-2-logging-in-for-the-first-time" title="Permalink to this headline">¶</a></h2>
+<p>This section should help you log in to the Safe Haven for the first time. Please let your facilitator know if any of the below fails despite multiple tries.</p>
+<p>You should have provided a phone number when you registered for the DSG. If you did not provide your number, your account may not have been set up - please let your facilitator know and they will set you up with an account.</p>
+<p>If you’ve already logged in to this account for the WebApp, you won’t have to do it again - carry on to section 3.</p>
+<section id="username">
+<h3>2.1 Username<a class="headerlink" href="#username" title="Permalink to this headline">¶</a></h3>
+<p>Your <strong>username</strong> will be in the format <code class="docutils literal notranslate"><span class="pre">firstname.lastname</span></code></p>
+<p>At times, you will need to enter it in the form <code class="docutils literal notranslate"><span class="pre">username&#64;turingsafehaven.ac.uk</span></code> (so <code class="docutils literal notranslate"><span class="pre">firstname.lastname&#64;turingsafehaven.ac.uk</span></code>).</p>
+<p><strong>NOTE:</strong> If you have a hyphenated last name, or multiple surnames, or a long family name, please check in with the DSG team to check your assigned username.</p>
+</section>
+<section id="setting-a-password">
+<h3>2.2 Setting a password<a class="headerlink" href="#setting-a-password" title="Permalink to this headline">¶</a></h3>
+<p>For security reasons, you must (re-)set your password before you can log in:</p>
+<ol class="simple">
+<li><p>Open a private/incognito browser session on your laptop (this will avoid picking up any existing Azure / Microsoft accounts you have).</p></li>
+<li><p>Copy and paste the following URL into the private browser address bar:
+https://aka.ms/ssprsetup</p></li>
+<li><p>At the login prompt enter 	username&#64;turingsafehaven.ac.uk 	and confirm/proceed.
+(Remember that your username will be in the format <code class="docutils literal notranslate"><span class="pre">firstname.lastname</span></code>.)</p></li>
+<li><p>There will then be a password prompt. The first time you log in you need to click <strong>“Forgotten my password”</strong></p></li>
+</ol>
+<p><img alt="" src="_images/resetpassword_1.png" /></p>
+<p><strong>NOTE:</strong> If you do reset your password during the week, wait 5-10 mins before logging in again, to allow the user management to sync up with the new password.</p>
+<ol>
+<li><p>Complete the requested information (a captcha and the phone number you provided on registration).</p>
+<p><img alt="" src="_images/resetpassword_2.png" />
+<img alt="" src="_images/resetpassword_3.png" /></p>
+</li>
+<li><p>Generate a new password using the <a class="reference external" href="https://passwordsgenerator.net/?length=20&amp;symbols=0&amp;numbers=1&amp;lowercase=1&amp;uppercase=1&amp;similar=1&amp;ambiguous=0&amp;client=1&amp;autoselect=1">Secure Password
+Generator we set up</a>.</p>
+<p><strong>NOTE:</strong> Do <strong>not</strong> use special characters or symbols in your password.
+If you do, you may be unable to type them in the virtual keyboard to access the secure environment.</p>
+</li>
+</ol>
+<p>Choose an alphanumeric password with minimum length of 12 characters, with at least one of each:</p>
+<ul class="simple">
+<li><p>uppercase character</p></li>
+<li><p>lowercase character</p></li>
+<li><p>number</p></li>
+</ul>
+<p>If you feel you may struggle to remember your password, make a note of it on a separate password protected device.</p>
+<ol>
+<li><p>Enter your password into the ‘new password’ and ‘confirm new password’ fields.</p>
+<p><img alt="" src="_images/resetpassword_4.png" />
+<img alt="" src="_images/resetpassword_5.png" /></p>
+</li>
+<li><p>Log into your account</p>
+<p><strong>NOTE:</strong> During this process, you will need to provide a phone number or an email for account recovery.
+This is <strong>not</strong> MFA.
+You still need to set up MFA in the next section, otherwise you will be unable to launch any apps.</p>
+<p><img alt="" src="_images/login_1.png" />
+<img alt="" src="_images/login_2.png" /></p>
+<p>If you get a message saying “account or password is incorrect” , check that you:</p>
+<ul class="simple">
+<li><p>typed the right username</p></li>
+<li><p>typed the right domain (see below example!)</p></li>
+</ul>
+</li>
+<li><p>Answer your phone when it rings!</p>
+<p><img alt="" src="_images/login_3.png" /></p>
+</li>
+<li><p>Finish logging in</p></li>
+</ol>
+<p><img alt="" src="_images/login_4.png" /></p>
+</section>
+<section id="configuring-multi-factor-authentication">
+<h3>Configuring Multi-Factor Authentication<a class="headerlink" href="#configuring-multi-factor-authentication" title="Permalink to this headline">¶</a></h3>
+<p>Once you have logged in, you need to setup multi-factor authentication before you can access the secure environment. The authentication method is either a call to your phone or a code from the Microsoft Authenticator app.</p>
+<ol>
+<li><p>Open a private browser session on your laptop.</p></li>
+<li><p>Enter https://aka.ms/MFASetup into the address bar.</p></li>
+<li><p>Login using <code class="docutils literal notranslate"><span class="pre">firstname.lastname&#64;turingsafehaven.ac.uk</span></code> and the new password you just created.
+a. Note that <strong>you might find another address is automatically inserted at this step</strong> (eg your work email account).
+(This is why we suggest using a private (incognito) browser session.)
+If that doesn’t work, <strong>log out of your personal account</strong> and try again with your data study group username.</p></li>
+<li><p>Set up the second authentication method following the instructions on screen. If you select phone verification, go to step 5. If you select app verification, go to step 6.</p>
+<p><img alt="" src="_images/setup_mfa.png" /></p>
+</li>
+<li><p><strong>Phone option</strong>: If you choose to set up the authentication by phone call you will receive a call straight away.</p>
+<p>Note that some people get a call that says, <em>“press the pound key”</em> and others receive <em>“press the hash key”</em> – both mean hit the <code class="docutils literal notranslate"><span class="pre">#</span></code> button.</p>
+<p><img alt="" src="_images/setup_mfa_phone_1.png" />
+<img alt="" src="_images/setup_mfa_phone_2.png" /></p>
+<p><strong>NOTE:</strong> when you click <code class="docutils literal notranslate"><span class="pre">close</span></code> the page will switch to your dashboard. You can close your browser at this point.</p>
+</li>
+<li><p><strong>App option</strong>:</p>
+<p>i. Download the app via one of these links:</p>
+<ul class="simple">
+<li><p>iOS: https://bit.ly/iosauthenticator</p></li>
+<li><p>Android: https://bit.ly/androidauthenticator</p></li>
+<li><p>Windows mobile: https://bit.ly/windowsauthenticator</p></li>
+</ul>
+<p>ii. Select the <strong>“Receive notifications for verification”</strong> radio button</p>
+<p>iii. Click on <strong>“Set up”</strong></p>
+<p>iv. Open your Microsoft Authenticator app on your phone and select <strong>“Add an account”</strong></p>
+<p>v. Select <strong>“Work or School”</strong> account</p>
+<p>vi. Scan the QR code on the screen</p>
+<p>vii. Click <strong>“Next”</strong> to start verification</p>
+<p>viii. Click <strong>“Next”</strong> again to test the app, you will get a verification on your app.</p>
+<p><img alt="" src="_images/setup_mfa_app_1.png" />
+<img alt="" src="_images/setup_mfa_app_2.png" />
+<img alt="" src="_images/setup_mfa_app_3.png" /></p>
+</li>
+<li><p>When confirmed you can close the browser.</p>
+<p><img alt="" src="_images/setup_mfa_app_4.png" /></p>
+</li>
+</ol>
+<section id="mfa-top-tips">
+<h4>MFA:Top tips<a class="headerlink" href="#mfa-top-tips" title="Permalink to this headline">¶</a></h4>
+<p><em><strong>If at first you don’t succeed: do the exact same thing a few more times!</strong></em></p>
+<p>Sometimes the MFA steps can be buggy.
+We’ve collected a few top tips here, but really, the answer is to be patient and just try again with the exact steps you just completed!</p>
+<ul class="simple">
+<li><p>Verifying your account in the Authenticator app can be weirdly buggy.
+Sometimes it doesn’t work the first time, but for the facilitators we all connected after somewhere between 1 and 10 attempts.</p></li>
+<li><p>Make sure you allow notifications on your authenticator app.</p></li>
+<li><p>Check you don’t have <em>Do not Disturb</em> mode on.</p></li>
+<li><p>You have to be SUPER FAST at acknowledging the notification on your app!
+The access codes update every 30 seconds.
+If at first you don’t succeed…</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="section-3-accessing-the-safe-haven-for-the-first-time">
+<h2>Section 3: Accessing the Safe Haven for the first time<a class="headerlink" href="#section-3-accessing-the-safe-haven-for-the-first-time" title="Permalink to this headline">¶</a></h2>
+<section id="access-credentials">
+<h3>3.1: Access credentials<a class="headerlink" href="#access-credentials" title="Permalink to this headline">¶</a></h3>
+<p>From the user registration process (Section 2), you should have the following ready:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">username</span></code> in the format <code class="docutils literal notranslate"><span class="pre">firstname.lastname</span></code>.</p></li>
+<li><p>A user <code class="docutils literal notranslate"><span class="pre">password</span></code>.</p></li>
+</ul>
+</section>
+<section id="logging-into-the-windows-azure-environment">
+<h3>3.2: Logging into the Windows Azure environment<a class="headerlink" href="#logging-into-the-windows-azure-environment" title="Permalink to this headline">¶</a></h3>
+<p>Follow the steps below to access the Azure safe haven environment:</p>
+<ol class="simple">
+<li><p>Open a private/incognito browser session</p></li>
+<li><p>Copy and paste the below URL but <strong>don’t</strong> hit enter: https://rds-dsgX.dsgroupX.co.uk/RDWeb/webclient/</p></li>
+</ol>
+<p><strong>NOTE:</strong> Don’t forget the <code class="docutils literal notranslate"><span class="pre">https://</span></code> - it won’t work without that prefix.</p>
+<ol class="simple">
+<li><p>Replace both <code class="docutils literal notranslate"><span class="pre">X</span></code> with one of the following numbers, depending on challenge</p>
+<ul class="simple">
+<li><p>X = 6 : Adatum</p></li>
+<li><p>X = 7 : Narchives</p></li>
+<li><p>X = 8 : Sensat</p></li>
+<li><p>X = 9 : WWF</p></li>
+<li><p>X = 10 : DST1LBField</p></li>
+<li><p>X = 11 : DSTL2Anthrax</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>NOTE:</strong> Important reminder: due to the security tier, there is <strong>no internet access from inside any of the above virtual machines</strong>.
+However, there are local copies of the <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> and <code class="docutils literal notranslate"><span class="pre">CRAN</span></code> package repositories available inside of the Azure virtual machine.
+You can install packages you need from these copies in the usual way, for example <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> and <code class="docutils literal notranslate"><span class="pre">packages.install</span></code> for Python and R respectively.
+Note that you will need to use the <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>.
+See <strong>Section 4.2:  Installing packages</strong> for further details.</p>
+<p>Additionally there is <strong>no copy/paste functionality</strong> from outside to inside the environment.</p>
+<p><img alt="" src="_images/logon_environment.PNG" /></p>
+<ol>
+<li><p>Enter the username you’ve been provided, ensuring that you use the following format:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">firstname.lastname&#64;turingsafehaven.ac.uk</span></code></p></li>
+</ul>
+</li>
+<li><p>Enter your password and confirm.</p></li>
+<li><p>You will now <strong>receive a call or mobile app notification</strong> for the MFA to confirm. For the call, you may have to move to an area with good reception and/or press the hash (#) key multiple times in-call.</p>
+<p>If successful, you’ll see the following screen - welcome to the Data Safe Haven!</p>
+<p><img alt="" src="_images/RDS_app_selection_options.png" /></p>
+</li>
+<li><p><em>(First time only)</em> Follow the steps in Section 3.3 if this is the first time you are logging in.</p>
+<p>You can use this secure environment to carry out secure data science research on data that’s been imported in. Following first time use, you can select whatever app that you wish to work with – each is explained in the following sections.</p>
+<p><strong>NOTE:</strong> Remember that once you go into one of these apps, you’re now going to a local server / UK Remote Desktop / VM.
+That means <strong>some of your key mappings may not be the same</strong> as you’re used to.</p>
+<p>We recommend opening a text editor to check what keys the remote desktop thinks you’re typing – especially if you have special characters you are using.
+You can right click on <code class="docutils literal notranslate"><span class="pre">Desktop</span></code> and <code class="docutils literal notranslate"><span class="pre">Applications</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Settings</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Keyboard</span></code> to change the layout.</p>
+</li>
+</ol>
+</section>
+<section id="first-time-set-up">
+<h3>3.3: First-time set-up<a class="headerlink" href="#first-time-set-up" title="Permalink to this headline">¶</a></h3>
+<p>The first time you use the safe haven, you’ll have to set up your user account on the virtual machine. In order to set up your user account on the virtual machine, you need to follow the below steps <strong>once</strong>.</p>
+<ol>
+<li><p>Run the “Shared VM (SSH)” app.
+You will need to first authenticate using MFA.</p>
+<p><img alt="" src="_images/login_putty_2.png" /></p>
+<p>If you don’t respond fast enough to the MFA, or it has failed, you will likely get an error that looks like this:</p>
+<p><img alt="" src="_images/login_putty_3.png" /></p>
+</li>
+<li><p>When you get in the first time, there will be a security alert. Dismiss security alert (that looks like the screenshot below) by clicking  <code class="docutils literal notranslate"><span class="pre">&quot;yes&quot;</span></code> (this only happens on the first log in).</p>
+<p><img alt="" src="_images/1st_logon_putty.png" /></p>
+</li>
+<li><p>Run the “Shared VM (Desktop)” app. Verify using MFA, then login with:</p>
+<p><code class="docutils literal notranslate"><span class="pre">firstname.lastname&#64;turingsafehaven.ac.uk</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code>.</p>
+<p>Check the box in the security alert below and confirm by clicking the <code class="docutils literal notranslate"><span class="pre">&quot;Yes&quot;</span></code> button.</p>
+<p><img alt="" src="_images/1st_logon_sharedVMdesktop.png" /></p>
+</li>
+<li><p>Insert your credentials as per the example below:</p>
+<p><img alt="" src="_images/logon_VMdesktop.png" /></p>
+<p>If you get a warning:</p>
+<blockquote>
+<div><p>Oops, we couldn’t connect to “Shared VM (Desktop)”</p>
+<p>We couldn’t connect to the gateway because of an error.</p>
+</div></blockquote>
+<p>Then make sure that you have MFA enabled (see <span class="xref myst">Section 3</span>, which is different from text messages for account recovery. If this keeps happening, ask your admin or tech support for help.</p>
+<p>If you get an error:</p>
+<blockquote>
+<div><p>connecting to sesman ip 127.0.0.1 port 3350</p>
+<p>sesman connect ok</p>
+<p>sending login info to session manager, please wait…</p>
+<p>login failed for display 0</p>
+</div></blockquote>
+<p>Then it is likely that you have entered your credentials incorrectly. Please try again, entering your username and password carefully. If this keeps happening, ask your admin or tech support for help.</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="section-4-using-the-safe-haven">
+<h2>Section 4: Using the Safe Haven<a class="headerlink" href="#section-4-using-the-safe-haven" title="Permalink to this headline">¶</a></h2>
+<section id="using-the-data-analytics-virtual-machine">
+<h3>4.1: Using the data analytics virtual machine<a class="headerlink" href="#using-the-data-analytics-virtual-machine" title="Permalink to this headline">¶</a></h3>
+<p>The Safe Haven contains a Linux VM for data analysis, with different packages installed on to it. The VM allows you to carry out data science research, completely isolated from the internet. You can access different applications from the terminal, including RStudio, Atom, jupyter notebook and Spider Integrated Development Environment. You can also access HackMD and Gitlab, through the browser in the VM. The analytics environment can be accessed through the <code class="docutils literal notranslate"><span class="pre">Shared</span> <span class="pre">VM</span></code> (desktop) app.
+Please log in with username <code class="docutils literal notranslate"><span class="pre">firstname.lastname</span></code> and password <code class="docutils literal notranslate"><span class="pre">password</span></code>.</p>
+<p><img alt="" src="_images/VM_arrived.png" /></p>
+<p>When you get to this screen, it is important that you select the “Use default config” option.</p>
+<p>Applications can be accessed through Terminal or right click on desktop (top left) and:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Applications</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Development</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">RStudio</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Applications</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Development</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Atom</span></code></p></li>
+<li><p>Open Terminal here -&gt; <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span> <span class="pre">&amp;</span></code> if you want to use python within a jupyter notebook.</p></li>
+<li><p>Open Terminal here -&gt; <code class="docutils literal notranslate"><span class="pre">spyder</span> <span class="pre">&amp;</span></code> if you want to use python within the Spyder IDE (integrated development environment) which is quite similar to RStudio.</p></li>
+</ul>
+<p>Note that typing R at the commandline will run conda’s version R.
+You can run the system R by typing <code class="docutils literal notranslate"><span class="pre">/user/bin/R</span></code>.
+We had already pointed RStudio to use system R, so those using RStudio should see the custom packages with no issues.</p>
+</section>
+<section id="accessing-gitlab-and-hackmd-from-the-vm-instead-of-via-work-resources-app">
+<h3>Accessing GitLab and HackMD from the VM instead of via work resources app<a class="headerlink" href="#accessing-gitlab-and-hackmd-from-the-vm-instead-of-via-work-resources-app" title="Permalink to this headline">¶</a></h3>
+<p>This VM can also be used to directly access <code class="docutils literal notranslate"><span class="pre">GitLab</span></code> and <code class="docutils literal notranslate"><span class="pre">HackMD</span></code>, via the broswer within the VM.</p>
+<ol>
+<li><p>Point firefox to the url provided by the resource dashboard for GitLab/HackMD</p></li>
+<li><p>Read and write access – the repository URL can be copied using via the clipboard icon highlighted in the screenshot below.</p>
+<p><img alt="" src="_images/gitlab_screenshot.png" /></p>
+</li>
+<li><p>If you create a new repository, we recommend you make it <strong>public</strong>. As each challenge has it’s own secure environment, this will make the repository accessible to your colleagues working on the same challenge but not to anyone else (who will not have access to the challenge environment).</p></li>
+</ol>
+</section>
+<section id="installing-packages">
+<h3>4.2: Installing packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h3>
+<p>There are local copies of the PyPI and CRAN package repositories available from the Linux VM.
+You can install packages you need from these copies in the usual way, for example <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> and <code class="docutils literal notranslate"><span class="pre">packages.install</span></code> for Python and R respectively.</p>
+<p>Note that you will not have access to install packages system-wide and will therefore need to install packages in a user directory. For <code class="docutils literal notranslate"><span class="pre">CRAN</span></code>, you will be prompted to make a user package direcory when you install your first package. For <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>, you will need to run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag.</p>
+<p>In Python, run this in a shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">package</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>In R, you can install them from inside R:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;cluster&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You will see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Installing package into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+Warning in install.packages(&quot;cluster&quot;) :
+  &#39;lib = &quot;/usr/local/lib/R/site-library&quot;&#39; is not writable
+Would you like to use a personal library instead? (yes/No/cancel)
+</pre></div>
+</div>
+<p>Enter <code class="docutils literal notranslate"><span class="pre">yes</span></code>, which prompts you to confirm the name of the library:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Would you like to create a personal library
+‘~/R/x86_64-pc-linux-gnu-library/3.5’
+to install packages into? (yes/No/cancel)
+</pre></div>
+</div>
+<p>Enter <code class="docutils literal notranslate"><span class="pre">yes</span></code>, which then installs the packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trying</span> <span class="n">URL</span> <span class="s1">&#39;http://10.1.0.21/src/contrib/cluster_2.0.7-1.tar.gz&#39;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Requests for additional packages may be submitted via the facilitator for Tier 3 environments and above, or if a requested package is not available from the package mirrors in a Tier 2 or below environment.
+In the latter case, please first try to find an alternative in <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> or <code class="docutils literal notranslate"><span class="pre">CRAN</span></code> which can be used to the same/similar effect.
+If a package request is not critical to the success of the project, the Research Computing teams reserve the right to decline the request; the time needed to successfully process the request and test will be taken into consideration.</p>
+<p>For each iteration of package updates, a new data science VM will be deployed into the Azure environment and you will need to access via the <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">VM</span></code> app - please also see <a class="reference external" href="#appendix-a-migrating-to-a-new-data-science-vm-post-package-update">Appendix A: Migrating to a new data science VM post package update</a>.
+If you’d like to ingress additional code or data, such as for a new tool, you’ll need to go through the classification process again, making sure that the data provider and principal investigator agree with how it is to be used.</p>
+</section>
+<section id="accessing-gitlab-and-storing-code">
+<h3>4.3: Accessing GitLab and storing code<a class="headerlink" href="#accessing-gitlab-and-storing-code" title="Permalink to this headline">¶</a></h3>
+<p>GitLab is an open source version of GitHub, working as a code hosting platform for version control and collaboration. It lets you and others work together on projects.</p>
+<p>It also allows you to version control all the code that you write for any of the Data Study Group challenges.
+There is a local GitLab installation within the Work Resources.</p>
+<p>If you have not used GitLab before:</p>
+<ul class="simple">
+<li><p>There is a small tutorial available as an Appendix to this guidance</p></li>
+<li><p>You can find the official documentation <a class="reference external" href="https://docs.gitlab.com/ee/gitlab-basics/README.html">in the GitLab website</a></p></li>
+<li><p>Ask your group colleagues for help</p></li>
+<li><p>Ask in the Slack channel for help.</p></li>
+</ul>
+<p>Everything that is not stored in a GitLab repository or on the shared <code class="docutils literal notranslate"><span class="pre">R:</span></code> drive by Friday lunchtime will be <strong>DESTROYED FOR EVER</strong>.
+Make sure that every piece of code you think might be at all useful is stored in a GitLab repository within the secure environment. Small processed data can also be stored in Gitlab. Larger processed datasets should be transferred to the shared <code class="docutils literal notranslate"><span class="pre">R:</span></code> drive using the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Transfer</span></code> WinSCP app.</p>
+<p>You can access the same GitLab repositories from the Work Resources page or via the shared VM desktop.</p>
+<p>Login with username <code class="docutils literal notranslate"><span class="pre">firstname.lastname&#64;turingsafehaven.ac.uk</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code>.</p>
+<p><img alt="" src="_images/gitlab_screenshot_login.png" /></p>
+<p>Please make all your repositories public so they are easy to share within your group.
+(Note that they are not really public as the server is only available inside your team’s virtual environment.)</p>
+</section>
+<section id="accessing-hackmd-and-writing-the-report">
+<h3>4.4: Accessing HackMD and writing the report<a class="headerlink" href="#accessing-hackmd-and-writing-the-report" title="Permalink to this headline">¶</a></h3>
+<p>HackMD is a locally installed tool that allows you to collaboratively write the data study group challenge report.
+It uses markdown which is a simple way to format your text so that it renders nicely in full html.</p>
+<p>You can find a really great markdown cheat sheet at
+<a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</a></p>
+<p>You can access a local installation of HackMD from the Work Resources page.
+Login with your username <code class="docutils literal notranslate"><span class="pre">firtname.lastname&#64;turingsafehaven.ac.uk</span></code> and  <code class="docutils literal notranslate"><span class="pre">password</span></code>, as below.</p>
+<p><img alt="" src="_images/hackmd_logon.png" /></p>
+<p>We have provided some example report templates for you which outline a structure we recommend.</p>
+<p>Please make all your documents public so they are easy to share within your group.
+(Note that they are not really public as the server is only available inside your team’s virtual environment.)
+We recommend that one person start the document, then let everyone know the URL text after the <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p>
+<blockquote>
+<div><p>TOP TIP: The URL for sharing a report is rather long.
+You can either write it in a textfile in the <code class="docutils literal notranslate"><span class="pre">R</span></code> drive (which everyone has access to) or publish the link and share that one (the published link will be much shorter).
+Anyone who has it can now click the little blue pen to go back to the editable version.</p>
+</div></blockquote>
+<blockquote>
+<div><p>TOP TIP: a lower case <code class="docutils literal notranslate"><span class="pre">L</span></code> and an upper case <code class="docutils literal notranslate"><span class="pre">I</span></code> will look the same!
+( <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">/=</span> <span class="pre">l</span></code> )
+Try the one you didn’t try first time round if you don’t get to the right place.</p>
+</div></blockquote>
+<p><img alt="" src="_images/hackmd_screenshot.png" /></p>
+</section>
+<section id="accessing-the-data-and-exporting-figures">
+<h3>4.5: Accessing the data and exporting figures<a class="headerlink" href="#accessing-the-data-and-exporting-figures" title="Permalink to this headline">¶</a></h3>
+<p>The data can be found in the <code class="docutils literal notranslate"><span class="pre">R</span></code> drive on the Windows Azure environment.
+Everyone in your group will be able to access it, so please make a copy of it to your own desktop or working directory.
+You can use Windows File Explorer to move data within the Windows environment.</p>
+<p>You can transfer the data to the Linux environment using the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Transfer</span></code> WinSCP app. (See <a class="reference external" href="#appendix-a-migrating-to-a-new-data-science-vm-post-package-update">Appendix A</a>)
+To access the data science VM’s file system, enter username <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> into the login mask, as shown below, and confirm with “login”.</p>
+<p><img alt="" src="_images/WinSCP_logon.png" /></p>
+<blockquote>
+<div><p>TOP TIP: Although the default says not to save the password – you’re in a super secure environment so your life will be easier if you do save it.</p>
+</div></blockquote>
+<p>You can now drag and drop any files between the data science VM and the Windows Azure environment, as in the screenshot below.</p>
+<p><img alt="" src="_images/WinSCP_screenshot.png" /></p>
+<p>If only one person in your group completes this step, everyone will then be able to access the data.</p>
+</section>
+<section id="creating-and-presenting-the-report-out-slides-for-friday">
+<h3>4.6: Creating and presenting the report-out slides for Friday<a class="headerlink" href="#creating-and-presenting-the-report-out-slides-for-friday" title="Permalink to this headline">¶</a></h3>
+<p>To create the presentation slides, go to the <code class="docutils literal notranslate"><span class="pre">Presentation</span> <span class="pre">server</span></code> on the Work Resources list and then open the Open Office icon on the Windows desktop.
+An example template is provided for you in the windows Azure environment (shared drive).</p>
+<p>You won’t be able to access the compute virtual machines from the windows desktop.
+That means all figures etc needed for the presentation must be moved off the compute VM(s) onto the network fileshares.
+As a nice side effect of this move to the network file shares, you’ll also be moving the outputs you want to save to persistent storage! Once the compute virtual machines are gone - on Friday afternoon - they will be gone forever.
+Please do this early and often through the week (not just for the presentation.)</p>
+<p>The presentations on Friday will be given from <em>inside</em> the secure environment.
+This means you don’t have to be too careful about protecting any sensitive analyses or results you have created. It also means you can show live demos if needed.</p>
+<p>It’s important to note that the presentation will probably be slightly laggy (there will be a lot of people using the wifi in the Enigma room during your presentation).
+It probably won’t be a problem for your slides, but if you show movies or demo code there’s a risk - as always - that they won’t play as well as you’d hoped.
+Be prepared for this outcome and be able to talk about what the audience would see.
+You do not have time to try to fix the demo during your presentation.
+And that’s ok!
+You can always show the demo to the challenge owners in a quiet space after lunchtime.</p>
+</section>
+<section id="outputs-from-the-week">
+<h3>4.7: Outputs from the week<a class="headerlink" href="#outputs-from-the-week" title="Permalink to this headline">¶</a></h3>
+<p>We will close down the compute virtual machines on the Friday afternoon.</p>
+<p>That means that anything that is a valuable output of the week should be stored in the persistent storage area - shared drive -  OR in the GitLab repository, rather than your local user storage.</p>
+<p>Make sure that <em>every</em> piece of code, image, or processed dataset you think might be at all useful is stored in a GitLab repository (code) or on the shared drive (data, images) before lunchtime on Friday.
+Please see  <a class="reference external" href="#appendix-a-migrating-to-a-new-data-science-vm-post-package-update">Appendix A: Migrating to a new data science VM post package update</a> for details on how to use WinSCP to transfer files from the VM to the shared drive within the secure environment.</p>
+<p>Please do this early and often through the week (not just for the presentation.)</p>
+<p>Everything that is not stored in a GitLab repository or the shared drive on Friday lunchtime will be <strong>DESTROYED FOR EVER</strong>.</p>
+<p>Suggested folders for the shared drive:</p>
+<ul class="simple">
+<li><p>Presentation</p></li>
+<li><p>Transformed data/derived data</p></li>
+<li><p>Report</p></li>
+<li><p>Code</p></li>
+<li><p>Images</p></li>
+</ul>
+</section>
+</section>
+<section id="section-5-fixing-bugs">
+<h2>Section 5: Fixing bugs<a class="headerlink" href="#section-5-fixing-bugs" title="Permalink to this headline">¶</a></h2>
+<p>The Turing IT, Research Engineering Group (REG) and the data study group teams attempt to solve IT infrastructure issues arising as soon as possible.</p>
+<p>The process for requesting help with the issue is as follows:</p>
+<ol class="simple">
+<li><p>Make sure you have <strong>read this document</strong> and checked if it answers your query.
+Please do not log an issue before you have read all of the sections in this document.</p></li>
+<li><p>Log out and log back in again (to the safe haven or data science environment) at least once, re-attempt the process leading to the bug/error at least twice.</p></li>
+</ol>
+<p>We know that “turn it off and turn it back on again” is a frustrating piece of advice to receive, but in our experience it works rather well! (Particularly when there are lots of folks trying these steps at the same time.)</p>
+<ol class="simple">
+<li><p>Let your challenge facilitator know of the issue. They have been given access to an internal Github issue tracker and will relay issues to Turing IT and REG.</p></li>
+</ol>
+<p>Please help your facilitator with a summary, and an appropriate tag for the issue. For example: [feature request], [package request], [bug report] are all nice and easy to understand.</p>
+<p>If you are reporting a bug, please include:</p>
+<ul class="simple">
+<li><p>Your client machine’s operating system and operating system version.</p></li>
+<li><p>Precise condition under which the bug occurs. How to reproduce it.</p></li>
+<li><p>Precise description of the bug. What happens? What would you expect to happen instead if there were no bug?</p></li>
+<li><p>Any workarounds/fixes you have found</p></li>
+</ul>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
+<p>Based on an initial document written March/April 2018 by Kirstie Whitaker.</p>
+<p>Updated in December 2018 by Catherine Lawrence, Franz Király, Martin O’Reilly, and Sebastian Vollmer.</p>
+<p>Updated again in March/April 2019 by Miguel Morin, Catherine Lawrence, Alvaro Cabrejas Egea, Kirstie Whitaker, James Robinson and Martin O’Reilly.</p>
+<p>Updated again again in November 2019 by Ben Walden, James Robinson and Daisy Parry.</p>
+</section>
+<section id="appendix-a-migrating-to-a-new-data-science-vm-post-package-update">
+<h2>Appendix A: Migrating to a new data science VM post package update<a class="headerlink" href="#appendix-a-migrating-to-a-new-data-science-vm-post-package-update" title="Permalink to this headline">¶</a></h2>
+<p>Important: please listen to your facilitators who will explicitly update you on VM updates and potential additional instructions specific to the migration.</p>
+<p>Do not attempt to migrate to a new data science VM before it has been officially authorized or recommended by your facilitator, as it might result in loss of work or data.</p>
+<p>For each iteration of package updates, a new data science VM will be deployed into the Azure environment.</p>
+<p>User access credentials <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> remain the same; the IP address <code class="docutils literal notranslate"><span class="pre">[IP]</span></code> changes in a systematic way.</p>
+<p>Each package update increments the last IP block <code class="docutils literal notranslate"><span class="pre">160</span></code> by one.
+That is, the first VM’s address is <code class="docutils literal notranslate"><span class="pre">10.250.sth.160</span></code>, the address of the first update is <code class="docutils literal notranslate"><span class="pre">10.250.sth.161</span></code>, of the second update <code class="docutils literal notranslate"><span class="pre">10.250.sth.162</span></code>, and so on.</p>
+<p>Apart from the change in IP address, the VM itself will behave the same.</p>
+<p>Local availability of a data copy file volume, usage of Gitlab, HackMD, etc will be unaffected by the VM update.</p>
+<p>To access an updated VM, use the <code class="docutils literal notranslate"><span class="pre">custom</span> <span class="pre">VM</span> <span class="pre">(desktop)</span> <span class="pre">app</span></code> instead of the <code class="docutils literal notranslate"><span class="pre">shared</span> <span class="pre">VM</span> <span class="pre">(desktop)</span> <span class="pre">app</span></code>.
+This is exactly as in <a class="reference external" href="#section-44-using-the-data-analytics-virtual-machine">Section 4.4</a>, with the only difference that in each log-in, you have to provide the updated VM’s <code class="docutils literal notranslate"><span class="pre">[IP]</span></code>.
+Prior to initial use, you will also have to follow the first-time set-up instructions by SSH-ing in via the <code class="docutils literal notranslate"><span class="pre">custom</span> <span class="pre">VM</span> <span class="pre">(SSH)</span> <span class="pre">app</span></code> instead of the <code class="docutils literal notranslate"><span class="pre">shared</span> <span class="pre">VM</span> <span class="pre">(SH)</span> <span class="pre">app</span></code>, following instructions as in <a class="reference external" href="#section-43-first-time-set-up">Section 4.3</a>, with the only difference that in each log-in, you have to provide the updated VM’s <code class="docutils literal notranslate"><span class="pre">[IP]</span></code>.</p>
+<p>Any local files that you have created in older VMs – e.g., analysis scripts, notes, derived data – will have to be manually transferred and are not automatically available in a newer VM.</p>
+<p>Three options to transfer files:</p>
+<ul class="simple">
+<li><p>Use WinSCP for drag-and-drop file transfer, as in <a class="reference external" href="#section-48-accessing-the-data-and-exporting-figures">Section 4.8</a>. First transfer from the old [IP] to the Windows environment, then transfer from Windows environment to new [IP].</p></li>
+<li><p>Use command line SCP for direct transfer from old [IP] to new [IP]. The data science VMs are able to see each other in the network.</p></li>
+<li><p>Push your partial work to Gitlab from a local git repository on the old VM, and the pull your work into a local git repository on the new VM. This is <em>not</em> recommended for figures or files above a size of 1MB as it will clutter Gitlab, please use only for code and other text files, or small figures/data.</p></li>
+</ul>
+</section>
+<section id="appendix-b-gitlab-tutorial-notes">
+<h2>Appendix B: Gitlab tutorial notes<a class="headerlink" href="#appendix-b-gitlab-tutorial-notes" title="Permalink to this headline">¶</a></h2>
+<p>Gitlab can be thought of as a local version of github from different company - that is a git server along with useful features such as</p>
+<ul class="simple">
+<li><p>Project wiki - exactly what it says</p></li>
+<li><p>Project pastebin - share bits of code</p></li>
+<li><p>Project issue tracker - track things TODO and bugs</p></li>
+<li><p>Pull requests - Way to keep track of changes individuals have made to be included in master</p></li>
+</ul>
+<p>Some teams design their entire workflows around these things.
+A comparison in terms of features can be found <a class="reference external" href="https://usersnap.com/blog/gitlab-github/">here</a>.</p>
+<section id="repositories">
+<h3>Repositories<a class="headerlink" href="#repositories" title="Permalink to this headline">¶</a></h3>
+<p>A repository is usually used to organize a single project. Repositories can contain folders and files, images, videos, spreadsheets, and data sets – anything your project needs. We recommend including a README, or a file with information about your project.</p>
+<p>During the Data Study Group Week, you will be accessing and adding files to the same project repository.</p>
+</section>
+<section id="add-your-git-username-and-set-your-email">
+<h3>Add your Git username and set your email<a class="headerlink" href="#add-your-git-username-and-set-your-email" title="Permalink to this headline">¶</a></h3>
+<p>It is important to configure your Git username and email address, since every Git commit will use this information to identify you as the author.</p>
+<p>On your shell, type the following command to add your username:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;YOUR_USERNAME&quot;</span>
+</pre></div>
+</div>
+<p>Then verify that you have the correct username:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+<p>To set your email address, type the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s2">&quot;your_email_address@example.com&quot;</span>
+</pre></div>
+</div>
+<p>To verify that you entered your email correctly, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span>
+</pre></div>
+</div>
+<p>You’ll need to do this only once, since you are using the <code class="docutils literal notranslate"><span class="pre">--global</span></code> option. It tells Git to always use this information for anything you do on that system. If you want to override this with a different username or email address for specific projects, you can run the command without the <code class="docutils literal notranslate"><span class="pre">--global</span></code> option when you’re in that project.</p>
+</section>
+<section id="cloning-projects">
+<h3>Cloning projects<a class="headerlink" href="#cloning-projects" title="Permalink to this headline">¶</a></h3>
+<p>In Git, when you copy a project you say you “clone” it. To work on a git project locally (from your own computer), you will need to clone it. To do this, sign in to GitLab.</p>
+<p>When you are on your Dashboard, click on the project that you’d like to clone. To work in the project, you can copy a link to the Git repository through a SSH or a HTTPS protocol. SSH is easier to use after it’s been set up, <a class="reference external" href="https://docs.gitlab.com/ee/gitlab-basics/create-your-ssh-keys.html">you can find the details here</a>. While you are at the Project tab, select HTTPS or SSH from the dropdown menu and copy the link using the Copy URL to clipboard button (you’ll have to paste it on your shell in the next step).</p>
+<p><img alt="" src="_images/project_clone_url.png" /></p>
+<p>Go to your computer’s shell and type the following command with your SSH or HTTPS URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">PASTE</span> <span class="n">HTTPS</span> <span class="n">OR</span> <span class="n">SSH</span> <span class="n">HERE</span>
+</pre></div>
+</div>
+</section>
+<section id="command-line-basics">
+<h3>Command Line Basics<a class="headerlink" href="#command-line-basics" title="Permalink to this headline">¶</a></h3>
+<p>There are multiple git cheat sheets such as <a class="reference external" href="http://ndpsoftware.com/git-cheatsheet.html#loc=stash%3B">interactive</a> and <a class="reference external" href="https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet">this one</a>. We summarised what we find useful below.</p>
+<p>Below you can find other commands you may find useful during the week.</p>
+<p>Go into a project directory to work in it</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">PROJECT</span>
+</pre></div>
+</div>
+<p>Go back one directory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">..</span>
+</pre></div>
+</div>
+<p>List what’s in the current directory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+</pre></div>
+</div>
+<p>Create a new directory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">YOUR</span><span class="o">-</span><span class="n">DIRECTORY</span>
+</pre></div>
+</div>
+<p>Remove a file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">FILE</span>
+</pre></div>
+</div>
+<p>Remove a directory and all of its contents</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">DIRECTORY</span>
+</pre></div>
+</div>
+<p>View command history</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">history</span>
+</pre></div>
+</div>
+<p>Show which directory I am in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
+</pre></div>
+</div>
+<p>Clear the shell window</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span>
+</pre></div>
+</div>
+</section>
+<section id="branches">
+<h3>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h3>
+<p>Branching is the way to work on different versions of a repository at one time.</p>
+<p>By default your repository has one branch named <code class="docutils literal notranslate"><span class="pre">master</span></code> which is considered to be the definitive branch. We use branches to experiment and make edits before committing them to <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+<p>When you create a branch off the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch, you’re making a copy, or snapshot, of <code class="docutils literal notranslate"><span class="pre">master</span></code> as it was at that point in time. If someone else made changes to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch while you were working on your branch, you could pull in those updates.</p>
+<p>To create a branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">BRANCH</span>
+</pre></div>
+</div>
+<p>Work on an existing branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">BRANCH</span>
+</pre></div>
+</div>
+<p>To merge created branch with master branch you need to be in the created branch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">BRANCH</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>To merge master branch with created branch you need to be in the master branch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">BRANCH</span>
+</pre></div>
+</div>
+</section>
+<section id="downloading-the-latest-changes-in-a-project">
+<h3>Downloading the latest changes in a project<a class="headerlink" href="#downloading-the-latest-changes-in-a-project" title="Permalink to this headline">¶</a></h3>
+<p>This is for you to work on an up-to-date copy (it is important to do this every time you start working on a project), while you set up tracking branches. You pull from remote repositories to get all the changes made by users since the last time you cloned or pulled the project. Later, you can push your local commits to the remote repositories.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">pull</span> <span class="n">REMOTE</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">BRANCH</span>
+</pre></div>
+</div>
+<p>When you first clone a repository, REMOTE is typically “origin”. This is where the repository came from, and it indicates the SSH or HTTPS URL of the repository on the remote server. NAME-OF-BRANCH is usually “master”, but it may be any existing branch.</p>
+</section>
+<section id="add-and-commit-local-changes">
+<h3>Add and commit local changes<a class="headerlink" href="#add-and-commit-local-changes" title="Permalink to this headline">¶</a></h3>
+<p>You’ll see your local changes in red when you type git status. These changes may be new, modified, or deleted files/folders. Use git add to stage a local file/folder for committing. Then use git commit to commit the staged files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">FILE</span> <span class="n">OR</span> <span class="n">FOLDER</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;COMMENT TO DESCRIBE THE INTENTION OF THE COMMIT&quot;</span>
+</pre></div>
+</div>
+<p>To add and commit all local changes in one command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;COMMENT TO DESCRIBE THE INTENTION OF THE COMMIT&quot;</span>
+</pre></div>
+</div>
+<p>To push all local commits to the remote repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">REMOTE</span> <span class="n">NAME</span><span class="o">-</span><span class="n">OF</span><span class="o">-</span><span class="n">BRANCH</span>
+</pre></div>
+</div>
+<p>For example, to push your local commits to the master branch of the origin remote:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>To delete all local changes in the repository that have not been added to the staging area, and leave unstaged files/folders, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> The . character typically means all in Git.</p>
+</section>
+<section id="how-to-create-a-merge-request">
+<h3>How to create a Merge Request<a class="headerlink" href="#how-to-create-a-merge-request" title="Permalink to this headline">¶</a></h3>
+<p>Merge requests are useful to integrate separate changes that you’ve made to a project, on different branches. This is a brief guide on how to create a merge request. For more information, check the <a class="reference external" href="https://docs.gitlab.com/ee/user/project/merge_requests/index.html">merge requests documentation</a>.</p>
+<ol>
+<li><p>Before you start, you should have already created a branch and pushed your changes to GitLab.</p></li>
+<li><p>Go to the project where you’d like to merge your changes and click on the Merge requests tab.</p></li>
+<li><p>Click on New merge request on the right side of the screen.</p></li>
+<li><p>From there on, you have the option to select the source branch and the target branch you’d like to compare to. The default target project is the upstream repository, but you can choose to compare across any of its forks.</p>
+<p><img alt="" src="_images/merge1.png" /></p>
+</li>
+<li><p>When ready, click on the Compare branches and continue button.</p></li>
+<li><p>At a minimum, add a title and a description to your merge request. Optionally, select a user to review your merge request and to accept or close it. You may also select a milestone and labels.</p>
+<p><img alt="" src="_images/merge2.png" /></p>
+</li>
+<li><p>When ready, click on the Submit merge request button.
+Your merge request will be ready to be approved and merged.</p></li>
+</ol>
+</section>
+</section>
+<section id="appendix-c-troubleshooting">
+<h2>Appendix C: Troubleshooting<a class="headerlink" href="#appendix-c-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<section id="no-applications-available">
+<h3>No applications available<a class="headerlink" href="#no-applications-available" title="Permalink to this headline">¶</a></h3>
+<section id="symptom">
+<h4>Symptom<a class="headerlink" href="#symptom" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p>You can successfully log into the RDS webclient at <code class="docutils literal notranslate"><span class="pre">https://rds.dsgroupX.co.uk/RDWeb/weblient</span></code></p></li>
+<li><p>You do not see any available apps</p>
+<p><img alt="" src="_images/No_folders_present.png" /></p>
+</li>
+</ul>
+</section>
+<section id="cause">
+<h4>Cause<a class="headerlink" href="#cause" title="Permalink to this headline">¶</a></h4>
+<p>You have not yet set up your two factor authentication.</p>
+</section>
+<section id="solution">
+<h4>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h4>
+<p>Follow the two factor authentication section from the <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/docs/safe_haven_user_guide.md#section-2-logging-in-for-the-first-time">logging in section</a> of the user guide.</p>
+</section>
+</section>
+<section id="unexpected-certificate-error">
+<h3>Unexpected certificate error<a class="headerlink" href="#unexpected-certificate-error" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h4>Symptom<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p>You can successfully log into the RDS webclient at <code class="docutils literal notranslate"><span class="pre">https://rds.dsgroupX.co.uk/RDWeb/weblient</span></code></p></li>
+<li><p>When you try and launch an app, you receive an error saying “Your session ended because an unexpected server authentication certificate was received from the remote PC.”</p></li>
+<li><p>When you click on the padlock icon in the address bar and view the SSL certificate, the “SHA-1 Fingerprint” in the certificate matches the “SHA-1 Thumbprint” in the error message.</p>
+<p><img alt="" src="_images/unexpected_certificate_error.png" /></p>
+</li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h3>Cause<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The SSL certificate protecting your connection to the RDS webclient expires every three months and is renewed every two months.
+The new SSL certificate is seamlessly picked up by your browser when connecting to <code class="docutils literal notranslate"><span class="pre">https://rds.dsgroupX.co.uk/RDWeb/weblient</span></code>.
+However, the webclient downloads a separate copy of the certificate for its own use to validate connections to the apps it serves.
+This downloaded certificate is cached by your browser, which means that the old certificate will continue to be used by the web app when the browser is allowed to load things from its cache.</p>
+</section>
+<section id="id3">
+<h3>Solution<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Get your browser to do a <a class="reference external" href="https://www.getfilecloud.com/blog/2015/03/tech-tip-how-to-do-hard-refresh-in-browsers/">hard reload</a> of the page at <code class="docutils literal notranslate"><span class="pre">https://rds.dsgroupX.co.uk/RDWeb/weblient</span></code> (instructions vary by browser and operating system).
+This hard reload will reload items in the cache and so retrieve a copy of the new certificate.</p>
+</section>
+</section>
+<section id="appendix-d-safe-haven-setup">
+<h2>Appendix D: Safe Haven setup<a class="headerlink" href="#appendix-d-safe-haven-setup" title="Permalink to this headline">¶</a></h2>
+<p>The original data is hosted on a server at the Alan Turing Institute. You will not have access to that data server.
+A copy of the data is available inside a [Windows Azure environment].(https://azure.microsoft.com/en-gb/overview/what-is-azure/)</p>
+<p>The Azure environment also contains a Unix data science VM, which can only be accessed from the dashboard.
+→ Your laptop
+→ Turing Guest Wi-Fi
+→ Windows remote desktop (multi-factor authentication required)
+→ Unix Azure environment</p>
+<p>The data science VM has a standard suite of data science software, including Python 2/3 via Conda, Spyder, Jupyter and RStudio, with a large selection of pre-installed packages.</p>
+<p>You also have access to HackMD for collaborative writing and GitLab for version control and to share your code.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

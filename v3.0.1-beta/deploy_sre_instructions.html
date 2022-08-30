@@ -1,0 +1,1140 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Secure Research Environment Build Instructions &#8212; Data Safe Haven v3.0.1-beta documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/toggle.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.0.1-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contents">
+   Contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seedling-prerequisites">
+   :seedling: Prerequisites
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beginner-software">
+     :beginner: Software
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#key-vpn-connection-to-the-shm-vnet">
+     :key: VPN connection to the SHM VNet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name-badge-sre-domain-name">
+     :name_badge: SRE domain name
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arrow-double-up-deploying-multiple-sres-in-parallel">
+     :arrow_double_up: Deploying multiple SREs in parallel
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clipboard-define-sre-configuration">
+   :clipboard: Define SRE configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apple-shm-configuration-properties">
+     :apple: SHM configuration properties
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#green-apple-sre-configuration-properties">
+     :green_apple: SRE configuration properties
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#full-moon-generate-full-sre-configuration">
+     :full_moon: Generate full SRE configuration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cop-prepare-shm-environment">
+   :cop: Prepare SHM environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-forward-optional-remove-data-from-previous-deployments">
+     :fast_forward: Optional: Remove data from previous deployments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#registered-register-sre-with-the-shm">
+     :registered: Register SRE with the SHM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fishing-pole-and-fish-deploy-virtual-network-and-remote-desktop">
+   :fishing_pole_and_fish: Deploy virtual network and remote desktop
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clubs-create-sre-dns-zone">
+     :clubs: Create SRE DNS Zone
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#manually-add-ns-records">
+       Manually add NS records
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tropical-fish-deploy-the-virtual-network-and-remote-desktop">
+     :tropical_fish: Deploy the virtual network and remote desktop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#satellite-configure-rds-webclient">
+     :satellite: Configure RDS webclient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accept-configure-rds-cap-and-rap-settings">
+     :accept: Configure RDS CAP and RAP settings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#closed-lock-with-key-update-ssl-certificate">
+     :closed_lock_with_key: Update SSL certificate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#microscope-test-rds-deployment">
+     :microscope: Test RDS deployment
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#set-up-a-non-privileged-user-account">
+       Set up a non-privileged user account
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#test-the-rds-using-a-non-privileged-user-account">
+       Test the RDS using a non-privileged user account
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#floppy-disk-deploy-data-server">
+   :floppy_disk: Deploy Data Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#baseball-deploy-databases">
+   :baseball: Deploy databases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#snowflake-deploy-web-applications-gitlab-and-hackmd">
+   :snowflake: Deploy web applications (GitLab and HackMD)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#microscope-test-gitlab-server">
+     :microscope: Test GitLab Server
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#microscope-test-hackmd-server">
+     :microscope: Test HackMD Server
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-deploy-data-science-vms">
+   :computer: Deploy data science VMs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-forward-optional-customise-the-deployed-vm">
+     :fast_forward: Optional: Customise the deployed VM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computer-deploy-a-single-data-science-vm-dsvm">
+     :computer: Deploy a single data science VM (DSVM)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#microscope-test-dsvm-deployment">
+     :microscope: Test DSVM deployment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lock-apply-network-configuration">
+   :lock: Apply network configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-forward-optional-unpeering-package-mirrors">
+     :fast_forward: Optional: Unpeering package mirrors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fire-run-smoke-tests-on-dsvm">
+   :fire: Run smoke tests on DSVM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bomb-tearing-down-the-sre">
+   :bomb: Tearing down the SRE
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/deploy_sre_instructions.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="secure-research-environment-build-instructions">
+<h1>Secure Research Environment Build Instructions<a class="headerlink" href="#secure-research-environment-build-instructions" title="Permalink to this headline">¶</a></h1>
+<p>These instructions will walk you through deploying a Secure Research Environment (SRE) that uses an existing Safe Haven Management (SHM) environment.
+The following 7 virtual machines are created as a result of these instructions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">APP-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code> (Remote Desktop app server)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DAT-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code> (data server)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DKP-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code> (Remote Desktop desktop server)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HACKMD-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code> (HackMD server)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GITLAB-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code> (GitLab server)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RDG-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code> (Remote Desktop Gateway)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SRE-&lt;SRE</span> <span class="pre">ID&gt;-160-DSVM-&lt;VERSION&gt;</span></code>  (initial shared compute VM at IP address <code class="docutils literal notranslate"><span class="pre">&lt;data-subnet-prefix&gt;.160</span></code>)</p></li>
+</ul>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#seedling-prerequisites">:seedling: Prerequisites</a></p>
+<ul>
+<li><p><a class="reference external" href="#beginner-software">:beginner: Software</a></p></li>
+<li><p><a class="reference external" href="#key-vpn-connection-to-the-shm-vnet">:key: VPN connection to the SHM VNet</a></p></li>
+<li><p><a class="reference external" href="#name_badge-sre-domain-name">:name_badge: SRE domain name</a></p></li>
+<li><p><a class="reference external" href="#arrow_double_up-deploying-multiple-sres-in-parallel">:arrow_double_up: Deploying multiple SREs in parallel</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#clipboard-define-sre-configuration">:clipboard: Define SRE configuration</a></p>
+<ul>
+<li><p><a class="reference external" href="#apple-shm-configuration-properties">:apple: SHM configuration properties</a></p></li>
+<li><p><a class="reference external" href="#green_apple-sre-configuration-properties">:green_apple: SRE configuration properties</a></p></li>
+<li><p><a class="reference external" href="#full_moon-generate-full-sre-configuration">:full_moon: Generate full SRE configuration</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#cop-prepare-shm-environment">:cop: Prepare SHM environment</a></p>
+<ul>
+<li><p><a class="reference external" href="#fast_forward-optional-remove-data-from-previous-deployments">:fast_forward: Optional: Remove data from previous deployments</a></p></li>
+<li><p><a class="reference external" href="#registered-register-sre-with-the-shm">:registered: Register SRE with the SHM</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#fishing_pole_and_fish-deploy-virtual-network-and-remote-desktop">:fishing_pole_and_fish: Deploy virtual network and remote desktop</a></p>
+<ul>
+<li><p><a class="reference external" href="#clubs-create-sre-dns-zone">:clubs: Create SRE DNS Zone</a></p></li>
+<li><p><a class="reference external" href="#tropical_fish-deploy-the-virtual-network-and-remote-desktop">:tropical_fish: Deploy the virtual network and remote desktop</a></p></li>
+<li><p><a class="reference external" href="#satellite-configure-rds-webclient">:satellite: Configure RDS webclient</a></p></li>
+<li><p><a class="reference external" href="#accept-configure-rds-cap-and-rap-settings">:accept: Configure RDS CAP and RAP settings</a></p></li>
+<li><p><a class="reference external" href="#closed_lock_with_key-update-ssl-certificate">:closed_lock_with_key: Update SSL certificate</a></p></li>
+<li><p><a class="reference external" href="#microscope-test-rds-deployment">:microscope: Test RDS deployment</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#floppy_disk-deploy-data-server">:floppy_disk: Deploy data server</a></p></li>
+<li><p><a class="reference external" href="#baseball-deploy-databases">:baseball: Deploy databases</a></p></li>
+<li><p><a class="reference external" href="#snowflake-deploy-web-applications-gitlab-and-hackmd">:snowflake: Deploy web applications (GitLab and HackMD)</a></p>
+<ul>
+<li><p><a class="reference external" href="#:microscope-test-gitlab-server">:microscope: Test GitLab Server</a></p></li>
+<li><p><a class="reference external" href="#:microscope-test-hackmd-server">:microscope: Test HackMD Server</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#computer-deploy-data-science-vms">:computer: Deploy data science VMs</a></p>
+<ul>
+<li><p><a class="reference external" href="#fast_forward-optional-customise-the-deployed-vm">:fast_forward: Optional: Customise the deployed VM</a></p></li>
+<li><p><a class="reference external" href="#computer-deploy-a-single-data-science-vm-dsvm">:computer: Deploy a single data science VM (DSVM)</a></p></li>
+<li><p><a class="reference external" href="#microscope-test-dsvm-deployment">:microscope: Test DSVM deployment</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#lock-apply-network-configuration">:lock: Apply network configuration</a></p>
+<ul>
+<li><p><a class="reference external" href="#fast_forward-optional-unpeering-package-mirrors">:fast_forward: Optional: Unpeering package mirrors</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#fire-run-smoke-tests-on-dsvm">:fire: Run smoke tests on DSVM</a></p></li>
+<li><p><a class="reference external" href="#bomb-tearing-down-the-sre">:bomb: Tearing down the SRE</a></p></li>
+</ul>
+</section>
+<section id="seedling-prerequisites">
+<h2>:seedling: Prerequisites<a class="headerlink" href="#seedling-prerequisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>An SHM environment that has already been deployed in Azure - follow the <a class="reference internal" href="deploy_shm_instructions.html"><span class="doc std std-doc">Safe Haven Management (SHM) deployment guide</span></a> if you have not done so already.</p></li>
+<li><p>An Azure subscription with sufficient credits to build the SRE.</p>
+<ul>
+<li><p>:notebook: Our convention is to name these <code class="docutils literal notranslate"><span class="pre">Turing</span> <span class="pre">SRE</span> <span class="pre">-</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">(SHM</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;)</span></code></p></li>
+<li><p>:information_source: We recommend allow at least <strong>$1,000</strong> in Azure credits for getting this SRE set up</p></li>
+</ul>
+</li>
+<li><p><strong>Owner</strong> access to the SRE and SHM Azure subscriptions</p>
+<ul>
+<li><p>:information_source: We recommend using security groups to control access (eg. our subscriptions belong to <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Test</span> <span class="pre">Admins</span></code> or <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Production</span> <span class="pre">Admins</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Access to a global administrator account on the SHM Azure Active Directory</p></li>
+</ul>
+<section id="beginner-software">
+<h3>:beginner: Software<a class="headerlink" href="#beginner-software" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> with support for Azure</p>
+<ul>
+<li><p>Install <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell">PowerShell v6.0 or above</a></p></li>
+<li><p>Install the <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/azure/install-az-ps">Azure PowerShell Module</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Remote</span> <span class="pre">Desktop</span></code></p>
+<ul>
+<li><p>On Mac this can be installed from the <a class="reference external" href="https://itunes.apple.com/gb/app/microsoft-remote-desktop-10/id1295203466?mt=12">Apple store</a></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OpenSSL</span></code></p>
+<ul>
+<li><p>Install using your package manager of choice</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="key-vpn-connection-to-the-shm-vnet">
+<h3>:key: VPN connection to the SHM VNet<a class="headerlink" href="#key-vpn-connection-to-the-shm-vnet" title="Permalink to this headline">¶</a></h3>
+<p>For some operations, you will need to log on to some of the VMs that you deploy and make manual changes.
+This is done using the VPN which should have been deployed when setting up the SHM environment.</p>
+<ul>
+<li><p><strong>Download a client VPN certificate</strong></p>
+<ul class="simple">
+<li><p>Navigate to the key vault in the SHM subscription via <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">-&gt;</span> <span class="pre">RG_SHM_SECRETS</span> <span class="pre">-&gt;</span> <span class="pre">kv-shm-&lt;SHM</span> <span class="pre">ID&gt;</span></code>.</p></li>
+<li><p>Once there open the “Certificates” page under the “Settings” section in the left hand sidebar.</p></li>
+<li><p>Click on the certificate named <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-vpn-client-cert</span></code>, click on the “current version” and click the “Download in PFX/PEM format” link.</p></li>
+<li><p>To install, double click on the downloaded certificate, leaving the password field blank.</p></li>
+<li><p><strong>Make sure to securely delete the “*.pfx” certificate file after you have installed it.</strong></p></li>
+<li><p>This certificate will also allow you to connect via VPN to the SRE VNets once deployed.</p></li>
+</ul>
+</li>
+<li><p><strong>Configure the VPN connection</strong></p>
+<ul>
+<li><p>Navigate to the Safe Haven Management (SHM) VNet gateway in the SHM subscription via <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">-&gt;</span> <span class="pre">RG_SHM_NETWORKING</span> <span class="pre">-&gt;</span> <span class="pre">VNET_SHM_&lt;SHM</span> <span class="pre">ID&gt;_GW</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is defined in the config file. Once there open the “Point-to-site configuration page under the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> section in the left hand sidebar (see image below).</p>
+<p align="center">
+  <img src="images/deploy_sre/vpn_client.png" width="80%" title="vpn_client">
+</p>
+</li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">VPN</span> <span class="pre">client</span></code> link at the top of the page to get the root certificate (<code class="docutils literal notranslate"><span class="pre">VpnServerRoot.cer</span></code>) and VPN configuration file (<code class="docutils literal notranslate"><span class="pre">VpnSettings.xml</span></code>), then follow the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-configuration-azure-cert">VPN set up instructions</a> using the Windows or Mac sections as appropriate.</p></li>
+<li><p>:warning: <strong>Windows:</strong> you may get a “Windows protected your PC” pop up. If so, click <code class="docutils literal notranslate"><span class="pre">More</span> <span class="pre">info</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">anyway</span></code></p></li>
+<li><p>:warning: <strong>Windows:</strong> do not rename the VPN client as this will break it</p></li>
+<li><p>:pencil: <strong>OSX</strong> double clicking on the root certificate may not result in any pop-up dialogue, but the certificate should still be installed. You can view the details of the downloaded certificate by highlighting the certificate file in Finder and pressing the spacebar. You can then look for the certificate of the same name in the login KeyChain and view its details by double clicking the list entry. If the details match the certificate has been successfully installed.</p></li>
+<li><p>:pencil: <strong>OSX</strong> on Catalina you may have to drag the certificate into your personal KeyChain as the default is to install system-wide</p></li>
+<li><p>:pencil: <strong>OSX</strong> on Catalina, the Authentication Settings step is quite counter-intuitive: you must select “None” from the drop-down (not “Certificate”) and then select the “Certificate” radio button underneath (see screenshot).</p>
+<p align="center">
+  <img src="images/deploy_sre/catalina_authentication.png" width="80%" title="catalina_authentication">
+</p>
+</li>
+<li><p>Continue to follow the set up instructions from the link above, using SSTP (Windows) or IKEv2 (OSX) for the VPN type and naming the VPN connection “Safe Haven Management Gateway (<code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>)”, where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is defined in the config file.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="name-badge-sre-domain-name">
+<h3>:name_badge: SRE domain name<a class="headerlink" href="#name-badge-sre-domain-name" title="Permalink to this headline">¶</a></h3>
+<p>You will need access to a public routable domain name for the SRE and its name servers.
+This can be a subdomain of the Safe Haven Management domain, e.g, <code class="docutils literal notranslate"><span class="pre">sandbox.testb.dsgroupdev.co.uk</span></code>, or a top-level domain (eg. <code class="docutils literal notranslate"><span class="pre">dsgroup100.co.uk</span></code>).</p>
+</section>
+<section id="arrow-double-up-deploying-multiple-sres-in-parallel">
+<h3>:arrow_double_up: Deploying multiple SREs in parallel<a class="headerlink" href="#arrow-double-up-deploying-multiple-sres-in-parallel" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>:warning: You can only deploy to <strong>one SRE at a time</strong> from a given computer as the <code class="docutils literal notranslate"><span class="pre">Az</span></code> Powershell module can only work within one Azure subscription at a time.
+If you need to deploy multiple SREs in parallel you will need to use multiple computers.
+One option here is to provision dedicated deployment VMs on Azure - we have had success in doing so when using both Ubuntu and Windows VMs.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="clipboard-define-sre-configuration">
+<h2>:clipboard: Define SRE configuration<a class="headerlink" href="#clipboard-define-sre-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The full configuration details for a new SRE are generated by defining a few “core” properties for the new SRE and the management environment in which it will be deployed.</p>
+<section id="apple-shm-configuration-properties">
+<h3>:apple: SHM configuration properties<a class="headerlink" href="#apple-shm-configuration-properties" title="Permalink to this headline">¶</a></h3>
+<p>The core properties for the relevant pre-existing Safe Haven Management (SHM) environment must be present in the <code class="docutils literal notranslate"><span class="pre">environment_configs/core</span></code> folder.
+The following core SHM properties must be defined in a JSON file named <code class="docutils literal notranslate"><span class="pre">shm_&lt;SHM</span> <span class="pre">ID&gt;_core_config.json</span></code>.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;subscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the Azure subscription the management environment is deployed in&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;domainSubscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the Azure subscription holding DNS records&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;adminSecurityGroupName&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the Azure Security Group that admins of this Safe Haven will belong to&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;computeVmImageSubscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Azure Subscription name for compute VM&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The fully qualified domain name for the management environment&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;netbiosname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A short name to use as the local name for the domain. This must be 15 characters or less&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;shmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A short ID to identify the management environment&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Safe Haven deployment name&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;organisation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Organisation name&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;townCity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;stateCountyRegion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;countryCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e.g. GB&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The Azure location in which the management environment VMs are deployed&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ipPrefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The three octet IP address prefix for the Class A range used by the management environment. Use 10.0.0 for this unless you have a good reason to use another prefix.&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>:warning: The <code class="docutils literal notranslate"><span class="pre">netbiosName</span></code> field must have a maximum length of 15 characters.</p>
+</div></blockquote>
+</section>
+<section id="green-apple-sre-configuration-properties">
+<h3>:green_apple: SRE configuration properties<a class="headerlink" href="#green-apple-sre-configuration-properties" title="Permalink to this headline">¶</a></h3>
+<p>The core properties for the new SRE environment must be present in the <code class="docutils literal notranslate"><span class="pre">environment_configs/core</span></code> folder.
+The following core SRE properties must be defined in a JSON file named <code class="docutils literal notranslate"><span class="pre">sre_&lt;SRE</span> <span class="pre">ID&gt;_core_config.json</span></code>.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;subscriptionName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the Azure subscription the secure research environment is deployed in&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;adminSecurityGroupName&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the Azure Security Group that admins of this SHM belong to&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;sreId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A short ID to identify the secure research environment. This *must be* 7 characters or less; if not it will be truncated in some places which might cause problems if those characters are not unique.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;shmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The short ID for the SHM segment to deploy against&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;tier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The data classification tier for the SRE. This controls the outbound network restrictions on the SRE and which mirror set the SRE is peered with&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The fully qualified domain name for the SRE&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;netbiosname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A short name to use as the local name for the domain. This *must be* 15 characters or less. If the first part of the domain is less than 15 characters, use this for the netbiosName&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ipPrefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The three octet IP address prefix for the Class A range used by the management environemnt&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;rdsAllowedSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A comma-separated string of IP ranges (addresses or CIDR ranges) from which access to the RDS webclient is permitted. For Tier 0 and 1 this should be &#39;Internet&#39;. For Tier 2 this should correspond to the any organisational networks (including guest networks) at the partner organisations where access should be permitted from (i.e. any network managed by the organsiation, such as EduRoam, Turing Guest, Turing Secure etc). For Tier 3 SREs, this should correspond to the RESTRICTED networks at the partner organisations. These should only permit connections from within meduim security access controlled physical spaces and from managed devices (e.g. Turing Secure). Using &#39;default&#39; will use the default Turing networks.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;rdsInternetAccess&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Whether to allow outbound internet access from inside the remote desktop environment. Either &#39;Allow&#39;, &#39;Deny&#39; or &#39;default&#39; (for Tier 0 and 1 &#39;Allow&#39; otherwise &#39;Deny&#39;)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;computeVmImageType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The name of the Compute VM image (most commonly &#39;Ubuntu&#39;)&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;computeVmImageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The version of the Compute VM image (e.g. 0.1.2019082900)&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>:warning: The <code class="docutils literal notranslate"><span class="pre">sreId</span></code> field must have a maximum length of 7 characters.</p>
+</div></blockquote>
+<blockquote>
+<div><p>:warning: The <code class="docutils literal notranslate"><span class="pre">netbiosName</span></code> field must have a maximum length of 15 characters.</p>
+</div></blockquote>
+<blockquote>
+<div><p>:warning: The <code class="docutils literal notranslate"><span class="pre">ipPrefix</span></code> must be unique for each SRE attached to the same SHM.
+It is very important that address spaces do not overlap in the environment as this will cause network faults.
+The address spaces use a private class A range and use a 21-bit subnet mask.
+This provides ample addresses for a SRE and capacity to add additional subnets should that be required in the future.</p>
+</div></blockquote>
+</section>
+<section id="full-moon-generate-full-sre-configuration">
+<h3>:full_moon: Generate full SRE configuration<a class="headerlink" href="#full-moon-generate-full-sre-configuration" title="Permalink to this headline">¶</a></h3>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the top-level folder within the Safe Haven repository.</p></li>
+<li><p>Generate a new full configuration file for the new SRE using the following commands.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Import-Module</span> <span class="pre">./deployment/common/Configuration.psm1</span> <span class="pre">-Force</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Add-SreConfig</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> is a short string, e.g. <code class="docutils literal notranslate"><span class="pre">sandbox</span></code> for <code class="docutils literal notranslate"><span class="pre">sandbox.dsgroupdev.co.uk</span></code></p></li>
+</ul>
+</li>
+<li><p>A full configuration file for the new SRE will be created at <code class="docutils literal notranslate"><span class="pre">environment_configs/full/sre_&lt;SRE</span> <span class="pre">ID&gt;_full_config.json</span></code>. This file is used by the subsequent steps in the SRE deployment.</p></li>
+<li><p>Commit this new full configuration file to the Safe Haven repository</p></li>
+</ul>
+</section>
+</section>
+<section id="cop-prepare-shm-environment">
+<h2>:cop: Prepare SHM environment<a class="headerlink" href="#cop-prepare-shm-environment" title="Permalink to this headline">¶</a></h2>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+</ul>
+<section id="fast-forward-optional-remove-data-from-previous-deployments">
+<h3>:fast_forward: Optional: Remove data from previous deployments<a class="headerlink" href="#fast-forward-optional-remove-data-from-previous-deployments" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>:warning: If you are redeploying an SRE in the same subscription and did not use the <code class="docutils literal notranslate"><span class="pre">./SRE_Teardown.ps1</span></code> script to clean up the previous deployment, then there may be residual SRE data in the SHM.</p>
+</div></blockquote>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>:pencil: If the subscription is not empty, confirm that it is not being used before deleting any resources in it.</p></li>
+<li><p>Clear any remaining SRE data from the SHM by running <code class="docutils literal notranslate"><span class="pre">./Remove_SRE_Data_From_SHM.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where the SRE ID is the one specified in the config.</p></li>
+</ul>
+</section>
+<section id="registered-register-sre-with-the-shm">
+<h3>:registered: Register SRE with the SHM<a class="headerlink" href="#registered-register-sre-with-the-shm" title="Permalink to this headline">¶</a></h3>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Register service accounts with the SHM by running <code class="docutils literal notranslate"><span class="pre">./Add_SRE_Data_To_SHM.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where the SRE ID is the one specified in the config</p></li>
+<li><p>This step also creates a key vault in the SRE subscription in <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">-&gt;</span> <span class="pre">RG_SRE_SECRETS</span> <span class="pre">-&gt;</span> <span class="pre">kv-shm-&lt;SHM</span> <span class="pre">ID&gt;-sre-&lt;SRE</span> <span class="pre">ID&gt;</span></code>. Additional deployment steps will add secrets to this key vault and you will need to access some of these for some of the manual configuration steps later.</p></li>
+</ul>
+</section>
+</section>
+<section id="fishing-pole-and-fish-deploy-virtual-network-and-remote-desktop">
+<h2>:fishing_pole_and_fish: Deploy virtual network and remote desktop<a class="headerlink" href="#fishing-pole-and-fish-deploy-virtual-network-and-remote-desktop" title="Permalink to this headline">¶</a></h2>
+<section id="clubs-create-sre-dns-zone">
+<h3>:clubs: Create SRE DNS Zone<a class="headerlink" href="#clubs-create-sre-dns-zone" title="Permalink to this headline">¶</a></h3>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">./Setup_SRE_DNS_Zone.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where the SRE ID is the one specified in the config.</p></li>
+<li><p>If you see a message <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">add</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">NS</span> <span class="pre">records</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">parent</span> <span class="pre">DNS</span> <span class="pre">system</span> <span class="pre">for...</span></code> you will need to manually add the specified NS records to the parent’s DNS system, as follows:</p></li>
+</ul>
+<section id="manually-add-ns-records">
+<h4>Manually add NS records<a class="headerlink" href="#manually-add-ns-records" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p>To find the required values for the NS records on the portal, click <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">resources</span></code> in the far left panel, search for “DNS Zone” and locate the DNS Zone with SRE’s domain. The NS record will list 4 Azure name servers.</p>
+<p align="center">
+  <img src="images/deploy_sre/subdomain_ns_record.png" width="80%" title="subdomain_ns_record">
+</p>
+</li>
+<li><p>Duplicate these records to the parent DNS system as follows:</p>
+<ul class="simple">
+<li><p>If the parent domain has an Azure DNS Zone, create an NS record set in this zone.
+The name should be set to the subdomain (e.g. <code class="docutils literal notranslate"><span class="pre">sandbox</span></code>) or <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> if using a custom domain, and the values duplicated from above.
+For example, for a new subdomain <code class="docutils literal notranslate"><span class="pre">sandbox.testa.dsgroupdev.co.uk</span></code>, duplicate the NS records from the Azure DNS Zone <code class="docutils literal notranslate"><span class="pre">sandbox.testa.dsgroupdev.co.uk</span></code> to the Azure DNS Zone for <code class="docutils literal notranslate"><span class="pre">testa.dsgroupdev.co.uk</span></code>, by creating a record set with name <code class="docutils literal notranslate"><span class="pre">sandbox</span></code>.</p></li>
+<li><p>If the parent domain is outside of Azure, create NS records in the registrar for the new domain with the same value as the NS records in the new Azure DNS Zone for the domain.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="tropical-fish-deploy-the-virtual-network-and-remote-desktop">
+<h3>:tropical_fish: Deploy the virtual network and remote desktop<a class="headerlink" href="#tropical-fish-deploy-the-virtual-network-and-remote-desktop" title="Permalink to this headline">¶</a></h3>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">./Setup_SRE_VNET_RDS.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where the SRE ID is the one specified in the config</p></li>
+<li><p>The deployment will take around 50 minutes.</p></li>
+<li><p>The VNet peerings may take a few minutes to provision after the script completes.</p></li>
+</ul>
+</section>
+<section id="satellite-configure-rds-webclient">
+<h3>:satellite: Configure RDS webclient<a class="headerlink" href="#satellite-configure-rds-webclient" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Connect to the <strong>RDS Gateway</strong> via Remote Desktop client over the SHM VPN connection</p></li>
+<li><p>The IP address can be found using the Azure portal by navigating to the Virtual Machine (<code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">-&gt;</span> <span class="pre">RG_SRE_RDS</span> <span class="pre">-&gt;</span> <span class="pre">RDG-SRE-&lt;SRE</span> <span class="pre">ID&gt;</span></code>)</p></li>
+<li><p>Login as the SHM <strong>domain</strong> admin user <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code> (eg. <code class="docutils literal notranslate"><span class="pre">shmtestbadmin&#64;testb.dsgroupdev.co.uk</span></code>) using the username and password obtained from the Azure portal. They are in the <code class="docutils literal notranslate"><span class="pre">RG_SHM_SECRETS</span></code> resource group, in the <code class="docutils literal notranslate"><span class="pre">kv-shm-&lt;SHM</span> <span class="pre">ID&gt;</span></code> key vault, under <code class="docutils literal notranslate"><span class="pre">Secrets</span></code>. as follows:</p>
+<ul>
+<li><p>The username is the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-vm-admin-username</span></code> secret plus <code class="docutils literal notranslate"><span class="pre">&#64;&lt;SHM</span> <span class="pre">DOMAIN&gt;</span></code> where you add your custom SHM domain. For example <code class="docutils literal notranslate"><span class="pre">shmtestbadmin&#64;testb.dsgroupdev.co.uk</span></code></p></li>
+<li><p>The password in the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-domain-admin-password</span></code> secret.
+On the <strong>SRE RDS Gateway</strong>.</p></li>
+</ul>
+</li>
+<li><p>Open a PowerShell command window with elevated privileges - make sure to use the <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">PowerShell</span></code> application, not the <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">PowerShell</span> <span class="pre">(x86)</span></code> application. The required server management commandlets are not installed on the x86 version.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">C:\Installation\Deploy_RDS_Environment.ps1</span></code> (prefix the command with a leading <code class="docutils literal notranslate"><span class="pre">.\</span></code> if running from within the <code class="docutils literal notranslate"><span class="pre">C:\Installation</span></code> directory)</p></li>
+<li><p>This script will take about 20 minutes to run (this cannot be done remotely, as it needs to be run as a domain user but remote Powershell uses a local user)</p></li>
+</ul>
+</section>
+<section id="accept-configure-rds-cap-and-rap-settings">
+<h3>:accept: Configure RDS CAP and RAP settings<a class="headerlink" href="#accept-configure-rds-cap-and-rap-settings" title="Permalink to this headline">¶</a></h3>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">./Configure_SRE_RDS_CAP_And_RAP.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where the SRE ID is the one specified in the config</p></li>
+</ul>
+</section>
+<section id="closed-lock-with-key-update-ssl-certificate">
+<h3>:closed_lock_with_key: Update SSL certificate<a class="headerlink" href="#closed-lock-with-key-update-ssl-certificate" title="Permalink to this headline">¶</a></h3>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./Update_SRE_RDS_SSL_Certificate.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">-emailAddress</span> <span class="pre">&lt;email&gt;</span></code>, where the SRE ID is the one specified in the config and the email address is one that you would like to be notified when certificate expiry is approaching.</p></li>
+<li><p><strong>NOTE:</strong> This script should be run again whenever you want to update the certificate for this SRE.</p></li>
+<li><p><strong>Troubleshooting:</strong> Let’s Encrypt will only issue <strong>5 certificates per week</strong> for a particular host (e.g. <code class="docutils literal notranslate"><span class="pre">rdg-sre-sandbox.testa.dsgroupdev.co.uk</span></code>). For production environments this should usually not be an issue. The signed certificates are also stored in the key vault for easy redeployment. However, if you find yourself needing to re-run this step without the key vault secret available, either to debug an error experienced in production or when redeploying a test environment frequently during development, you should run <code class="docutils literal notranslate"><span class="pre">./Update_SRE_RDS_SSL_Certificate.ps1</span> <span class="pre">-dryRun</span> <span class="pre">$true</span></code> to use the Let’s Encrypt staging server, which will issue certificates more frequently. However, these certificates will not be trusted by your browser, so you will need to override the security warning in your browser to access the RDS web client for testing.</p></li>
+</ul>
+</section>
+<section id="microscope-test-rds-deployment">
+<h3>:microscope: Test RDS deployment<a class="headerlink" href="#microscope-test-rds-deployment" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Disconnect from any SRE VMs and connect to the SHM VPN</p></li>
+<li><p>Connect to the <strong>SHM Domain Controller</strong> via the Remote Desktop client</p></li>
+<li><p>The IP address can be found using the Azure portal by navigating to the Virtual Machine (<code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Groups</span> <span class="pre">-&gt;</span> <span class="pre">RG_SHM_DC</span> <span class="pre">-&gt;</span> <span class="pre">DC1-SHM-&lt;SRE</span> <span class="pre">ID&gt;</span></code>)</p></li>
+<li><p>Log in as a <strong>domain</strong> user (ie. <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code>) using the username and password obtained from the Azure portal. They are in the <code class="docutils literal notranslate"><span class="pre">RG_SHM_SECRETS</span></code> resource group, in the <code class="docutils literal notranslate"><span class="pre">kv-shm-&lt;SHM</span> <span class="pre">ID&gt;</span></code> key vault, under “SECRETS”.</p>
+<ul>
+<li><p>The username is the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-vm-admin-username</span></code> secret plus <code class="docutils literal notranslate"><span class="pre">&#64;&lt;SHM</span> <span class="pre">DOMAIN&gt;</span></code> where you add your custom SHM domain. For example <code class="docutils literal notranslate"><span class="pre">shmtestbadmin&#64;testb.dsgroupdev.co.uk</span></code></p></li>
+<li><p>The password in the <code class="docutils literal notranslate"><span class="pre">shm-&lt;SHM</span> <span class="pre">ID&gt;-domain-admin-password</span></code> secret.</p></li>
+</ul>
+</li>
+</ul>
+<section id="set-up-a-non-privileged-user-account">
+<h4>Set up a non-privileged user account<a class="headerlink" href="#set-up-a-non-privileged-user-account" title="Permalink to this headline">¶</a></h4>
+<p>These steps ensure that you have created a non-privileged user account that you can use for testing.
+This user should be created in the local Active Directory on the SHM domain controller and must have been synchronised to the Azure Active Directory.
+You must ensure that you have assigned a licence to this user in the Azure Active Directory so that MFA will work correctly.</p>
+<blockquote>
+<div><p>:pencil: The automatically-created test researcher should already be in the correct group.</p>
+</div></blockquote>
+<p>On the <strong>SHM Domain Controller</strong>.</p>
+<ol class="simple">
+<li><p><strong>Ensuring that a non-privileged user account exists</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Server</span> <span class="pre">Management</span></code> app, click <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">-&gt;</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Users</span> <span class="pre">and</span> <span class="pre">Computers</span></code></p></li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Research</span> <span class="pre">Users</span></code> OU</p></li>
+<li><p>Ensure that the non-privileged user account that you want to use is listed here, or if it is not then create it.</p></li>
+</ul>
+<ol class="simple">
+<li><p><strong>Ensure that the user account is in the correct Security Group</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Still in the <code class="docutils literal notranslate"><span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Users</span> <span class="pre">and</span> <span class="pre">Computers</span></code> app, open the <code class="docutils literal notranslate"><span class="pre">Safe</span> <span class="pre">Haven</span> <span class="pre">Security</span> <span class="pre">Groups</span></code> OU</p></li>
+<li><p>Right click the <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">Research</span> <span class="pre">Users</span></code> security group and select <code class="docutils literal notranslate"><span class="pre">Properties</span></code></p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Members</span></code> tab.</p></li>
+<li><p>If the user you plan to use is not already listed here you must add them to the group (<em>the automatically-created test researcher should already be in the correct group</em>)</p>
+<ul>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Add</span></code> button</p></li>
+<li><p>Enter the start of the username and click <code class="docutils literal notranslate"><span class="pre">Check</span> <span class="pre">names</span></code></p></li>
+<li><p>Select the correct username and click <code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Ok</span></code> again to exit the add users dialogue</p></li>
+</ul>
+</li>
+<li><p>Synchronise with Azure Active Directory by running <code class="docutils literal notranslate"><span class="pre">C:\Installation\Run_ADSync.ps1</span></code> in Powershell</p></li>
+</ul>
+<ol class="simple">
+<li><p><strong>Ensure that the account has MFA enabled</strong>
+Please ensure that this account is fully set-up (including MFA) as <a class="reference internal" href="safe_haven_user_guide.html"><span class="doc std std-doc">detailed in the user guide</span></a>.</p></li>
+</ol>
+<ul class="simple">
+<li><p>The user’s <code class="docutils literal notranslate"><span class="pre">Usage</span> <span class="pre">Location</span></code> must be set in Active Directory.
+To check this on the portal, switch to your custom AAD and navigate to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Users</span></code> -&gt; (user account), and ensure that <code class="docutils literal notranslate"><span class="pre">Settings</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Usage</span> <span class="pre">Location</span></code> is set.</p></li>
+<li><p>A licence must be assigned to the user.
+To check this in the portal, switch to your custom AAD and navigate to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Manage</span></code>/<code class="docutils literal notranslate"><span class="pre">Users</span></code> -&gt; (user account) -&gt; <code class="docutils literal notranslate"><span class="pre">Licenses</span></code> and verify that a license is assigned and the appropriate MFA service enabled.</p></li>
+<li><p>MFA must be enabled for the user.
+To enable this on the portal, switch to your custom AAD and navigate to <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Manage</span></code>/<code class="docutils literal notranslate"><span class="pre">Users</span></code>, click the <code class="docutils literal notranslate"><span class="pre">Multi-Factor</span> <span class="pre">Authentication</span></code> button and verify that <code class="docutils literal notranslate"><span class="pre">MULTI-FACTOR</span> <span class="pre">AUTH</span> <span class="pre">STATUS</span></code> is enabled for the user.</p></li>
+<li><p>The user must log into <code class="docutils literal notranslate"><span class="pre">aka.ms/mfasetup</span></code> and set up MFA as <a class="reference internal" href="safe_haven_user_guide.html"><span class="doc std std-doc">detailed in the user guide</span></a>.</p></li>
+</ul>
+</section>
+<section id="test-the-rds-using-a-non-privileged-user-account">
+<h4>Test the RDS using a non-privileged user account<a class="headerlink" href="#test-the-rds-using-a-non-privileged-user-account" title="Permalink to this headline">¶</a></h4>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Launch a local web browser and go to <code class="docutils literal notranslate"><span class="pre">https://&lt;SRE</span> <span class="pre">ID&gt;.&lt;safe</span> <span class="pre">haven</span> <span class="pre">domain&gt;</span></code> (eg. <code class="docutils literal notranslate"><span class="pre">https://sandbox.dsgroupdev.co.uk/</span></code>) and log in.</p>
+<ul>
+<li><p><strong>Troubleshooting</strong> If you get a “404 resource not found” error when accessing the webclient URL, it is likely that you missed the step of installing the RDS webclient.</p>
+<ul>
+<li><p>Go back to the previous section and run the webclient installation step.</p></li>
+<li><p>Once the webclient is installed, you will need to manually run the steps from the SSL certificate generation script to install the SSL certificate on the  webclient. Still on the RDS Gateway, run the commands below, replacing <code class="docutils literal notranslate"><span class="pre">&lt;path-to-full-certificate-chain&gt;</span></code> with the path to the <code class="docutils literal notranslate"><span class="pre">xxx_full_chain.pem</span></code> file in the <code class="docutils literal notranslate"><span class="pre">C:\Certificates</span></code> folder.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Import-RDWebClientBrokerCert</span> <span class="pre">&lt;path-to-full-certificate-chain&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Publish-RDWebClientPackage</span> <span class="pre">-Type</span> <span class="pre">Production</span> <span class="pre">-Latest</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Troubleshooting</strong> If you get an “unexpected server authentication certificate error”, your browser has probably cached a previous certificate for this domain.</p>
+<ul>
+<li><p>Do a <a class="reference external" href="https://www.getfilecloud.com/blog/2015/03/tech-tip-how-to-do-hard-refresh-in-browsers/">hard reload</a> of the page (permanent fix)</p></li>
+<li><p>OR open a new private / incognito browser window and visit the page.</p></li>
+</ul>
+</li>
+<li><p><strong>Troubleshooting</strong> If you can see an empty screen with <code class="docutils literal notranslate"><span class="pre">Work</span> <span class="pre">resources</span></code> but no app icons, your user has not been correctly added to the security group.</p></li>
+</ul>
+</li>
+<li><p>Once you have logged in, click on the <code class="docutils literal notranslate"><span class="pre">Presentation</span> <span class="pre">server</span></code> app icon. You should receive an MFA request to your phone or authentication app.</p>
+<ul>
+<li><p><strong>Troubleshooting</strong> If you can log in to the initial webclient authentication but don’t get the MFA request, then the issue is likely that the configuration of the connection between the SHM NPS server and the RDS Gateway server is not correct.</p>
+<ul>
+<li><p>Ensure that both the SHM NPS server and the RDS Gateway are running</p></li>
+<li><p>The RADIUS client shared secret might not be set correctly on the SHM NPS server. Try manually setting as follows:</p>
+<ul>
+<li><p>Ensure you are connected to the SHM VPN and connect to the SHM NPS server using Remote Desktop.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Tools</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Network</span> <span class="pre">Policy</span> <span class="pre">Server</span></code></p></li>
+<li><p>In the left pane, under <code class="docutils literal notranslate"><span class="pre">NPS</span> <span class="pre">(Local)</span></code>, expand <code class="docutils literal notranslate"><span class="pre">RADIUS</span> <span class="pre">Clients</span> <span class="pre">and</span> <span class="pre">Servers</span></code> and click <code class="docutils literal notranslate"><span class="pre">RADIUS</span> <span class="pre">Clients</span></code></p></li>
+<li><p>Double-click on <code class="docutils literal notranslate"><span class="pre">RDG-SRE-&lt;SRE</span> <span class="pre">ID&gt;-&lt;safe</span> <span class="pre">haven</span> <span class="pre">domain&gt;</span></code></p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Settings</span></code> set <code class="docutils literal notranslate"><span class="pre">Shared</span> <span class="pre">secret</span></code> and <code class="docutils literal notranslate"><span class="pre">Confirm</span> <span class="pre">shared</span> <span class="pre">secret</span></code> to the value of the secret <code class="docutils literal notranslate"><span class="pre">sre-&lt;SRE</span> <span class="pre">ID&gt;-nps-secret</span></code> in the SRE key vault.</p></li>
+</ul>
+</li>
+<li><p>Ensure the same shared secret from the <code class="docutils literal notranslate"><span class="pre">sre-&lt;SRE</span> <span class="pre">ID&gt;-nps-secret</span></code> in the SRE key vault is set on the SRE RDS Gateway in the <a class="reference external" href="sre_build_instructions.md#configure-rds-to-use-shm-nps-server-for-client-access-policies">SRE RDS Gateway RD CAP Store configuration</a> (see previous sections for instructions).</p></li>
+<li><p>Ensure that the <a class="reference external" href="sre_build_instructions.md#configure-rds-to-use-shm-nps-server-for-client-access-policies">SHM NPS server RADIUS Client configuration</a> is using the <strong>private</strong> IP address of the RDS Gateway and <strong>not</strong> its public one.</p></li>
+<li><p>Use the Event viewer on the SRE RDS Gateway (<code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">views</span> <span class="pre">&gt;</span> <span class="pre">Server</span> <span class="pre">roles</span> <span class="pre">&gt;</span> <span class="pre">Network</span> <span class="pre">Policy</span> <span class="pre">and</span> <span class="pre">Access</span> <span class="pre">Services</span></code>) to check whether the NPS server is contactable and whether it is discarding requests</p></li>
+<li><p>Use the Event viewer on the SHM NPS server  (<code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">views</span> <span class="pre">&gt;</span> <span class="pre">Server</span> <span class="pre">roles</span> <span class="pre">&gt;</span> <span class="pre">Network</span> <span class="pre">Policy</span> <span class="pre">and</span> <span class="pre">Access</span> <span class="pre">Services</span></code>) to check whether NPS requests are being received and whether the NPS server has an LDAP connection to the SHM DC.</p></li>
+<li><p>One common error on the NPS server is <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">RADIUS</span> <span class="pre">message</span> <span class="pre">was</span> <span class="pre">received</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">invalid</span> <span class="pre">RADIUS</span> <span class="pre">client</span> <span class="pre">IP</span> <span class="pre">address</span> <span class="pre">x.x.x.x</span></code>. <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd316135(v=ws.10)">This help page</a> might be useful.</p>
+<ul>
+<li><p>This may indicate that the NPS server could not join the SHM domain. Try <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">DC1-SHM-&lt;SHM</span> <span class="pre">ID&gt;</span></code> from the NPS server and if this does not resolve, try rebooting it.</p></li>
+<li><p>This may indicate that the shared secret is different between the SHM and SRE.</p></li>
+</ul>
+</li>
+<li><p>Ensure that the <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Firewall</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Domain</span> <span class="pre">Network</span></code> on both the SHM NPS server and the SRE RDS Gateway</p></li>
+</ul>
+</li>
+<li><p><strong>Troubleshooting</strong> If you get a “We couldn’t connect to the gateway because of an error” message, it’s likely that the “Remote RADIUS Server” authentication timeouts have not been <a class="reference external" href="sre_build_instructions.md#increase-the-authorisation-timeout-to-allow-for-mfa">increased as described in a previous section</a>. It seems that these are reset everytime the “Central CAP store” shared RADIUS secret is changed.</p></li>
+<li><p><strong>Troubleshooting</strong> If you get multiple MFA requests with no change in the “Opening ports” message, it may be that the shared RADIUS secret does not match on the SHM server and SRE RDS Gateway. It is possible that this may occur if the password is too long. We previously experienced this issue with a 20 character shared secret and this error went away when we reduced the length of the secret to 12 characters. We then got a “We couldn’t connect to the gateway because of an error” message, but were then able to connect successfully after again increasing the authorisation timeout for the remote RADIUS server on the RDS Gateway.</p></li>
+<li><p><strong>Troubleshooting</strong> If you are able to log into the webclient with a username and password but cannot connect to the presentation server (as no MFA prompt is given), please look at <a class="reference external" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd316134(v=ws.10)">this documentation</a>. In particular, ensure that the default UDP ports <code class="docutils literal notranslate"><span class="pre">1812</span></code>, <code class="docutils literal notranslate"><span class="pre">1813</span></code>, <code class="docutils literal notranslate"><span class="pre">1645</span></code> and <code class="docutils literal notranslate"><span class="pre">1646</span></code> are all open on the SHM NPS network security group (<code class="docutils literal notranslate"><span class="pre">NSG_SHM_SUBNET_IDENTITY</span></code>).</p></li>
+</ul>
+</li>
+<li><p>Once you have approved the sign in, you should see a remote Windows desktop.</p></li>
+<li><p><strong>NOTE:</strong> The other apps will not work until the other servers have been deployed.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="floppy-disk-deploy-data-server">
+<h2>:floppy_disk: Deploy Data Server<a class="headerlink" href="#floppy-disk-deploy-data-server" title="Permalink to this headline">¶</a></h2>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./Setup_SRE_Data_Server.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> script, where the SRE ID is the one specified in the config</p></li>
+<li><p>The deployment will take around 20 minutes to complete</p></li>
+</ul>
+</section>
+<section id="baseball-deploy-databases">
+<h2>:baseball: Deploy databases<a class="headerlink" href="#baseball-deploy-databases" title="Permalink to this headline">¶</a></h2>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./Setup_SRE_Databases.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> script, where the SRE ID is the one specified in the config</p></li>
+<li><p>The deployment will take around 30 minutes to complete, most of which is spent in Windows Update.</p></li>
+</ul>
+</section>
+<section id="snowflake-deploy-web-applications-gitlab-and-hackmd">
+<h2>:snowflake: Deploy web applications (GitLab and HackMD)<a class="headerlink" href="#snowflake-deploy-web-applications-gitlab-and-hackmd" title="Permalink to this headline">¶</a></h2>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./Setup_SRE_WebApp_Servers.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> script, where the SRE ID is the one specified in the config</p></li>
+<li><p>The deployment will take a few minutes to complete</p></li>
+</ul>
+<section id="microscope-test-gitlab-server">
+<h3>:microscope: Test GitLab Server<a class="headerlink" href="#microscope-test-gitlab-server" title="Permalink to this headline">¶</a></h3>
+<p>There is a built-in <code class="docutils literal notranslate"><span class="pre">root</span></code> user, whose password is stored in the SRE key vault (see SRE config file for key vault and secret names).
+You can test Gitlab from inside the RDS environment by clicking on the <code class="docutils literal notranslate"><span class="pre">GitLab</span></code> icon and logging in with the short-form <code class="docutils literal notranslate"><span class="pre">username</span></code> of a user in the <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">Research</span> <span class="pre">Users</span></code> security group.</p>
+</section>
+<section id="microscope-test-hackmd-server">
+<h3>:microscope: Test HackMD Server<a class="headerlink" href="#microscope-test-hackmd-server" title="Permalink to this headline">¶</a></h3>
+<p>You can test HackMD from inside the RDS environment by clicking on the <code class="docutils literal notranslate"><span class="pre">HackMD</span></code> icon and logging in with the long-form <code class="docutils literal notranslate"><span class="pre">username&#64;&lt;shm-domain-fqdn&gt;</span></code> of a user in the <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">DSGROUP&lt;SRE</span> <span class="pre">ID&gt;</span> <span class="pre">Research</span> <span class="pre">Users</span></code> security group.</p>
+</section>
+</section>
+<section id="computer-deploy-data-science-vms">
+<h2>:computer: Deploy data science VMs<a class="headerlink" href="#computer-deploy-data-science-vms" title="Permalink to this headline">¶</a></h2>
+<section id="fast-forward-optional-customise-the-deployed-vm">
+<h3>:fast_forward: Optional: Customise the deployed VM<a class="headerlink" href="#fast-forward-optional-customise-the-deployed-vm" title="Permalink to this headline">¶</a></h3>
+<p>If this SRE needs additional software or settings that are not in your default VM image, you can create a custom cloud init file.
+On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>By default, compute VM deployments will use the <code class="docutils literal notranslate"><span class="pre">cloud-init-compute-vm.template.yaml</span></code> configuration file in the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/cloud_init/</span></code> folder. This does all the necessary steps to configure the VM to work with LDAP.</p></li>
+<li><p>If you require additional steps to be taken at deploy time while the VM still has access to the internet (e.g. to install some additional project-specific software), copy the default cloud init file to a file named <code class="docutils literal notranslate"><span class="pre">cloud-init-compute-vm-sre-&lt;SRE</span> <span class="pre">ID&gt;.template.yaml</span></code> in the same folder and add any additional required steps in the <code class="docutils literal notranslate"><span class="pre">SRE-SPECIFIC</span> <span class="pre">COMMANDS</span></code> block marked with comments.</p></li>
+</ul>
+</section>
+<section id="computer-deploy-a-single-data-science-vm-dsvm">
+<h3>:computer: Deploy a single data science VM (DSVM)<a class="headerlink" href="#computer-deploy-a-single-data-science-vm-dsvm" title="Permalink to this headline">¶</a></h3>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch;git</span> <span class="pre">pull;git</span> <span class="pre">status;git</span> <span class="pre">log</span> <span class="pre">-1</span> <span class="pre">--pretty=&quot;At</span> <span class="pre">commit</span> <span class="pre">%h</span> <span class="pre">(%H)&quot;</span></code> to verify you are on the correct branch and up to date with <code class="docutils literal notranslate"><span class="pre">origin</span></code> (and to output this confirmation and the current commit for inclusion in the deployment record).</p></li>
+<li><p>Deploy a new VM into an SRE environment using <code class="docutils literal notranslate"><span class="pre">./Add_DSVM.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where the SRE ID is the one specified in the config</p></li>
+<li><p>You will also be prompted for the VM size (optional) and the desired last octet of the IP address (the first machine deployed should use <code class="docutils literal notranslate"><span class="pre">160</span></code> here)</p>
+<ul>
+<li><p>The initial shared VM should be deployed with the last octet <code class="docutils literal notranslate"><span class="pre">160</span></code></p></li>
+<li><p>The convention is that subsequent CPU-based VMs are deployed with the next unused last octet in the range <code class="docutils literal notranslate"><span class="pre">161</span></code> to <code class="docutils literal notranslate"><span class="pre">179</span></code> and GPU-based VMs are deployed with the next unused last octet between <code class="docutils literal notranslate"><span class="pre">180</span></code> and <code class="docutils literal notranslate"><span class="pre">199</span></code>.</p></li>
+</ul>
+</li>
+<li><p>After deployment, copy everything from the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch;...</span></code> command and its output to the command prompt returned after the VM deployment and paste this into the deployment log (e.g. a Github issue used to record VM deployments for a SRE or set of SREs)</p></li>
+<li><p>The deployment will take around 10 minutes to complete</p></li>
+<li><p>If you want to deploy several DSVMs, simply repeat the above setps with a different IP address last octet</p></li>
+</ul>
+</section>
+<section id="microscope-test-dsvm-deployment">
+<h3>:microscope: Test DSVM deployment<a class="headerlink" href="#microscope-test-dsvm-deployment" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Click on the VM in the SRE subscription under the <code class="docutils literal notranslate"><span class="pre">RG_DSG_COMPUTE</span></code> resource group. It will have the last octet of its IP address at the end of its name.</p></li>
+<li><p>Click on the “Serial console” item near the bottom of the VM menu on the left hand side of the VM information panel</p></li>
+<li><p>If you are not prompted with <code class="docutils literal notranslate"><span class="pre">login:</span></code>, hit enter until the prompt appears</p></li>
+<li><p>Enter the username from the <code class="docutils literal notranslate"><span class="pre">sre-&lt;SRE</span> <span class="pre">ID&gt;-vm-admin-username</span></code> secret in the SRE key vault.</p></li>
+<li><p>Enter the password from the <code class="docutils literal notranslate"><span class="pre">sre-&lt;SRE</span> <span class="pre">ID&gt;-dsvm-admin-password</span></code> secret in the SRE key vault.</p></li>
+<li><p>To validate that our custom <code class="docutils literal notranslate"><span class="pre">cloud-init.yaml</span></code> file has been successfully uploaded, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">cat</span> <span class="pre">/var/lib/cloud/instance/user-data.txt</span></code>. You should see the contents of the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/cloud_init/cloud-init-compute-vm.template.yaml</span></code> file in the Safe Haven git repository.</p></li>
+<li><p>To see the output of our custom <code class="docutils literal notranslate"><span class="pre">cloud-init.yaml</span></code> file, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">200</span> <span class="pre">/var/log/cloud-init-output.log</span></code> and scroll up.</p></li>
+</ul>
+</section>
+</section>
+<section id="lock-apply-network-configuration">
+<h2>:lock: Apply network configuration<a class="headerlink" href="#lock-apply-network-configuration" title="Permalink to this headline">¶</a></h2>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./Apply_Network_Configuration.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> script, where the SRE ID is the one specified in the config</p></li>
+</ul>
+<section id="fast-forward-optional-unpeering-package-mirrors">
+<h3>:fast_forward: Optional: Unpeering package mirrors<a class="headerlink" href="#fast-forward-optional-unpeering-package-mirrors" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Apply_Network_Configuration.ps1</span></code> script ensures that the SRE is peered to the correct mirror network.
+However, if you need to unpeer the mirror networks for some reason (e.g. while preparing an SRE subscription for re-use), you can run the unpeering script separately as described below.</p>
+<blockquote>
+<div><p>:warning: You will not normally need to do this - think carefully before doing so!</p>
+</div></blockquote>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./Unpeer_Sre_And_Mirror_Networks.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> script, where the SRE ID is the one specified in the config</p></li>
+</ul>
+</section>
+</section>
+<section id="fire-run-smoke-tests-on-dsvm">
+<h2>:fire: Run smoke tests on DSVM<a class="headerlink" href="#fire-run-smoke-tests-on-dsvm" title="Permalink to this headline">¶</a></h2>
+<p>These tests should be run <strong>after</strong> the network lock down and peering the SRE and package mirror VNets.
+They are automatically uploaded to the compute VM during the deployment step.</p>
+<p>To run the smoke tests:</p>
+<ul class="simple">
+<li><p>Connect to the DSVM using the remote desktop URL (eg. <code class="docutils literal notranslate"><span class="pre">https://sandbox.dsgroupdev.co.uk/</span></code>) and selecting the the <code class="docutils literal notranslate"><span class="pre">DSVM</span> <span class="pre">Main</span> <span class="pre">(Desktop)</span></code> app
+On the <strong>DSVM</strong>.</p></li>
+<li><p>Open a terminal session</p></li>
+<li><p>Copy the tests folder using <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-R</span> <span class="pre">~&lt;sre-admin&gt;/smoke_tests</span> <span class="pre">~/smoke_tests</span></code></p></li>
+<li><p>Enter the test directory using <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/smoke_tests/tests</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">run_all_tests.sh</span></code>. Check <code class="docutils literal notranslate"><span class="pre">README.md</span></code> if anything is unclear.</p></li>
+<li><p>If all test results are expected you are done! Otherwise, contact Turing REG for help diagnosing test failures.</p></li>
+</ul>
+</section>
+<section id="bomb-tearing-down-the-sre">
+<h2>:bomb: Tearing down the SRE<a class="headerlink" href="#bomb-tearing-down-the-sre" title="Permalink to this headline">¶</a></h2>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./SRE_Teardown.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> script, where the SRE ID is the one specified in the config</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

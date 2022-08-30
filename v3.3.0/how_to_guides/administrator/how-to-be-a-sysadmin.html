@@ -1,0 +1,1308 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Safe Haven Administrator Documentation &#8212; Data Safe Haven v3.3.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Ingress to the Turing Data Safe Haven" href="../data_provider/how-to-ingress-data-as-provider.html" />
+    <link rel="prev" title="How to guides" href="../README.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../explanations/README.html">
+  Learn more about the Safe Haven
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../README.html">
+  How to guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference/README.html">
+  Reference guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorial/README.html">
+  Tutorials and overview
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Safe Haven Administrator Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../data_provider/how-to-ingress-data-as-provider.html">
+   Data Ingress to the Turing Data Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer/how-to-contribute.html">
+   Guide for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general/how-to-use-classification-web-app-guide.html">
+   Classification - Instructions for data provider representatives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general/software-package-approval-policy.html">
+   [DRAFT] Turing data safe haven - software package approval policy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general/software-package-request-form.html">
+   Turing data safe haven - software package request form
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../principal_investigator/how-to-egress-data.html">
+   Safe Haven - Egressing Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../project_manager/data-ingress.html">
+   Data Ingress Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../project_manager/how-to-start-a-project.html">
+   Starting a project
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user_guides/user-cheat-sheet.html">
+   Data Safe Havens - Cheat Sheet
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user_guides/user-guide.html">
+   Safe Haven User Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user_guides/user-guide-tier1.html">
+   Safe Haven User Documentation - Tier 1
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.3.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mailbox-with-mail-table-of-contents">
+   :mailbox_with_mail: Table of contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seedling-prerequisites">
+   :seedling: Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beginner-create-new-users">
+   :beginner: Create new users
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scroll-generate-user-details-csv-file">
+   :scroll: Generate user details CSV file
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#car-using-data-classification-app">
+     :car: Using data classification app
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hand-manually-edit-csv">
+     :hand: Manually edit CSV
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arrows-counterclockwise-create-and-synchronise-users">
+   :arrows_counterclockwise: Create and synchronise users
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warning-troubleshooting">
+     :warning: Troubleshooting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calling-assign-mfa-licences">
+   :calling: Assign MFA licences
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hand-manually-add-licence-to-each-user">
+     :hand: Manually add licence to each user
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#car-automatically-assign-licences-to-users">
+     :car: Automatically assign licences to users
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-user-activation">
+   :running: User activation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#construction-worker-common-user-problems">
+   :construction_worker: Common user problems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#waning-crescent-moon-expired-webclient-certificate">
+     :waning_crescent_moon: Expired webclient certificate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#red-circle-unable-to-log-into-remote-desktop-gateway">
+     :red_circle: Unable to log into remote desktop gateway
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-unable-to-open-any-remote-apps">
+     :train: Unable to open any remote apps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interrobang-xrdp-login-failure-on-the-dsvm">
+     :interrobang: xrdp login failure on the DSVM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloud-unable-to-install-from-package-mirrors">
+     :cloud: Unable to install from package mirrors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dollar-cost-management">
+   :dollar: Cost management
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-down-shut-down-an-shm-or-sre">
+   :point_down: Shut down an SHM or SRE
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shut-down-shm">
+     Shut down SHM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shut-down-sre">
+     Shut down SRE
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boot-start-up-an-shm-or-sre">
+   :boot: Start up an SHM or SRE
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     :warning: Troubleshooting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anger-tear-down-shm-package-mirrors">
+   :anger: Tear down SHM package mirrors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ingress-and-egress">
+   Ingress and Egress
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-ingress">
+     Data Ingress
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-ingress">
+     Software Ingress
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-egress">
+     Data egress
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-output-volume">
+       The output volume
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#end-remove-a-deployed-safe-haven">
+   :end: Remove a deployed Safe Haven
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fire-tear-down-an-sre">
+     :fire: Tear down an SRE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fire-tear-down-the-shm">
+     :fire: Tear down the SHM
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#unlock-disconnect-from-the-azure-active-directory">
+       :unlock: Disconnect from the Azure Active Directory
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#collision-tear-down-any-attached-sres-then-the-shm">
+       :collision: Tear down any attached SREs then the SHM
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/how_to_guides/administrator/how-to-be-a-sysadmin.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="safe-haven-administrator-documentation">
+<h1>Safe Haven Administrator Documentation<a class="headerlink" href="#safe-haven-administrator-documentation" title="Permalink to this headline">¶</a></h1>
+<section id="mailbox-with-mail-table-of-contents">
+<h2>:mailbox_with_mail: Table of contents<a class="headerlink" href="#mailbox-with-mail-table-of-contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#seedling-prerequisites">:seedling: Prerequisites</a></p></li>
+<li><p><a class="reference external" href="#beginner-create-new-users">:beginner: Create new users</a></p>
+<ul>
+<li><p><a class="reference external" href="#scroll-generate-user-details-csv-file">:scroll: Generate user details CSV file</a></p></li>
+<li><p><a class="reference external" href="#arrows_counterclockwise-create-and-synchronise-users">:arrows_counterclockwise: Create and synchronise users</a></p></li>
+<li><p><a class="reference external" href="#calling-assign-mfa-licences">:calling: Assign MFA licences</a></p></li>
+<li><p><a class="reference external" href="#running-user-activation">:running: User activation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#construction_worker-common-user-problems">:construction_worker: Common user problems</a></p>
+<ul>
+<li><p><a class="reference external" href="#waning_crescent_moon-expired-webclient-certificate">:waning_crescent_moon: Expired webclient certificate</a></p></li>
+<li><p><a class="reference external" href="#red_circle-unable-to-log-into-remote-desktop-gateway">:red_circle: Unable to log into remote desktop gateway</a></p></li>
+<li><p><a class="reference external" href="#train-unable-to-open-any-remote-apps">:train: Unable to open any remote apps</a></p></li>
+<li><p><a class="reference external" href="#interrobang-xrdp-login-failure-on-the-dsvm">:interrobang: xrdp login failure on the DSVM</a></p></li>
+<li><p><a class="reference external" href="#cloud-unable-to-install-from-package-mirrors">:cloud: Unable to install from package mirrors</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#dollar-cost-management">:dollar: Cost management</a></p>
+<ul>
+<li><p><a class="reference external" href="#point_down-shut-down-an-shm-or-sre">:point_down: Shut down an SHM or SRE</a></p></li>
+<li><p><a class="reference external" href="#boot-start-up-an-shm-or-sre">:boot: Start up an SHM or SRE</a></p></li>
+<li><p><a class="reference external" href="#anger-tear-down-shm-package-mirrors">:anger: Tear down SHM package mirrors</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#ingress-and-egress">:repeat: Ingress and Egress</a></p>
+<ul>
+<li><p>:arrow_up: <a class="reference external" href="#data-ingress">Data Ingress</a></p></li>
+<li><p>:arrow_up: <a class="reference external" href="#software-ingress">Software Ingress</a></p></li>
+<li><p>:arrow_down: <a class="reference external" href="#data-egress">Data Egress</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#end-remove-a-deployed-safe-haven">:end: Remove a deployed Safe Haven</a></p>
+<ul>
+<li><p><a class="reference external" href="#fire-tear-down-an-SRE">:fire: Tear down an SRE</a></p></li>
+<li><p><a class="reference external" href="#fire-tear-down-the-SHM">:fire: Tear down the SHM</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="seedling-prerequisites">
+<h2>:seedling: Prerequisites<a class="headerlink" href="#seedling-prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>This document assumes that you have already deployed a <a class="reference internal" href="../../tutorial/deployment_tutorials/how-to-deploy-shm.html"><span class="doc std std-doc">Safe Haven Management (SHM) environment</span></a> and one or more <a class="reference internal" href="../../tutorial/deployment_tutorials/how-to-deploy-sre.html"><span class="doc std std-doc">Secure Research Environments (SRE)</span></a> that are linked to it.</p>
+<ul class="simple">
+<li><p>You will need VPN access to the SHM as described in the deployment instructions</p></li>
+</ul>
+</section>
+<section id="beginner-create-new-users">
+<h2>:beginner: Create new users<a class="headerlink" href="#beginner-create-new-users" title="Permalink to this headline">¶</a></h2>
+<p>Users should be created on the main domain controller (DC1) in the SHM and synchronised to Azure Active Directory.
+A helper script for doing this is already uploaded to the domain controller - you will need to prepare a CSV file in the appropriate format for it.</p>
+</section>
+<section id="scroll-generate-user-details-csv-file">
+<h2>:scroll: Generate user details CSV file<a class="headerlink" href="#scroll-generate-user-details-csv-file" title="Permalink to this headline">¶</a></h2>
+<section id="car-using-data-classification-app">
+<h3>:car: Using data classification app<a class="headerlink" href="#car-using-data-classification-app" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Follow the <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven-webapp/blob/master/runbooks/create-users/create-users.md">instructions in the webapp repository</a> to create users.</p>
+<ul>
+<li><p>Users can be created in bulk by selecting <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">User</span> <span class="pre">&gt;</span> <span class="pre">Import</span> <span class="pre">user</span> <span class="pre">list</span></code> and uploading a spreadsheet of user details</p></li>
+<li><p>Users can also be created individually by selecting <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">User</span> <span class="pre">&gt;</span> <span class="pre">Create</span> <span class="pre">Single</span> <span class="pre">User</span></code></p></li>
+</ul>
+</li>
+<li><p>After creating users, export the <code class="docutils literal notranslate"><span class="pre">UserCreate.csv</span></code> file</p>
+<ul>
+<li><p>To export all users, select <code class="docutils literal notranslate"><span class="pre">Users</span> <span class="pre">&gt;</span> <span class="pre">Export</span> <span class="pre">UserCreate.csv</span></code></p></li>
+<li><p>To export only users for a particular project, select <code class="docutils literal notranslate"><span class="pre">Projects</span> <span class="pre">&gt;</span> <span class="pre">(Project</span> <span class="pre">Name)</span> <span class="pre">&gt;</span> <span class="pre">Export</span> <span class="pre">UserCreate.csv</span></code></p></li>
+</ul>
+</li>
+<li><p>Upload the user details CSV file to a sensible location on the SHM domain controller</p>
+<ul>
+<li><p>:pencil: we suggest <code class="docutils literal notranslate"><span class="pre">C:\Installation\YYYYDDMM-HHMM_user_details.csv</span></code> but this is up to you</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="hand-manually-edit-csv">
+<h3>:hand: Manually edit CSV<a class="headerlink" href="#hand-manually-edit-csv" title="Permalink to this headline">¶</a></h3>
+<p>On the <strong>SHM domain controller (DC1)</strong>.</p>
+<ul>
+<li><p>Make a new copy of the user details template file from <code class="docutils literal notranslate"><span class="pre">C:\Installation\user_details_template.csv</span></code></p>
+<ul class="simple">
+<li><p>:pencil: we suggest naming this <code class="docutils literal notranslate"><span class="pre">YYYYDDMM-HHMM_user_details.csv</span></code> but this is up to you</p></li>
+</ul>
+</li>
+<li><p>Remove the example user and add the required details for each user</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SamAccountName</span></code> : Log in username <strong>without</strong> the &#64;domain bit. Use <code class="docutils literal notranslate"><span class="pre">firstname.lastname</span></code> format and please stick to unnaccented lower case ascii letters with a period separating the name parts. Maximum length is 20 characters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GivenName</span></code> : User’s first / given name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Surname</span></code> : User’s last name / surname</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Mobile</span></code> : Phone number to use for initial password reset.</p>
+<p>This must include country code in the format <code class="docutils literal notranslate"><span class="pre">+&lt;country-code&gt;</span> <span class="pre">&lt;local</span> <span class="pre">number&gt;</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">+44</span> <span class="pre">7700900000</span></code> ).
+Include a space between the country code and local number parts but no other spaces.
+Remove the leading <code class="docutils literal notranslate"><span class="pre">0</span></code> from local number if present.
+This can be a landline or or mobile but must be accessible to the user when resetting their password and setting up MFA.
+They can add the authenticator app and/or another phone number during MFA setup and at least one MFA method must work when at the Turing.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SecondaryEmail</span></code> : An existing organisational email address for the user.</p>
+<p>Not uploaded to their Safe Haven user account but needs to be added here so we reliably send the account activation</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GroupName</span></code> : [Optional] The name of the Active Directory security group(s) that the users should be added (eg. <code class="docutils literal notranslate"><span class="pre">SG</span> <span class="pre">SANDBOX</span> <span class="pre">Research</span> <span class="pre">Users</span></code> ).</p>
+<p>If the user needs to be added to multiple groups, separate them with a pipe-character ( <code class="docutils literal notranslate"><span class="pre">|</span></code> ).</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="arrows-counterclockwise-create-and-synchronise-users">
+<h2>:arrows_counterclockwise: Create and synchronise users<a class="headerlink" href="#arrows-counterclockwise-create-and-synchronise-users" title="Permalink to this headline">¶</a></h2>
+<p>Upload the user details CSV file to a sensible location on the SHM domain controller (recommended: <code class="docutils literal notranslate"><span class="pre">C:\Installation</span></code> ). This can be done by copying and pasting the file from your deployment device to the SHM DC.</p>
+<p>On the <strong>SHM domain controller (DC1)</strong>.</p>
+<ul class="simple">
+<li><p>Open a PowerShell command window with elevated privileges.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">C:\Installation\CreateUsers.ps1</span> <span class="pre">&lt;path_to_user_details_file&gt;</span></code></p></li>
+<li><p>This script will add the users and trigger a sync with Azure Active Directory, but it will still take around 5 minutes for the changes to propagate.</p></li>
+</ul>
+<section id="warning-troubleshooting">
+<h3>:warning: Troubleshooting<a class="headerlink" href="#warning-troubleshooting" title="Permalink to this headline">¶</a></h3>
+<p>If you get the message <code class="docutils literal notranslate"><span class="pre">New-ADUser</span> <span class="pre">:</span>&#160; <span class="pre">The</span> <span class="pre">specified</span> <span class="pre">account</span> <span class="pre">already</span> <span class="pre">exists</span></code> you should first check to see whether that user actually does already exist!
+Once you’re certain that you’re adding a new user, make sure that the following fields are unique across all users in the Active Directory.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SamAccountName</span></code> : Specified explicitly in the CSV file. If this is already in use, consider something like <code class="docutils literal notranslate"><span class="pre">firstname.middle.initials.lastname</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DistinguishedName</span></code> : Formed of <code class="docutils literal notranslate"><span class="pre">CN=&lt;DisplayName&gt;,&lt;OUPath&gt;</span></code> by Active directory on user creation. If this is in use, consider changing <code class="docutils literal notranslate"><span class="pre">DisplayName</span></code> from <code class="docutils literal notranslate"><span class="pre">&lt;GivenName&gt;</span> <span class="pre">&lt;Surname&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">&lt;GivenName&gt;</span> <span class="pre">&lt;Middle&gt;</span> <span class="pre">&lt;Initials&gt;</span> <span class="pre">&lt;Surname&gt;</span></code> .</p></li>
+</ul>
+</section>
+</section>
+<section id="calling-assign-mfa-licences">
+<h2>:calling: Assign MFA licences<a class="headerlink" href="#calling-assign-mfa-licences" title="Permalink to this headline">¶</a></h2>
+<section id="hand-manually-add-licence-to-each-user">
+<h3>:hand: Manually add licence to each user<a class="headerlink" href="#hand-manually-add-licence-to-each-user" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Login into the Azure Portal and connect to the correct AAD</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">&gt;</span> <span class="pre">Licenses</span> <span class="pre">&gt;</span> <span class="pre">All</span> <span class="pre">Products</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Active</span> <span class="pre">Directory</span> <span class="pre">Premium</span> <span class="pre">P1</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Assign</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Users</span> <span class="pre">and</span> <span class="pre">groups</span></code></p></li>
+<li><p>Select the users you have recently created and click <code class="docutils literal notranslate"><span class="pre">Select</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Assign</span></code> to complete the process</p></li>
+</ul>
+</section>
+<section id="car-automatically-assign-licences-to-users">
+<h3>:car: Automatically assign licences to users<a class="headerlink" href="#car-automatically-assign-licences-to-users" title="Permalink to this headline">¶</a></h3>
+<p>To automatically assign licences to all local AD users that do not currently have a licence in AAD</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/administration</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./SHM_Add_AAD_Licences.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> script, where the SHM ID is the ID of the SHM you wish to add licences for.</p></li>
+</ul>
+</section>
+</section>
+<section id="running-user-activation">
+<h2>:running: User activation<a class="headerlink" href="#running-user-activation" title="Permalink to this headline">¶</a></h2>
+<p>We need to contact the users to tell them their user ID and.
+We can securely email users their user ID as they do not know their account password and they need access to the phone number they provided in order to reset this.
+We should also send them a copy of the <a class="reference internal" href="../user_guides/user-guide.html"><span class="doc std std-doc">Safe Haven User Guide</span></a> at this point.</p>
+<p>A sample email might look like the following</p>
+<blockquote>
+<div><p>Dear &lt;participant name&gt;,</p>
+<p>Welcome to &lt;event name&gt;! You’ve been given access to a data Safe Haven running on Turing infrastructure.
+Please find a PDF version of our user guide attached.
+You should start by following the instructions about setting up your account and enabling multi-factor authentication (MFA).</p>
+<p>Your username is: &lt;username&#64;domain&gt;
+Your Safe Haven is hosted at: &lt;URL&gt;</p>
+<p>The Safe Haven is only accessible from certain networks and may also involve physical location restrictions.</p>
+<p>–details about network and location/VPN restrictions here–</p>
+</div></blockquote>
+</section>
+<section id="construction-worker-common-user-problems">
+<h2>:construction_worker: Common user problems<a class="headerlink" href="#construction-worker-common-user-problems" title="Permalink to this headline">¶</a></h2>
+<p>One of the most common user issues is that they are unable to log in to the environment.
+Here we go through the login procedure and discuss possible problems at each step</p>
+<section id="waning-crescent-moon-expired-webclient-certificate">
+<h3>:waning_crescent_moon: Expired webclient certificate<a class="headerlink" href="#waning-crescent-moon-expired-webclient-certificate" title="Permalink to this headline">¶</a></h3>
+<p>If the certificate for the SRE domain has expired, users will not be able to login.</p>
+<p><img alt="login_certificate_expiry" src="../../_images/login_certificate_expiry.png" /></p>
+<p><strong>Solution</strong>: Replace the SSL certificate with a new one</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into the Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">./Update_SRE_RDS_Ssl_Certificate.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> , where the SRE ID is the one specified in the config.</p></li>
+</ul>
+</section>
+<section id="red-circle-unable-to-log-into-remote-desktop-gateway">
+<h3>:red_circle: Unable to log into remote desktop gateway<a class="headerlink" href="#red-circle-unable-to-log-into-remote-desktop-gateway" title="Permalink to this headline">¶</a></h3>
+<p>If users give the wrong username or password they will not be able to progress past the login screen.</p>
+<p><img alt="login_password_login" src="../../_images/login_password_login.png" /></p>
+<p><strong>Solution</strong>: Check user credentials, password may need to be reset.</p>
+</section>
+<section id="train-unable-to-open-any-remote-apps">
+<h3>:train: Unable to open any remote apps<a class="headerlink" href="#train-unable-to-open-any-remote-apps" title="Permalink to this headline">¶</a></h3>
+<p>Users are stuck at the <code class="docutils literal notranslate"><span class="pre">Opening</span> <span class="pre">remote</span> <span class="pre">port</span></code> message and never receive the MFA prompt.</p>
+<p><img alt="login_shared_vm" src="../../_images/login_shared_vm.png" /></p>
+<p><strong>Solution</strong>: Check MFA setup</p>
+<ul class="simple">
+<li><p>Ensure that the user has been assigned a license in Azure Active Directory</p></li>
+<li><p>Check that the user has set up MFA (at <code class="docutils literal notranslate"><span class="pre">aka.ms/mfasetup</span></code> ) and is using the phone-call or app authentication method</p></li>
+</ul>
+</section>
+<section id="interrobang-xrdp-login-failure-on-the-dsvm">
+<h3>:interrobang: xrdp login failure on the DSVM<a class="headerlink" href="#interrobang-xrdp-login-failure-on-the-dsvm" title="Permalink to this headline">¶</a></h3>
+<p>If users can get to the login screen:</p>
+<p><img alt="Shared VM login screen" src="../../_images/login_compute_vm_login.png" /></p>
+<p>but then see this error message:</p>
+<p><img alt="Login failure message" src="../../_images/login_compute_vm_login_failure.png" /></p>
+<p>there are a couple of possible causes.</p>
+<p><strong>Problem</strong>: the username or password was incorrectly entered</p>
+<p><strong>Solution</strong>: check username and password</p>
+<ul class="simple">
+<li><p>Confirm that the username and password have been correctly typed</p></li>
+<li><p>Confirm that there are no unsupported special characters in the password</p></li>
+<li><p>Reset the account if there is no other solution</p></li>
+</ul>
+<p><strong>Problem</strong>: the computer is unable to communicate with the login server</p>
+<p><strong>Solution</strong>: run diagnostics</p>
+<ul class="simple">
+<li><p>This can happen for a variety of reasons (DNS problems, broken services on the compute VM etc.)</p></li>
+<li><p>Run the script under <code class="docutils literal notranslate"><span class="pre">deployment/administration/SRE_DSVM_Remote_Diagnostics.ps1</span></code> , providing the group and last IP octet of the problematic compute VM</p></li>
+<li><p>You should see output like the following:</p></li>
+</ul>
+<details>
+<summary>Diagnostic output</summary>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PS /home/atiadmin/data-safe-haven/deployment/administration&gt; ./SRE_DSVM_Remote_Diagnostics.ps1 -sreId 2 -ipLastOctet 160
+
+Name                                     Account                                           SubscriptionName                                 Environment                                      TenantId
+----                                     -------                                           ----------------                                 -----------                                      --------
+DSG Template Testing (0c126bf5-366e-4... jrobinson@turing.ac.uk                            DSG Template Testing                             AzureCloud                                       4395f4a7-e455-4f95-8a9f-1fbaef6384f9
+ - Finding VM with IP 10.250.10.160
+ - Running diagnostic scripts on VM DSG201906181415-160
+
+Code          : ProvisioningState/succeeded
+Level         : Info
+DisplayStatus : Provisioning succeeded
+Message       : Enable succeeded:
+                [stdout]
+                Checking LDAP connectivity
+                Testing LDAP search...
+                LDAP search succeeded: found user &#39;dsg2-dsvm-ldap&#39;.
+                LDAP SEARCH RESULT:
+                dn: CN=DSGROUP2 DSVM LDAP,OU=Safe Haven Service Accounts,DC=turingsafehaven,DC
+                 =ac,DC=uk
+                objectClass: top
+                objectClass: person
+                objectClass: organizationalPerson
+                objectClass: user
+                cn: DSGROUP2 DSVM LDAP
+                description: DSGROUP2 DSVM LDAP
+                distinguishedName: CN=DSGROUP2 DSVM LDAP,OU=Safe Haven Service Accounts,DC=tur
+                 ingsafehaven,DC=ac,DC=uk
+                instanceType: 4
+                whenCreated: 20190613112421.0Z
+                whenChanged: 20190617164000.0Z
+                displayName: DSGROUP2 DSVM LDAP
+                uSNCreated: 610254
+                memberOf: CN=SG Data Science LDAP Users,OU=Safe Haven Security Groups,DC=turin
+                 gsafehaven,DC=ac,DC=uk
+                uSNChanged: 623511
+                name: DSGROUP2 DSVM LDAP
+                objectGUID:: 6QVuwb4k50+Q9+srCw/1ww==
+                userAccountControl: 66048
+                badPwdCount: 0
+                codePage: 0
+                countryCode: 0
+                badPasswordTime: 0
+                lastLogoff: 0
+                lastLogon: 132053410870905210
+                pwdLastSet: 132048986610646973
+                primaryGroupID: 513
+                objectSid:: AQUAAAAAAAUVAAAAgHv/rrok4PlnFgf+wwUAAA==
+                accountExpires: 9223372036854775807
+                logonCount: 4
+                sAMAccountName: dsg2-dsvm-ldap
+                sAMAccountType: 805306368
+                userPrincipalName: dsg2-dsvm-ldap@dsgroup2.co.uk
+                objectCategory: CN=Person,CN=Schema,CN=Configuration,DC=turingsafehaven,DC=ac,
+                 DC=uk
+                dSCorePropagationData: 16010101000000.0Z
+                lastLogonTimestamp: 132052632008997342
+
+                [stderr]
+
+Time          :
+
+Code          : ProvisioningState/succeeded
+Level         : Info
+DisplayStatus : Provisioning succeeded
+Message       : Enable succeeded:
+                [stdout]
+                Address: 127.0.0.53#53
+
+                Non-authoritative answer:
+                Name: SHMDC1.turingsafehaven.ac.uk
+                Address: 10.251.0.250
+                Name resolution working.
+                Testing /etc/systemd/resolved.conf
+                #  This file is part of systemd.
+                #
+                #  systemd is free software; you can redistribute it and/or modify it
+                #  under the terms of the GNU Lesser General Public License as published by
+                #  the Free Software Foundation; either version 2.1 of the License, or
+                #  (at your option) any later version.
+                #
+                # Entries in this file show the compile time defaults.
+                # You can change settings by editing this file.
+                # Defaults can be restored by simply deleting this file.
+                #
+                # See resolved.conf(5) for details
+
+                [Resolve]
+                #DNS=
+                #FallbackDNS=
+                #Domains=
+                #LLMNR=no
+                #MulticastDNS=no
+                #DNSSEC=no
+                #Cache=yes
+                #DNSStubListener=yes
+                Updating /etc/systemd/resolved.conf
+                #  This file is part of systemd.
+                #
+                #  systemd is free software; you can redistribute it and/or modify it
+                #  under the terms of the GNU Lesser General Public License as published by
+                #  the Free Software Foundation; either version 2.1 of the License, or
+                #  (at your option) any later version.
+                #
+                # Entries in this file show the compile time defaults.
+                # You can change settings by editing this file.
+                # Defaults can be restored by simply deleting this file.
+                #
+                # See resolved.conf(5) for details
+
+                [Resolve]
+                DNS=
+                FallbackDNS=
+                Domains=turingsafehaven.ac.uk
+                #LLMNR=no
+                #MulticastDNS=no
+                #DNSSEC=no
+                #Cache=yes
+                #DNSStubListener=yes
+                Restarting systemd-resolved nameservice
+                # This file is managed by man:systemd-resolved(8). Do not edit.
+                #
+                # This is a dynamic resolv.conf file for connecting local clients to the
+                # internal DNS stub resolver of systemd-resolved. This file lists all
+                # configured search domains.
+                #
+                # Run &quot;systemd-resolve --status&quot; to see details about the uplink DNS servers
+                # currently in use.
+                #
+                # Third party programs must not access this file directly, but only through the
+                # symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+                # replace this symlink by a static file or a different symlink.
+                #
+                # See man:systemd-resolved.service(8) for details about the supported modes of
+                # operation for /etc/resolv.conf.
+
+                nameserver 127.0.0.53
+                options edns0
+                search turingsafehaven.ac.uk reddog.microsoft.com
+                Testing /etc/resolv.conf
+                # This file is managed by man:systemd-resolved(8). Do not edit.
+                #
+                # This is a dynamic resolv.conf file for connecting local clients to the
+                # internal DNS stub resolver of systemd-resolved. This file lists all
+                # configured search domains.
+                #
+                # Run &quot;systemd-resolve --status&quot; to see details about the uplink DNS servers
+                # currently in use.
+                #
+                # Third party programs must not access this file directly, but only through the
+                # symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+                # replace this symlink by a static file or a different symlink.
+                #
+                # See man:systemd-resolved.service(8) for details about the supported modes of
+                # operation for /etc/resolv.conf.
+
+                nameserver 127.0.0.53
+                options edns0
+                search turingsafehaven.ac.uk reddog.microsoft.com
+                /etc/resolv.conf is currently pointing to ../run/systemd/resolve/stub-resolv.conf
+                Resetting /etc/resolv.conf symlink
+                # This file is managed by man:systemd-resolved(8). Do not edit.
+                #
+                # This is a dynamic resolv.conf file for connecting local clients directly to
+                # all known uplink DNS servers. This file lists all configured search domains.
+                #
+                # Third party programs must not access this file directly, but only through the
+                # symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+                # replace this symlink by a static file or a different symlink.
+                #
+                # See man:systemd-resolved.service(8) for details about the supported modes of
+                # operation for /etc/resolv.conf.
+
+                nameserver 10.250.8.250
+                nameserver 8.8.8.8
+                search turingsafehaven.ac.uk reddog.microsoft.com
+                /etc/resolv.conf is currently pointing to /run/systemd/resolve/resolv.conf
+                NS LOOKUP RESULT:
+                Server: 10.250.8.250
+                Address: 10.250.8.250#53
+
+                Non-authoritative answer:
+                Name: SHMDC1.turingsafehaven.ac.uk
+                Address: 10.251.0.250
+                Name resolution working.
+
+                [stderr]
+
+Time          :
+
+Code          : ProvisioningState/succeeded
+Level         : Info
+DisplayStatus : Provisioning succeeded
+Message       : Enable succeeded:
+                [stdout]
+                Checking realm membership
+                Testing current realms...
+                Currently a member of realm: &#39;turingsafehaven.ac.uk&#39;. No need to rejoin.
+                REALM LIST RESULT:
+                turingsafehaven.ac.uk
+                  type: kerberos
+                  realm-name: TURINGSAFEHAVEN.AC.UK
+                  domain-name: turingsafehaven.ac.uk
+                  configured: kerberos-member
+                  server-software: active-directory
+                  client-software: sssd
+                  required-package: sssd-tools
+                  required-package: sssd
+                  required-package: libnss-sss
+                  required-package: libpam-sss
+                  required-package: adcli
+                  required-package: samba-common-bin
+                  login-formats: %U
+                  login-policy: allow-permitted-logins
+                  permitted-logins:
+                  permitted-groups:
+
+                [stderr]
+
+Time          :
+
+Code          : ProvisioningState/succeeded
+Level         : Info
+DisplayStatus : Provisioning succeeded
+Message       : Enable succeeded:
+                [stdout]
+                Checking SSSD status
+                Testing sssd status...
+                SSSD service is working. No need to restart.
+                SSSD STATUS RESULT:
+                ● sssd.service - System Security Services Daemon
+                   Loaded: loaded (/lib/systemd/system/sssd.service; enabled; vendor preset: enabled)
+                   Active: active (running) since Thu 2019-06-20 10:50:08 BST; 1 day 3h ago
+                 Main PID: 38795 (sssd)
+                    Tasks: 4 (limit: 8289)
+                   CGroup: /system.slice/sssd.service
+                           ├─38795 /usr/sbin/sssd -i --logger=files
+                           ├─38824 /usr/lib/x86_64-linux-gnu/sssd/sssd_be --domain turingsafehaven.ac.uk --uid 0 --gid 0 --logger=files
+                           ├─38827 /usr/lib/x86_64-linux-gnu/sssd/sssd_nss --uid 0 --gid 0 --logger=files
+                           └─38828 /usr/lib/x86_64-linux-gnu/sssd/sssd_pam --uid 0 --gid 0 --logger=files
+
+                Jun 21 10:50:08 DSG201906181415-160 sssd[38795]: tkey query failed: GSSAPI error: Major = Unspecified GSS failure.  Minor code may provide more information, Minor = Server not found in Kerberos database.
+                Jun 21 10:50:08 DSG201906181415-160 sssd[38795]: tkey query failed: GSSAPI error: Major = Unspecified GSS failure.  Minor code may provide more information, Minor = Server not found in Kerberos database.
+                Jun 21 10:50:08 DSG201906181415-160 sssd[38795]: tkey query failed: GSSAPI error: Major = Unspecified GSS failure.  Minor code may provide more information, Minor = Server not found in Kerberos database.
+                Jun 21 10:50:08 DSG201906181415-160 sssd[38795]: tkey query failed: GSSAPI error: Major = Unspecified GSS failure.  Minor code may provide more information, Minor = Server not found in Kerberos database.
+                Jun 21 10:50:08 DSG201906181415-160 sssd[38795]: tkey query failed: GSSAPI error: Major = Unspecified GSS failure.  Minor code may provide more information, Minor = Server not found in Kerberos database.
+                Jun 21 11:02:38 DSG201906181415-160 adcli[8817]: GSSAPI client step 1
+                Jun 21 11:02:38 DSG201906181415-160 adcli[8817]: GSSAPI client step 1
+                Jun 21 11:02:38 DSG201906181415-160 adcli[8817]: GSSAPI client step 1
+                Jun 21 11:02:38 DSG201906181415-160 adcli[8817]: GSSAPI client step 2
+                Jun 21 14:24:55 DSG201906181415-160 sssd[38827]: Enumeration requested but not enabled
+
+                [stderr]
+
+Time          :
+
+Safe Haven Management (1814d074-10fe-4...   jrobinson@turing.ac.uk   Safe Haven Management   AzureCloud   4395f4a7-e455-4f95-8a9f-1fbaef6384f9
+</pre></div>
+</div>
+</details>
+</section>
+<section id="cloud-unable-to-install-from-package-mirrors">
+<h3>:cloud: Unable to install from package mirrors<a class="headerlink" href="#cloud-unable-to-install-from-package-mirrors" title="Permalink to this headline">¶</a></h3>
+<p>If it is not possible to install packages from the package mirrors then this may be for one of the following reasons:</p>
+<p><strong>Problem</strong>: Mirror VNet is not correctly peered</p>
+<p><strong>Solution</strong>: Re-run the network configuration script.</p>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/secure_research_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">./Apply_Network_Configuration.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code> script, where the SRE ID is the one specified in the config</p></li>
+</ul>
+<p><strong>Problem</strong>: Internal mirror does not have the required package</p>
+<p><strong>Solution</strong>: Check package availability</p>
+<p>To diagnose this, log into the <code class="docutils literal notranslate"><span class="pre">Internal</span></code> mirror using the Serial Console through the <code class="docutils literal notranslate"><span class="pre">Azure</span></code> portal.
+Check the packages directory (i.e. <code class="docutils literal notranslate"><span class="pre">/datadrive/mirrordaemon/pypi/web/packages</span></code> for PyPI or <code class="docutils literal notranslate"><span class="pre">/datadrive/mirrordaemon/www/cran</span></code> for CRAN)</p>
+<p><img alt="Package list" src="../../_images/internal_mirror_packages.png" /></p>
+<p>If the requested is expected to be available (i.e. it is on the appropriate allowlist), then you can force a mirror update by rebooting the <code class="docutils literal notranslate"><span class="pre">EXTERNAL</span></code> mirrors.
+This will trigger the following actions:</p>
+<ol class="simple">
+<li><p>Synchronisation of the external mirror with the remote, internet repository (a <code class="docutils literal notranslate"><span class="pre">pull</span></code> update)</p></li>
+<li><p>Synchronisation of the internal mirror with the external mirror (a <code class="docutils literal notranslate"><span class="pre">push</span></code> update)</p></li>
+</ol>
+<p>This may take an hour or two but should solve the missing package problem.</p>
+</section>
+</section>
+<section id="dollar-cost-management">
+<h2>:dollar: Cost management<a class="headerlink" href="#dollar-cost-management" title="Permalink to this headline">¶</a></h2>
+<p>When and SHM and/or SRE is not being used, it can be cost-efficient to shut it down in order to save on some of the ongoing running costs.</p>
+</section>
+<section id="point-down-shut-down-an-shm-or-sre">
+<h2>:point_down: Shut down an SHM or SRE<a class="headerlink" href="#point-down-shut-down-an-shm-or-sre" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you may want to temporarily shut down an SHM or SRE, rather than tearing it down entirely. You can do that with these scripts:</p>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/administration</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Then do one of the following:</p></li>
+</ul>
+<section id="shut-down-shm">
+<h3>Shut down SHM<a class="headerlink" href="#shut-down-shm" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">./SHM_Manage_VMs.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;shm</span> <span class="pre">id&gt;</span> <span class="pre">-Action</span> <span class="pre">EnsureStopped</span> <span class="pre">-Group</span> <span class="pre">All</span></code></p>
+</section>
+<section id="shut-down-sre">
+<h3>Shut down SRE<a class="headerlink" href="#shut-down-sre" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">./SRE_Manage_VMs.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;shm</span> <span class="pre">id&gt;</span> <span class="pre">-sreId</span> <span class="pre">&lt;sre</span> <span class="pre">id&gt;</span> <span class="pre">-Action</span> <span class="pre">EnsureStopped</span></code></p>
+</section>
+</section>
+<section id="boot-start-up-an-shm-or-sre">
+<h2>:boot: Start up an SHM or SRE<a class="headerlink" href="#boot-start-up-an-shm-or-sre" title="Permalink to this headline">¶</a></h2>
+<p>If you need to reboot an SHM or SRE that is not running, you can use the same scripts youused to shut them down, but changing the <code class="docutils literal notranslate"><span class="pre">-Action</span></code> flag to <code class="docutils literal notranslate"><span class="pre">EnsureStopped</span></code>, see below.</p>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/administration</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">./SHM_Manage_VMs.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;shm</span> <span class="pre">id&gt;</span> <span class="pre">-Action</span> <span class="pre">EnsureStarted</span> <span class="pre">-Group</span> <span class="pre">All</span></code> to restart the SHM</p></li>
+<li><p>For each SRE, run <code class="docutils literal notranslate"><span class="pre">./SRE_Manage_VMs.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;shm</span> <span class="pre">id&gt;</span> <span class="pre">-sreId</span> <span class="pre">&lt;sre</span> <span class="pre">id&gt;</span> <span class="pre">-Action</span> <span class="pre">EnsureStarted</span></code></p></li>
+</ul>
+<section id="id1">
+<h3>:warning: Troubleshooting<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Note that if the Azure subscription that you have deployed into runs out of credit, the SHM and/or SRE will be shutdown automatically.</p>
+</section>
+</section>
+<section id="anger-tear-down-shm-package-mirrors">
+<h2>:anger: Tear down SHM package mirrors<a class="headerlink" href="#anger-tear-down-shm-package-mirrors" title="Permalink to this headline">¶</a></h2>
+<p>During normal usage of the SHM, you should not need to tear down the package mirrors. However, if you no longer have any SREs at a particular tier and you want to save on the costs of running the mirrors, you might decide to do so.</p>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/safe_haven_management_environment/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code>. This command will give you a URL and a short alphanumeric code. You will need to visit that URL in a web browser and enter the code</p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>Tear down the package mirrors by running <code class="docutils literal notranslate"><span class="pre">./Teardown_SHM_Package_Mirrors.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span> <span class="pre">-tier</span> <span class="pre">&lt;desired</span> <span class="pre">tier&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#management-environment-id">management environment ID</a> specified in the configuration file.</p></li>
+<li><p>This will take <strong>a few minutes</strong> to run.</p></li>
+</ul>
+</section>
+<section id="ingress-and-egress">
+<h2>Ingress and Egress<a class="headerlink" href="#ingress-and-egress" title="Permalink to this headline">¶</a></h2>
+<section id="data-ingress">
+<h3>Data Ingress<a class="headerlink" href="#data-ingress" title="Permalink to this headline">¶</a></h3>
+<p>It is the data provider’s responsibility to upload the data required by the safe haven.</p>
+<p><strong>IMPORTANT:</strong> The data ingress must be signed off by the data provider (and referee).</p>
+<p>The following steps show how to generate a temporary write-only upload token that can be securely sent to the data provider, enabling them to upload the data:</p>
+<ul class="simple">
+<li><p>In the Azure portal select <code class="docutils literal notranslate"><span class="pre">Subscriptions</span></code> then navigate to the subscription containing the relevant SHM.</p></li>
+<li><p>Search for the resource group: <code class="docutils literal notranslate"><span class="pre">RG_SHM_&lt;SHM</span> <span class="pre">ID&gt;_PERSISTENT_DATA</span></code>, then click through to the storage account called: <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;&lt;SRE</span> <span class="pre">ID&gt;data&lt;storage</span> <span class="pre">suffix&gt;</span></code> (where <code class="docutils literal notranslate"><span class="pre">&lt;storage</span> <span class="pre">suffix&gt;</span></code> is a random string)</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Networking</span></code> under <code class="docutils literal notranslate"><span class="pre">Settings</span></code> and paste the data providers IP address as one of those allowed under the <code class="docutils literal notranslate"><span class="pre">Firewall</span></code> header, then hit the save icon in the top left</p></li>
+<li><p>From the <code class="docutils literal notranslate"><span class="pre">Overview</span></code> tab, click the link to <code class="docutils literal notranslate"><span class="pre">Containers</span></code> (in the middle of the page)</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">ingress</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Shared</span> <span class="pre">access</span> <span class="pre">signature</span></code> under <code class="docutils literal notranslate"><span class="pre">Settings</span></code> and do the following:</p>
+<ul>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Permissions</span></code>, check these boxes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Write</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">List</span></code></p></li>
+</ul>
+</li>
+<li><p>Set a 24 hour time window in the <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">and</span> <span class="pre">expiry</span> <span class="pre">date/time</span></code> (or an appropriate length of time)</p></li>
+<li><p>Leave everything else as default click <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">SAS</span> <span class="pre">token</span> <span class="pre">and</span> <span class="pre">URL</span></code></p></li>
+<li><p>Copy the <code class="docutils literal notranslate"><span class="pre">Blob</span> <span class="pre">SAS</span> <span class="pre">URL</span></code></p></li>
+</ul>
+</li>
+<li><p>Send the <code class="docutils literal notranslate"><span class="pre">Blob</span> <span class="pre">SAS</span> <span class="pre">URL</span></code> to the data provider via secure email (for example, you could use the <a class="reference external" href="https://www.egress.com/">Egress secure email</a> service)</p></li>
+<li><p>The data provider should now be able to upload data by following <a class="reference external" href="../data_provider/how-to-ingress-data-as-provider.md#uploading">these instructions</a></p></li>
+<li><p>You can validate successful data ingress by logging into the DSVM for the SRE and checking the <code class="docutils literal notranslate"><span class="pre">/data</span></code> volume, where you should be able to view the data that the data provider has uploaded</p></li>
+</ul>
+</section>
+<section id="software-ingress">
+<h3>Software Ingress<a class="headerlink" href="#software-ingress" title="Permalink to this headline">¶</a></h3>
+<p>Software ingress is performed in a similar manner to data.</p>
+<p><strong>IMPORTANT:</strong> The software ingress must be signed off by the data provider (and referee) as is the case for data ingress.</p>
+<ul class="simple">
+<li><p>Follow the same steps as for <a class="reference external" href="#data-ingress">data ingress</a> above to provide temporary write access, but set the time window for the SAS token to a shorter period (e.g. several hours).</p></li>
+<li><p>Share the token with the project PI, so they can install software within the time window.</p></li>
+<li><p>The PI can perform software ingress via Azure Storage Explorer (for instance as a zip file), by following the same instructions as <a class="reference external" href="../data_provider/how-to-ingress-data-as-provider.md#uploading">the data provider</a></p></li>
+</ul>
+</section>
+<section id="data-egress">
+<h3>Data egress<a class="headerlink" href="#data-egress" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>In the Azure portal select <code class="docutils literal notranslate"><span class="pre">Subscriptions</span></code> then navigate to the subscription containing the relevant SHM.</p></li>
+<li><p>Search for the resource group: <code class="docutils literal notranslate"><span class="pre">RG_SHM_&lt;SHM</span> <span class="pre">ID&gt;_PERSISTENT_DATA</span></code>, then click through to the storage account called: <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;&lt;SRE</span> <span class="pre">ID&gt;data&lt;storage</span> <span class="pre">suffix&gt;</span></code> (where <code class="docutils literal notranslate"><span class="pre">&lt;storage</span> <span class="pre">suffix&gt;</span></code> is a random string)</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Networking</span></code> under <code class="docutils literal notranslate"><span class="pre">Settings</span></code> to check the list of  pre-approved IP addresses allowed under the <code class="docutils literal notranslate"><span class="pre">Firewall</span></code> header and check your own IP address to ensure you are connecting from one of these</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Containers</span></code> under <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">storage</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">egress</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Shared</span> <span class="pre">access</span> <span class="pre">signature</span></code> under <code class="docutils literal notranslate"><span class="pre">Settings</span></code> and do the following:</p>
+<ul>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Permissions</span></code>, check these boxes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Read</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">List</span></code></p></li>
+</ul>
+</li>
+<li><p>Set a time window in the <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">and</span> <span class="pre">expiry</span> <span class="pre">date/time</span></code> that gives you enough time to extract the data</p></li>
+<li><p>Leave everything else as default click <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">SAS</span> <span class="pre">token</span> <span class="pre">and</span> <span class="pre">URL</span></code></p></li>
+<li><p>Leave this portal window open and move to the next step</p></li>
+</ul>
+</li>
+<li><p>Open Azure Storage explorer (<a class="reference external" href="https://azure.microsoft.com/en-us/features/storage-explorer/">download</a> it if you don’t have it)</p></li>
+<li><p>Click the socket image on the left hand side
+<img alt="Azurestorageexplorer1" src="../../_images/Azurestorageexplorer1.png" /></p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Resource</span></code>, choose <code class="docutils literal notranslate"><span class="pre">Blob</span> <span class="pre">container</span></code></p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Connection</span> <span class="pre">Method</span></code>, choose <code class="docutils literal notranslate"><span class="pre">Shared</span> <span class="pre">access</span> <span class="pre">signature</span> <span class="pre">URL</span> <span class="pre">(SAS)</span></code> and hit <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">Enter</span> <span class="pre">Connection</span> <span class="pre">Info</span></code>:</p>
+<ul>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">Display</span> <span class="pre">name</span></code> to “egress” (or choose an informative name)</p></li>
+<li><p>Copy the <code class="docutils literal notranslate"><span class="pre">Blob</span> <span class="pre">SAS</span> <span class="pre">URL</span></code> from your Azure portal session into the <code class="docutils literal notranslate"><span class="pre">Blob</span> <span class="pre">container</span> <span class="pre">SAS</span> <span class="pre">URL</span></code> box and hit <code class="docutils literal notranslate"><span class="pre">Next</span></code></p></li>
+</ul>
+</li>
+<li><p>On the <code class="docutils literal notranslate"><span class="pre">Summary</span></code> page, hit <code class="docutils literal notranslate"><span class="pre">Connect</span></code></p></li>
+<li><p>On the left hand side, the connection should show up under <code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">&amp;</span> <span class="pre">Attached</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Storage</span> <span class="pre">Accounts</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">(Attached</span> <span class="pre">Containers)</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Blob</span> <span class="pre">Containers</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">ingress</span> <span class="pre">(SAS)</span></code></p></li>
+<li><p>You should now be able to securely download the data from the Safe Haven’s output volume by highlighting the relevant file(s) and hitting the <code class="docutils literal notranslate"><span class="pre">Download</span></code> button</p></li>
+</ul>
+<section id="the-output-volume">
+<h4>The output volume<a class="headerlink" href="#the-output-volume" title="Permalink to this headline">¶</a></h4>
+<p>Once you have set up the egress connection in Azure Storage Explorer, you should be able to view data from the <strong>output volume</strong>, a read-write area intended for the extraction of results, such as figures for publication. On the DSVM, this volume is <code class="docutils literal notranslate"><span class="pre">/output</span></code> and is shared between all DSVMs in an SRE.</p>
+<p>For more info on shared SRE storage volumes, consult the <a class="reference external" href="../user_guides/user-guide.md/#open_file_folder-shared-directories-within-the-sre">user guide</a>.</p>
+</section>
+</section>
+</section>
+<section id="end-remove-a-deployed-safe-haven">
+<h2>:end: Remove a deployed Safe Haven<a class="headerlink" href="#end-remove-a-deployed-safe-haven" title="Permalink to this headline">¶</a></h2>
+<section id="fire-tear-down-an-sre">
+<h3>:fire: Tear down an SRE<a class="headerlink" href="#fire-tear-down-an-sre" title="Permalink to this headline">¶</a></h3>
+<p>In order to tear down an SRE, use the following procedure:</p>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">GitHub</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/administration</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code> . This command will give you a URL and a short alphanumeric code. You will need to visit that URL in a web browser and enter the code</p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">./SRE_Teardown.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>.</p></li>
+<li><p>If you provide the optional <code class="docutils literal notranslate"><span class="pre">-dryRun</span></code> parameter then the names of all affected resources will be printed, but nothing will be deleted</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="fire-tear-down-the-shm">
+<h3>:fire: Tear down the SHM<a class="headerlink" href="#fire-tear-down-the-shm" title="Permalink to this headline">¶</a></h3>
+<p>In order to tear down the SHM, use the following procedure (you may skip the tearing down of package mirrors, unless this is the specific thing you wanted to do):</p>
+<section id="unlock-disconnect-from-the-azure-active-directory">
+<h4>:unlock: Disconnect from the Azure Active Directory<a class="headerlink" href="#unlock-disconnect-from-the-azure-active-directory" title="Permalink to this headline">¶</a></h4>
+<p>Connect to the <strong>SHM Domain Controller (DC1)</strong> via Remote Desktop Client over the SHM VPN connection</p>
+<ul class="simple">
+<li><p>Log in as a <strong>domain</strong> user (ie. <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code>) using the username and password obtained from the Azure portal.</p></li>
+<li><p>If you see a warning dialog that the certificate cannot be verified as root, accept this and continue.</p></li>
+<li><p>Open Powershell as an administrator</p>
+<ul>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">C:\Installation</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">.\Disconnect_AD.ps1</span></code></p></li>
+<li><p>You will need to provide login credentials (including MFA if set up) for <code class="docutils literal notranslate"><span class="pre">&lt;admin</span> <span class="pre">username&gt;&#64;&lt;SHM</span> <span class="pre">domain&gt;</span></code></p></li>
+</ul>
+</li>
+<li><p>Full disconnection of the Azure Active Directory can take up to 72 hours but is typically less. If you are planning to install a new SHM connected to the same Azure Active Directory you may find the <code class="docutils literal notranslate"><span class="pre">AzureADConnect</span></code> installation step requires you to wait for the previous disconnection to complete.</p></li>
+</ul>
+</section>
+<section id="collision-tear-down-any-attached-sres-then-the-shm">
+<h4>:collision: Tear down any attached SREs then the SHM<a class="headerlink" href="#collision-tear-down-any-attached-sres-then-the-shm" title="Permalink to this headline">¶</a></h4>
+<p>On your <strong>deployment machine</strong>.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/administration</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code>. This command will give you a URL and a short alphanumeric code. You will need to visit that URL in a web browser and enter the code</p>
+<ul>
+<li><p>NB. If your account is a guest in additional Azure tenants, you may need to add the <code class="docutils literal notranslate"><span class="pre">-Tenant</span> <span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> flag, where <code class="docutils literal notranslate"><span class="pre">&lt;Tenant</span> <span class="pre">ID&gt;</span></code> is the ID of the Azure tenant you want to deploy into.</p></li>
+</ul>
+</li>
+<li><p>For each SRE attached to the SHM, do the following:</p>
+<ul>
+<li><p>Tear down the SRE by running <code class="docutils literal notranslate"><span class="pre">./SRE_Teardown.ps1</span> <span class="pre">-sreId</span> <span class="pre">&lt;SRE</span> <span class="pre">ID&gt;</span></code>, where the SRE ID is the one specified in the relevant config file</p></li>
+<li><p>If you provide the optional <code class="docutils literal notranslate"><span class="pre">-dryRun</span></code> parameter then the names of all affected resources will be printed, but nothing will be deleted</p></li>
+</ul>
+</li>
+<li><p>Tear down the SHM by running <code class="docutils literal notranslate"><span class="pre">./SHM_Teardown.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> is the <a class="reference external" href="#management-environment-id">management environment ID</a> specified in the configuration file.</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../README.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">How to guides</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../data_provider/how-to-ingress-data-as-provider.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Ingress to the Turing Data Safe Haven</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

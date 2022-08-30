@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Classification - Instructions for data provider representatives &#8212; Data Safe Haven v1.1.0-beta documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/toggle.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v1.1.0-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Classification - Instructions for data provider representatives
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-classify">
+   Why classify?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#before-you-get-started">
+   Before you get started
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-started">
+   Getting started
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#welcome-to-the-web-app">
+   Welcome to the web-app
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#work-packages">
+   Work packages
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-classifying">
+   Start classifying
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/safe_haven_webapp_user_guide.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="classification-instructions-for-data-provider-representatives">
+<h1>Classification - Instructions for data provider representatives<a class="headerlink" href="#classification-instructions-for-data-provider-representatives" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the Data Safe Haven web-app. This is a tool to help you carry out research projects on secure organisational and personal data, by guiding you through the classification process, and giving instruction on how to handle personal data.</p>
+<p>In this documentation we’ll take you, as through the process of getting set on to the web-app, and deciding on the classification of your data.</p>
+</section>
+<section id="why-classify">
+<h1>Why classify?<a class="headerlink" href="#why-classify" title="Permalink to this headline">¶</a></h1>
+<p>It is essential that sensitive or confidential datasets are kept secure, to enable analysis of personal data in compliance with data protection law. Classification is based on considering the sensitivity of all information handled in the project, and does not depend only on the input datasets, but on combining information with other information.</p>
+<p>In the safe haven model, there are three key roles:</p>
+<ul class="simple">
+<li><p><strong>Investigator</strong> - The research project lead, this individual is responsible for ensuring that project staff comply with the Environment’s security policies.</p></li>
+<li><p><strong>Dataset Provider</strong> - A representative of the organisation who provided the dataset under analysis. The Dataset Provider will designate a single representative contact to liaise with the Investigator, authorised to certify sharing of datasets with the researchers.</p></li>
+<li><p><strong>Referee</strong> - A Referee volunteers to review code or derived data (data which is computed from the original dataset), providing evidence to the Investigator and Dataset Provider Representative that the researchers are complying with data handling practices.</p></li>
+</ul>
+<p>To classify the data to be used in a project, each role representative will go through a series of questions, to help understand the legal sensitivity of the data involved, and the consequences of a data breach.</p>
+</section>
+<section id="before-you-get-started">
+<h1>Before you get started<a class="headerlink" href="#before-you-get-started" title="Permalink to this headline">¶</a></h1>
+<p>Before getting started on the web-app - you should have already had a conversation with your project manager. Based on this conversation they will have:</p>
+<ul class="simple">
+<li><p>Set up an account for you on the web-app</p></li>
+<li><p>Set up the project for you</p></li>
+<li><p>Assigned you a role</p></li>
+<li><p>Added descriptions of any datasets to be used over the course of the research project</p></li>
+</ul>
+</section>
+<section id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Once your project manager has given you the go ahead, you’re ready to get started!</p>
+<p>You should have provided a phone number to your project manager. If you did not provide your number, your account may not have been set up - please let your project manager know and they will set you up with an account.</p>
+<p>Your username will be in the format firstname.lastname. At times, you will need to enter it in the form username&#64;turingsafehaven.ac.uk (so firstname.lastname&#64;turingsafehaven.ac.uk).</p>
+<p>Now you can log into your account. During this process, you will need to provide a phone number or an email for account recovery.</p>
+<p>To access the web-app, open a new incognito window on your browser, and go to the following address: https://turingsafehaven.azurewebsites.net</p>
+<p><img alt="screen1" src="https://user-images.githubusercontent.com/54804128/68021687-0f197300-fc9a-11e9-87d8-9a6dabe09ee5.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>Welcome to the safe haven web app. Press the button to log in to the application.</p>
+<p><img alt="screen2" src="https://user-images.githubusercontent.com/54804128/68021690-117bcd00-fc9a-11e9-9d4d-3f19a8ea4cec.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>At the login prompt enter username&#64;turingsafehaven.ac.uk and confirm/proceed. (Remember that your username will be in the format firstname.lastname).</p>
+<p><img alt="screen3" src="https://user-images.githubusercontent.com/54804128/68021694-13de2700-fc9a-11e9-97bd-e4afa68e0540.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>The first time you log in, you’ll need to reset your password - click “Forgotten my password”. Complete the requested information (a captcha and the phone number you provided on registration). Make sure you add your number as +44 7XXX, rather than 0 7XXX.ben</p>
+<p><img alt="screen3b" src="https://user-images.githubusercontent.com/54804128/68022787-3aea2800-fc9d-11e9-9d10-52c8829318df.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p><img alt="screen3c" src="https://user-images.githubusercontent.com/54804128/68023096-32462180-fc9e-11e9-8690-df48eca313ef.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>Once you’ve finished resetting your password, you’ll be taken to the front page (if this doesn’t happen, reload the web-app on a new incognito browser, and enter in your username and new password).</p>
+</section>
+<section id="welcome-to-the-web-app">
+<h1>Welcome to the web-app<a class="headerlink" href="#welcome-to-the-web-app" title="Permalink to this headline">¶</a></h1>
+<p><img alt="screen4" src="https://user-images.githubusercontent.com/54804128/68021696-1476bd80-fc9a-11e9-9ec9-be9c39f1b452.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>From the front page, you’ll be able to see all of the projects to which you’ve been assigned a role. Click on the project you want to classify data for to see the details.</p>
+<p><img alt="screen5" src="https://user-images.githubusercontent.com/54804128/68021702-15a7ea80-fc9a-11e9-868e-781eb5477ed7.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>On the project page, you can see the different datasets to be used throughout the project, the role to which you’ve been assigned. You can see that the different datasets are each clustered within work packages.</p>
+</section>
+<section id="work-packages">
+<h1>Work packages<a class="headerlink" href="#work-packages" title="Permalink to this headline">¶</a></h1>
+<p>For this Data Safe Haven model, classification is carried out on work packages rather than individual datasets. Classification to a tier is not a property of a dataset, because a dataset’s sensitivity depends on the data it can be combined with, and the way in which it is used.</p>
+<p>In our model, projects are divided into work packages, which we use here to refer to the activities carried out within a distinct phase of work carried out as part of a project, with a specific outcome in mind. A work package can make use of one or more datasets, and includes an idea of the analysis which the research team intends to carry out, the potential outputs they are expecting, and the tools they intend to use – all important factors affecting the data sensitivity.</p>
+</section>
+<section id="start-classifying">
+<h1>Start classifying<a class="headerlink" href="#start-classifying" title="Permalink to this headline">¶</a></h1>
+<p>Now that you’re all set up on the web-app, you can begin classifying the work package to be used over the project, containing the different datasets. Click on the work package you’d like to classify to see its details.</p>
+<p><img alt="screen6" src="https://user-images.githubusercontent.com/54804128/68021708-180a4480-fc9a-11e9-9b16-2c3746126f1e.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>This page shows you which of the available datasets this work package contains. You can now begin classifying the data - click to classify the work package.</p>
+<p><img alt="screen7" src="https://user-images.githubusercontent.com/54804128/68021717-1f315280-fc9a-11e9-836b-a4ec10bab008.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>The web-app will now guide you through a series of ‘yes or no’ questions to classify the work package. After each choice, you can see the question it will bring you to, so you don’t accidentally get onto the wrong track. Additional guidance on how to understand and answer each question is given below. If you’ve made a mistake, or want to cancel your classification at any time - you can click on the grey button and start again later. Work your way through the questions for this work package, answering yes or no for each.</p>
+<p><img alt="screen8" src="https://user-images.githubusercontent.com/54804128/68021720-20fb1600-fc9a-11e9-92ef-d9498e939812.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>Before you classify the data as a particular tier of sensitivity, the web-app will warn you of the classification you’re about to make. You can click previous question to go back, or cancel classification to restart from scratch.</p>
+<p><img alt="screen9" src="https://user-images.githubusercontent.com/54804128/68021726-235d7000-fc9a-11e9-8221-5d0b8eeb35d9.png" />
+Format: <img alt="Alt Text" src="url" /></p>
+<p>Congratulations, you’ve classified the work package! This page gives you an overview of the choices you made to arrive at this classification. If you’re not happy with any of these choices, you can click on the question to return to this step, or delete the classification to start again. The classification of the dataset will remain pending, until all relevant role representatives have completed their classification, and a consensus has been reached.</p>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

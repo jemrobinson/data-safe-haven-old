@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Recommended security policies &#8212; Data Safe Haven v3.4.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Software package approval policy" href="software_package_approval_policy.html" />
+    <link rel="prev" title="Technical controls" href="technical_controls.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../introduction/index.html">
+  Introduction
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../roles/index.html">
+  Roles
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Policies
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../design/index.html">
+  Design
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_sensitivity_classification/index.html">
+   Data sensitivity classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/sensitivity_tiers.html">
+     Sensitivity tiers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/classification_process.html">
+     Classification process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_sensitivity_classification/unconsented_data.html">
+     Unconsented data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_transfer/index.html">
+   Data transfer
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/data_ingress.html">
+     Data ingress
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/software_ingress.html">
+     Software ingress
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_transfer/egress.html">
+     Data egress
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Security
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     Security overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="technical_controls.html">
+     Technical controls
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Recommended security policies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="software_package_approval_policy.html">
+     Software package approval policy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.4.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+           </strong> 
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-classification">
+   Data classification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-sharing-agreement">
+   Data sharing agreement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-lifecycle">
+   User lifecycle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-security-training-requirements">
+   Data security training requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-security-incident-process">
+   Data security incident process
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-back-up-policy">
+   Data back-up policy
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/policies/security/security_policies.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="recommended-security-policies">
+<h1>Recommended security policies<a class="headerlink" href="#recommended-security-policies" title="Permalink to this headline">¶</a></h1>
+<section id="data-classification">
+<h2>Data classification<a class="headerlink" href="#data-classification" title="Permalink to this headline">¶</a></h2>
+<p>Before data is imported into a Safe Haven it must go through an assessment process to classify it into one of five <a class="reference internal" href="../data_sensitivity_classification/sensitivity_tiers.html#policy-classification-sensitivity-tiers"><span class="std std-ref">sensitivity tiers</span></a>.
+This classification is conducted by the <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a>, the research project lead (<a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a>) and an independent adviser (<a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referee</span></a>).
+The least sensitive category is Tier 0, and most sensitive is Tier 4 - currently, we recommend the use of the Data Safe Haven for projects in tiers 2 or 3.
+A full overview of the classification process can be found <code class="docutils literal notranslate"><span class="pre">here</span> <span class="pre">&lt;policy_data_classification_process&gt;</span></code>.</p>
+</section>
+<section id="data-sharing-agreement">
+<h2>Data sharing agreement<a class="headerlink" href="#data-sharing-agreement" title="Permalink to this headline">¶</a></h2>
+<p>This should be a formal data sharing agreement as required under data protection law, drafted with the benefit of legal advice.
+It should be signed after the initial classification of a work package but before any dataset is received.
+Where the Dataset Provider is not the owner of all the dataset(s) covered by the data sharing agreement, the agreement must specify the legal basis under which the Dataset Provider is permitted to share this data.
+This agreement should include any specific commitments required from Researchers working with the dataset.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Your organisation might have a template agreement that can be used to minimise the turnaround time and legal effort required.</p>
+</div>
+<p>The classification tier may potentially be raised from that agreed prior to data ingress, once the <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and <a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referee</span></a> have had a chance to view the actual data.
+The classification tier for later work packages in a project may also be higher than that for the original work package, depending on the planned analysis and any additional data required.
+We therefore recommend that the data sharing agreement is worded to permit this.</p>
+</section>
+<section id="user-lifecycle">
+<h2>User lifecycle<a class="headerlink" href="#user-lifecycle" title="Permalink to this headline">¶</a></h2>
+<p>Projects should be recorded in a centralised system.
+They should be created by a <a class="reference internal" href="../../roles/programme_manager/index.html#role-programme-manager"><span class="std std-ref">Programme Manager</span></a> who then assigns a <a class="reference internal" href="../../roles/project_manager/index.html#role-project-manager"><span class="std std-ref">Project Manager</span></a> to them.
+The <a class="reference internal" href="../../roles/project_manager/index.html#role-project-manager"><span class="std std-ref">Project Manager</span></a> should record the <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> as well as the <a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referee</span></a> (if applicable).
+<a class="reference internal" href="../../roles/project_manager/index.html#role-project-manager"><span class="std std-ref">Project Managers</span></a> also determine which <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> belong to each specific projects or work package.</p>
+<p><a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> who wish to have access to the SRE first complete a form certifying they understand the confidentiality requirements.
+If a project or work package requires any specific additional commitments then all <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a>, <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigators</span></a> and <a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referees</span></a> must agree to these before being granted access.</p>
+<ul class="simple">
+<li><p>A <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> creates an account for them within the SHM and adds them to the appropriate group(s).</p></li>
+<li><p>The <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researcher</span></a> activates their account, setting their own password and multi-factor authentication.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> should remove all users from a project or work package promptly once their involvement with it ends.</p>
+</div>
+</section>
+<section id="data-security-training-requirements">
+<span id="policy-data-security-training"></span><h2>Data security training requirements<a class="headerlink" href="#data-security-training-requirements" title="Permalink to this headline">¶</a></h2>
+<p>We recommend requiring data security awareness training for the following categories of person:</p>
+<ul class="simple">
+<li><p>Anyone with administrator access to the Data Safe Haven GitHub (including organisational admins). This is to ensure integrity of the code supply chain.</p></li>
+<li><p><a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Managers</span></a> for any deployed Data Safe Haven</p></li>
+<li><p>Anyone who has administrator access to the Azure subscriptions hosting any deployed Data Safe Haven.</p></li>
+<li><p><a class="reference internal" href="../../roles/programme_manager/index.html#role-programme-manager"><span class="std std-ref">Programme</span></a> and <a class="reference internal" href="../../roles/project_manager/index.html#role-project-manager"><span class="std std-ref">project managers</span></a>.</p></li>
+<li><p>All <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> with access to any data in scope of DSPT held in a Data Safe Haven.</p></li>
+<li><p><a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Data Provider Representatives</span></a>, <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigators</span></a> and <a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referees</span></a> for any project containing data in scope of DSPT.</p></li>
+</ul>
+<p>The requirement is documented proof of (within 1 year):</p>
+<ul class="simple">
+<li><p>Organisational Data Protection training</p></li>
+<li><p>Organisational Information Security training</p></li>
+<li><p><a class="reference external" href="https://www.e-lfh.org.uk/programmes/data-security-awareness">NHS Data Security Awareness training</a></p></li>
+</ul>
+<p>or equivalent qualifications from another organisation.</p>
+</section>
+<section id="data-security-incident-process">
+<h2>Data security incident process<a class="headerlink" href="#data-security-incident-process" title="Permalink to this headline">¶</a></h2>
+<p>We recommend that <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Managers</span></a> follow the data security incident process of the wider organisation.
+As an additional measure, as soon as a potential data security incident is identified, the affected SRE should be shut down to ensure the integrity of the data.
+An investigation should be conducted in conjunction with your organisation’s data security team to identify any other potentially breached SREs and also shut these down.</p>
+</section>
+<section id="data-back-up-policy">
+<h2>Data back-up policy<a class="headerlink" href="#data-back-up-policy" title="Permalink to this headline">¶</a></h2>
+<p>As the Safe Haven is not the canonical source of data we choose not back-up the data stored in any SRE.
+Since storing backups increases the risk of data breach while the cost of reimporting the data is minimal this is an acceptable risk.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="technical_controls.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Technical controls</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="software_package_approval_policy.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Software package approval policy</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

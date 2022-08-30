@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Safe Haven VM Image Build Instructions &#8212; Data Safe Haven v3.2.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.2.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contents">
+   Contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seedling-prerequisites">
+   :seedling: Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gift-provision-a-vm-with-all-configured-software">
+   :gift: Provision a VM with all configured software
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-updating-the-build-image-definition">
+     :new: Updating the build image definition
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-a-new-apt-package">
+       Adding a new apt package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-a-new-python-package">
+       Adding a new Python package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-a-new-r-package">
+       Adding a new R package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-packages-to-the-package-whitelist">
+       Adding packages to the package whitelist
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#changing-the-version-of-a-package">
+       Changing the version of a package
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#running-running-the-image-build">
+     :running: Running the image build
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#camera-converting-candidate-vms-to-images">
+   :camera: Converting candidate VMs to images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#art-registering-images-in-the-gallery">
+   :art: Registering images in the gallery
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/tutorial/deployment_tutorials/how-to-customise-dsvm-image.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="safe-haven-vm-image-build-instructions">
+<h1>Safe Haven VM Image Build Instructions<a class="headerlink" href="#safe-haven-vm-image-build-instructions" title="Permalink to this headline">¶</a></h1>
+<p>These instructions will create a new VM image for use in the secure research environment.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#seedling-prerequisites">:seedling: Prerequisites</a></p></li>
+<li><p><a class="reference external" href="#gift-provision-a-vm-with-all-configured-software">:gift: Provisioning a VM</a></p>
+<ul>
+<li><p><a class="reference external" href="#new-updating-the-build-image-definition">:new: Updating the build image definition</a></p></li>
+<li><p><a class="reference external" href="#running-running-the-image-build">:running: Running the image build</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#camera-converting-candidate-vms-to-images">:camera: Converting candidate VMs to images</a></p></li>
+<li><p><a class="reference external" href="#art-registering-images-in-the-gallery">:art: Registering images in the gallery</a></p></li>
+</ul>
+</section>
+<section id="seedling-prerequisites">
+<h2>:seedling: Prerequisites<a class="headerlink" href="#seedling-prerequisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>An Azure subscription with sufficient credits to build the environment in</p></li>
+<li><p>PowerShell for Azure</p>
+<ul>
+<li><p>Install <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-2.2.0">PowerShell v6.0 or above</a></p></li>
+<li><p>Install the Azure <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-2.2.0&amp;viewFallbackFrom=azps-1.3.0">PowerShell Module</a></p></li>
+</ul>
+</li>
+<li><p>SSH or OpenSSH (not tested on Windows)</p></li>
+<li><p>SHM configuration file</p>
+<ul>
+<li><p>The core properties for the environment must be present in the <code class="docutils literal notranslate"><span class="pre">environment_configs/core</span></code> folder as described in <a class="reference internal" href="how-to-deploy-shm.html"><span class="doc std std-doc">the Safe Haven Management deployment instructions</span></a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="gift-provision-a-vm-with-all-configured-software">
+<h2>:gift: Provision a VM with all configured software<a class="headerlink" href="#gift-provision-a-vm-with-all-configured-software" title="Permalink to this headline">¶</a></h2>
+<p>Provisioning a VM with all the Safe Haven software is done using <a class="reference external" href="https://cloudinit.readthedocs.io/en/latest/">cloud-init</a>.
+This takes a basic Ubuntu image and installs and configures all the necessary software packages.
+The cloud-init file used here is in the <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/cloud-init</span></code> folder.</p>
+<section id="new-updating-the-build-image-definition">
+<h3>:new: Updating the build image definition<a class="headerlink" href="#new-updating-the-build-image-definition" title="Permalink to this headline">¶</a></h3>
+<p>The most common changes to this image that you are likely to want to make are to add new package or to update the version of existing packages.</p>
+<section id="adding-a-new-apt-package">
+<h4>Adding a new apt package<a class="headerlink" href="#adding-a-new-apt-package" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Add the name of the package to <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/packages-apt.list</span></code></p></li>
+<li><p>If this package adds a new executable that you would like to be available to the end user, you should also add a check for this to the end of <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/cloud_init/cloud-init-buildimage-ubuntu.yaml</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>For example, to check for <code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">Data</span> <span class="pre">Studio</span></code> , the following line was added:</p>
+<p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">[</span> <span class="pre">&quot;$(which</span> <span class="pre">azuredatastudio)&quot;</span> <span class="pre">];</span> <span class="pre">then</span> <span class="pre">echo</span> <span class="pre">&quot;\n\n*azuredatastudio*\n\n$(which</span> <span class="pre">azuredatastudio)&quot;;</span> <span class="pre">else</span> <span class="pre">echo</span> <span class="pre">&quot;ERROR</span> <span class="pre">azuredatastudio</span> <span class="pre">not</span> <span class="pre">found!&quot;;</span> <span class="pre">exit</span> <span class="pre">1;</span> <span class="pre">fi</span></code></p>
+</div></blockquote>
+</section>
+<section id="adding-a-new-python-package">
+<h4>Adding a new Python package<a class="headerlink" href="#adding-a-new-python-package" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Add the name of the package as it appears on <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> to each of the package lists (supported Python versions only):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/packages-python-pypi-27.list</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/packages-python-pypi-36.list</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/packages-python-pypi-37.list</span></code></p></li>
+</ul>
+</li>
+<li><p>If the name on <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> is different from the name on <code class="docutils literal notranslate"><span class="pre">conda</span></code> (other than capitalisation) then add an entry to the <code class="docutils literal notranslate"><span class="pre">pypi-name-to-conda-name</span></code> section in <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/conda-config.json</span></code></p></li>
+<li><p>If the package is not available on <code class="docutils literal notranslate"><span class="pre">conda</span></code> then add an entry to the <code class="docutils literal notranslate"><span class="pre">not-available-from-conda</span></code> section in <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/conda-config.json</span></code></p></li>
+<li><p>If there are any restrictions on acceptable versions for this package (e.g. a minimum or exact version) then add an entry to the <code class="docutils literal notranslate"><span class="pre">version-requirements</span></code> section in <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/conda-config.json</span></code></p></li>
+<li><p>You should also add this package to the whitelist used by Tier-3 package mirrors</p></li>
+</ul>
+</section>
+<section id="adding-a-new-r-package">
+<h4>Adding a new R package<a class="headerlink" href="#adding-a-new-r-package" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Add the name of the package as it appears on <code class="docutils literal notranslate"><span class="pre">CRAN</span></code> or <code class="docutils literal notranslate"><span class="pre">Bioconductor</span></code> to the appropriate package list:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/packages-r-bioconductor.list</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/packages-r-cran.list</span></code></p></li>
+</ul>
+</li>
+<li><p>If this <code class="docutils literal notranslate"><span class="pre">R</span></code> package is available as a pre-compiled apt binary (eg. <code class="docutils literal notranslate"><span class="pre">abind</span></code> is available as <code class="docutils literal notranslate"><span class="pre">r-cran-abind</span></code> ) then add it to <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/packages/packages-apt.list</span></code> if so</p></li>
+<li><p>You should also add this package to the whitelist used by Tier-3 package mirrors</p></li>
+</ul>
+</section>
+<section id="adding-packages-to-the-package-whitelist">
+<h4>Adding packages to the package whitelist<a class="headerlink" href="#adding-packages-to-the-package-whitelist" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>When you add a new package to either the <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> or <code class="docutils literal notranslate"><span class="pre">CRAN</span></code> whitelist you should also add all of its dependencies (and their dependencies, recursively)</p></li>
+<li><p>Once you have the list of packages you should add them to:</p>
+<ul>
+<li><p><strong>PyPI:</strong> <code class="docutils literal notranslate"><span class="pre">environment_configs/package_lists/whitelist-core-python-pypi-tier3.list</span></code></p></li>
+<li><p><strong>CRAN:</strong> <code class="docutils literal notranslate"><span class="pre">environment_configs/package_lists/whitelist-core-r-cran-tier3.list</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="changing-the-version-of-a-package">
+<h4>Changing the version of a package<a class="headerlink" href="#changing-the-version-of-a-package" title="Permalink to this headline">¶</a></h4>
+<p>If you want to update the version of one of the packages we install from a <code class="docutils literal notranslate"><span class="pre">.deb</span></code> file (eg. <code class="docutils literal notranslate"><span class="pre">dbeaver</span></code> ), you will need to edit <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/cloud-init</span></code></p>
+<ul class="simple">
+<li><p>Find the appropriate <code class="docutils literal notranslate"><span class="pre">/installation/&lt;package</span> <span class="pre">name&gt;.debinfo</span></code> section under the <code class="docutils literal notranslate"><span class="pre">write_files:</span></code> key</p></li>
+<li><p>Update the version number and the <code class="docutils literal notranslate"><span class="pre">sha256</span></code> hash for the file</p></li>
+<li><p>Check that the file naming structure still matches the format described in this <code class="docutils literal notranslate"><span class="pre">.debinfo</span></code> file</p></li>
+</ul>
+</section>
+</section>
+<section id="running-running-the-image-build">
+<h3>:running: Running the image build<a class="headerlink" href="#running-running-the-image-build" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p></li>
+<li><p>Begin the provisioning and configuration of a new compute VM image using <code class="docutils literal notranslate"><span class="pre">./Provision_Compute_VM.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span></code> , where the SHM ID is the one specified in the config</p></li>
+<li><p>The build (based on Ubuntu 18.04) takes approximately 2h30.</p></li>
+</ul>
+<p>Once you have launched a new build by running the <code class="docutils literal notranslate"><span class="pre">./Provision_Compute_VM.ps1</span></code> script, the build will take several hours to complete.
+During this time, you can monitor the build by accessing the machine using <code class="docutils literal notranslate"><span class="pre">ssh</span></code> and either reading through the full build log at <code class="docutils literal notranslate"><span class="pre">/var/log/cloud-init-output.log</span></code> or running the summary script using <code class="docutils literal notranslate"><span class="pre">/opt/verification/analyse_build.py</span></code> .
+Note that the VM will automatically shutdown at the end of the cloud-init process - if you want to analyse the build after this point, you will need to turn it back on in the Azure portal.</p>
+</section>
+</section>
+<section id="camera-converting-candidate-vms-to-images">
+<h2>:camera: Converting candidate VMs to images<a class="headerlink" href="#camera-converting-candidate-vms-to-images" title="Permalink to this headline">¶</a></h2>
+<p>Once you are happy with a particular candidate, you can convert it into an image using <code class="docutils literal notranslate"><span class="pre">./Convert_VM_To_Image.ps1</span></code> .</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p></li>
+<li><p>Begin the provisioning and configuration of a new compute VM image using <code class="docutils literal notranslate"><span class="pre">./Convert_VM_To_Image.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span> <span class="pre">-vmName</span> <span class="pre">&lt;VM</span> <span class="pre">Name&gt;</span></code> , where the SHM ID is the one specified in the config and the VM name is the name of the virtual machine created during the provisioning step</p></li>
+<li><p>This will build a new image in <code class="docutils literal notranslate"><span class="pre">RG_SH_IMAGE_STORAGE</span></code> and delete the VM plus associated build artifacts (hard disk, network card and public IP address)</p></li>
+</ul>
+</section>
+<section id="art-registering-images-in-the-gallery">
+<h2>:art: Registering images in the gallery<a class="headerlink" href="#art-registering-images-in-the-gallery" title="Permalink to this headline">¶</a></h2>
+<p>Once you have created an image, it can be registered in the image gallery using the <code class="docutils literal notranslate"><span class="pre">Register_Image_In_Gallery.ps1</span></code> script.
+This must be provided with the name of the image created during the conversion step and will register this in the shared gallery as a new version of the Ubuntu-based compute machine images.
+This command can take between 30 minutes and 1 hour to complete, as it has to replicate the VM across 3 different regions.</p>
+<ul class="simple">
+<li><p>Ensure you have the latest version of the Safe Haven repository from <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven">https://github.com/alan-turing-institute/data-safe-haven</a>.</p></li>
+<li><p>Open a Powershell terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">deployment/dsvm_images/setup</span></code> directory within the Safe Haven repository.</p></li>
+<li><p>Ensure you are logged into Azure within PowerShell using the command: <code class="docutils literal notranslate"><span class="pre">Connect-AzAccount</span></code></p></li>
+<li><p>Begin the provisioning and configuration of a new compute VM image using <code class="docutils literal notranslate"><span class="pre">./Register_Image_In_Gallery.ps1</span> <span class="pre">-shmId</span> <span class="pre">&lt;SHM</span> <span class="pre">ID&gt;</span> <span class="pre">-imageName</span> <span class="pre">&lt;Image</span> <span class="pre">Name&gt;</span></code> , where the SHM ID is the one specified in the config and the image name is the name of the VM image created during the conversion step</p></li>
+<li><p>This will register the new image in the shared image gallery and replicate it across several Azure regions.</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

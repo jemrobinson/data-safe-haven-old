@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Security controls in the Safe Haven &#8212; Data Safe Haven v3.3.0 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Additional Security Policies for Data Safe Haven" href="security_policies.html" />
+    <link rel="prev" title="Risk Register" href="risk_register.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../README.html">
+  Learn more about the Safe Haven
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../how_to_guides/README.html">
+  How to guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference/README.html">
+  Reference guides
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorial/README.html">
+  Tutorials and overview
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/classification-overview.html">
+   Classifying sensitive data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/unconsented-data.html">
+   Unconsented data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ingress_and_egress/egress.html">
+   Taking data and software out of the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ingress_and_egress/ingress.html">
+   Bringing data and software into the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview/azure-implementation-details.html">
+   Implementation details for the Turing Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physical-resilence-and-availability.html">
+   Design decisions based on physical resilience and availability
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="risk_register.html">
+   Risk Register
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Security controls in the Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="security_policies.html">
+   Additional Security Policies for Data Safe Haven
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supplier_and_software_policy.html">
+   Suppliers and Software Policy
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v3.3.0</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connections-to-and-from-the-environment">
+   Connections to and from the Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-sharing-agreement">
+   Data sharing agreement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-lifecycle">
+   User lifecycle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-library-distributions">
+   Software library distributions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#storage">
+   Storage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-device-networks">
+   User device networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physical-security">
+   Physical security
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-devices">
+   User Devices
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#managed-devices">
+     Managed devices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#open-devices">
+     Open Devices
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-choices">
+   The choices
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-installation">
+     Software installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inbound-connections">
+     Inbound connections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outbound-connections">
+     Outbound connections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-ingress">
+     Data ingress
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-egress">
+     Data egress
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#refereeing-of-classification">
+     Refereeing of classification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-factor-authentication">
+     Two factor authentication
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/explanations/security_decisions/security-controls.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="security-controls-in-the-safe-haven">
+<h1>Security controls in the Safe Haven<a class="headerlink" href="#security-controls-in-the-safe-haven" title="Permalink to this headline">¶</a></h1>
+<section id="connections-to-and-from-the-environment">
+<h2>Connections to and from the Environment<a class="headerlink" href="#connections-to-and-from-the-environment" title="Permalink to this headline">¶</a></h2>
+<p>At lower tiers direct inbound connections to resources within the Environment may be permitted.
+At higher tiers inbound connections are only permitted via a secure access node (e.g. Microsoft Remote Desktop Services).</p>
+<p>A remote desktop connection allowing access to graphical interface applications should be provided to allow researchers to connect to the remote secure analysis Environment. At all but the lowest tiers, this requires two-factor authentication, and, at some tiers, the copy paste function is disabled.</p>
+<p>At every tier, long and strong passphrases (for example, at least four randomly chosen dictionary words) should be enforced, and users are trained in the use of keychain managers on their access devices, locked with two-factor authentication, so that the inconvenience of repeatedly typing a long passphrase is mitigated, reducing the risk of users choosing insecure passwords.</p>
+<p>At some tiers, we may provide <strong>secure shell</strong> connections using the command line, in addition to the remote desktop.</p>
+<p>The text-based access this grants is sufficient for some professional data scientists. The primary driver for this preference is that processes can easily be reproduced based on the commands typed. If not needed, providing a remote desktop interface adds complexity and therefore risk.</p>
+<p>At some tiers, specific commands commonly used for copying out data can therefore be blocked for users.</p>
+<p>In neither case is the user absolutely prevented from copying out to the device used to access the Environment (with remote desktop software, malicious users can script automated screen-grabs).
+However, this can be made difficult in order to deter casual workaround risk, and, at the highest tiers, prevented by only permitting access to the Environment from user devices permanently located within a secure physical Environment.</p>
+<p>We therefore believe it will be possible to make secure shell access just as secure as remote desktop access, but this remains a work in progress.</p>
+<p>At lower tiers outbound connections from the Environment to the internet and other external resources are permitted.
+At higher tiers connections to resources outside the Environment’s private network are not permitted.</p>
+</section>
+<section id="data-sharing-agreement">
+<h2>Data sharing agreement<a class="headerlink" href="#data-sharing-agreement" title="Permalink to this headline">¶</a></h2>
+<p>This should be a formal data sharing agreement as required under data protection law, drafted with the benefit of legal advice, and should be signed after the initial classification of a work package but before a dataset is received by the Turing.
+Where the Dataset Provider is not the owner of all the dataset(s) covered by the data sharing agreement, the agreement must  specify the legal basis under which the Dataset Provider is permitted to share this data with the Turing.
+This agreement should include any specific commitments required from Researchers working with the dataset.
+The Turing has a template agreement that can be used to minimise the turnaround time and legal effort required.</p>
+<p>The classification tier may potentially be raised from that agreed prior to data ingress, once the Investigator and Referee have had a chance to view the actual data.
+The classification tier for later work packages in a project may also be higher than that for the original work package, depending on the planned analysis and any additional data required.
+We therefore recommend that the data sharing agreement is worded to permit this.</p>
+</section>
+<section id="user-lifecycle">
+<h2>User lifecycle<a class="headerlink" href="#user-lifecycle" title="Permalink to this headline">¶</a></h2>
+<p>Users who wish to have access to the Environment first complete an online form certifying they understand the confidentiality requirements. An account is then created for them within the Turing Environment management system, and the user activates this.</p>
+<p>Projects are created in the management system by a Programme Manager, and an Investigator and Project Manager assigned.</p>
+<p>Programme Managers and Project Managers may add users to groups corresponding to specific projects or work packages through the management framework.</p>
+<p>The Project Manager has the authority to assign Referees and Data Provider Representatives to a project or work package.</p>
+<p>At some tiers, new Referees or members of the research team must also be approved by the Dataset Provider Representative.</p>
+<p>Before joining a project or work package, Researchers, Investigators and Referees must agree to any additional commitments specific to that project or work package.</p>
+<p>Users are removed from a project or work package promptly once their involvement with it ends.</p>
+</section>
+<section id="software-library-distributions">
+<h2>Software library distributions<a class="headerlink" href="#software-library-distributions" title="Permalink to this headline">¶</a></h2>
+<p>Maintainers of shared research computing environments face a difficult challenge in keeping research algorithm libraries and platforms up to date - and in many cases these conflict.
+While sophisticated tools to help with this exist, the use of independent virtual environments opens another possibility: downloading the software as needed from package repositories (such as PyPI for Python or CRAN for R), which automate the process of installing and configuring programs.</p>
+<p>For lower tiers, with access to the internet, required software packages can be installed directly from their canonical sources on the internet.
+For higher tiers, without access to the external internet, this requires maintenance of full or partial mirrors (exact copies) of package repositories inside the Environment.</p>
+<p>Use of package mirrors inside the Environment means that the set of default installed packages can be kept to a minimum, reducing the likelihood of encountering package-conflict problems (where a package can be prevented from being installed due to the presence of an existing package with the same name) and saving on System Manager time.</p>
+<p>At the the highest tiers a subset of allowed packages (packages which are explicitly marked as safe) is maintained. This allowlist can be specific to the work package if required.
+At other tiers the full package list is mirrored, but with a short delato provide an opportunity for the wider community to catch any malicious code uploaded to the canonical package mirrors.</p>
+</section>
+<section id="storage">
+<h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
+<p>Which storage volumes exist in the analysis Environment?</p>
+<p>A Secure Data volume is a read-only volume that contains the secure data for use in analyses. It is mounted as read-only in the analysis Environments that must access it. One or more such volumes will be mounted depending on how many managed secure datasets the Environment has access to.</p>
+<p>A Secure Document volume contains electronically signed copies of agreements between the Data Provider and the Turing.</p>
+<p>A Secure Scratch volume is a read-write volume used for data analysis. Its contents are automatically and regularly deleted. Users can clean and transform the sensitive data with their analysis scripts, and store the transformed data here.</p>
+<p>An Output volume is a read-write area intended for the extraction of results, such as figures for publication.</p>
+<p>The Software volume is a read-only area which contains software used for analysis.</p>
+<p>A Home volume is a smaller read-write volume used for local programming and configuration files. It should not be used for data analysis outputs, though this is enforced only in policy, not technically. Configuration files for software in the software volume point to the Home volume.</p>
+</section>
+<section id="user-device-networks">
+<h2>User device networks<a class="headerlink" href="#user-device-networks" title="Permalink to this headline">¶</a></h2>
+<p>Our network security model distinguishes three dedicated research networks for
+user devices.</p>
+<ul class="simple">
+<li><p>The open internet (any network outside a partner institution)</p></li>
+<li><p>An Institutional network</p></li>
+<li><p>A Restricted network</p></li>
+</ul>
+<p>An Institutional network corresponds to a network managed by a partner institution.
+Guest access may be permitted on such networks (e.g. eduroam), but these guests should be known users.
+Access to Environments can be restricted such that access is only allowed by devices which are connected to a particular set of Institutional networks.
+However, it is assumed that a wide segment of the research community can access these networks.
+This access may also be remote for authorised users (for example, via VPN).</p>
+<p>A Restricted network corresponds to a network managed by a partner institution that can support additional controls such as restricting access to a narrower set of users, devices or locations.
+Access to Environments can be restricted such that access is only allowed by devices which are connected to a particular set of Restricted networks.
+Access to a particular Environment may be permitted from multiple Restricted networks at multiple partner organisations.
+This can permit users from multiple organisations to access an Environment, as well permitting users to access the Environment while away from their home institution at another partner institution.
+However, remote access to a Restricted network (for example via VPN) is not permitted.</p>
+<p>At higher tiers Environment firewall rules permit access only from network IP ranges corresponding to specific Institutional and Restricted networks approved for the Environment.
+Note that these restrictions on networks that can access Environments relate to inbound connectivity only.
+Separate controls determine whether outbound connections can be made from an Environment and whether inbound connections are permitted directly to resources within the Environment or must be made via a secure access node.
+In addition to these netwrok level restrictions, users must additionally authenticate to the Environment in order to access it.</p>
+</section>
+<section id="physical-security">
+<h2>Physical security<a class="headerlink" href="#physical-security" title="Permalink to this headline">¶</a></h2>
+<p>Some data requires a physical security layer around not just the data centre,
+but the physical space users are in when they connect to it.</p>
+<p>We distinguish three levels of physical security for research spaces:</p>
+<ul class="simple">
+<li><p>Open research spaces</p></li>
+<li><p>Medium security research spaces</p></li>
+<li><p>High security research spaces</p></li>
+</ul>
+<p>Open research spaces include university libraries, cafes and common rooms.</p>
+<p>Medium security research spaces control the possibility of unauthorised viewing.
+Card access or other means of restricting entry to only known researchers (such as the signing in of guests on a known list) is required.
+Screen adaptations or desk partitions can be adopted in open-plan spaces if there is a high risk of “visual eavesdropping”.</p>
+<p>Secure research spaces control the possibility of the researcher deliberately removing data.
+Devices will be locked to appropriate desks, and neither enter nor leave the space.
+Mobile devices should be removed before entering, to block the ‘photographic hole’, where mobile phones are used to capture secure data from a screen.
+Only researchers associated with a secure project have access to such a space.</p>
+<p>Firewall rules for the Environments can permit access only from Restricted network IP ranges corresponding to these research spaces.</p>
+</section>
+<section id="user-devices">
+<h2>User Devices<a class="headerlink" href="#user-devices" title="Permalink to this headline">¶</a></h2>
+<p>What devices should researchers use to connect to the Environment?</p>
+<p>We define two types of devices:</p>
+<ul class="simple">
+<li><p>Managed devices</p></li>
+<li><p>Open devices</p></li>
+</ul>
+<section id="managed-devices">
+<h3>Managed devices<a class="headerlink" href="#managed-devices" title="Permalink to this headline">¶</a></h3>
+<p>Managed devices are devices provided by a partner institution on which the user does not have administrator/root access, with the device instead administered by the institution’s IT team.</p>
+<p>Managed devices could be provided by the Turing, or one of the partner organisations for a work package.</p>
+<p>They have an extensive suite of research software installed.</p>
+<p>This includes the ability to install packages for standard programming environments without the need for administrator access.</p>
+<p>Researchers can compile and run executables they code in User Space (the portion of system memory in which user processes run).</p>
+</section>
+<section id="open-devices">
+<h3>Open Devices<a class="headerlink" href="#open-devices" title="Permalink to this headline">¶</a></h3>
+<p>These include personal devices such as researcher-owned laptops, but also include devices provided by a partner institution where the user has administrator/root access.</p>
+<p>These devices permit the easy use of a wider range of software than managed devices, as well as easier access to peripheral hardware.</p>
+<p>However, such devices should not be used to access the highest tier Environments.</p>
+<p>Firewall rules for the higher tier Environments can permit access only from Restricted network IP ranges that only permit managed devices to connect.</p>
+</section>
+</section>
+<section id="the-choices">
+<h2>The choices<a class="headerlink" href="#the-choices" title="Permalink to this headline">¶</a></h2>
+<p>Having described the full model, processes, and lifecycles, we can now enumerate the list of choices that can be made for each Environment.
+These are all separately configurable on an environment-by-environment basis.
+However, we recommend the following at each tier.</p>
+<section id="software-installation">
+<h3>Software installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>At Tier 3 and above, package mirrors (copies of external repositories inside the secure Environment) should include only allowed software packages.</p></li>
+<li><p>At Tier 2, package mirrors should include all software packages.</p></li>
+<li><p>At Tier 2 and above, all software not available from a package mirror must be installed either at the time the analysis machine is first deployed or by ingressing the software installer as data, with an associated ingress review.</p></li>
+<li><p>At Tier 1 and 0, all software installation should be from the internet.</p></li>
+</ul>
+</section>
+<section id="inbound-connections">
+<h3>Inbound connections<a class="headerlink" href="#inbound-connections" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>At Tier 2 and above, analysis machines and other Environment resources are not accessible directly from client devices. Instead, secure “access nodes” provide secure web-based remote desktop facilities used to indirectly access the analysis Environments (e.g. Microsoft Remote Desktop Services).</p></li>
+<li><p>At Tier 1 and 0, analysis machines and other Environment resources are directly accessible from client devices.</p></li>
+<li><p>At Tier 3 and above Environment access nodes are only available from approved Restricted networks.</p></li>
+<li><p>At Tier 2 Environment access nodes are only be accessible from approved Institutional networks.</p></li>
+<li><p>At Tier 1 and 0 Environment resources are accessible from the open internet</p></li>
+</ul>
+</section>
+<section id="outbound-connections">
+<h3>Outbound connections<a class="headerlink" href="#outbound-connections" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>At Tier 2 and above no connections are permitted from the Environment private network to the internet or other external resources.</p></li>
+<li><p>At Tier 1 and 0 the internet is accessible from inside the Environment.</p></li>
+</ul>
+</section>
+<section id="data-ingress">
+<h3>Data ingress<a class="headerlink" href="#data-ingress" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>At Tier 2 and above, the high-security data transfer process is required (i.e. write only access from particular locations for a limited time).</p></li>
+<li><p>At Tier 1 and 0 the use of standard secure data transfer processes (e.g. SCP/SFTP) may be permitted.</p></li>
+</ul>
+</section>
+<section id="data-egress">
+<h3>Data egress<a class="headerlink" href="#data-egress" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>At Tier 3 and above, the Data Provider Representative, Investigator and Referee are all required to sign off all egress of data or code from the Environment.</p></li>
+<li><p>At Tier 2, only the Investigator and Referee are required to review and approve all egress of data or code from the Environment.</p></li>
+<li><p>At Tier 1 and 0 users are permitted to copy out data when they believe their local device is secure, with the permission of the Investigator.</p></li>
+</ul>
+</section>
+<section id="refereeing-of-classification">
+<h3>Refereeing of classification<a class="headerlink" href="#refereeing-of-classification" title="Permalink to this headline">¶</a></h3>
+<p>Independent Referee scrutiny of data classification is required when the initial classification by the Investigator and Data Provider Representative is Tier 2 or higher.</p>
+</section>
+<section id="two-factor-authentication">
+<h3>Two factor authentication<a class="headerlink" href="#two-factor-authentication" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>At Tier 2 and higher, two factor authentication is required to access the Environment.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="risk_register.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Risk Register</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="security_policies.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Additional Security Policies for Data Safe Haven</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

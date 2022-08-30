@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Data ingress &#8212; Data Safe Haven v2.0.0-beta documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v2.0.0-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Data ingress
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-access">
+   Data access
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-processing">
+   Data processing
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/processes/consent.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <p>This document summarises some considerations that must be taken into account when dealing with <strong>unconsented patient data</strong>, but similar ideas may apply to the use of non-health related unconsented individual-level data. Unconsented patient data typically consists of routine electronic health records (EHR) that are collected by health providers (e.g. NHS). EHRs include but are not restricted to: blood test results, fMRI scans and free text notes recorded by medical practitioners. These are a powerful, low cost source of data that is expected to play a central role in the development of precision medicine strategies. However, working with unconsented patient data introduces a variety of challenges, covering data ingress, processing and egress.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="data-ingress">
+<h1>Data ingress<a class="headerlink" href="#data-ingress" title="Permalink to this headline">¶</a></h1>
+<p>From May 2018, GDPR has introduced strict regulations regarding the use of personal data. In particular, <a class="reference external" href="https://gdpr-info.eu/art-9-gdpr/">Art 9</a> states that:</p>
+<blockquote>
+<div><p>Processing of personal data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, or trade union membership, and the processing of genetic data, biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person’s sex life or sexual orientation shall be prohibited.</p>
+</div></blockquote>
+<p>Despite this, lawful processing of such information is allowed when <em>explicit consent</em> has been given by the individual. When using EHRs, however, explicit consent is typically not practical - particularly when dealing with large patient cohorts. As such, prior to data ingress, it is important to establish that the study satisfies one of the conditions required for lawful processing of personal information <a class="reference external" href="https://gdpr-info.eu/art-9-gdpr/">see Art 9.2</a>. In the case of medical data, the Health Research Authority has issued <a class="reference external" href="https://www.hra.nhs.uk/hra-guidance-general-data-protection-regulation/">guidelines</a> for the lawful use of unconsented data. In particular, it states that <em>the legal basis is determined by the type of organisation that is the data controller for the processing</em>:</p>
+<ul class="simple">
+<li><p><em>For universities, NHS organisations, Research Council institutes or <a class="reference external" href="http://www.legislation.gov.uk/ukpga/2000/36/schedule/1">other public authority</a> the processing of personal data for research should be a ‘task in the public interest’</em>.</p></li>
+<li><p><em>For commercial companies and charitable research organisations the processing of personal data for research should be undertaken within ‘legitimate interests’</em>.</p></li>
+</ul>
+<p>As such, prior to data ingress, it is important that researchers (or commercial partners) provide valid evidence regarding these conditions being satisfied. The source of this information <strong>must</strong> be external to the research group, and depends on who is the data provider.</p>
+<ul class="simple">
+<li><p>For data provided by a single NHS Trust/Board: approval from local Caldicott Guardian</p></li>
+<li><p>For data provided by multiple NHS Trusts/Boards (Scotland): approval from the Public Benefit and Privacy Panel fro Health and Social Care (PBPP)</p></li>
+<li><p>For data provided by multiple NHS Trusts/Boards (England): approval from NHS Digital</p></li>
+</ul>
+<p>In addition to this, the data provider must provide evidence to certify that the data does not include personal information for patients who have explicitly requested to <a class="reference external" href="https://digital.nhs.uk/about-nhs-digital/our-work/keeping-patient-data-safe/how-we-look-after-your-health-and-care-information/your-information-choices/opting-out-of-sharing-your-confidential-patient-information">opt-out</a> from their data being used for purposes that are not directly related to their own care.</p>
+<p>Finally, whenever possible, the amount of identifiable personal information must be minimised prior to data ingress. This includes, but it is not restricted to: name, postcode, NHS number (England) and CHI number (Scotland). Moreover, a formal data transfer agreement between the data provider and the Institute must be in place.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-access">
+<h1>Data access<a class="headerlink" href="#data-access" title="Permalink to this headline">¶</a></h1>
+<p><strong>NOTE: This is partially inspired by the requirements set for the University of Edinburgh’s DSH.</strong></p>
+<p>The following conditions are requirements to access unconsented patient data:</p>
+<ol class="simple">
+<li><p>Completion and approval of at least one of the following accredited courses:</p>
+<ul class="simple">
+<li><p>MRC Research Data and Confidentiality: https://byglearning.com/mrcrsc-lms/course/index.php?categoryid=1</p></li>
+<li><p>ADRC SURE Training: http://adrc-scotland-sure-training.weebly.com</p></li>
+</ul>
+</li>
+</ol>
+<p>An electronic certificate will be retained by the Institute as a proof of training. The certificate must be dated no longer than <strong>3 months</strong> prior to the start of the data access. If the data access period exceeds <em>one year</em>, the researcher will need to provide a new certificate (one per each year of data access).</p>
+<p><strong>Note: the MRC training listed above is currently unavailable, but a replacement course is under preparation. Additionally, we might consider alternative accredited courses that can be added in this list.</strong></p>
+<ol class="simple">
+<li><p>The researcher must be named as an approved data user by the data controller (Caldicott Guardian, PBPP or NHS digital depending on the data source; see data ingress conditions). The data controller can remove a researcher from the list of approved data users at any time throughout the project.</p></li>
+<li><p>The researcher must be an employee of the Turing. Alternatively, the researcher must hold a valid Turing visiting researcher contract, in which the project and the data access conditions are stated. Contact details for the researcher’s line manager (or supervisor, in the case of PhD students) must be provided in this contract.</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-processing">
+<h1>Data processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h1>
+<p>During the data access period, the following conditions must be satisfied:</p>
+<ol class="simple">
+<li><p>At all times, researchers must abide to the <a class="reference external" href="http://www.legislation.gov.uk/ukpga/2018/12/contents/enacted">Data Protection Act 2018</a>.</p></li>
+<li><p>The data can <strong>only</strong> be used for purposes that are approved by the data controller (Caldicott Guardian, PBPP or NHS digital depending on the data source; see data ingress conditions), as specified in the data access agreement.</p></li>
+<li><p>Researchers must never attempt to uncover the identify of any subject present in the data (including himself/herself).</p></li>
+<li><p>Researcher must never allow data access (even visual inspection in a computer screen) to people that have not been approved by the data controller.</p></li>
+</ol>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

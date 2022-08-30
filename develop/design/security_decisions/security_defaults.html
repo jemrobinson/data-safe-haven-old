@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Default security configuration &#8212; Data Safe Haven develop documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Certifications" href="../certifications/index.html" />
+    <link rel="prev" title="Data transfer" href="data_transfer.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../introduction/index.html">
+  Introduction
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../roles/index.html">
+  Roles
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../policies/index.html">
+  Policies
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Design
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../architecture/index.html">
+   Architecture
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../architecture/shm_details.html">
+     Safe Haven Management design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../architecture/sre_details.html">
+     Secure research environment design
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../architecture/physical_resilence_and_availability.html">
+     Physical resilience and availability
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Security decisions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_access.html">
+     Data access
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_transfer.html">
+     Data transfer
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Default security configuration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../certifications/index.html">
+   Certifications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../certifications/DSPT.html">
+     NHS DSPT Security Assessment
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../certifications/risk_register.html">
+     Risk Register
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>develop</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applicable-to-all-sres">
+   Applicable to all SREs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accounts">
+     Accounts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#authentication">
+     Authentication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remote-connections">
+     Remote connections:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#custom-software">
+     Custom software
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-access">
+     Data access
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#infrastructure-access">
+     Infrastructure access
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tier-specific">
+   Tier-specific
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inbound-connections">
+     Inbound connections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outbound-connections">
+     Outbound connections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-devices">
+     User devices:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physical-security">
+     Physical security:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-transfer-from-user-device">
+     Data transfer from user device
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sign-off-on-bringing-data-into-the-environment">
+     Sign-off on bringing data into the environment:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sign-off-on-adding-new-users">
+     Sign-off on adding new users:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sign-off-on-bringing-external-code-software-into-the-environment">
+     Sign-off on bringing external code/software into the environment:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-r-package-availability">
+     Python/R package availability:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/design/security_decisions/security_defaults.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="default-security-configuration">
+<h1>Default security configuration<a class="headerlink" href="#default-security-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Each secure research environment (SRE) belongs to one of five <a class="reference internal" href="../../policies/data_sensitivity_classification/sensitivity_tiers.html#policy-classification-sensitivity-tiers"><span class="std std-ref">project sensitivity tiers</span></a>.
+Depending on which tier a particular SRE belongs to, the following security controls are applied by default.
+Any of these controls can be relaxed or tightened by the <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> if a particular SRE requires it.</p>
+<section id="applicable-to-all-sres">
+<h2>Applicable to all SREs<a class="headerlink" href="#applicable-to-all-sres" title="Permalink to this headline">¶</a></h2>
+<section id="accounts">
+<h3>Accounts<a class="headerlink" href="#accounts" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Researchers must use a dedicated Data Safe Haven account to log in.</p></li>
+<li><p>These accounts are created by a <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Manager</span></a> and are separate from any credentials used to access other services.</p></li>
+<li><p>Access to any particular SRE is further controlled through membership of a security group associated with that project.
+Only <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Managers</span></a> are able to assign users to groups.</p></li>
+</ul>
+</section>
+<section id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> access the SRE by connecting via SSL/TLS to the Remote Desktop Gateway.</p></li>
+<li><p>Authentication to the Remote Desktop Gateway requires all of:</p>
+<ul>
+<li><p>username</p></li>
+<li><p>password</p></li>
+<li><p>multi-factor authentication (phonecall or phone app notification)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="remote-connections">
+<h3>Remote connections:<a class="headerlink" href="#remote-connections" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Authenticated <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> must use an HTML5 web application running on the Remote Desktop Gateway to connect the SRE.</p></li>
+<li><p>SRE resources are available through an in-browser desktop.</p></li>
+</ul>
+</section>
+<section id="custom-software">
+<h3>Custom software<a class="headerlink" href="#custom-software" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> are not provided with any administrative rights that would allow them to install their own software.</p></li>
+<li><p><a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> <strong>are</strong> allowed to install libraries into their userspace, for example packages from the <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> or <code class="docutils literal notranslate"><span class="pre">CRAN</span></code> package repositories.</p></li>
+</ul>
+</section>
+<section id="data-access">
+<h3>Data access<a class="headerlink" href="#data-access" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Data is stored in Azure cloud storage which only <a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Managers</span></a> can access from outside the environment</p></li>
+<li><p><a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> have read-only access to the data and only from inside the environment.</p></li>
+</ul>
+</section>
+<section id="infrastructure-access">
+<h3>Infrastructure access<a class="headerlink" href="#infrastructure-access" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../roles/system_manager/index.html#role-system-manager"><span class="std std-ref">System Managers</span></a> are the only people able to make changes to infrastructure</p></li>
+</ul>
+</section>
+</section>
+<section id="tier-specific">
+<h2>Tier-specific<a class="headerlink" href="#tier-specific" title="Permalink to this headline">¶</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Tier 4 defaults are not discussed below as such environments are not currently supported by the Data Safe Haven.</p>
+</div>
+<section id="inbound-connections">
+<h3>Inbound connections<a class="headerlink" href="#inbound-connections" title="Permalink to this headline">¶</a></h3>
+<p>Access to the gateway is only permitted from defined IP addresses associated with specific networks at the host organisation or its partner institutes:</p>
+<ul class="simple">
+<li><p><strong>Tier 3:</strong> we recommend permitting access only from restricted networks, which are accessible only by a known subset of <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a>.</p></li>
+<li><p><strong>Tier 2:</strong> we recommend permitting access only from institutionally managed networks, such as EduRoam, which might also be accessible by non-Researchers.</p></li>
+<li><p><strong>Tier 0/1:</strong> we recommend restricting access to IP addresses provided by researchers, but without restrictions about what these should correspond to.</p></li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Unrestricting which IP addresses can connect to the gateway increases the risk of DDOS attacks.</p>
+</div>
+</section>
+<section id="outbound-connections">
+<h3>Outbound connections<a class="headerlink" href="#outbound-connections" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Tier 2/3:</strong> outbound internet access from the SRE is blocked by network-level rules.</p></li>
+<li><p><strong>Tier 0/1:</strong> outbound internet access from the SRE is permitted.</p></li>
+</ul>
+</section>
+<section id="user-devices">
+<h3>User devices:<a class="headerlink" href="#user-devices" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Tier 3:</strong> <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> must connect from a managed device where they have no admin access (eg. a host-provided Chromebook).</p></li>
+<li><p><strong>Tier 0/1/2:</strong> <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> can connect from their own devices.</p></li>
+</ul>
+</section>
+<section id="physical-security">
+<h3>Physical security:<a class="headerlink" href="#physical-security" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Tier 3:</strong> <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> must only connect from dedicated secure spaces (eg. from a known office at the host institute) [NB. This may be relaxed depending on COVID restrictions]</p></li>
+<li><p><strong>Tier 0/1/2:</strong> <a class="reference internal" href="../../roles/researcher/index.html#role-researcher"><span class="std std-ref">Researchers</span></a> can connect from anywhere</p></li>
+</ul>
+</section>
+<section id="data-transfer-from-user-device">
+<h3>Data transfer from user device<a class="headerlink" href="#data-transfer-from-user-device" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Tier 2/3:</strong> Disabled between the user device and the remote secure environment. Copy-and-paste is also disabled.</p></li>
+<li><p><strong>Tier 0/1:</strong> Copy and paste is enabled, but file transfer is not possible without using a web-based file transfer service.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that this means that eg. password managers cannot be used]</p>
+</div>
+</section>
+<section id="sign-off-on-bringing-data-into-the-environment">
+<h3>Sign-off on bringing data into the environment:<a class="headerlink" href="#sign-off-on-bringing-data-into-the-environment" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Tier 2/3:</strong> <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a>, <a class="reference internal" href="../../roles/data_provider_representative/index.html#role-data-provider-representative"><span class="std std-ref">Dataset Provider Representative</span></a> and <a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referee</span></a>.</p></li>
+<li><p><strong>Tier 0/1:</strong> <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and <code class="docutils literal notranslate"><span class="pre">role_data_provider_representative</span></code>.</p></li>
+</ul>
+</section>
+<section id="sign-off-on-adding-new-users">
+<h3>Sign-off on adding new users:<a class="headerlink" href="#sign-off-on-adding-new-users" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Tier 3:</strong> <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and <a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referee</span></a></p></li>
+<li><p><strong>Tier 0/1/2:</strong> <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a></p></li>
+</ul>
+</section>
+<section id="sign-off-on-bringing-external-code-software-into-the-environment">
+<h3>Sign-off on bringing external code/software into the environment:<a class="headerlink" href="#sign-off-on-bringing-external-code-software-into-the-environment" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Tier 3:</strong> <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a> and <a class="reference internal" href="../../roles/referee/index.html#role-referee"><span class="std std-ref">Referee</span></a></p></li>
+<li><p><strong>Tier 0/1/2:</strong> <a class="reference internal" href="../../roles/investigator/index.html#role-investigator"><span class="std std-ref">Investigator</span></a></p></li>
+</ul>
+</section>
+<section id="python-r-package-availability">
+<h3>Python/R package availability:<a class="headerlink" href="#python-r-package-availability" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Tier 3:</strong> A pre-agreed allowlist of packages from <code class="docutils literal notranslate"><span class="pre">CRAN</span></code> and <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> (via local mirror).</p></li>
+<li><p><strong>Tier 2:</strong> Anything on <code class="docutils literal notranslate"><span class="pre">CRAN</span></code> or <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> (via proxy or local mirror).</p></li>
+<li><p><strong>Tier 0/1:</strong> Direct access to any package repository.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="data_transfer.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data transfer</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../certifications/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Certifications</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

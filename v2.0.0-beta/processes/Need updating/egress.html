@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Intro &#8212; Data Safe Haven v2.0.0-beta documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/toggle.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo_turing.jpg" class="logo" alt="logo">
+</a>      
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/alan-turing-institute/data-safe-haven" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+    
+  
+  <div class="rst-versions" data-toggle="rst-downloads" role="note" aria-label="downloads">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-file-pdf fa-fw left"></span>
+      <span class="left">Download <strong>latest</strong> PDFs</span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_guacamole.pdf">User guide (Apache Guacamole)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_safe_haven_user_guide_msrds.pdf">User guide (Microsoft RDS)</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_full.pdf">Classification flowchart</a></dd>
+        
+          <dd><a href="/data-safe-haven/develop/pdf/data_classification_flow_simple.pdf">Simplified classification  flowchart</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book fa-fw left"></span>
+      <span class="left">Currently reading: <strong>v2.0.0-beta</strong></span>
+      <span class="fa fa-caret-down right"></span>
+    </span>
+    <div class="rst-other-versions">
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+          
+          <dd><a href="/data-safe-haven/develop/index.html">develop</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.1.0-beta/index.html">v0.1.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.2.0-beta/index.html">v0.2.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v0.3.0-beta/index.html">v0.3.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.0-beta/index.html">v1.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.0.1-beta/index.html">v1.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v1.1.0-beta/index.html">v1.1.0-beta</a></dd>
+          
+        
+           <strong> 
+          <dd><a href="/data-safe-haven/v2.0.0-beta/index.html">v2.0.0-beta</a></dd>
+           </strong> 
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.0-beta/index.html">v3.0.0-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.0.1-beta/index.html">v3.0.1-beta</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.1.0/index.html">v3.1.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.2.0/index.html">v3.2.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.0/index.html">v3.3.0</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.3.1/index.html">v3.3.1</a></dd>
+          
+        
+          
+          <dd><a href="/data-safe-haven/v3.4.0/index.html">v3.4.0</a></dd>
+          
+        
+      </dl>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Intro
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reclassification">
+   Reclassification
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#items-for-discussion-in-the-case-of-mismatched-classification">
+     Items for discussion in the case of mismatched classification
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#items-for-discussion-when-the-classification-is-tier-2-or-higher">
+     Items for discussion when the classification is tier 2 or higher
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#egress-of-secure-materials-back-to-a-data-provider">
+     Egress of secure materials back to a data provider
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#management-of-reclassified-materials-pending-publication">
+   Management of reclassified materials pending publication
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/alan-turing-institute/data-safe-haven/edit/develop/docs/processes/Need updating/egress.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="intro">
+<h1>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h1>
+<p>Prior to publishing reports/papers, code or data that is currently being stored within the Turing Safe Haven a reclassification process must be followed. This is to ensure that any material that is to be made public is free of any confidential material. If commercially sensitive information is published this could lead to reputational or financial repercussions. If personal or personal sensitive information is leaked then it could lead to legal repercussions (See the <a class="reference external" href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/key-definitions/what-is-personal-data/">ICO Website</a> for more information on this).</p>
+<p>The process is divided into two stages: declassification and then egress.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reclassification">
+<h1>Reclassification<a class="headerlink" href="#reclassification" title="Permalink to this headline">¶</a></h1>
+<p>Much like the process for initial classification of the project, the same three representatives (The investigator, dataset provider representative and the referee)  who classified the project at the beginning will need to again individually conduct the same assessment on the results. Declassification should take place within the Turing Safe Haven environment.  <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">we</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">mention</span> <span class="pre">where?</span> <span class="pre">Data</span> <span class="pre">Set</span> <span class="pre">provider</span> <span class="pre">might</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">able</span> <span class="pre">to</span> <span class="pre">do</span> <span class="pre">this</span> <span class="pre">from</span> <span class="pre">their</span> <span class="pre">organisation</span> <span class="pre">if</span> <span class="pre">unable</span> <span class="pre">to</span> <span class="pre">come</span> <span class="pre">to</span> <span class="pre">Turing</span> <span class="pre">or</span> <span class="pre">other</span> <span class="pre">&quot;safe</span> <span class="pre">access</span> <span class="pre">point&quot;</span> </code></p>
+<p>Following the flowchart for tier selection, the representatives should make note of any item that they would consider makes the results a tier 2 or above classification. If all three representatives mutually return a tier 0 or 1 classification then the results can be safely removed from the secure research environment. However, if there are differences, or if the agreed classification is 2 or above, a face to face discussion should be arranged. An email discussion is strongly not recommended here as the conversation may need to discuss sensitive information.</p>
+<section id="items-for-discussion-in-the-case-of-mismatched-classification">
+<h2>Items for discussion in the case of mismatched classification<a class="headerlink" href="#items-for-discussion-in-the-case-of-mismatched-classification" title="Permalink to this headline">¶</a></h2>
+<p>This discussion should focus on what features of the results prompted the different classification. Agreement must be made. In the case of two competing arguments, the  for the higher classification should take precedence.</p>
+</section>
+<section id="items-for-discussion-when-the-classification-is-tier-2-or-higher">
+<h2>Items for discussion when the classification is tier 2 or higher<a class="headerlink" href="#items-for-discussion-when-the-classification-is-tier-2-or-higher" title="Permalink to this headline">¶</a></h2>
+<p>Each item that was deemed to be sensitive at tier 2 or higher will need to be reviewed with the purpose of how it will be represented in its public form. The representatives will need to decided and collectively agree to:</p>
+<ul class="simple">
+<li><p>further pseudonymise the item</p></li>
+<li><p>aggregate, restructure or reword the item so as it does not reveal the sensitive detail</p></li>
+<li><p>remove the item all together</p></li>
+</ul>
+<p>Care should be made to ensure that whichever option is chosen for each item, the results do not lose the overall meaning.</p>
+</section>
+<section id="egress-of-secure-materials-back-to-a-data-provider">
+<h2>Egress of secure materials back to a data provider<a class="headerlink" href="#egress-of-secure-materials-back-to-a-data-provider" title="Permalink to this headline">¶</a></h2>
+<p>It may be the case that Tier 2 or above items need to be removed from the secure compute environment and returned to a data provider. Code and derived data will be securely transferred to the Data Set Provider. This may also be necessary in the case of review of sensitive materials for reclassification where the provider could not otherwise acceess the environment.</p>
+<p>With the results reclassified, they will be transferred to the Data Set Provider and any other party involved in the project. Please refer to the three methods of transferring data back to a provider <a class="reference external" href="https://github.com/alan-turing-institute/data-safe-haven/blob/master/processes/secure-egress.md">here</a></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="management-of-reclassified-materials-pending-publication">
+<h1>Management of reclassified materials pending publication<a class="headerlink" href="#management-of-reclassified-materials-pending-publication" title="Permalink to this headline">¶</a></h1>
+<p>Within Turing, reclassified results at Tier 1 or below may be archived using normal business information processes in preparation for publication.</p>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, The Alan Turing Institute.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 4.3.0.
+    Hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+    <br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
